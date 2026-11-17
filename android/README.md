@@ -62,3 +62,9 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 - Android 8.0 (API 26) and newer use a native adaptive launcher icon with a separate foreground mark and the existing dark-navy background colour.
 - Android 6.0–7.1 use the matching vector fallback in `mipmap-anydpi`; the branded splash drawable remains unchanged.
 - The manifest references the version-qualified `@mipmap/ic_launcher` resource for both standard and round launcher icon slots. Resource compilation and launcher rendering remain unverified until Android validation.
+
+
+## Android keyboard/IME window configuration
+
+- The launcher Activity declares `android:windowSoftInputMode="adjustResize"` so the Android 15+ edge-to-edge window can receive and dispatch IME insets to the WebView container. The Activity's API 35+ inset listener includes the IME alongside system bars and display cutouts.
+- This is a source-level configuration alignment. Keyboard opening, dismissal, animation and viewport behaviour still require runtime validation on supported Android versions.
