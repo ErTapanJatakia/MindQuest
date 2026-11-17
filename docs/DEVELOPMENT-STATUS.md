@@ -543,3 +543,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated the manifest to apply the regular application theme and the launch-only Activity theme. MainActivity switches to the regular theme before super.onCreate() and WebView creation.
 - This is source-level integration only. No Gradle/resource build, APK inspection, Android 12 splash rendering, emulator or physical-device validation was run. CI and Android validation remain deferred until the agreed development freeze.
 - No new product scope, dependency, permission, service or release requirement was introduced. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android WebView boundary and lifecycle review — 2026-11-18
+
+- Restricted permitted top-level WebView navigation to the exact bundled `/android_asset/index.html` document; hash-based in-app navigation remains valid. Other top-level destinations and subframe navigations are rejected.
+- Explicitly disabled WebView content debugging. Existing JavaScript requirement for the local game, disabled content access, disabled cross-file and universal file-origin access, disabled pop-ups and blocked mixed content are retained.
+- Added Activity lifecycle handling to pause/resume the WebView and its timers; shutdown stops loading and destroys the WebView without navigating to a blank page.
+- Updated the Android implementation notes. No new dependency, permission, service, network access or product scope was added.
+- Source-level verification only. No Kotlin compiler, Gradle build, APK inspection, runtime navigation test, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
