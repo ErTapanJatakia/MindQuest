@@ -25,6 +25,7 @@
         <p class="hero-copy" data-i18n="intro">Explore the world, one question at a time.</p>
         <div class="hero-orbit" aria-hidden="true"><span>?</span><i></i><b></b></div>
         <button class="primary-button" id="play-button" type="button" data-i18n="play">Start a round</button>
+        <button class="secondary-button" id="home-help" type="button" data-i18n="help">How to play</button>
       </div>
       <div class="home-stats">
         <article class="stat-card"><span data-i18n="bestScore">Best score</span><strong id="best-score">0</strong></article>
@@ -94,9 +95,20 @@
         <option value="hard" data-i18n="hard">Hard</option>
       </select>
       <button class="primary-button" id="settings-save" type="button" data-i18n="save">Save settings</button>
+      <button class="secondary-button" id="settings-help" type="button" data-i18n="help">How to play</button>
       <button class="text-button" id="settings-back" type="button" data-i18n="back">Back</button>
     </section>
 
+    <section class="view" id="help-view" aria-labelledby="help-title" hidden>
+      <p class="eyebrow" data-i18n="helpEyebrow">THE QUICK GUIDE</p>
+      <h1 id="help-title" data-i18n="helpTitle">How to play</h1>
+      <article class="help-card"><h2 data-i18n="helpStartTitle">Play a round</h2><p data-i18n="helpStartBody">Choose a region, question language, category and difficulty in Settings, then start a round. Each round contains up to ten multiple-choice questions.</p></article>
+      <article class="help-card"><h2 data-i18n="helpScoringTitle">Scoring and results</h2><p data-i18n="helpScoringBody">Choose one answer per question. Correct answers earn one point. Your results show your score, accuracy, the correct answers and explanations.</p></article>
+      <article class="help-card"><h2 data-i18n="helpDifficultyTitle">Categories and difficulty</h2><p data-i18n="helpDifficultyBody">Explore Geography, History, Science or Culture. Choose Easy, Medium or Hard, or leave the filters open to mix the available questions.</p></article>
+      <article class="help-card"><h2 data-i18n="helpLanguageTitle">Three independent choices</h2><p data-i18n="helpLanguageBody">Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination is valid.</p></article>
+      <article class="help-card"><h2 data-i18n="helpPrivacyTitle">Free, private and offline</h2><p data-i18n="helpPrivacyBody">MindQuest is free to play, works offline and needs no account. Settings and best scores stay in local app storage; no ads or paid services are used.</p></article>
+      <button class="primary-button" id="help-back" type="button" data-i18n="back">Back</button>
+    </section>
     <footer><span>MindQuest</span><span data-i18n="freeOffline">Free · Offline · No account</span></footer>
   </main>
   <script src="./src/data/questions.js"></script>
