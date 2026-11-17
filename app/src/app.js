@@ -129,7 +129,7 @@
     try {
       const record = JSON.parse(stored.value || "null");
       if (!record || !Number.isInteger(record.score) || !Number.isInteger(record.total) ||
-          record.total < 1 || record.total > 10 || record.score < 0 || record.score > record.total) return null;
+          record.total < 1 || record.total > 15 || record.score < 0 || record.score > record.total) return null;
       return record;
     } catch (_) {
       return null;
