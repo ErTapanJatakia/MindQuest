@@ -382,3 +382,10 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - This is documentation alignment only. It adds no feature, acceptance criterion, workstream or baseline allocation.
 - No application source changed; no validator, CI, Android build or device validation was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
+
+
+## Help fallback wording alignment — 2026-11-18
+
+- Corrected the static HTML fallback text in the Help guide so it describes the selected round length, rather than claiming a fixed ten-question maximum. The live localized dictionaries already described the selected length; this aligns the pre-localization markup fallback with actual 5/10/15 behaviour.
+- Documentation/markup alignment only; no new product scope or baseline allocation. No runtime, validator, CI, Android build or device validation was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining allocation remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
