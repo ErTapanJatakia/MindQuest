@@ -35,3 +35,10 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 - WebView content debugging is explicitly disabled. JavaScript remains enabled only because the bundled game requires it; cross-file-origin access, universal file-origin access, content-provider access, pop-up windows and mixed content remain disabled.
 - The Activity pauses/resumes WebView timers with its lifecycle and stops/destroys the WebView when the Activity is destroyed.
 - These are source-level controls. Confirm behaviour against the built APK and supported Android versions during the deferred Android QA stage.
+
+
+## Android system back compatibility
+
+- Android 13 (API 33) and newer use the platform `OnBackInvokedDispatcher`, including the system predictive-back pathway. Back navigates WebView history when available and otherwise finishes the Activity.
+- Android 6.0 through Android 12 retain the legacy Activity back callback. The API 33+ callback is unregistered when the Activity is destroyed.
+- This uses platform APIs already available through the configured compile SDK and introduces no AndroidX or other dependency. Device/gesture behaviour remains unverified until Android runtime QA.
