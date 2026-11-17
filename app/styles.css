@@ -26,3 +26,15 @@ footer span:last-child{text-align:left}
   .home-stats{grid-template-columns:1fr}
 }
 .streak-indicator{display:flex;justify-content:flex-end;align-items:center;gap:6px;margin:-22px 0 18px;color:var(--muted);font-size:12px}.streak-indicator strong{display:inline-grid;place-items:center;min-width:25px;height:25px;padding:0 7px;border:1px solid #47716d;border-radius:999px;background:var(--panel2);color:var(--accent);font-size:13px;font-variant-numeric:tabular-nums}
+
+
+/* Preserve control boundaries and answer-state cues in Windows High Contrast / forced-colors mode. */
+@media(forced-colors:active){
+  .hero,.stat-card,.answer-option,.review-card,.help-card,.icon-button,select,.score-ring{background:Canvas;color:CanvasText;border:1px solid CanvasText}
+  .primary-button,.secondary-button{background:ButtonFace;color:ButtonText;border:1px solid ButtonText}
+  .answer-option .letter{background:Canvas;color:CanvasText;border:1px solid CanvasText}
+  .answer-option.correct{border:2px solid Highlight}
+  .answer-option.incorrect{border:2px dashed CanvasText}
+  .feedback.good,.feedback.bad,.review-status.good,.review-status.bad{color:CanvasText}
+  button:focus-visible,select:focus-visible,.brand:focus-visible{outline:3px solid Highlight;outline-offset:3px}
+}
