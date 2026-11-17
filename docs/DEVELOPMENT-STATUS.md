@@ -746,3 +746,6 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Rephrased the Russian question to ask which US state is known by the nickname “Штат Алоха”, and clarified the explanation as “Официальное прозвище штата Гавайи — «Штат Алоха».” The four state options, correct key `d`, stable ID, region, category and difficulty remain unchanged.
 - Verified against the State of Hawaii's official archives, which identify “The Aloha State” as the official popular name: https://digitalarchives-documents.hawaii.gov/documents/1640/32.pdf ; the state legislature's joint resolution adopting the name is https://digitalarchives-documents.hawaii.gov/documents/1055/274.pdf .
 - This correction aligns the Russian question with the existing answer choices; it does not alter the underlying fact or any English translation. Broader native-speaker review remains pending.
+
+
+- Post-commit source inspection caught a malformed closing quote in the first Russian explanation edit before any validator or build was run. Corrected the record formatting in follow-up commit `b85f22e`; a fresh fetch confirms the question, option set, explanation and record boundaries are now properly quoted and closed. This correction is recorded transparently; no claim of validator or runtime success is made.
