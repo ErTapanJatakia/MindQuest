@@ -433,7 +433,7 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 
 ## Android system back integration — 2026-11-18
 
-- Added Android 13+ platform `OnBackInvokedDispatcher` handling for system back/predictive-back dispatch. It navigates WebView history when available and finishes the Activity otherwise.
+- Added Android 13+ platform `OnBackInvokedDispatcher` handling for the committed system-back action through `OnBackInvokedCallback`. It navigates WebView history when available and finishes the Activity otherwise; no custom `OnBackAnimationCallback` gesture-progress animation is implemented.
 - Retained the legacy `onBackPressed()` path for Android 6.0–12 and unregisters the API 33+ callback during Activity destruction.
 - Uses platform APIs only; no dependency, permission, service or product scope was added.
 - Source-only implementation and re-fetch verification; no Kotlin compilation, Gradle build, emulator, gesture-navigation or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
