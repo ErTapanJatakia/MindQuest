@@ -55,7 +55,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Latest completed batch
 
-- Expanded the question bank from 45 to 60 stable IDs (20 per region), adding fifteen questions with all three translations. New material covers the Salt March, Aryabhata, Chandrayaan-3, Kathakali and the Natya Shastra (India); Valentina Tereshkova, Dmitri Mendeleev, Luna 9, *War and Peace* and *The Firebird* (Russia); and the Declaration of Independence, the 13th Amendment, Hubble, Broadway theatre and the Gateway Arch (United States). Each regional bank now has exactly five questions in each of the four categories. The difficulty distribution is seven easy, eight medium and five hard per region.
+- Expanded the question bank from 60 to 75 stable IDs (25 per region), adding fifteen questions with all three translations. New material covers the Sundarbans, Western Ghats, Fatehpur Sikri, ISRO and Ajanta (India); Lake Baikal, Mount Elbrus, the Siege of Leningrad, Salyut 1 and the Bolshoi Theatre (Russia); and the Rio Grande, Grand Canyon, Louisiana Purchase, Alan Shepard and the Guggenheim Museum (United States). Each region now has seven Geography questions and six each in History, Science and Culture. The difficulty distribution is nine easy, ten medium and six hard per region.
 
 - Refined the home-screen best-score card to show score, percentage accuracy and the active region/category/difficulty scope; the scope is localized using the current interface language.
 
