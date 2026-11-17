@@ -333,3 +333,14 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Post-commit source re-fetch confirmed ten targeted checks covering the validator, each integrity condition, score recomputation and the ordering of the guard before answer review.
 - Source-level verification only. No browser runtime, automated test, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%) with 1,135 minutes remaining (47.29%); no earned allocation changed. Actual engineering time remains untracked.
+
+
+## Latest invalid-round recovery UX refinement — 2026-11-18
+
+- Generalized the shared recovery screen to support a distinct localized integrity-error message in addition to the existing empty-question-selection guidance.
+- When the completed answer ledger fails validation, the app now discards the invalid round and shows a clear Settings recovery path instead of returning silently and leaving the player on a non-progressing final-question screen.
+- Added the new recovery title and guidance in all three interface locales. The recovery message is marked with the selected interface language; question language and region settings remain independent.
+- A source consistency check initially detected one stale call to the previous recovery-function name. That call was corrected and the updated source was re-fetched. Final source checks passed 10/10, including verification that no stale function reference remains.
+- Reference: W3C WCAG 2.2 Technique H58 describes identifying language changes with the HTML `lang` attribute: https://www.w3.org/WAI/WCAG22/Techniques/html/H58.
+- Source-level verification only. No browser runtime, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%) with 1,135 minutes remaining (47.29%); no earned allocation changed. Actual engineering time remains untracked.
