@@ -356,3 +356,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - This catches records whose region prefix is plausible but whose category-coded identity is inconsistent before the bank is packaged. It does not validate historical accuracy, translation quality or semantic equivalence.
 - Validator source updated in commit c02d3fd. The validator was not executed; no CI, Android build or device validation was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No earned allocation changed; actual engineering time remains untracked.
+
+
+## Answer-history option snapshot isolation — 2026-11-18
+
+- Answer capture now stores a shallow snapshot of the four localized option strings instead of retaining the question-bank options object by reference.
+- The completed-round integrity gate can therefore compare the recorded answer-time option values with the active question data without both sides sharing the same mutable object reference.
+- This does not alter question content, displayed choices, scoring, localization or persistence. It strengthens the evidence captured for result review and integrity verification.
+- App commit: 17ae826. Source/documentation re-fetch verification pending. No runtime test, CI, official validator or Android validation was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No baseline credit added; actual engineering time remains untracked.
