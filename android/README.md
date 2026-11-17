@@ -14,7 +14,7 @@ The Android module is a minimal Kotlin Activity hosting the locally bundled game
 
 ## Build prerequisites
 
-Install a compatible JDK 17, Android SDK Platform 35 and Android Gradle tooling. The Gradle wrapper has not yet been added; wrapper distribution/version pinning is part of the Android integration workstream.
+Install JDK 17 and Android SDK Platform 35. The project pins Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21; the compatible Gradle distribution target is 8.9. The Gradle wrapper has not yet been added, so the build is not yet self-contained or reproducible from a fresh checkout. `android/gradle.properties` establishes UTF-8/heap, AndroidX and Kotlin style defaults.
 
 From this directory, after Gradle is installed:
 
