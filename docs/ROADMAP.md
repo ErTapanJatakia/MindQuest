@@ -454,3 +454,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - No new dependency, permission, service or product scope. This remains a source-level integration change; keyboard animation, focus and resize behaviour require runtime verification.
 - No Kotlin compilation, Gradle build, emulator or physical-device testing was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and device validation. Actual engineering time remains untracked.
+
+
+## Android Gradle project defaults — 2026-11-18
+
+- Added `android/gradle.properties` with UTF-8 Gradle JVM configuration, a 2 GB heap setting, AndroidX project flag and official Kotlin code style.
+- Recorded the existing Android Gradle Plugin 8.7.3 / Kotlin 2.0.21 pairing and Gradle 8.9 wrapper target in Android build documentation. Wrapper scripts and wrapper JAR remain absent; no claim of a reproducible wrapper build is made.
+- No dependency, permission, service or product scope was added. No Gradle build or Android validation was run; CI remains deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending a successful build and runtime acceptance. Actual engineering time remains untracked.
