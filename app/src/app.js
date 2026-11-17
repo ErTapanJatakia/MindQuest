@@ -198,18 +198,40 @@
 
   function isPlayableQuestion(question) {
     if (!question || typeof question !== "object" || Array.isArray(question)) return false;
+    const expectedQuestionKeys = ["category", "correct", "difficulty", "id", "region", "translations"];
+    if (Object.keys(question).sort().join("|") !== expectedQuestionKeys.join("|")) return false;
+    const categoryCodes = {
+      Geography: "GEO",
+      History: "HIS",
+      Science: "SCI",
+      Culture: "CUL"
+    };
     if (question.region !== settings.questionRegion ||
         !CATEGORIES.includes(question.category) ||
         !["easy", "medium", "hard"].includes(question.difficulty) ||
-        !["a", "b", "c", "d"].includes(question.correct)) return false;
+        !["a", "b", "c", "d"].includes(question.correct) ||
+        typeof question.id !== "string" ||
+        !new RegExp("^(IN|RU|US)-" + categoryCodes[question.category] + "-\\d{3}$").test(question.id) ||
+        !question.id.startsWith(question.region + "-")) return false;
+
     const copy = question.translations && question.translations[settings.questionLocale];
     if (!copy || typeof copy !== "object" || Array.isArray(copy)) return false;
-    if (typeof copy.question !== "string" || !copy.question.trim() ||
-        typeof copy.explanation !== "string" || !copy.explanation.trim()) return false;
+    const expectedTranslationKeys = ["explanation", "options", "question"];
+    if (Object.keys(copy).sort().join("|") !== expectedTranslationKeys.join("|")) return false;
+    const hasCleanText = (value) =>
+      typeof value === "string" && value.trim().length > 0 && !/[\\u0000-\\u001F\\u007F]/u.test(value);
+    if (!hasCleanText(copy.question) || !hasCleanText(copy.explanation)) return false;
     if (!copy.options || typeof copy.options !== "object" || Array.isArray(copy.options)) return false;
-    return ["a", "b", "c", "d"].every((key) =>
-      typeof copy.options[key] === "string" && copy.options[key].trim()
+    const answerKeys = ["a", "b", "c", "d"];
+    if (Object.keys(copy.options).sort().join("|") !== answerKeys.join("|") ||
+        !answerKeys.every((key) => hasCleanText(copy.options[key]))) return false;
+
+    // NFC catches canonically equivalent Unicode strings; whitespace and case are
+    // normalized as well so visually duplicate answer choices cannot be selected.
+    const normalizedOptions = answerKeys.map((key) =>
+      copy.options[key].normalize("NFC").trim().replace(/\\s+/gu, " ").toLocaleLowerCase(settings.questionLocale)
     );
+    return new Set(normalizedOptions).size === answerKeys.length;
   }
 
   function discardRound() {
@@ -250,6 +272,11 @@
       );
     if (!pool.length) {
       showRecovery();
+      return;
+    }
+    const questionIds = pool.map((question) => question.id);
+    if (new Set(questionIds).size !== questionIds.length) {
+      showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
     }
     const shuffled = [...pool];
