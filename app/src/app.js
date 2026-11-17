@@ -219,7 +219,7 @@
     const expectedTranslationKeys = ["explanation", "options", "question"];
     if (Object.keys(copy).sort().join("|") !== expectedTranslationKeys.join("|")) return false;
     const hasCleanText = (value) =>
-      typeof value === "string" && value.trim().length > 0 && !/[\\u0000-\\u001F\\u007F]/u.test(value);
+      typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
     if (!hasCleanText(copy.question) || !hasCleanText(copy.explanation)) return false;
     if (!copy.options || typeof copy.options !== "object" || Array.isArray(copy.options)) return false;
     const answerKeys = ["a", "b", "c", "d"];
@@ -229,7 +229,7 @@
     // NFC catches canonically equivalent Unicode strings; whitespace and case are
     // normalized as well so visually duplicate answer choices cannot be selected.
     const normalizedOptions = answerKeys.map((key) =>
-      copy.options[key].normalize("NFC").trim().replace(/\\s+/gu, " ").toLocaleLowerCase(settings.questionLocale)
+      copy.options[key].normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(settings.questionLocale)
     );
     return new Set(normalizedOptions).size === answerKeys.length;
   }
