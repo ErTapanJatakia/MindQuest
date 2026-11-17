@@ -66,6 +66,12 @@ for (const region of regions) {
   const byDifficulty = Object.fromEntries(difficulties.map((level) => [
     level, regional.filter((question) => question.difficulty === level).length
   ]));
+  const missingCategories = categories.filter((category) =>
+    !regional.some((question) => question.category === category)
+  );
+  if (missingCategories.length) {
+    errors.push(`${region}: missing category coverage for ${missingCategories.join(", ")}`);
+  }
   console.log(`${region}: ${regional.length} questions (easy ${byDifficulty.easy}, medium ${byDifficulty.medium}, hard ${byDifficulty.hard})`);
 }
 
