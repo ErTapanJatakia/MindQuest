@@ -10,7 +10,7 @@
     "ru-RU": { IN: "Индия", RU: "Россия", US: "США" }
   };
   const localeNames = {
-    "en-IN": { "en-IN": "English (India)", "en-US": "English (United States)", "ru-RU": "Русский" },
+    "en-IN": { "en-IN": "English (India)", "en-US": "English (United States)", "ru-RU": "Russian" },
     "en-US": { "en-IN": "English (India)", "en-US": "English (United States)", "ru-RU": "Russian" },
     "ru-RU": { "en-IN": "Английский (Индия)", "en-US": "Английский (США)", "ru-RU": "Русский" }
   };
