@@ -462,3 +462,10 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Recorded the existing Android Gradle Plugin 8.7.3 / Kotlin 2.0.21 pairing and Gradle 8.9 wrapper target in Android build documentation. Wrapper scripts and wrapper JAR remain absent; no claim of a reproducible wrapper build is made.
 - No dependency, permission, service or product scope was added. No Gradle build or Android validation was run; CI remains deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending a successful build and runtime acceptance. Actual engineering time remains untracked.
+
+
+## Predictive-back manifest alignment — 2026-11-18
+
+- Explicitly enabled `android:enableOnBackInvokedCallback` on the application manifest to align Android 13+ system back dispatch with the existing `OnBackInvokedDispatcher` callback. Older supported Android versions ignore the API 33 manifest attribute.
+- No dependency, permission or product scope added. Source-level manifest verification only; Android resource/manifest merge and gesture behaviour remain untested until the agreed validation phase.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit claimed pending build and runtime acceptance. Actual engineering time remains untracked.
