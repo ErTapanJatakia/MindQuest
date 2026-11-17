@@ -14,7 +14,7 @@ MindQuest will ship as a self-contained Android application. The initial game ex
 
 ## Localization model
 
-The app maintains three separate language/content settings plus independent gameplay filters. The gameplay filters include category, difficulty and a configurable round length of 5, 10 or 15 questions (default 10). If the eligible pool is smaller than the selected length, the round uses every available question. Best-score records are scoped by region, category, difficulty and selected round length.
+The app maintains three separate language/content settings plus independent gameplay filters. The gameplay filters include category, difficulty and a configurable round length of 5, 10 or 15 questions (default 10). If the eligible pool is smaller than the selected length, the round uses every available question. Best-score records are scoped by region, category, difficulty and selected round length. Each stored record has exactly two integer fields, `score` and `total`; the reader rejects malformed shapes, non-positive totals, totals above the selected round length and scores outside the total.
 
 The app maintains three separate settings:
 
