@@ -351,13 +351,13 @@
     }
     // If a difficulty has too few unseen questions left, fill from other unseen
     // questions first so the session cycle still avoids repeats whenever possible.
-    const selectedIds = new Set(selectedRound.map((question) => question.id));
+    const selectedIdSet = new Set(selectedRound.map((question) => question.id));
     if (selectedRound.length < targetRoundLength) {
       for (const question of unseen) {
         if (selectedRound.length >= targetRoundLength) break;
-        if (!selectedIds.has(question.id)) {
+        if (!selectedIdSet.has(question.id)) {
           selectedRound.push(question);
-          selectedIds.add(question.id);
+          selectedIdSet.add(question.id);
         }
       }
     }
@@ -366,9 +366,9 @@
     if (selectedRound.length < targetRoundLength) {
       for (const question of shuffled) {
         if (selectedRound.length >= targetRoundLength) break;
-        if (!selectedIds.has(question.id)) {
+        if (!selectedIdSet.has(question.id)) {
           selectedRound.push(question);
-          selectedIds.add(question.id);
+          selectedIdSet.add(question.id);
         }
       }
     }
@@ -378,6 +378,12 @@
         selectedRound.some((question) => !isPlayableQuestion(question))) {
       showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
+    }
+    // Randomize the final sequence after difficulty quotas are met so difficulty
+    // is balanced without appearing in predictable consecutive blocks.
+    for (let i = selectedRound.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [selectedRound[i], selectedRound[j]] = [selectedRound[j], selectedRound[i]];
     }
     selectedIds.forEach((id) => seenQuestionIds.add(id));
     round = selectedRound;
