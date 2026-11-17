@@ -11,13 +11,14 @@ const categories = ["Geography", "History", "Science", "Culture"];
 const difficulties = ["easy", "medium", "hard"];
 const errors = [];
 const ids = new Set();
+const questionTextByLocale = new Map();
 
 if (!Array.isArray(questions) || questions.length === 0) {
   throw new Error("Question bank is empty or not an array.");
 }
 
 for (const question of questions) {
-  if (!question.id || ids.has(question.id)) errors.push(`Missing or duplicate question ID: ${question.id}`);
+  if (typeof question.id !== "string" || !question.id.trim() || ids.has(question.id)) errors.push(`Missing or duplicate question ID: ${question.id}`);
   ids.add(question.id);
   if (!regions.includes(question.region)) errors.push(`${question.id}: invalid region ${question.region}`);
   if (!categories.includes(question.category) || !difficulties.includes(question.difficulty)) {
@@ -36,20 +37,28 @@ for (const question of questions) {
   }
   for (const locale of locales) {
     const translation = question.translations[locale];
-    if (!translation) {
-      errors.push(`${question.id}: missing ${locale} translation`);
+    if (!translation || typeof translation !== "object" || Array.isArray(translation)) {
+      errors.push(`${question.id}: missing or invalid ${locale} translation`);
       continue;
     }
     const keys = ["a", "b", "c", "d"];
-    if (!translation.question?.trim() || !translation.explanation?.trim()) {
-      errors.push(`${question.id}/${locale}: question or explanation is empty`);
+    if (typeof translation.question !== "string" || !translation.question.trim() ||
+        typeof translation.explanation !== "string" || !translation.explanation.trim()) {
+      errors.push(`${question.id}/${locale}: question or explanation must be non-empty text`);
+    } else {
+      const normalizedQuestion = translation.question.trim().replace(/\\s+/g, " ").toLocaleLowerCase(locale);
+      const duplicateKey = `${question.region}/${locale}/${normalizedQuestion}`;
+      if (questionTextByLocale.has(duplicateKey)) {
+        errors.push(`${question.id}/${locale}: duplicate question text also used by ${questionTextByLocale.get(duplicateKey)}`);
+      } else questionTextByLocale.set(duplicateKey, question.id);
     }
-    if (!translation.options || keys.some((key) => !translation.options[key]?.toString().trim())) {
+    if (!translation.options || typeof translation.options !== "object" || Array.isArray(translation.options) ||
+        keys.some((key) => typeof translation.options[key] !== "string" || !translation.options[key].trim())) {
       errors.push(`${question.id}/${locale}: all four answer options are required`);
     } else if (JSON.stringify(Object.keys(translation.options).sort()) !== JSON.stringify(keys)) {
       errors.push(`${question.id}/${locale}: option keys must be exactly a, b, c and d`);
     } else {
-      const optionValues = keys.map((key) => String(translation.options[key]).trim().toLocaleLowerCase(locale));
+      const optionValues = keys.map((key) => translation.options[key].trim().replace(/\\s+/g, " ").toLocaleLowerCase(locale));
       if (new Set(optionValues).size !== 4) {
         errors.push(`${question.id}/${locale}: answer option text must be unique`);
       }
@@ -62,7 +71,7 @@ for (const question of questions) {
 
 for (const region of regions) {
   const regional = questions.filter((question) => question.region === region);
-  if (regional.length === 0) errors.push(`No questions currently exist for region ${region}`);
+  if (regional.length !== 50) errors.push(`${region}: expected exactly 50 questions, found ${regional.length}`);
   const byDifficulty = Object.fromEntries(difficulties.map((level) => [
     level, regional.filter((question) => question.difficulty === level).length
   ]));
@@ -74,6 +83,8 @@ for (const region of regions) {
   }
   console.log(`${region}: ${regional.length} questions (easy ${byDifficulty.easy}, medium ${byDifficulty.medium}, hard ${byDifficulty.hard})`);
 }
+
+if (questions.length !== 150) errors.push(`Expected exactly 150 question IDs, found ${questions.length}`);
 
 if (errors.length) {
   console.error("\nQuestion-bank validation failed:");
