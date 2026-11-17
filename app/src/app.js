@@ -25,7 +25,7 @@
       settingsIntro:"Choose each setting independently: interface language, question region and question language.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",settingsButtonLabel:"Open settings",homeLinkLabel:"MindQuest home",
       freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",
-      help:"How to play",helpEyebrow:"THE QUICK GUIDE",helpTitle:"How to play",helpStartTitle:"Play a round",helpStartBody:"Choose a region, question language, category and difficulty in Settings, then start a round. Each round contains up to ten multiple-choice questions.",helpScoringTitle:"Scoring and results",helpScoringBody:"Choose one answer per question. Correct answers earn one point. Your results show your score, accuracy, the correct answers and explanations.",helpDifficultyTitle:"Categories and difficulty",helpDifficultyBody:"Explore Geography, History, Science or Culture. Choose Easy, Medium or Hard, or leave the filters open to mix the available questions.",helpLanguageTitle:"Three independent choices",helpLanguageBody:"Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination is valid.",helpPrivacyTitle:"Free, private and offline",helpPrivacyBody:"MindQuest is free to play, works offline and needs no account. Settings and best scores stay in local app storage; no ads or paid services are used.",noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Try a different category or difficulty in Settings.",question:"QUESTION",answerOptions:"Answer options"
+      help:"How to play",helpEyebrow:"THE QUICK GUIDE",helpTitle:"How to play",helpStartTitle:"Play a round",helpStartBody:"Choose a region, question language, category and difficulty in Settings, then start a round. Each round contains up to ten multiple-choice questions.",helpScoringTitle:"Scoring and results",helpScoringBody:"Choose one answer per question. Correct answers earn one point. Your results show your score, accuracy, the correct answers and explanations.",helpDifficultyTitle:"Categories and difficulty",helpDifficultyBody:"Explore Geography, History, Science or Culture. Choose Easy, Medium or Hard, or leave the filters open to mix the available questions.",helpLanguageTitle:"Three independent choices",helpLanguageBody:"Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination is valid.",helpPrivacyTitle:"Free, private and offline",helpPrivacyBody:"MindQuest is free to play, works offline and needs no account. Settings and best scores are stored on this device when browser storage is available; no ads or paid services are used.",noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Try a different category or difficulty in Settings.",storageUnavailable:"Device storage is unavailable; settings and best scores may not be saved.",question:"QUESTION",answerOptions:"Answer options"
     },
     "en-US": {
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard",categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
@@ -36,8 +36,8 @@
       settingsIntro:"Choose your interface language, question region, and question language independently.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",settingsButtonLabel:"Open settings",homeLinkLabel:"MindQuest home",
       freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",
-      help:"How to Play",helpEyebrow:"THE QUICK GUIDE",helpTitle:"How to Play",helpStartTitle:"Start a round",helpStartBody:"Choose a region, question language, category, and difficulty in Settings, then start playing. Each round has up to ten multiple-choice questions.",helpScoringTitle:"Scoring and results",helpScoringBody:"Select one answer for each question. Every correct answer earns one point. Your results include your score, accuracy, correct answers, and explanations.",helpDifficultyTitle:"Categories and difficulty",helpDifficultyBody:"Explore Geography, History, Science, or Culture. Choose Easy, Medium, or Hard, or keep the filters open to mix available questions.",helpLanguageTitle:"Three independent settings",helpLanguageBody:"Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination works.",helpPrivacyTitle:"Free, private, and offline",helpPrivacyBody:"MindQuest is free to play, works offline, and requires no account. Settings and best scores stay in local app storage. There are no ads or paid services.",
-      noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Try a different category or difficulty in Settings.",question:"QUESTION",answerOptions:"Answer options"
+      help:"How to Play",helpEyebrow:"THE QUICK GUIDE",helpTitle:"How to Play",helpStartTitle:"Start a round",helpStartBody:"Choose a region, question language, category, and difficulty in Settings, then start playing. Each round has up to ten multiple-choice questions.",helpScoringTitle:"Scoring and results",helpScoringBody:"Select one answer for each question. Every correct answer earns one point. Your results include your score, accuracy, correct answers, and explanations.",helpDifficultyTitle:"Categories and difficulty",helpDifficultyBody:"Explore Geography, History, Science, or Culture. Choose Easy, Medium, or Hard, or keep the filters open to mix available questions.",helpLanguageTitle:"Three independent settings",helpLanguageBody:"Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination works.",helpPrivacyTitle:"Free, private, and offline",helpPrivacyBody:"MindQuest is free to play, works offline, and requires no account. Settings and best scores are stored on this device when browser storage is available. There are no ads or paid services.",
+      noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Try a different category or difficulty in Settings.",storageUnavailable:"Device storage is unavailable; settings and best scores may not be saved.",question:"QUESTION",answerOptions:"Answer options"
     },
     "ru-RU": {
       categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная",categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
@@ -48,7 +48,7 @@
       settingsIntro:"Эти параметры независимы. Вы можете сочетать любой язык интерфейса, регион и язык вопросов.",
       interfaceLanguage:"Язык интерфейса",questionLanguage:"Язык вопросов",save:"Сохранить настройки",back:"Назад",settingsButtonLabel:"Открыть настройки",homeLinkLabel:"На главную MindQuest",
       freeOffline:"Бесплатно · Офлайн · Без аккаунта",correct:"Верно! ",incorrect:"Не совсем. ",roundScore:"Ваш результат: {score} из {total}.",accuracy:"Точность: {percent}%",reviewTitle:"Разбор ответов",yourAnswer:"Ваш ответ",correctAnswer:"Правильный ответ",unanswered:"Нет ответа",
-      help:"Как играть",helpEyebrow:"КРАТКОЕ РУКОВОДСТВО",helpTitle:"Как играть",helpStartTitle:"Начало раунда",helpStartBody:"В настройках выберите регион, язык вопросов, категорию и сложность, затем начните раунд. В каждом раунде — до десяти вопросов с вариантами ответа.",helpScoringTitle:"Очки и результаты",helpScoringBody:"Выберите один ответ на каждый вопрос. За каждый правильный ответ начисляется одно очко. В результатах показаны счёт, точность, правильные ответы и пояснения.",helpDifficultyTitle:"Категории и сложность",helpDifficultyBody:"Изучайте географию, историю, науку и культуру. Выберите лёгкий, средний или сложный уровень либо оставьте фильтры без ограничений.",helpLanguageTitle:"Три независимых параметра",helpLanguageBody:"Язык интерфейса определяет язык меню, регион вопросов — набор знаний, а язык вопросов — формулировки. Доступны любые сочетания поддерживаемых параметров.",helpPrivacyTitle:"Бесплатно, конфиденциально, офлайн",helpPrivacyBody:"MindQuest бесплатен, работает без интернета и не требует аккаунта. Настройки и лучшие результаты хранятся локально. Рекламы и платных сервисов нет.",noQuestions:"Для выбранных параметров пока нет вопросов.",noQuestionsHint:"Попробуйте изменить категорию или сложность в настройках.",question:"ВОПРОС",answerOptions:"Варианты ответа"
+      help:"Как играть",helpEyebrow:"КРАТКОЕ РУКОВОДСТВО",helpTitle:"Как играть",helpStartTitle:"Начало раунда",helpStartBody:"В настройках выберите регион, язык вопросов, категорию и сложность, затем начните раунд. В каждом раунде — до десяти вопросов с вариантами ответа.",helpScoringTitle:"Очки и результаты",helpScoringBody:"Выберите один ответ на каждый вопрос. За каждый правильный ответ начисляется одно очко. В результатах показаны счёт, точность, правильные ответы и пояснения.",helpDifficultyTitle:"Категории и сложность",helpDifficultyBody:"Изучайте географию, историю, науку и культуру. Выберите лёгкий, средний или сложный уровень либо оставьте фильтры без ограничений.",helpLanguageTitle:"Три независимых параметра",helpLanguageBody:"Язык интерфейса определяет язык меню, регион вопросов — набор знаний, а язык вопросов — формулировки. Доступны любые сочетания поддерживаемых параметров.",helpPrivacyTitle:"Бесплатно, конфиденциально, офлайн",helpPrivacyBody:"MindQuest бесплатен, работает без интернета и не требует аккаунта. Настройки и лучшие результаты сохраняются на устройстве, если доступно хранилище браузера. Рекламы и платных сервисов нет.",noQuestions:"Для выбранных параметров пока нет вопросов.",noQuestionsHint:"Попробуйте изменить категорию или сложность в настройках.",storageUnavailable:"Хранилище недоступно: настройки и лучшие результаты могут не сохраниться.",question:"ВОПРОС",answerOptions:"Варианты ответа"
     }
   };
   function suggestedInterfaceLocale() {
@@ -58,10 +58,20 @@
     return "en-IN";
   }
   const DEFAULTS = { interfaceLocale:suggestedInterfaceLocale(), questionRegion:"IN", questionLocale:"en-IN" };
+  let storageWarning = false;
   const safeStorage = {
     get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
-    set(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* Private mode: app remains usable. */ } }
+    set(key, value) {
+      try { localStorage.setItem(key, value); return true; }
+      catch (_) { return false; }
+    }
   };
+  function updateStorageStatus() {
+    const status = $("storage-status");
+    status.hidden = !storageWarning;
+    status.lang = settings.interfaceLocale;
+    status.textContent = storageWarning ? t("storageUnavailable") : "";
+  }
   function normalizeSettings(candidate) {
     const saved = candidate && typeof candidate === "object" && !Array.isArray(candidate) ? candidate : {};
     return {
@@ -143,6 +153,7 @@
     $("question-category").value = settings.category;
     $("question-difficulty").value = settings.difficulty;
     $("home-region").textContent = regionName(settings.questionRegion);
+    updateStorageStatus();
     const best = readBestScore();
     const bestPercent = best ? Math.round((best.score / best.total) * 100) : null;
     $("best-score").textContent = best ? best.score + " / " + best.total + " · " + bestPercent + "%" : "—";
@@ -348,7 +359,7 @@
     renderAnswerReview();
     const best = readBestScore();
     if (isBetterBestScore(score, round.length, best)) {
-      safeStorage.set(bestScoreKey(), JSON.stringify({ score, total: round.length }));
+      if (!safeStorage.set(bestScoreKey(), JSON.stringify({ score, total: round.length }))) storageWarning = true;
     }
     noQuestionsForSelection = false;
     $("replay-button").hidden = false;
@@ -380,7 +391,7 @@
       category: $("question-category").value,
       difficulty: $("question-difficulty").value
     });
-    safeStorage.set("mindquest.settings", JSON.stringify(settings));
+    if (!safeStorage.set("mindquest.settings", JSON.stringify(settings))) storageWarning = true;
     applyInterface();
     // Settings can change the question pool or locale. Return to the home screen
     // so an in-progress round cannot continue with stale question data.
