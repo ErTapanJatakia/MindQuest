@@ -446,3 +446,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - The listener is gated to API 35+ and uses platform APIs only; no AndroidX dependency, permission, service or product scope was added.
 - Source-only implementation and re-fetch verification; no Kotlin compilation, Gradle/resource build, emulator, gesture-navigation, cutout, keyboard/IME or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and device validation. Actual engineering time remains untracked.
+
+
+## Android 15 keyboard inset integration — 2026-11-18
+
+- Extended the existing API 35+ WebView safe-inset calculation to include `WindowInsets.Type.ime()` alongside system bars and display cutouts. This keeps the game content area responsive to the on-screen keyboard under edge-to-edge layout.
+- No new dependency, permission, service or product scope. This remains a source-level integration change; keyboard animation, focus and resize behaviour require runtime verification.
+- No Kotlin compilation, Gradle build, emulator or physical-device testing was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and device validation. Actual engineering time remains untracked.
