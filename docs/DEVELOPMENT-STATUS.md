@@ -188,3 +188,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - When two results have exactly equal accuracy, the result completed across more questions is now retained as the stronger record. Lower accuracy never replaces a higher-accuracy record.
 - Existing best-score storage format and region/category/difficulty scoping are unchanged.
 - Source change committed and re-fetched. No JavaScript parser, browser runtime, content validator, CI, Android build or device test was run.
+
+
+## Latest runtime question-record guard — 2026-11-17
+
+- Added a runtime playability check before a question can enter a round. It verifies the record shape, active region, supported category and difficulty, correct-answer key, selected-language translation, non-empty question/explanation text, and four non-empty answer options.
+- The question-bank collection itself is checked to be an array before filtering, preventing malformed top-level data or null records from causing a gameplay exception.
+- This is a defensive runtime boundary, not a replacement for the strict content validator; invalid records are excluded from play and the official validator remains a separate release gate.
+- Source change committed and re-fetched. No JavaScript parser, browser runtime, official content validator, CI, Android build or device test was run.
