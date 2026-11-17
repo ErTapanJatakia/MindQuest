@@ -738,3 +738,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Review of the Russian question set found a redundant construction in `US-CUL-002`: `дом «Дом над водопадом»` (literally “house ‘House above the Waterfall’”) duplicated the generic noun and the translated title.
 - Reworded the Russian prompt to `виллу «Фоллингуотер» (Fallingwater)`, retaining the same question meaning, answer key, options, explanation, stable ID and all English translations.
 - This is a language-quality correction only; no factual answer or product scope changed. Broader native-speaker review remains pending.
+
+
+### Russian answer-meaning alignment correction — US-GEO-009 — 2026-11-18
+
+- The Russian variant of `US-GEO-009` asked for Hawaii's nickname but its four answer options were state names; the marked correct option was “Гавайи”. That made the Russian prompt/options semantically inconsistent, although the English variants were correct.
+- Rephrased the Russian question to ask which US state is known by the nickname “Штат Алоха”, and clarified the explanation as “Официальное прозвище штата Гавайи — «Штат Алоха».” The four state options, correct key `d`, stable ID, region, category and difficulty remain unchanged.
+- Verified against the State of Hawaii's official archives, which identify “The Aloha State” as the official popular name: https://digitalarchives-documents.hawaii.gov/documents/1640/32.pdf ; the state legislature's joint resolution adopting the name is https://digitalarchives-documents.hawaii.gov/documents/1055/274.pdf .
+- This correction aligns the Russian question with the existing answer choices; it does not alter the underlying fact or any English translation. Broader native-speaker review remains pending.
