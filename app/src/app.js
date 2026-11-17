@@ -236,6 +236,7 @@
     $("question-progress").setAttribute("aria-label", t("progress"));
     $("category-label").textContent = categoryName(item.category).toUpperCase();
     $("question-title").textContent = copy.question;
+    $("question-title").lang = settings.questionLocale;
     // Keep keyboard and screen-reader users oriented as each new question loads.
     $("question-title").focus();
     $("feedback").textContent = "";
@@ -256,6 +257,7 @@
       marker.textContent = letter;
       const text = document.createElement("span");
       text.textContent = copy.options[key];
+      text.lang = settings.questionLocale;
       button.append(marker, text);
       button.addEventListener("click", () => chooseAnswer(key, item, copy));
       host.append(button);
@@ -273,9 +275,26 @@
       if (button.dataset.answer === item.correct) button.classList.add("correct");
       else if (button.dataset.answer === choice) button.classList.add("incorrect");
     });
-    const correction = correct ? "" : t("correctAnswer") + ": " + copy.options[item.correct] + ". ";
-    $("feedback").textContent = (correct ? t("correct") : t("incorrect")) + correction + copy.explanation;
-    $("feedback").classList.add(correct ? "good" : "bad");
+    const feedback = $("feedback");
+    feedback.replaceChildren();
+    const lead = document.createElement("span");
+    lead.lang = settings.interfaceLocale;
+    lead.textContent = correct ? t("correct") : t("incorrect");
+    feedback.append(lead);
+    if (!correct) {
+      const correctionLabel = document.createElement("span");
+      correctionLabel.lang = settings.interfaceLocale;
+      correctionLabel.textContent = t("correctAnswer") + ": ";
+      const correctionAnswer = document.createElement("span");
+      correctionAnswer.lang = settings.questionLocale;
+      correctionAnswer.textContent = copy.options[item.correct] + ". ";
+      feedback.append(correctionLabel, correctionAnswer);
+    }
+    const explanation = document.createElement("span");
+    explanation.lang = settings.questionLocale;
+    explanation.textContent = copy.explanation;
+    feedback.append(explanation);
+    feedback.classList.add(correct ? "good" : "bad");
     $("next-button").disabled = false;
     // Answer buttons are disabled after selection; move focus to the newly available action.
     $("next-button").focus();
@@ -291,16 +310,31 @@
       card.className = "review-card";
       const heading = document.createElement("h3");
       heading.textContent = (index + 1) + ". " + round[index].translations[settings.questionLocale].question;
+      heading.lang = settings.questionLocale;
       const status = document.createElement("p");
       status.className = entry?.isCorrect ? "review-status good" : "review-status bad";
       status.textContent = entry?.isCorrect ? t("correct").trim() : t("incorrect").trim();
+      status.lang = settings.interfaceLocale;
       const chosen = document.createElement("p");
-      chosen.textContent = t("yourAnswer") + ": " + (entry ? entry.options[entry.choice] : t("unanswered"));
+      const chosenLabel = document.createElement("span");
+      chosenLabel.lang = settings.interfaceLocale;
+      chosenLabel.textContent = t("yourAnswer") + ": ";
+      const chosenValue = document.createElement("span");
+      chosenValue.lang = entry ? settings.questionLocale : settings.interfaceLocale;
+      chosenValue.textContent = entry ? entry.options[entry.choice] : t("unanswered");
+      chosen.append(chosenLabel, chosenValue);
       const correct = document.createElement("p");
-      correct.textContent = t("correctAnswer") + ": " + round[index].translations[settings.questionLocale].options[round[index].correct];
+      const correctLabel = document.createElement("span");
+      correctLabel.lang = settings.interfaceLocale;
+      correctLabel.textContent = t("correctAnswer") + ": ";
+      const correctValue = document.createElement("span");
+      correctValue.lang = settings.questionLocale;
+      correctValue.textContent = round[index].translations[settings.questionLocale].options[round[index].correct];
+      correct.append(correctLabel, correctValue);
       const explanation = document.createElement("p");
       explanation.className = "review-explanation";
       explanation.textContent = round[index].translations[settings.questionLocale].explanation;
+      explanation.lang = settings.questionLocale;
       card.append(heading, status, chosen, correct, explanation);
       host.append(card);
     });
