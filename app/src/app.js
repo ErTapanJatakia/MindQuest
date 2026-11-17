@@ -230,6 +230,17 @@
     $("answer-review-title").hidden = true;
   }
 
+  function showNoQuestionsRecovery() {
+    discardRound();
+    noQuestionsForSelection = true;
+    $("replay-button").hidden = true;
+    $("home-button").textContent = t("settings");
+    $("result-title").textContent = t("noQuestions");
+    $("final-score").textContent = "—";
+    $("result-message").textContent = t("noQuestionsHint");
+    showView("result-view");
+  }
+
   function startRound() {
     const pool = (Array.isArray(window.MINDQUEST_QUESTIONS) ? window.MINDQUEST_QUESTIONS : [])
       .filter((q) =>
@@ -238,14 +249,7 @@
         (settings.difficulty === "all" || q.difficulty === settings.difficulty)
       );
     if (!pool.length) {
-      discardRound();
-      noQuestionsForSelection = true;
-      $("replay-button").hidden = true;
-      $("home-button").textContent = t("settings");
-      $("result-title").textContent = t("noQuestions");
-      $("final-score").textContent = "—";
-      $("result-message").textContent = t("noQuestionsHint");
-      showView("result-view");
+      showNoQuestionsRecovery();
       return;
     }
     const shuffled = [...pool];
@@ -263,6 +267,11 @@
   }
 
   function renderQuestion() {
+    if (!Array.isArray(round) || !round.length || !Number.isInteger(current) ||
+        current < 0 || current >= round.length || !isPlayableQuestion(round[current])) {
+      showNoQuestionsRecovery();
+      return;
+    }
     answered = false;
     const item = round[current];
     const copy = item.translations[settings.questionLocale];
