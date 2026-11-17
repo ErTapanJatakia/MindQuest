@@ -524,3 +524,8 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 ### Interface-language selector label correction (2026-11-18)
 - Corrected the English (India) interface-language selector so its Russian option is labelled `Russian`, consistent with the English-language selector convention and the established product decision. The Russian interface continues to label the option `Русский`.
 - This is a targeted localization consistency fix; no new locale or product scope was added. Source and documentation were re-fetched for verification. No browser runtime, official content validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
+
+
+### Locale selector mapping hardening (2026-11-18)
+- Replaced positional interface-language option labels with explicit locale-value mappings in `app/src/ui-polish.js`, matching the value-keyed approach already used for region and question-language labels. This preserves current visible labels while removing dependence on HTML option order.
+- Updated and re-fetched the roadmap and development-status records. Source-level verification only; no browser runtime, content validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
