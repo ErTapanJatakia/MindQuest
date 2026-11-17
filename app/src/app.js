@@ -209,7 +209,13 @@
         (settings.difficulty === "all" || q.difficulty === settings.difficulty)
       );
     if (!pool.length) {
+      // Discard any previous round so the empty-selection state cannot retain stale gameplay data.
+      round = [];
+      current = 0;
+      score = 0;
+      answered = false;
       answerHistory = [];
+      $("next-button").disabled = true;
       $("answer-review-list").replaceChildren();
       $("answer-review-title").hidden = true;
       noQuestionsForSelection = true;
@@ -352,6 +358,10 @@
   }
 
   function showResults() {
+    // Results are valid only after the final question has been answered and every
+    // round slot has a recorded response.
+    if (!round.length || current !== round.length - 1 || !answered ||
+        answerHistory.length !== round.length || answerHistory.some((entry) => !entry)) return;
     $("result-title").textContent = t("wellPlayed");
     $("final-score").textContent = score + "/" + round.length;
     const percent = Math.round((score / round.length) * 100);
