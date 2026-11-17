@@ -8,6 +8,7 @@ const questions = sandbox.window.MINDQUEST_QUESTIONS;
 const locales = ["en-IN", "en-US", "ru-RU"];
 const regions = ["IN", "RU", "US"];
 const categories = ["Geography", "History", "Science", "Culture"];
+const categoryCodes = { Geography: "GEO", History: "HIS", Science: "SCI", Culture: "CUL" };
 const difficulties = ["easy", "medium", "hard"];
 const errors = [];
 const ids = new Set();
@@ -45,8 +46,58 @@ for (const question of questions) {
   if (!["a", "b", "c", "d"].includes(question.correct)) {
     errors.push(`${question.id}: correct answer key must be a, b, c or d`);
   }
-  if (typeof question.id === "string" && !question.id.startsWith(`${question.region}-`)) {
-    errors.push(`${question.id}: ID prefix must match its region`);
+  if (typeof question.id === "string" &&
+      (!regions.includes(question.region) || !categories.includes(question.category) ||
+       !new RegExp(`^${question.region}-${categoryCodes[question.category]}-\\d{3}import { readFile } from "node:fs/promises";
+import vm from "node:vm";
+
+const source = await readFile(new URL("../app/src/data/questions.js", import.meta.url), "utf8");
+const sandbox = { window: {} };
+vm.runInNewContext(source, sandbox, { timeout: 1000 });
+const questions = sandbox.window.MINDQUEST_QUESTIONS;
+const locales = ["en-IN", "en-US", "ru-RU"];
+const regions = ["IN", "RU", "US"];
+const categories = ["Geography", "History", "Science", "Culture"];
+const categoryCodes = { Geography: "GEO", History: "HIS", Science: "SCI", Culture: "CUL" };
+const difficulties = ["easy", "medium", "hard"];
+const errors = [];
+const ids = new Set();
+const questionTextByLocale = new Map();
+const expectedQuestionKeys = ["category", "correct", "difficulty", "id", "region", "translations"];
+const expectedTranslationKeys = ["explanation", "options", "question"];
+const hasCleanText = (value) => typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
+
+if (!Array.isArray(questions) || questions.length === 0) {
+  throw new Error("Question bank is empty or not an array.");
+}
+
+for (const question of questions) {
+  if (!question || typeof question !== "object" || Array.isArray(question)) {
+    errors.push("Question entry must be an object.");
+    continue;
+  }
+  if (JSON.stringify(Object.keys(question).sort()) !== JSON.stringify(expectedQuestionKeys)) {
+    errors.push(`${question.id || "(unknown)"}: question fields must be exactly ${expectedQuestionKeys.join(", ")}`);
+  }
+  if (typeof question.id !== "string" || !question.id.trim() || ids.has(question.id)) errors.push(`Missing or duplicate question ID: ${question.id}`);
+  ids.add(question.id);
+  if (!regions.includes(question.region)) errors.push(`${question.id}: invalid region ${question.region}`);
+  if (!categories.includes(question.category) || !difficulties.includes(question.difficulty)) {
+    errors.push(`${question.id}: missing category or invalid difficulty`);
+  }
+  if (!question.translations || typeof question.translations !== "object" || Array.isArray(question.translations)) {
+    errors.push(`${question.id}: translations must be a plain object`);
+    continue;
+  }
+  const translationLocales = Object.keys(question.translations).sort();
+  if (JSON.stringify(translationLocales) !== JSON.stringify([...locales].sort())) {
+    errors.push(`${question.id}: translation locales must be exactly ${locales.join(", ")}`);
+  }
+  if (!["a", "b", "c", "d"].includes(question.correct)) {
+    errors.push(`${question.id}: correct answer key must be a, b, c or d`);
+  }
+).test(question.id))) {
+    errors.push(`${question.id}: ID must match its region and category code (for example, IN-GEO-001)`);
   }
   for (const locale of locales) {
     const translation = question.translations[locale];
