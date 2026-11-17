@@ -10,8 +10,8 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | In progress | 90 |
 | 3 | Home screen | Play, settings, help/about and navigation | In progress | 120 |
 | 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 |
-| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | In progress | 150 |
-| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | In progress | 180 |
+| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Review | 150 |
+| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Review | 180 |
 | 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 |
 | 8 | Game modes | Ten-question rounds, category selection and replay | In progress | 120 |
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 |
@@ -55,10 +55,16 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
 - All four question categories are represented in each regional bank, with thirteen Geography, twelve History, twelve Science and thirteen Culture questions.
-- Dependency-free question-bank structural validator.
+- Dependency-free question-bank structural validator, strengthened with strict schema/type checks, duplicate normalized question-text detection and exact 50-per-region / 150-total assertions (execution deferred).
 - Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
 
-The full 50-question-per-region content target is now populated, but the bank remains a development seed pending factual, cultural and native-speaker review. The Android shell is also not yet a release-ready signed package.
+The full 50-question-per-region content target is now populated, but the bank remains a development seed pending factual, cultural and native-speaker review. Gameplay source review has also hardened persisted best-score parsing against malformed or out-of-range values. The Android shell is also not yet a release-ready signed package.
+
+## Latest development review
+
+- Hardened best-score persistence reads: malformed values, fractional scores, negative scores, scores above the recorded total and impossible round totals are ignored.
+- Expanded the dependency-free content validator with strict object/string validation, normalized duplicate question-text checks per region and locale, and exact regional/total question-count assertions. The validator has not yet been executed; CI and Android validation remain deferred.
+- Targeted review of gameplay, result rendering, settings flow, HTML structure, CSS and Android WebView configuration is complete for this pass. It is not a complete source audit; localization, accessibility, factual/native-speaker review and Android build readiness remain open.
 
 ## Latest content milestone
 
