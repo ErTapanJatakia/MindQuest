@@ -62,10 +62,8 @@
     get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
     set(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* Private mode: app remains usable. */ } }
   };
-  function loadSettings() {
-    let saved = {};
-    try { saved = JSON.parse(safeStorage.get("mindquest.settings") || "{}"); } catch (_) { saved = {}; }
-    if (!saved || typeof saved !== "object" || Array.isArray(saved)) saved = {};
+  function normalizeSettings(candidate) {
+    const saved = candidate && typeof candidate === "object" && !Array.isArray(candidate) ? candidate : {};
     return {
       interfaceLocale: LOCALES.includes(saved.interfaceLocale) ? saved.interfaceLocale : DEFAULTS.interfaceLocale,
       questionRegion: REGIONS.includes(saved.questionRegion) ? saved.questionRegion : DEFAULTS.questionRegion,
@@ -73,6 +71,12 @@
       category: CATEGORIES.includes(saved.category) ? saved.category : "all",
       difficulty: ["all", "easy", "medium", "hard"].includes(saved.difficulty) ? saved.difficulty : "all"
     };
+  }
+
+  function loadSettings() {
+    let saved = {};
+    try { saved = JSON.parse(safeStorage.get("mindquest.settings") || "{}"); } catch (_) { saved = {}; }
+    return normalizeSettings(saved);
   }
 
   let settings = loadSettings();
@@ -309,13 +313,13 @@
   });
   $("settings-back").addEventListener("click", () => showView(lastView));
   $("settings-save").addEventListener("click", () => {
-    settings = {
+    settings = normalizeSettings({
       interfaceLocale: $("interface-locale").value,
       questionRegion: $("question-region").value,
       questionLocale: $("question-locale").value,
       category: $("question-category").value,
       difficulty: $("question-difficulty").value
-    };
+    });
     safeStorage.set("mindquest.settings", JSON.stringify(settings));
     applyInterface();
     // Settings can change the question pool or locale. Return to the home screen
