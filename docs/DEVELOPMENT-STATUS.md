@@ -654,3 +654,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ### Locale selector mapping hardening (2026-11-18)
 - Replaced positional interface-language option labels with explicit locale-value mappings in `app/src/ui-polish.js`, matching the value-keyed approach already used for region and question-language labels. This preserves current visible labels while removing dependence on HTML option order.
 - Updated and re-fetched the roadmap and development-status records. Source-level verification only; no browser runtime, content validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
+
+
+### Help privacy fallback accuracy — 2026-11-18
+- Aligned the static HTML Help fallback with the three localized Help dictionaries: settings and best scores are stored on-device when browser storage is available, rather than implying persistence is guaranteed.
+- This is wording accuracy only; no storage implementation, feature scope or baseline allocation changed. No browser runtime, official content validator, CI, Android build or device test was run.
