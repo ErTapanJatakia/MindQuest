@@ -313,4 +313,81 @@ window.MINDQUEST_QUESTIONS = [
   "ru-RU":{question:"Кто спроектировал арку «Врата Запада» (Gateway Arch) в Сент-Луисе, штат Миссури?",options:{a:"Ээро Сааринен",b:"Фрэнк Ллойд Райт",c:"Луис Салливан",d:"Ай. Эм. Пей"},explanation:"Арку «Врата Запада» спроектировал финско-американский архитектор Ээро Сааринен. Сооружение было завершено в 1965 году как часть мемориального комплекса Джефферсона."}
  }}
 
+,
+ {id:"IN-GEO-006",region:"IN",category:"Geography",difficulty:"easy",correct:"c",translations:{
+  "en-IN":{question:"Which Indian state contains the Sundarbans, the world's largest mangrove forest?",options:{a:"Odisha",b:"Assam",c:"West Bengal",d:"Andhra Pradesh"},explanation:"The Indian part of the Sundarbans lies in West Bengal, in the Ganges–Brahmaputra delta. The wider mangrove region extends into Bangladesh."},
+  "en-US":{question:"In which Indian state is the Sundarbans, the world's largest mangrove forest, located?",options:{a:"Odisha",b:"Assam",c:"West Bengal",d:"Andhra Pradesh"},explanation:"The Indian part of the Sundarbans lies in West Bengal, in the Ganges–Brahmaputra delta. The wider mangrove region extends into Bangladesh."},
+  "ru-RU":{question:"В каком индийском штате находится Сундарбан — крупнейший в мире массив мангровых лесов?",options:{a:"Одиша",b:"Ассам",c:"Западная Бенгалия",d:"Андхра-Прадеш"},explanation:"Индийская часть Сундарбана расположена в Западной Бенгалии, в дельте Ганга и Брахмапутры. Более обширный мангровый регион простирается также на территорию Бангладеш."}
+ }},
+ {id:"IN-GEO-007",region:"IN",category:"Geography",difficulty:"medium",correct:"a",translations:{
+  "en-IN":{question:"Which mountain range runs along much of India's western coast?",options:{a:"Western Ghats",b:"Aravalli Range",c:"Vindhya Range",d:"Shivalik Hills"},explanation:"The Western Ghats run roughly parallel to India's western coast and form an important biodiversity hotspot."},
+  "en-US":{question:"Which mountain range runs parallel to much of India's western coast?",options:{a:"Western Ghats",b:"Aravalli Range",c:"Vindhya Range",d:"Shivalik Hills"},explanation:"The Western Ghats run roughly parallel to India's western coast and form an important biodiversity hotspot."},
+  "ru-RU":{question:"Какая горная система тянется вдоль значительной части западного побережья Индии?",options:{a:"Западные Гаты",b:"Аравalliйский хребет",c:"хребет Виндхья",d:"холмы Шивалик"},explanation:"Западные Гаты проходят примерно параллельно западному побережью Индии и являются важным центром биоразнообразия."}
+ }},
+ {id:"IN-HIS-006",region:"IN",category:"History",difficulty:"hard",correct:"d",translations:{
+  "en-IN":{question:"Which Mughal emperor ordered the construction of Fatehpur Sikri as his imperial capital?",options:{a:"Babur",b:"Humayun",c:"Jahangir",d:"Akbar"},explanation:"Emperor Akbar developed Fatehpur Sikri as his imperial capital in the late 16th century."},
+  "en-US":{question:"Which Mughal emperor established Fatehpur Sikri as an imperial capital?",options:{a:"Babur",b:"Humayun",c:"Jahangir",d:"Akbar"},explanation:"Emperor Akbar developed Fatehpur Sikri as his imperial capital in the late 16th century."},
+  "ru-RU":{question:"Какой император Великих Моголов превратил Фатехпур-Сикри в свою имперскую столицу?",options:{a:"Бабур",b:"Хумаюн",c:"Джахангир",d:"Акбар"},explanation:"Император Акбар создал Фатехпур-Сикри как свою имперскую столицу во второй половине XVI века."}
+ }},
+ {id:"IN-SCI-006",region:"IN",category:"Science",difficulty:"easy",correct:"b",translations:{
+  "en-IN":{question:"In which Indian city is the headquarters of the Indian Space Research Organisation (ISRO)?",options:{a:"Hyderabad",b:"Bengaluru",c:"New Delhi",d:"Thiruvananthapuram"},explanation:"ISRO's headquarters is in Bengaluru, Karnataka."},
+  "en-US":{question:"Where is the headquarters of the Indian Space Research Organisation (ISRO)?",options:{a:"Hyderabad",b:"Bengaluru",c:"New Delhi",d:"Thiruvananthapuram"},explanation:"ISRO's headquarters is in Bengaluru, Karnataka."},
+  "ru-RU":{question:"В каком индийском городе находится штаб-квартира Индийской организации космических исследований (ISRO)?",options:{a:"Хайдарабад",b:"Бенгалуру",c:"Нью-Дели",d:"Тируванантапурам"},explanation:"Штаб-квартира ISRO находится в Бенгалуру, штат Карнатака."}
+ }},
+ {id:"IN-CUL-006",region:"IN",category:"Culture",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"The Ajanta Caves in Maharashtra are especially renowned for which art form?",options:{a:"Bronze sculpture",b:"Mosaic glasswork",c:"Buddhist paintings",d:"Mughal miniature painting"},explanation:"The Ajanta Caves are celebrated for their ancient Buddhist murals and sculptures, created over several centuries."},
+  "en-US":{question:"The Ajanta Caves in Maharashtra are especially famous for which form of art?",options:{a:"Bronze sculpture",b:"Mosaic glasswork",c:"Buddhist paintings",d:"Mughal miniature painting"},explanation:"The Ajanta Caves are celebrated for their ancient Buddhist murals and sculptures, created over several centuries."},
+  "ru-RU":{question:"Чем особенно знамениты пещеры Аджанты в индийском штате Махараштра?",options:{a:"Бронзовой скульптурой",b:"Мозаикой из стекла",c:"Буддийскими росписями",d:"Могольской миниатюрной живописью"},explanation:"Пещеры Аджанты известны древними буддийскими настенными росписями и скульптурами, создававшимися на протяжении нескольких столетий."}
+ }},
+ {id:"RU-GEO-006",region:"RU",category:"Geography",difficulty:"easy",correct:"b",translations:{
+  "en-IN":{question:"Which lake in Siberia is the world's deepest freshwater lake?",options:{a:"Lake Ladoga",b:"Lake Baikal",c:"Lake Onega",d:"Lake Peipus"},explanation:"Lake Baikal in southern Siberia reaches a maximum depth of about 1,642 metres, making it the world's deepest freshwater lake."},
+  "en-US":{question:"What is the name of the world's deepest freshwater lake, located in Siberia?",options:{a:"Lake Ladoga",b:"Lake Baikal",c:"Lake Onega",d:"Lake Peipus"},explanation:"Lake Baikal in southern Siberia reaches a maximum depth of about 1,642 metres, making it the world's deepest freshwater lake."},
+  "ru-RU":{question:"Какое озеро в Сибири является самым глубоким пресноводным озером в мире?",options:{a:"Ладожское озеро",b:"озеро Байкал",c:"Онежское озеро",d:"Чудское озеро"},explanation:"Максимальная глубина Байкала в южной Сибири составляет около 1642 метров, что делает его самым глубоким пресноводным озером мира."}
+ }},
+ {id:"RU-GEO-007",region:"RU",category:"Geography",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"Mount Elbrus, often listed as Europe's highest peak, is located in which Russian region?",options:{a:"Karelia",b:"Siberia",c:"Kamchatka",d:"The Caucasus"},explanation:"Mount Elbrus is a dormant volcano in the Caucasus in southwestern Russia, commonly regarded as Europe's highest mountain."},
+  "en-US":{question:"Mount Elbrus, commonly regarded as Europe's highest peak, is in which region of Russia?",options:{a:"Karelia",b:"Siberia",c:"Kamchatka",d:"The Caucasus"},explanation:"Mount Elbrus is a dormant volcano in the Caucasus in southwestern Russia, commonly regarded as Europe's highest mountain."},
+  "ru-RU":{question:"В каком российском регионе находится Эльбрус, который часто считают высочайшей вершиной Европы?",options:{a:"Карелия",b:"Сибирь",c:"Камчатка",d:"Кавказ"},explanation:"Эльбрус — потухший вулкан на Кавказе, на юго-западе России; его обычно считают высочайшей горой Европы."}
+ }},
+ {id:"RU-HIS-006",region:"RU",category:"History",difficulty:"hard",correct:"a",translations:{
+  "en-IN":{question:"In which year did the Siege of Leningrad come to a complete end?",options:{a:"1944",b:"1942",c:"1943",d:"1945"},explanation:"The Siege of Leningrad was fully lifted on 27 January 1944, after 872 days. Soviet forces had opened a land corridor in January 1943, but the siege continued."},
+  "en-US":{question:"In what year was the Siege of Leningrad fully lifted?",options:{a:"1944",b:"1942",c:"1943",d:"1945"},explanation:"The Siege of Leningrad was fully lifted on January 27, 1944, after 872 days. Soviet forces had opened a land corridor in January 1943, but the siege continued."},
+  "ru-RU":{question:"В каком году была полностью снята блокада Ленинграда?",options:{a:"1944",b:"1942",c:"1943",d:"1945"},explanation:"Полностью блокада Ленинграда была снята 27 января 1944 года, после 872 дней. В январе 1943 года советские войска прорвали блокадное кольцо и открыли сухопутный коридор, но блокада продолжалась."}
+ }},
+ {id:"RU-SCI-006",region:"RU",category:"Science",difficulty:"easy",correct:"c",translations:{
+  "en-IN":{question:"What was the name of the world's first space station, launched by the Soviet Union in 1971?",options:{a:"Mir",b:"Skylab",c:"Salyut 1",d:"Almaz 1"},explanation:"The Soviet Union launched Salyut 1 on 19 April 1971, making it the world's first space station."},
+  "en-US":{question:"Which space station, launched by the Soviet Union in 1971, was the world's first?",options:{a:"Mir",b:"Skylab",c:"Salyut 1",d:"Almaz 1"},explanation:"The Soviet Union launched Salyut 1 on April 19, 1971, making it the world's first space station."},
+  "ru-RU":{question:"Как называлась первая в мире орбитальная станция, запущенная Советским Союзом в 1971 году?",options:{a:"«Мир»",b:"Skylab",c:"«Салют-1»",d:"«Алмаз-1»"},explanation:"Советский Союз запустил станцию «Салют-1» 19 апреля 1971 года. Она стала первой в мире орбитальной станцией."}
+ }},
+ {id:"RU-CUL-006",region:"RU",category:"Culture",difficulty:"medium",correct:"b",translations:{
+  "en-IN":{question:"Which famous Moscow theatre is particularly associated with ballet and opera?",options:{a:"Mariinsky Theatre",b:"Bolshoi Theatre",c:"Alexandrinsky Theatre",d:"Moscow Art Theatre"},explanation:"Moscow's Bolshoi Theatre is internationally renowned for its ballet and opera companies."},
+  "en-US":{question:"Which renowned Moscow theatre is especially associated with ballet and opera?",options:{a:"Mariinsky Theatre",b:"Bolshoi Theatre",c:"Alexandrinsky Theatre",d:"Moscow Art Theatre"},explanation:"Moscow's Bolshoi Theatre is internationally renowned for its ballet and opera companies."},
+  "ru-RU":{question:"Какой знаменитый московский театр особенно известен балетными и оперными постановками?",options:{a:"Мариинский театр",b:"Большой театр",c:"Александринский театр",d:"Московский художественный театр"},explanation:"Московский Большой театр известен во всём мире своими балетной и оперной труппами."}
+ }},
+ {id:"US-GEO-006",region:"US",category:"Geography",difficulty:"easy",correct:"a",translations:{
+  "en-IN":{question:"Which major river forms much of the border between Texas and Mexico?",options:{a:"Rio Grande",b:"Colorado River",c:"Missouri River",d:"Columbia River"},explanation:"The Rio Grande forms a substantial part of the international boundary between the United States and Mexico."},
+  "en-US":{question:"Which river forms much of the border between Texas and Mexico?",options:{a:"Rio Grande",b:"Colorado River",c:"Missouri River",d:"Columbia River"},explanation:"The Rio Grande forms a substantial part of the international boundary between the United States and Mexico."},
+  "ru-RU":{question:"Какая крупная река образует значительную часть границы между Техасом и Мексикой?",options:{a:"Рио-Гранде",b:"река Колорадо",c:"река Миссури",d:"река Колумбия"},explanation:"Рио-Гранде образует значительную часть государственной границы между США и Мексикой."}
+ }},
+ {id:"US-GEO-007",region:"US",category:"Geography",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"The Grand Canyon is located primarily in which US state?",options:{a:"Nevada",b:"Utah",c:"Arizona",d:"New Mexico"},explanation:"The Grand Canyon is in northern Arizona and is protected primarily within Grand Canyon National Park."},
+  "en-US":{question:"In which U.S. state is the Grand Canyon located?",options:{a:"Nevada",b:"Utah",c:"Arizona",d:"New Mexico"},explanation:"The Grand Canyon is in northern Arizona and is protected primarily within Grand Canyon National Park."},
+  "ru-RU":{question:"В каком штате США находится Большой каньон?",options:{a:"Невада",b:"Юта",c:"Аризона",d:"Нью-Мексико"},explanation:"Большой каньон расположен на севере Аризоны; большая его часть охраняется в составе национального парка Гранд-Каньон."}
+ }},
+ {id:"US-HIS-006",region:"US",category:"History",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"Which 1803 agreement transferred a vast territory from France to the United States?",options:{a:"Adams–Onís Treaty",b:"Treaty of Ghent",c:"Jay Treaty",d:"Louisiana Purchase"},explanation:"The Louisiana Purchase in 1803 transferred approximately 828,000 square miles of territory from France to the United States."},
+  "en-US":{question:"What was the 1803 acquisition of a vast territory from France by the United States called?",options:{a:"Adams–Onís Treaty",b:"Treaty of Ghent",c:"Jay Treaty",d:"Louisiana Purchase"},explanation:"The Louisiana Purchase in 1803 transferred approximately 828,000 square miles of territory from France to the United States."},
+  "ru-RU":{question:"Как называлось соглашение 1803 года, по которому Франция передала США обширную территорию?",options:{a:"Договор Адамса — Ониса",b:"Гентский договор",c:"Договор Джея",d:"Луизианская покупка"},explanation:"В результате Луизианской покупки 1803 года Франция передала Соединённым Штатам территорию площадью около 2,14 миллиона квадратных километров."}
+ }},
+ {id:"US-SCI-006",region:"US",category:"Science",difficulty:"easy",correct:"b",translations:{
+  "en-IN":{question:"Who became the first American to travel into space in 1961?",options:{a:"John Glenn",b:"Alan Shepard",c:"Neil Armstrong",d:"Gus Grissom"},explanation:"Alan Shepard became the first American in space on 5 May 1961 during the suborbital Freedom 7 mission."},
+  "en-US":{question:"Who was the first American to travel into space?",options:{a:"John Glenn",b:"Alan Shepard",c:"Neil Armstrong",d:"Gus Grissom"},explanation:"Alan Shepard became the first American in space on May 5, 1961, during the suborbital Freedom 7 mission."},
+  "ru-RU":{question:"Кто стал первым американцем, побывавшим в космосе, в 1961 году?",options:{a:"Джон Гленн",b:"Алан Шепард",c:"Нил Армстронг",d:"Гас Гриссом"},explanation:"Алан Шепард стал первым американцем в космосе 5 мая 1961 года во время суборбитального полёта корабля Freedom 7."}
+ }},
+ {id:"US-CUL-006",region:"US",category:"Culture",difficulty:"hard",correct:"c",translations:{
+  "en-IN":{question:"Which architect designed the Guggenheim Museum in New York City, opened in 1959?",options:{a:"Eero Saarinen",b:"Philip Johnson",c:"Frank Lloyd Wright",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed the Solomon R. Guggenheim Museum in New York City; the distinctive building opened in 1959."},
+  "en-US":{question:"Who designed New York City's Solomon R. Guggenheim Museum, which opened in 1959?",options:{a:"Eero Saarinen",b:"Philip Johnson",c:"Frank Lloyd Wright",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed the Solomon R. Guggenheim Museum in New York City; the distinctive building opened in 1959."},
+  "ru-RU":{question:"Кто спроектировал музей Соломона Гуггенхайма в Нью-Йорке, открывшийся в 1959 году?",options:{a:"Ээро Сааринен",b:"Филип Джонсон",c:"Фрэнк Ллойд Райт",d:"Ай. Эм. Пей"},explanation:"Музей Соломона Гуггенхайма в Нью-Йорке спроектировал Фрэнк Ллойд Райт. Знаменитое здание открылось в 1959 году."}
+ }}
+
 ];
