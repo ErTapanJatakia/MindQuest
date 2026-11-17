@@ -1,7 +1,7 @@
 /* Starter content for the first vertical slice. Expand to 50 reviewed questions per region before release. */
 window.MINDQUEST_QUESTIONS = [
  {id:"IN-GEO-001",region:"IN",category:"Geography",difficulty:"easy",correct:"b",translations:{
-  "en-IN":{question:"Which city is known as the Pink City of India?",options:{a:"Jaipur",b:"Jaipur",c:"Jodhpur",d:"Udaipur"},explanation:"Jaipur is widely known as the Pink City."},
+  "en-IN":{question:"Which city is known as the Pink City of India?",options:{a:"Delhi",b:"Jaipur",c:"Jodhpur",d:"Udaipur"},explanation:"Jaipur is widely known as the Pink City."},
   "en-US":{question:"Which Indian city is known as the Pink City?",options:{a:"Mumbai",b:"Jaipur",c:"Jodhpur",d:"Udaipur"},explanation:"Jaipur is widely known as the Pink City."},
   "ru-RU":{question:"Какой индийский город называют Розовым городом?",options:{a:"Мумбаи",b:"Джайпур",c:"Джодхпур",d:"Удайпур"},explanation:"Джайпур широко известен как Розовый город."}
  }},
