@@ -323,3 +323,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - This is source-level verification only. No browser runtime, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Technical reference: MDN, [Array.isArray()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray) and [Number.isInteger()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger).
 - No workstream estimate or earned allocation changed. Baseline implementation remains 1,265 / 2,400 minutes (52.71%); remaining baseline scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Latest answer-ledger integrity review — 2026-11-18
+
+- Added a dedicated complete-round integrity gate before results rendering, answer review and best-score persistence.
+- The gate validates the round and answer-history lengths; rechecks every question; validates selected and correct answer keys; compares the captured answer options and explanation with the active localized question; verifies each correctness flag; and recomputes the total score from recorded answers.
+- A round with missing, stale or inconsistent answer data is rejected before result or persistence side effects.
+- Post-commit source re-fetch confirmed ten targeted checks covering the validator, each integrity condition, score recomputation and the ordering of the guard before answer review.
+- Source-level verification only. No browser runtime, automated test, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%) with 1,135 minutes remaining (47.29%); no earned allocation changed. Actual engineering time remains untracked.
