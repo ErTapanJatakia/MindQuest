@@ -586,3 +586,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Documented the current Android Gradle Plugin 8.7.3 / Kotlin 2.0.21 pairing and Gradle 8.9 wrapper target. Wrapper scripts and JAR remain outstanding, so fresh-checkout reproducibility is not yet achieved.
 - No Gradle build, Kotlin compilation, APK packaging or Android validation was run. CI remains deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Predictive-back manifest alignment — 2026-11-18
+
+- Explicitly enabled Android platform back-invoked callback dispatch in the application manifest, matching the API 33+ dispatcher implementation already present in `MainActivity`.
+- No dependency, permission or product scope added. Manifest merge, compilation and gesture behaviour remain unverified.
+- No Gradle build or Android validation was run; CI remains deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
