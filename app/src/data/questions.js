@@ -77,4 +77,36 @@ window.MINDQUEST_QUESTIONS = [
   "ru-RU":{question:"В каком году США приобрели Луизиану у Франции?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"Соединённые Штаты приобрели территорию Луизианы у Франции в 1803 году."}
  }}
 
+
+ {id:"IN-CUL-001",region:"IN",category:"Culture",difficulty:"easy",correct:"b",translations:{
+  "en-IN":{question:"Bharatanatyam is a classical dance form traditionally associated with which Indian state?",options:{a:"Kerala",b:"Tamil Nadu",c:"Punjab",d:"Assam"},explanation:"Bharatanatyam developed in Tamil Nadu and is one of India's major classical dance traditions."},
+  "en-US":{question:"Which Indian state is traditionally associated with the classical dance form Bharatanatyam?",options:{a:"Kerala",b:"Tamil Nadu",c:"Punjab",d:"Assam"},explanation:"Bharatanatyam developed in Tamil Nadu and is one of India's major classical dance traditions."},
+  "ru-RU":{question:"С каким индийским штатом традиционно связан классический танец бхаратанатьям?",options:{a:"Керала",b:"Тамилнад",c:"Пенджаб",d:"Ассам"},explanation:"Бхаратанатьям сформировался в Тамилнаде и относится к основным классическим танцевальным традициям Индии."}
+ }},
+ {id:"IN-GEO-003",region:"IN",category:"Geography",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"Which Indian state has the largest area?",options:{a:"Madhya Pradesh",b:"Maharashtra",c:"Uttar Pradesh",d:"Rajasthan"},explanation:"Rajasthan is India's largest state by area."},
+  "en-US":{question:"Which state is the largest in India by area?",options:{a:"Madhya Pradesh",b:"Maharashtra",c:"Uttar Pradesh",d:"Rajasthan"},explanation:"Rajasthan is India's largest state by area."},
+  "ru-RU":{question:"Какой штат Индии занимает наибольшую площадь?",options:{a:"Мадхья-Прадеш",b:"Махараштра",c:"Уттар-Прадеш",d:"Раджастхан"},explanation:"Раджастхан — крупнейший штат Индии по площади."}
+ }},
+ {id:"RU-HIS-002",region:"RU",category:"History",difficulty:"easy",correct:"a",translations:{
+  "en-IN":{question:"Who became the first human to travel into space in 1961?",options:{a:"Yuri Gagarin",b:"Alexei Leonov",c:"Gherman Titov",d:"Valentina Tereshkova"},explanation:"Soviet cosmonaut Yuri Gagarin completed the first human spaceflight on 12 April 1961."},
+  "en-US":{question:"Who was the first human to travel into space, in 1961?",options:{a:"Yuri Gagarin",b:"Alexei Leonov",c:"Gherman Titov",d:"Valentina Tereshkova"},explanation:"Soviet cosmonaut Yuri Gagarin completed the first human spaceflight on April 12, 1961."},
+  "ru-RU":{question:"Кто стал первым человеком, совершившим полёт в космос в 1961 году?",options:{a:"Юрий Гагарин",b:"Алексей Леонов",c:"Герман Титов",d:"Валентина Терешкова"},explanation:"Советский космонавт Юрий Гагарин совершил первый в истории полёт человека в космос 12 апреля 1961 года."}
+ }},
+ {id:"RU-CUL-002",region:"RU",category:"Culture",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"Which Russian composer wrote the ballet music for Swan Lake?",options:{a:"Sergei Rachmaninoff",b:"Igor Stravinsky",c:"Pyotr Ilyich Tchaikovsky",d:"Modest Mussorgsky"},explanation:"Pyotr Ilyich Tchaikovsky composed the music for Swan Lake, first performed in 1877."},
+  "en-US":{question:"Who composed the music for the ballet Swan Lake?",options:{a:"Sergei Rachmaninoff",b:"Igor Stravinsky",c:"Pyotr Ilyich Tchaikovsky",d:"Modest Mussorgsky"},explanation:"Pyotr Ilyich Tchaikovsky composed the music for Swan Lake, first performed in 1877."},
+  "ru-RU":{question:"Кто написал музыку к балету «Лебединое озеро»?",options:{a:"Сергей Рахманинов",b:"Игорь Стравинский",c:"Пётр Ильич Чайковский",d:"Модест Мусоргский"},explanation:"Музыку к балету «Лебединое озеро», впервые поставленному в 1877 году, написал Пётр Ильич Чайковский."}
+ }},
+ {id:"US-CUL-001",region:"US",category:"Culture",difficulty:"easy",correct:"d",translations:{
+  "en-IN":{question:"Which US city is widely recognised as the birthplace of jazz?",options:{a:"Chicago",b:"New York City",c:"Memphis",d:"New Orleans"},explanation:"Jazz emerged in New Orleans around the turn of the 20th century."},
+  "en-US":{question:"Which U.S. city is widely recognised as the birthplace of jazz?",options:{a:"Chicago",b:"New York City",c:"Memphis",d:"New Orleans"},explanation:"Jazz emerged in New Orleans around the turn of the 20th century."},
+  "ru-RU":{question:"Какой город США обычно считают родиной джаза?",options:{a:"Чикаго",b:"Нью-Йорк",c:"Мемфис",d:"Новый Орлеан"},explanation:"Джаз возник в Новом Орлеане на рубеже XIX и XX веков."}
+ }},
+ {id:"US-SCI-002",region:"US",category:"Science",difficulty:"medium",correct:"b",translations:{
+  "en-IN":{question:"On which planet did NASA's Perseverance rover land in 2021?",options:{a:"Venus",b:"Mars",c:"Jupiter",d:"Mercury"},explanation:"NASA's Perseverance rover landed in Jezero Crater on Mars on 18 February 2021."},
+  "en-US":{question:"Which planet did NASA's Perseverance rover land on in 2021?",options:{a:"Venus",b:"Mars",c:"Jupiter",d:"Mercury"},explanation:"NASA's Perseverance rover landed in Jezero Crater on Mars on February 18, 2021."},
+  "ru-RU":{question:"На какую планету в 2021 году совершил посадку марсоход NASA «Персеверанс»?",options:{a:"Венера",b:"Марс",c:"Юпитер",d:"Меркурий"},explanation:"Марсоход NASA «Персеверанс» совершил посадку в кратере Езеро на Марсе 18 февраля 2021 года."}
+ }}
+
 ];
