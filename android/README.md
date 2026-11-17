@@ -68,3 +68,9 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 
 - The launcher Activity declares `android:windowSoftInputMode="adjustResize"` so the Android 15+ edge-to-edge window can receive and dispatch IME insets to the WebView container. The Activity's API 35+ inset listener includes the IME alongside system bars and display cutouts.
 - This is a source-level configuration alignment. Keyboard opening, dismissal, animation and viewport behaviour still require runtime validation on supported Android versions.
+
+
+### API 23 WebView navigation callback compatibility (2026-11-18)
+- Added the legacy `shouldOverrideUrlLoading(WebView, String)` override so the explicit local-document navigation allowlist also applies on the minimum supported Android API 23, where `WebResourceRequest` is unavailable.
+- Both callback paths now share one URI predicate: only `file:///android_asset/index.html` is permitted, optional URL fragments remain usable for in-app state, query strings are rejected, and API 24+ subframe navigation is blocked.
+- Source-level change only. No Kotlin compilation, Android build, API 23 emulator, runtime navigation or device test was run; CI/Android validation remain deferred.
