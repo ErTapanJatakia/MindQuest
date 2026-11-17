@@ -17,7 +17,7 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 |
 | 10 | Results screen | Score, accuracy, answers, explanations and replay | In progress | 90 |
 | 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 |
-| 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | Planned | 120 |
+| 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | In progress | 120 |
 | 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 |
 | 14 | Offline/security hardening | Airplane-mode operation, safe WebView configuration and no remote runtime dependencies | In progress | 120 |
 | 15 | Device compatibility | Small/standard/large screen and density checks | Planned | 180 |
@@ -47,6 +47,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Fifteen starter questions (five per region), each with three language variants.
 - Starter difficulty spread per region: three easy, one medium and one hard question.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
+- View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
 - Best scores are scoped to region, category and difficulty and compared by percentage.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
