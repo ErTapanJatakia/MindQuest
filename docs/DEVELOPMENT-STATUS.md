@@ -276,3 +276,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Technical basis: MDN documents that localStorage availability must be tested in the active browsing context and that Storage.setItem can throw, including QuotaExceededError: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API and https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem.
 - Source changes committed and re-fetched for verification. No browser runtime, storage-denial simulation, content validator, CI, Android build or device QA was run. Runtime verification remains pending.
 - No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
+
+
+## Latest round-state integrity review — 2026-11-18
+
+- Empty question-pool recovery now clears the prior round, question index, score, answer flag and answer history, and keeps the Next/Results action disabled. This prevents stale gameplay state from surviving when a newly selected filter combination has no playable questions.
+- Results rendering now has a defensive completion guard: a non-empty round must be at its final question, the final question must be answered, and every round position must have a recorded answer before scoring/review/best-score persistence can proceed.
+- This is a source-level state-integrity refinement. No browser runtime, unit test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred.
+- No roadmap workstream was reclassified. Estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%); actual engineering time remains untracked.
