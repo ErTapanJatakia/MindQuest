@@ -27,3 +27,11 @@ The debug APK is a development artifact only. A production RuStore package must 
 ## Security note
 
 The WebView needs local file access to load `file:///android_asset/index.html`. Content access, cross-file-origin access, universal file-origin access, mixed content and external navigation are restricted. Reassess this boundary during the Android source review and device QA.
+
+
+## WebView lifecycle and navigation boundary
+
+- The only permitted top-level document destination is the bundled `file:///android_asset/index.html` entry point. Hash-based in-app state remains supported; other top-level destinations and subframe navigations are blocked.
+- WebView content debugging is explicitly disabled. JavaScript remains enabled only because the bundled game requires it; cross-file-origin access, universal file-origin access, content-provider access, pop-up windows and mixed content remain disabled.
+- The Activity pauses/resumes WebView timers with its lifecycle and stops/destroys the WebView when the Activity is destroyed.
+- These are source-level controls. Confirm behaviour against the built APK and supported Android versions during the deferred Android QA stage.
