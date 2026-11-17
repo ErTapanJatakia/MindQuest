@@ -594,3 +594,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No dependency, permission or product scope added. Manifest merge, compilation and gesture behaviour remain unverified.
 - No Gradle build or Android validation was run; CI remains deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Adaptive launcher icon resources — 2026-11-18
+
+- Added Android 8.0+ adaptive launcher icon resources with separate foreground/background layers and a matching vector fallback for Android 6.0–7.1.
+- Updated both manifest launcher icon references to `@mipmap/ic_launcher`; existing splash artwork is unchanged.
+- Resource compilation, APK inspection and launcher rendering have not been run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
