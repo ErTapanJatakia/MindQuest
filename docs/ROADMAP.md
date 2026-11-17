@@ -4,27 +4,27 @@
 
 Statuses: `Planned` = not started; `In progress` = partial implementation; `Review` = implementation complete, awaiting review; `Complete` = accepted against its criteria.
 
-| # | Workstream | Acceptance criteria | Status | Estimate (min) |
+| # | Workstream | Acceptance criteria | Status | Estimate (min) | Earned implementation (min) | Remaining baseline (min) |
 |---:|---|---|---|---:|
-| 1 | Project foundation | Standalone repository structure, documentation, metadata and clean baseline | In progress | 60 |
-| 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | In progress | 90 |
-| 3 | Home screen | Play, settings, help/about and navigation | In progress | 120 |
-| 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 |
-| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Review | 150 |
-| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Review | 180 |
-| 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 |
-| 8 | Game modes | Ten-question rounds, category selection and replay | In progress | 120 |
-| 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 |
-| 10 | Results screen | Score, accuracy, per-question answers, explanations and replay | In progress | 90 |
-| 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 |
-| 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | In progress | 120 |
-| 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 |
-| 14 | Offline/security hardening | Airplane-mode operation, safe WebView configuration and no remote runtime dependencies | In progress | 120 |
-| 15 | Device compatibility | Small/standard/large screen and density checks | Planned | 180 |
-| 16 | Manual functional testing | Gameplay, all language combinations, data integrity, persistence and regression | Planned | 180 |
-| 17 | RuStore release readiness | Package, signing, metadata, Russian listing, screenshots, disclosures and rating preparation | Planned | 180 |
-| 18 | Documentation/release | Installation, changelog, versioning and release checklist | In progress | 90 |
-|  | **Total** |  |  | **2,400** |
+| 1 | Project foundation | Standalone repository structure, documentation, metadata and clean baseline | In progress | 60 | 40 | 20 |
+| 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | In progress | 90 | 25 | 65 |
+| 3 | Home screen | Play, settings, help/about and navigation | In progress | 120 | 70 | 50 |
+| 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 | 90 | 60 |
+| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Review | 150 | 150 | 0 |
+| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Review | 180 | 180 | 0 |
+| 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 | 120 | 60 |
+| 8 | Game modes | Ten-question rounds, category selection and replay | In progress | 120 | 80 | 40 |
+| 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 | 70 | 20 |
+| 10 | Results screen | Score, accuracy, per-question answers, explanations and replay | In progress | 90 | 70 | 20 |
+| 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 | 75 | 45 |
+| 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | In progress | 120 | 65 | 55 |
+| 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 | 65 | 115 |
+| 14 | Offline/security hardening | Airplane-mode operation, safe WebView configuration and no remote runtime dependencies | In progress | 120 | 85 | 35 |
+| 15 | Device compatibility | Small/standard/large screen and density checks | Planned | 180 | 25 | 155 |
+| 16 | Manual functional testing | Gameplay, all language combinations, data integrity, persistence and regression | Planned | 180 | 0 | 180 |
+| 17 | RuStore release readiness | Package, signing, metadata, Russian listing, screenshots, disclosures and rating preparation | Planned | 180 | 0 | 180 |
+| 18 | Documentation/release | Installation, changelog, versioning and release checklist | In progress | 90 | 55 | 35 |
+|  | **Total** |  |  | **2,400** | **1,265** | **1,135** |
 
 ## Delivery milestones
 
@@ -248,3 +248,14 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Empty-pool recovery explicitly resets prior round data and disables the Next/Results action. Results processing now rejects empty, incomplete or not-yet-final rounds before answer review and best-score writes.
 - These are defensive source-level safeguards; runtime gameplay verification and automated tests remain pending. The content validator, CI, Android build and device validation remain deferred until the agreed development batch is complete.
 - No workstream status or estimate changed. Baseline implementation remains 330 / 2,400 minutes (13.75%); actual engineering time remains untracked.
+
+
+## Baseline implementation reconciliation — 2026-11-18
+
+The original 2,400-minute estimate has been decomposed into measurable implementation packages without changing any parent estimate. The earned-implementation column credits repository deliverables evidenced in source and documentation. Partial work packages receive partial credit; runtime validation, device testing, release tasks and unperformed work receive no credit. Detailed allocations and evidence rules are recorded in [BASELINE-RECONCILIATION.md](BASELINE-RECONCILIATION.md).
+
+- **Earned implementation scope:** 1,265 / 2,400 minutes = **52.71%**.
+- **Unimplemented or unverified baseline scope:** 1,135 / 2,400 minutes = **47.29%**.
+- The previous 330-minute figure counted only two fully implemented workstreams. It understated partial implementation in other workstreams and is superseded by this deliverable-based reconciliation.
+- This is estimate-weighted scope implementation, not actual engineering time, calendar duration, test pass rate or release readiness. Actual time remains untracked.
+- Workstream status labels remain conservative: partial work remains In progress; implementation awaiting acceptance remains Review. No workstream is marked Complete solely because source code exists.
