@@ -501,3 +501,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Re-fetched the README and both tracking documents after the commits to verify the wording and scope note. This documentation correction does not change product scope or baseline progress.
 - No validator, CI, Android build, emulator or physical-device test was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Help fallback wording alignment — 2026-11-18
+
+- Updated the static Help copy in `app/index.html` to say “the selected number” rather than “ten”, matching the existing localized Help dictionaries and configurable 5/10/15-question setting.
+- Re-fetched the HTML and both tracking documents after commits to verify the updated fallback and scope/baseline notes. This is wording alignment only.
+- No runtime, official validator, CI, Android build, emulator or physical-device validation was run. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
