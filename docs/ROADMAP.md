@@ -294,3 +294,14 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Results review and best-score persistence are reached only after the complete ledger matches the recorded score. This reduces the chance that malformed, stale or internally inconsistent answer state is treated as a completed round.
 - Re-fetched the committed source and confirmed ten targeted source checks. No browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
 - No roadmap estimate or earned allocation changed: 1,265 / 2,400 minutes (52.71%) implemented; 1,135 minutes (47.29%) remain. Actual engineering time remains untracked.
+
+
+## Latest invalid-round recovery UX refinement — 2026-11-18
+
+- Extended the shared recovery view so it can present distinct localized messages for an empty question selection and an internally inconsistent completed round.
+- If the complete answer-ledger integrity gate rejects a round, the app now clears the invalid round and presents a clear recovery message directing the player to Settings to begin again, rather than silently leaving the final quiz screen stuck.
+- Added the recovery title and guidance in English (India), English (US) and Russian. Recovery text follows the selected interface language, while the question bank and question language remain unchanged.
+- Technical accessibility reference: W3C WCAG 2.2 Technique H58 explains using HTML language attributes to identify passages in a different language; the existing recovery status uses the selected interface locale. Reference: https://www.w3.org/WAI/WCAG22/Techniques/html/H58.
+- A post-commit source consistency check caught one stale reference to the former recovery function name; it was corrected in a follow-up commit before final verification. The final re-fetch confirmed ten targeted checks, including no stale function references and correct recovery routing for empty pools, invalid active questions and invalid answer ledgers.
+- Source-level verification only. No browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
+- No roadmap estimate or earned allocation changed: 1,265 / 2,400 minutes (52.71%) implemented; 1,135 minutes (47.29%) remain. Actual engineering time remains untracked.
