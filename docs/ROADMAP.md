@@ -429,3 +429,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - This is a bounded hardening of the existing offline WebView shell; it adds no dependency, permission, service, network capability or product scope.
 - Source-only review and re-fetch verification; no Kotlin compilation, Gradle build, APK inspection, runtime navigation test, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and runtime validation. Actual engineering time remains untracked.
+
+
+## Android system back integration — 2026-11-18
+
+- Added Android 13+ platform `OnBackInvokedDispatcher` handling for system back/predictive-back dispatch. It navigates WebView history when available and finishes the Activity otherwise.
+- Retained the legacy `onBackPressed()` path for Android 6.0–12 and unregisters the API 33+ callback during Activity destruction.
+- Uses platform APIs only; no dependency, permission, service or product scope was added.
+- Source-only implementation and re-fetch verification; no Kotlin compilation, Gradle build, emulator, gesture-navigation or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and device validation. Actual engineering time remains untracked.
