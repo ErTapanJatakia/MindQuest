@@ -515,3 +515,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added a visible keyboard `:focus-visible` outline for the home brand anchor. The existing shared focus rule applied to buttons and selects but did not include this link, so keyboard focus on the brand navigation target could be difficult to locate.
 - Reused the existing accent token and kept the change within the planned accessibility workstream; no new product scope or baseline credit claimed.
 - Post-commit verification checks the selector and documentation record only. No browser runtime, screen-reader, parser, official validator, CI, Android build or device validation was run. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes remaining. Actual engineering time remains untracked.
+
+
+## Forced-colors accessibility fallback — 2026-11-18
+
+- Added a system-colour fallback for forced-colors mode covering existing cards, controls, answer options, score panel and keyboard-focus outlines.
+- Correct and incorrect answer states remain distinguishable through solid versus dashed borders, not colour alone. This stays within the planned accessibility workstream and introduces no new product scope.
+- Post-commit verification is source-level only. No forced-colors browser simulation, screen-reader, parser, official validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
