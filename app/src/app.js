@@ -24,7 +24,7 @@
       playAgain:"Play again",home:"Home",personalise:"MAKE IT YOURS",settings:"Settings",
       settingsIntro:"These choices are independent. Mix any interface, region and question language.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",
-      freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",
+      freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",
       noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Change your category or difficulty settings to find questions.",question:"QUESTION",round:"ROUND 1"
     },
     "en-US": {
@@ -46,7 +46,7 @@
       playAgain:"Сыграть ещё раз",home:"На главную",personalise:"ВАШИ НАСТРОЙКИ",settings:"Настройки",
       settingsIntro:"Эти параметры независимы. Вы можете сочетать любой язык интерфейса, регион и язык вопросов.",
       interfaceLanguage:"Язык интерфейса",questionLanguage:"Язык вопросов",save:"Сохранить настройки",back:"Назад",
-      freeOffline:"Бесплатно · Офлайн · Без аккаунта",correct:"Верно! ",incorrect:"Не совсем. ",roundScore:"Ваш результат: {score} из {total}.",
+      freeOffline:"Бесплатно · Офлайн · Без аккаунта",correct:"Верно! ",incorrect:"Не совсем. ",roundScore:"Ваш результат: {score} из {total}.",accuracy:"Точность: {percent}%",reviewTitle:"Разбор ответов",yourAnswer:"Ваш ответ",correctAnswer:"Правильный ответ",unanswered:"Нет ответа",
       noQuestions:"Для выбранных параметров пока нет вопросов.",noQuestionsHint:"Измените категорию или уровень сложности в настройках.",question:"ВОПРОС",round:"РАУНД 1"
     }
   };
@@ -78,6 +78,7 @@
   let round = [];
   let current = 0;
   let score = 0;
+  let answerHistory = [];
   let answered = false;
   let noQuestionsForSelection = false;
   let lastView = "home-view";
@@ -172,6 +173,7 @@
     round = shuffled.slice(0, 10);
     current = 0;
     score = 0;
+    answerHistory = [];
     renderQuestion();
     showView("quiz-view");
   }
@@ -217,6 +219,7 @@
     answered = true;
     const correct = choice === item.correct;
     if (correct) score += 1;
+    answerHistory[current] = { choice, correct: item.correct, options: copy.options, explanation: copy.explanation, isCorrect: correct };
     $("answers").querySelectorAll("button").forEach((button) => {
       button.disabled = true;
       if (button.dataset.answer === item.correct) button.classList.add("correct");
@@ -227,10 +230,36 @@
     $("next-button").disabled = false;
   }
 
+
+  function renderAnswerReview() {
+    const host = $("answer-review-list");
+    host.replaceChildren();
+    answerHistory.forEach((entry, index) => {
+      const card = document.createElement("article");
+      card.className = "review-card";
+      const heading = document.createElement("h3");
+      heading.textContent = (index + 1) + ". " + round[index].translations[settings.questionLocale].question;
+      const status = document.createElement("p");
+      status.className = entry?.isCorrect ? "review-status good" : "review-status bad";
+      status.textContent = entry?.isCorrect ? t("correct").trim() : t("incorrect").trim();
+      const chosen = document.createElement("p");
+      chosen.textContent = t("yourAnswer") + ": " + (entry ? entry.options[entry.choice] : t("unanswered"));
+      const correct = document.createElement("p");
+      correct.textContent = t("correctAnswer") + ": " + round[index].translations[settings.questionLocale].options[round[index].correct];
+      const explanation = document.createElement("p");
+      explanation.className = "review-explanation";
+      explanation.textContent = round[index].translations[settings.questionLocale].explanation;
+      card.append(heading, status, chosen, correct, explanation);
+      host.append(card);
+    });
+  }
+
   function showResults() {
     $("result-title").textContent = t("wellPlayed");
     $("final-score").textContent = score + "/" + round.length;
-    $("result-message").textContent = t("roundScore").replace("{score}", score).replace("{total}", round.length);
+    const percent = Math.round((score / round.length) * 100);
+    $("result-message").textContent = t("roundScore").replace("{score}", score).replace("{total}", round.length) + " " + t("accuracy").replace("{percent}", percent);
+    renderAnswerReview();
     const best = readBestScore();
     if (!best || score / round.length > best.score / best.total) {
       safeStorage.set(bestScoreKey(), JSON.stringify({ score, total: round.length }));
