@@ -156,3 +156,9 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Clarified that the initial Android WebView shell is implemented, but packaging/build validation remains pending.
 - Corrected the architecture's filter description to include category, region and difficulty.
 - No runtime, official validator, CI or Android validation was run.
+
+
+## Latest best-score comparison refinement — 2026-11-17
+
+- Best-score comparison uses exact integer cross-multiplication for accuracy; equal-accuracy results prefer the larger question count. Existing storage format and scope remain unchanged.
+- Source-only refinement; no runtime, official validator, CI or Android validation was run.
