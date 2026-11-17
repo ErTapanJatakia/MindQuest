@@ -527,3 +527,9 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 - Corrected the session-rotation description in the roadmap: round capacity follows the player's selected 5-, 10- or 15-question setting, rather than the superseded ten-question cap. The implementation and current product setting were already configurable; this change aligns the planning document with delivered behaviour. No application code, scope or baseline allocation changed.
 - Re-fetched both updated documentation files after committing. No parser, validator, CI, Android build or runtime test was run in this documentation-only correction.
+
+## Latest completed batch — Android launcher identity
+
+- Added `android/app/src/main/res/drawable/ic_launcher.xml`, a scalable vector launcher mark based on the existing MindQuest visual palette.
+- Connected the vector resource through `android:icon` and `android:roundIcon` in the application manifest. This replaces the platform-default launcher artwork when the APK is built.
+- This is a source-level resource integration; no Gradle build, APK inspection, launcher rendering test or physical-device validation was performed. Existing scope and 2,400-minute baseline are unchanged.
