@@ -233,3 +233,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - The change follows WCAG 2.2 Success Criterion 3.1.2 guidance on identifying the language of passages: https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.
 - Source-level implementation only; browser, screen-reader, official validator, CI, Android build and device testing remain pending. No conformance claim is made.
 - No workstream estimate or status changed; estimate-weighted implementation remains 330 / 2,400 minutes (13.75%). Actual engineering time remains untracked.
+
+
+## Latest local-persistence resilience review — 2026-11-18
+
+- Storage writes now return an explicit success/failure result to the application layer. A failed settings or best-score write triggers a localized polite warning, while gameplay remains usable without storage.
+- Help text no longer guarantees persistence unconditionally; it states that settings and best scores are saved on-device when browser storage is available. The change follows MDN's guidance to feature-detect storage availability and handle Storage.setItem exceptions.
+- Source/documentation review only. Browser runtime, denied-storage simulation, official validator, CI, Android build and physical-device verification remain pending.
+- No full workstream status or estimate changed. Baseline implementation remains 330 / 2,400 minutes (13.75%); actual engineering time remains untracked.
