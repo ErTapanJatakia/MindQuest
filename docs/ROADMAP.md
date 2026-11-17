@@ -100,3 +100,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 6. Submit to RuStore after all release gates pass.
 
 **CI is intentionally deferred.** No workflow should be run during development. The repository currently has no workflow files.
+
+
+## Latest development review — 2026-11-17
+
+- Added polite, atomic live announcements for the quiz question counter while preserving the progress bar's percentage value and localized accessible label.
+- Added responsive safeguards for narrow viewports and long localized strings, including flexible footer wrapping and a compact treatment at 340px and below.
+- A source-level scan confirmed that every HTML `data-i18n` key exists in all three UI dictionaries. Translation quality and runtime localization behavior remain to be reviewed.
+- No JavaScript parser, browser runtime, official validator, CI, Android build or device test was run. Responsive, keyboard and screen-reader behavior remain pending runtime QA.
