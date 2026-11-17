@@ -51,7 +51,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
 - View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
-- Best scores are scoped to region, category and difficulty and compared by percentage.
+- Best scores are scoped to region, category and difficulty and compared by percentage. The home card shows the best score, percentage accuracy and active pool scope.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
 - All four question categories now have at least one question in each regional bank.
