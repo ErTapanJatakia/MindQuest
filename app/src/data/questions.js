@@ -2145,4 +2145,590 @@ window.MINDQUEST_QUESTIONS = [
     }
   }
 }
+,
+{
+  "id": "IN-GEO-011",
+  "region": "IN",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which Indian state is home to the Loktak Lake, famous for its floating phumdis?",
+      "options": {
+        "a": "Manipur",
+        "b": "Meghalaya",
+        "c": "Tripura",
+        "d": "Nagaland"
+      },
+      "explanation": "Loktak Lake in Manipur is known for its floating masses of vegetation and soil called phumdis."
+    },
+    "en-US": {
+      "question": "Which Indian state is home to Loktak Lake, famous for its floating phumdis?",
+      "options": {
+        "a": "Manipur",
+        "b": "Meghalaya",
+        "c": "Tripura",
+        "d": "Nagaland"
+      },
+      "explanation": "Loktak Lake in Manipur is known for its floating masses of vegetation and soil called phumdis."
+    },
+    "ru-RU": {
+      "question": "В каком индийском штате находится озеро Локтак, известное своими плавающими островами-пхумди?",
+      "options": {
+        "a": "Манипур",
+        "b": "Мегхалая",
+        "c": "Трипура",
+        "d": "Нагаленд"
+      },
+      "explanation": "Озеро Локтак в Манипуре известно плавающими образованиями из растительности и почвы, которые называют пхумди."
+    }
+  }
+},
+{
+  "id": "IN-GEO-012",
+  "region": "IN",
+  "category": "Geography",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which is the highest mountain peak located entirely within India's territory?",
+      "options": {
+        "a": "Kangchenjunga",
+        "b": "Nanda Devi East",
+        "c": "Kamet",
+        "d": "Nanda Devi"
+      },
+      "explanation": "Nanda Devi, at about 7,816 metres, is the highest mountain located wholly within India; Kangchenjunga lies on the India–Nepal border."
+    },
+    "en-US": {
+      "question": "Which is the highest mountain peak located entirely within India's territory?",
+      "options": {
+        "a": "Kangchenjunga",
+        "b": "Nanda Devi East",
+        "c": "Kamet",
+        "d": "Nanda Devi"
+      },
+      "explanation": "Nanda Devi, at about 7,816 metres, is the highest mountain located wholly within India; Kangchenjunga lies on the India–Nepal border."
+    },
+    "ru-RU": {
+      "question": "Какая горная вершина является самой высокой из расположенных целиком на территории Индии?",
+      "options": {
+        "a": "Канченджанга",
+        "b": "Нанда-Деви-Ист",
+        "c": "Камет",
+        "d": "Нанда-Деви"
+      },
+      "explanation": "Нанда-Деви высотой около 7816 метров — самая высокая вершина, полностью расположенная в Индии; Канченджанга находится на границе Индии и Непала."
+    }
+  }
+},
+{
+  "id": "IN-HIS-011",
+  "region": "IN",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "In which city did the Revolt of 1857 begin among Indian soldiers of the Bengal Army?",
+      "options": {
+        "a": "Delhi",
+        "b": "Meerut",
+        "c": "Kanpur",
+        "d": "Lucknow"
+      },
+      "explanation": "The uprising began at Meerut on 10 May 1857 before spreading to Delhi and other centres."
+    },
+    "en-US": {
+      "question": "In which city did the 1857 uprising begin among soldiers of the Bengal Army?",
+      "options": {
+        "a": "Delhi",
+        "b": "Meerut",
+        "c": "Kanpur",
+        "d": "Lucknow"
+      },
+      "explanation": "The uprising began at Meerut on May 10, 1857, before spreading to Delhi and other centres."
+    },
+    "ru-RU": {
+      "question": "В каком городе в 1857 году началось восстание солдат Бенгальской армии?",
+      "options": {
+        "a": "Дели",
+        "b": "Мерат",
+        "c": "Канпур",
+        "d": "Лакхнау"
+      },
+      "explanation": "Восстание началось в Мерате 10 мая 1857 года, а затем распространилось на Дели и другие центры."
+    }
+  }
+},
+{
+  "id": "IN-SCI-011",
+  "region": "IN",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which Indian mission became the first to enter Mars orbit on its maiden attempt in 2014?",
+      "options": {
+        "a": "Chandrayaan-1",
+        "b": "AstroSat",
+        "c": "Mars Orbiter Mission (Mangalyaan)",
+        "d": "Chandrayaan-2"
+      },
+      "explanation": "ISRO's Mars Orbiter Mission entered Mars orbit on 24 September 2014, making India the first country to achieve this on its first attempt."
+    },
+    "en-US": {
+      "question": "Which Indian mission entered Mars orbit on its first attempt in 2014?",
+      "options": {
+        "a": "Chandrayaan-1",
+        "b": "AstroSat",
+        "c": "Mars Orbiter Mission (Mangalyaan)",
+        "d": "Chandrayaan-2"
+      },
+      "explanation": "ISRO's Mars Orbiter Mission entered Mars orbit on September 24, 2014, making India the first country to achieve this on its first attempt."
+    },
+    "ru-RU": {
+      "question": "Какая индийская миссия впервые вышла на орбиту Марса с первой попытки в 2014 году?",
+      "options": {
+        "a": "«Чандраян-1»",
+        "b": "AstroSat",
+        "c": "Миссия «Марсианский орбитальный аппарат» (Мангальян)",
+        "d": "«Чандраян-2»"
+      },
+      "explanation": "Индийская миссия «Марсианский орбитальный аппарат» вышла на орбиту Марса 24 сентября 2014 года; Индия стала первой страной, добившейся этого с первой попытки."
+    }
+  }
+},
+{
+  "id": "IN-CUL-011",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Bihu is a major seasonal festival tradition most closely associated with which Indian state?",
+      "options": {
+        "a": "Assam",
+        "b": "Gujarat",
+        "c": "Goa",
+        "d": "Himachal Pradesh"
+      },
+      "explanation": "Bihu marks important points in the agricultural calendar of Assam and is celebrated through music, dance and community festivities."
+    },
+    "en-US": {
+      "question": "Bihu is a major seasonal festival tradition most closely associated with which Indian state?",
+      "options": {
+        "a": "Assam",
+        "b": "Gujarat",
+        "c": "Goa",
+        "d": "Himachal Pradesh"
+      },
+      "explanation": "Bihu marks important points in the agricultural calendar of Assam and is celebrated through music, dance and community festivities."
+    },
+    "ru-RU": {
+      "question": "С каким индийским штатом прежде всего связана традиция сезонных праздников Биху?",
+      "options": {
+        "a": "Ассам",
+        "b": "Гуджарат",
+        "c": "Гоа",
+        "d": "Химачал-Прадеш"
+      },
+      "explanation": "Праздники Биху отмечают важные этапы сельскохозяйственного календаря Ассама и сопровождаются музыкой, танцами и народными гуляньями."
+    }
+  }
+},
+{
+  "id": "RU-GEO-011",
+  "region": "RU",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which large Russian lake is the largest freshwater lake in Europe by surface area?",
+      "options": {
+        "a": "Lake Baikal",
+        "b": "Lake Onega",
+        "c": "Lake Ladoga",
+        "d": "Lake Peipus"
+      },
+      "explanation": "Lake Ladoga in northwestern Russia is the largest freshwater lake in Europe by surface area."
+    },
+    "en-US": {
+      "question": "Which large Russian lake is the largest freshwater lake in Europe by surface area?",
+      "options": {
+        "a": "Lake Baikal",
+        "b": "Lake Onega",
+        "c": "Lake Ladoga",
+        "d": "Lake Peipus"
+      },
+      "explanation": "Lake Ladoga in northwestern Russia is the largest freshwater lake in Europe by surface area."
+    },
+    "ru-RU": {
+      "question": "Какое крупное российское озеро является крупнейшим пресноводным озером Европы по площади поверхности?",
+      "options": {
+        "a": "Байкал",
+        "b": "Онежское озеро",
+        "c": "Ладожское озеро",
+        "d": "Чудско-Псковское озеро"
+      },
+      "explanation": "Ладожское озеро на северо-западе России — крупнейшее пресноводное озеро Европы по площади поверхности."
+    }
+  }
+},
+{
+  "id": "RU-GEO-012",
+  "region": "RU",
+  "category": "Geography",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which Russian peninsula is the location of the Valley of Geysers, one of the world's largest geyser fields?",
+      "options": {
+        "a": "Kola Peninsula",
+        "b": "Taimyr Peninsula",
+        "c": "Yamal Peninsula",
+        "d": "Kamchatka Peninsula"
+      },
+      "explanation": "The Valley of Geysers lies in the Kronotsky Nature Reserve on the Kamchatka Peninsula in Russia's Far East."
+    },
+    "en-US": {
+      "question": "Which Russian peninsula is home to the Valley of Geysers, one of the world's largest geyser fields?",
+      "options": {
+        "a": "Kola Peninsula",
+        "b": "Taimyr Peninsula",
+        "c": "Yamal Peninsula",
+        "d": "Kamchatka Peninsula"
+      },
+      "explanation": "The Valley of Geysers lies in the Kronotsky Nature Reserve on the Kamchatka Peninsula in Russia's Far East."
+    },
+    "ru-RU": {
+      "question": "На каком российском полуострове расположена Долина гейзеров — одно из крупнейших гейзерных полей мира?",
+      "options": {
+        "a": "Кольский полуостров",
+        "b": "Полуостров Таймыр",
+        "c": "Полуостров Ямал",
+        "d": "Полуостров Камчатка"
+      },
+      "explanation": "Долина гейзеров находится в Кроноцком заповеднике на Камчатке, на Дальнем Востоке России."
+    }
+  }
+},
+{
+  "id": "RU-HIS-011",
+  "region": "RU",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which 1905 document issued by Tsar Nicholas II promised civil liberties and a legislative assembly?",
+      "options": {
+        "a": "October Manifesto",
+        "b": "Treaty of Brest-Litovsk",
+        "c": "Emancipation Edict",
+        "d": "Decree on Peace"
+      },
+      "explanation": "The October Manifesto of 1905 promised civil liberties and the creation of the State Duma."
+    },
+    "en-US": {
+      "question": "Which 1905 document issued by Tsar Nicholas II promised civil liberties and a legislative assembly?",
+      "options": {
+        "a": "October Manifesto",
+        "b": "Treaty of Brest-Litovsk",
+        "c": "Emancipation Edict",
+        "d": "Decree on Peace"
+      },
+      "explanation": "The October Manifesto of 1905 promised civil liberties and the creation of the State Duma."
+    },
+    "ru-RU": {
+      "question": "Какой документ 1905 года, изданный Николаем II, обещал гражданские свободы и создание законодательного собрания?",
+      "options": {
+        "a": "Октябрьский манифест",
+        "b": "Брест-Литовский мирный договор",
+        "c": "Манифест об отмене крепостного права",
+        "d": "Декрет о мире"
+      },
+      "explanation": "Октябрьский манифест 1905 года провозгласил гражданские свободы и создание Государственной думы."
+    }
+  }
+},
+{
+  "id": "RU-SCI-011",
+  "region": "RU",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which Soviet spacecraft carried the dog Laika into orbit in 1957?",
+      "options": {
+        "a": "Sputnik 1",
+        "b": "Sputnik 2",
+        "c": "Vostok 1",
+        "d": "Luna 2"
+      },
+      "explanation": "Sputnik 2, launched on 3 November 1957, carried Laika and became the first spacecraft to carry a living animal into Earth orbit."
+    },
+    "en-US": {
+      "question": "Which Soviet spacecraft carried the dog Laika into orbit in 1957?",
+      "options": {
+        "a": "Sputnik 1",
+        "b": "Sputnik 2",
+        "c": "Vostok 1",
+        "d": "Luna 2"
+      },
+      "explanation": "Sputnik 2, launched on November 3, 1957, carried Laika and became the first spacecraft to carry a living animal into Earth orbit."
+    },
+    "ru-RU": {
+      "question": "Какой советский космический аппарат доставил собаку Лайку на орбиту в 1957 году?",
+      "options": {
+        "a": "«Спутник-1»",
+        "b": "«Спутник-2»",
+        "c": "«Восток-1»",
+        "d": "«Луна-2»"
+      },
+      "explanation": "«Спутник-2», запущенный 3 ноября 1957 года, доставил Лайку и стал первым аппаратом, выведшим живое животное на орбиту Земли."
+    }
+  }
+},
+{
+  "id": "RU-CUL-011",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "What is the name of the traditional Russian wooden nesting doll set in which smaller figures fit inside larger ones?",
+      "options": {
+        "a": "Balalaika",
+        "b": "Samovar",
+        "c": "Matryoshka",
+        "d": "Kokoshnik"
+      },
+      "explanation": "Matryoshka dolls are wooden figures that open to reveal progressively smaller figures nested inside."
+    },
+    "en-US": {
+      "question": "What is the name of the traditional Russian wooden nesting doll set in which smaller figures fit inside larger ones?",
+      "options": {
+        "a": "Balalaika",
+        "b": "Samovar",
+        "c": "Matryoshka",
+        "d": "Kokoshnik"
+      },
+      "explanation": "Matryoshka dolls are wooden figures that open to reveal progressively smaller figures nested inside."
+    },
+    "ru-RU": {
+      "question": "Как называется традиционная русская деревянная разъёмная кукла, внутри которой находятся куклы меньшего размера?",
+      "options": {
+        "a": "Балалайка",
+        "b": "Самовар",
+        "c": "Матрёшка",
+        "d": "Кокошник"
+      },
+      "explanation": "Матрёшка — деревянная кукла, которая раскрывается и содержит внутри несколько всё более маленьких фигурок."
+    }
+  }
+},
+{
+  "id": "US-GEO-011",
+  "region": "US",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which US state contains most of the Everglades, a vast subtropical wetland ecosystem?",
+      "options": {
+        "a": "Florida",
+        "b": "Georgia",
+        "c": "Louisiana",
+        "d": "South Carolina"
+      },
+      "explanation": "The Everglades ecosystem is located in southern Florida and includes a large network of wetlands and waterways."
+    },
+    "en-US": {
+      "question": "Which U.S. state contains most of the Everglades, a vast subtropical wetland ecosystem?",
+      "options": {
+        "a": "Florida",
+        "b": "Georgia",
+        "c": "Louisiana",
+        "d": "South Carolina"
+      },
+      "explanation": "The Everglades ecosystem is located in southern Florida and includes a large network of wetlands and waterways."
+    },
+    "ru-RU": {
+      "question": "В каком штате США расположена большая часть Эверглейдс — обширной субтропической водно-болотной экосистемы?",
+      "options": {
+        "a": "Флорида",
+        "b": "Джорджия",
+        "c": "Луизиана",
+        "d": "Южная Каролина"
+      },
+      "explanation": "Экосистема Эверглейдс находится на юге Флориды и включает обширную сеть болот и водных путей."
+    }
+  }
+},
+{
+  "id": "US-GEO-012",
+  "region": "US",
+  "category": "Geography",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which US state is home to the highest peak in the Rocky Mountains, Mount Elbert?",
+      "options": {
+        "a": "Wyoming",
+        "b": "Montana",
+        "c": "Utah",
+        "d": "Colorado"
+      },
+      "explanation": "Mount Elbert, at about 4,401 metres, is in Colorado and is the highest summit in the Rocky Mountains."
+    },
+    "en-US": {
+      "question": "Which U.S. state is home to Mount Elbert, the highest peak in the Rocky Mountains?",
+      "options": {
+        "a": "Wyoming",
+        "b": "Montana",
+        "c": "Utah",
+        "d": "Colorado"
+      },
+      "explanation": "Mount Elbert, at about 14,440 feet (4,401 metres), is in Colorado and is the highest summit in the Rocky Mountains."
+    },
+    "ru-RU": {
+      "question": "В каком штате США находится гора Элберт — высочайшая вершина Скалистых гор?",
+      "options": {
+        "a": "Вайоминг",
+        "b": "Монтана",
+        "c": "Юта",
+        "d": "Колорадо"
+      },
+      "explanation": "Гора Элберт высотой около 4401 метра находится в Колорадо и является высочайшей вершиной Скалистых гор."
+    }
+  }
+},
+{
+  "id": "US-HIS-011",
+  "region": "US",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which 1863 proclamation by President Abraham Lincoln declared enslaved people in designated Confederate areas to be free?",
+      "options": {
+        "a": "Monroe Doctrine",
+        "b": "Gettysburg Address",
+        "c": "Emancipation Proclamation",
+        "d": "Homestead Act"
+      },
+      "explanation": "The Emancipation Proclamation took effect on 1 January 1863 and declared enslaved people in areas then in rebellion against the United States to be free."
+    },
+    "en-US": {
+      "question": "Which 1863 proclamation by President Abraham Lincoln declared enslaved people in designated Confederate areas to be free?",
+      "options": {
+        "a": "Monroe Doctrine",
+        "b": "Gettysburg Address",
+        "c": "Emancipation Proclamation",
+        "d": "Homestead Act"
+      },
+      "explanation": "The Emancipation Proclamation took effect on January 1, 1863, and declared enslaved people in areas then in rebellion against the United States to be free."
+    },
+    "ru-RU": {
+      "question": "Какой прокламацией 1863 года президент Авраам Линкольн объявил свободными порабощённых людей на территориях Конфедерации, охваченных восстанием?",
+      "options": {
+        "a": "Доктрина Монро",
+        "b": "Геттисбергская речь",
+        "c": "Прокламация об освобождении рабов",
+        "d": "Закон о гомстедах"
+      },
+      "explanation": "Прокламация об освобождении рабов вступила в силу 1 января 1863 года и объявила свободными порабощённых людей на территориях, продолжавших восстание против США."
+    }
+  }
+},
+{
+  "id": "US-SCI-011",
+  "region": "US",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "What was the name of the first successful US satellite, launched in 1958?",
+      "options": {
+        "a": "Explorer 1",
+        "b": "Vanguard 1",
+        "c": "Telstar 1",
+        "d": "Pioneer 4"
+      },
+      "explanation": "Explorer 1 was launched on 31 January 1958 and became the first successful satellite placed in orbit by the United States."
+    },
+    "en-US": {
+      "question": "What was the name of the first successful U.S. satellite, launched in 1958?",
+      "options": {
+        "a": "Explorer 1",
+        "b": "Vanguard 1",
+        "c": "Telstar 1",
+        "d": "Pioneer 4"
+      },
+      "explanation": "Explorer 1 was launched on January 31, 1958, and became the first successful satellite placed in orbit by the United States."
+    },
+    "ru-RU": {
+      "question": "Как назывался первый успешно выведенный на орбиту американский спутник, запущенный в 1958 году?",
+      "options": {
+        "a": "«Эксплорер-1»",
+        "b": "«Авангард-1»",
+        "c": "«Телстар-1»",
+        "d": "«Пионер-4»"
+      },
+      "explanation": "«Эксплорер-1» был запущен 31 января 1958 года и стал первым американским спутником, успешно выведенным на орбиту."
+    }
+  }
+},
+{
+  "id": "US-CUL-011",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which musical genre, rooted in African American communities in the Mississippi Delta, strongly influenced the development of modern popular music?",
+      "options": {
+        "a": "Bluegrass",
+        "b": "Delta blues",
+        "c": "Ragtime",
+        "d": "Western swing"
+      },
+      "explanation": "Delta blues developed in the Mississippi Delta and influenced later blues, rock and other popular music traditions."
+    },
+    "en-US": {
+      "question": "Which musical genre, rooted in African American communities in the Mississippi Delta, strongly influenced the development of modern popular music?",
+      "options": {
+        "a": "Bluegrass",
+        "b": "Delta blues",
+        "c": "Ragtime",
+        "d": "Western swing"
+      },
+      "explanation": "Delta blues developed in the Mississippi Delta and influenced later blues, rock and other popular music traditions."
+    },
+    "ru-RU": {
+      "question": "Какой музыкальный жанр, возникший в афроамериканских общинах дельты Миссисипи, оказал большое влияние на современную популярную музыку?",
+      "options": {
+        "a": "Блюграсс",
+        "b": "Дельта-блюз",
+        "c": "Регтайм",
+        "d": "Вестерн-свинг"
+      },
+      "explanation": "Дельта-блюз сформировался в дельте Миссисипи и повлиял на последующее развитие блюза, рок-музыки и других популярных жанров."
+    }
+  }
+}
 ];
