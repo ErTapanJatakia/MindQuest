@@ -25,6 +25,13 @@ for (const question of questions) {
     errors.push(`${question.id}: translations missing`);
     continue;
   }
+  const translationLocales = Object.keys(question.translations).sort();
+  if (JSON.stringify(translationLocales) !== JSON.stringify([...locales].sort())) {
+    errors.push(`${question.id}: translation locales must be exactly ${locales.join(", ")}`);
+  }
+  if (typeof question.id === "string" && !question.id.startsWith(`${question.region}-`)) {
+    errors.push(`${question.id}: ID prefix must match its region`);
+  }
   for (const locale of locales) {
     const translation = question.translations[locale];
     if (!translation) {
