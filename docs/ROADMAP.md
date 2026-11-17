@@ -225,3 +225,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Source: U.S. National Archives, https://www.archives.gov/milestone-documents/15th-amendment.
 - Targeted source/content review only. No official validator, browser/runtime, CI, Android build or device QA was run; CI and Android validation remain deferred.
 - No roadmap workstream status or estimate changed. Baseline implementation remains 330 / 2,400 minutes (13.75%); actual engineering time remains untracked.
+
+
+## Latest mixed-language accessibility refinement — 2026-11-18
+
+- Added language metadata to question prompts, answer choices, explanations and result-review passages so the question language remains programmatically identifiable when it differs from the interface language. Interface-language labels remain separately marked.
+- The change follows WCAG 2.2 Success Criterion 3.1.2 guidance on identifying the language of passages: https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.
+- Source-level implementation only; browser, screen-reader, official validator, CI, Android build and device testing remain pending. No conformance claim is made.
+- No workstream estimate or status changed; estimate-weighted implementation remains 330 / 2,400 minutes (13.75%). Actual engineering time remains untracked.
