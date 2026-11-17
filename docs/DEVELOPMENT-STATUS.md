@@ -570,3 +570,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - This is scoped to the configured target SDK 35 behaviour and introduces no dependency, permission, service or new feature.
 - No Kotlin compilation, Gradle/resource build, emulator, gesture-navigation, display-cutout, keyboard/IME or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android 15 keyboard inset integration — 2026-11-18
+
+- Extended API 35+ WebView safe-area padding to include on-screen keyboard (IME) insets, in addition to system bars and display cutouts.
+- No new dependency, permission, service or product scope. Keyboard animation, focus and resize behaviour remain unverified at runtime.
+- No Kotlin compilation, Gradle build, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
