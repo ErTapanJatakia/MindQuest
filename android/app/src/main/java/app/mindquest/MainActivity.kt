@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.view.WindowInsets
 import android.window.OnBackInvokedCallback
 
 class MainActivity : Activity() {
@@ -47,6 +48,25 @@ class MainActivity : Activity() {
             }
         }
         setContentView(gameView)
+
+        // Android 15 enforces edge-to-edge for apps targeting API 35.
+        // Keep the local game content clear of system bars and display cutouts.
+        if (Build.VERSION.SDK_INT >= 35) {
+            gameView.setOnApplyWindowInsetsListener { view, insets ->
+                val safeInsets = insets.getInsets(
+                    WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout()
+                )
+                view.setPadding(
+                    safeInsets.left,
+                    safeInsets.top,
+                    safeInsets.right,
+                    safeInsets.bottom
+                )
+                insets
+            }
+            gameView.requestApplyInsets()
+        }
+
         gameView.loadUrl("file:///android_asset/index.html")
 
         // Android 13+ uses the platform predictive-back dispatcher.
