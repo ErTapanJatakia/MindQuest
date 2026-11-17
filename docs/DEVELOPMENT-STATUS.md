@@ -396,3 +396,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Corrected the runtime expression to use the Unicode-aware whitespace matcher `/\\s+/gu`, matching the already-correct official validator implementation. The normalization now folds tabs, line breaks and repeated whitespace before case comparison.
 - Updated `app/src/app.js` in commit `86b1925`. The official validator source was inspected but not executed or changed.
 - This is a source correction, not a new feature or baseline-progress increment. No browser runtime, validator execution, CI, Android build, emulator or device QA was performed.
+
+## Session-wide question rotation — 2026-11-18
+
+- Replaced the previous immediate-repeat-set safeguard with a session-local question cycle keyed to the exact eligible question pool (region, category and difficulty filters).
+- Each eligible question is selected once before any question is reused. Rounds remain capped at ten and contain no duplicate IDs. If fewer than ten unseen questions remain, all remaining unseen questions are included and the round is filled from previously seen questions without duplicating an ID within that round.
+- When the eligible pool changes, the cycle resets. When all eligible questions have appeared, a new cycle begins. The tracking is in memory only; it does not add storage, accounts, network access or persistent player history.
+- App change committed as `650f29c`; roadmap updated as `4ab043c`.
+- This is source-level implementation only. No browser gameplay test, question-bank validator, CI, Android build, emulator, physical-device or screen-reader validation was run. Baseline credit remains unchanged pending validation.
