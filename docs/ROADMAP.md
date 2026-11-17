@@ -169,3 +169,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Gameplay now checks question record structure and selected-locale content before including a record in a round, including region/category/difficulty, correct-answer key, question/explanation text and all four options.
 - A malformed question collection or record no longer causes the round filter to throw. This guard complements, and does not replace, the strict official content validator.
 - Source-only refinement; no runtime, official validator, CI or Android validation was run.
+
+
+## Baseline progress accounting — 2026-11-17
+
+- The 2,400-minute baseline currently has **330 minutes (13.75%) of workstream scope implemented and moved to Review**: question-bank architecture (150 min) and question content population (180 min).
+- This is an estimate-weighted implementation measure derived from the roadmap, **not a timesheet or a claim that 330 minutes of engineer time were actually spent**. Actual elapsed/recorded engineering minutes have not been tracked.
+- No workstream is yet marked Complete in the roadmap; Review means implementation is present but acceptance/review remains outstanding. The remaining 2,070 minutes (86.25%) are still In progress, Planned, or awaiting acceptance across the remaining workstreams.
+- Future progress reporting will keep these measures separate: baseline scope implemented, baseline scope accepted, and actual engineering time logged. No actual-time figure will be invented.
