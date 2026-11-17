@@ -396,3 +396,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Added an explicit `:focus-visible` outline to the home brand link. Existing focus styling covered buttons and selects but not the brand anchor, leaving this keyboard-operable navigation link without the same visible focus treatment.
 - The new outline uses the existing accent contrast token and does not change layout or introduce a new component. This is a bounded accessibility refinement within the existing accessibility workstream.
 - Source/documentation change only. No browser, screen-reader, parser, official validator, CI, Android build or device test was run. Baseline allocation remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; actual engineering time remains untracked.
+
+
+## Forced-colors accessibility fallback — 2026-11-18
+
+- Added a `forced-colors: active` CSS treatment for the existing game interface. It uses system colours for primary/secondary controls, answer choices, cards, selectors, score panel and keyboard-focus outlines so operating-system high-contrast palettes can retain visible boundaries and readable foregrounds.
+- Correct and incorrect answers retain distinct non-colour-only cues: a solid Highlight border for correct and a dashed CanvasText border for incorrect. Feedback/status text uses CanvasText rather than depending on the normal theme's accent colours.
+- This is an accessibility refinement within the existing workstream, not a new product feature. CSS source/documentation checks only; no browser forced-colors simulation, assistive-technology test, parser, official validator, CI, Android build or device test was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining allocation remains 1,135 minutes (47.29%). Actual engineering time remains untracked; no additional baseline credit claimed.
