@@ -269,7 +269,7 @@
   function renderQuestion() {
     if (!Array.isArray(round) || !round.length || !Number.isInteger(current) ||
         current < 0 || current >= round.length || !isPlayableQuestion(round[current])) {
-      showNoQuestionsRecovery();
+      showRecovery();
       return;
     }
     answered = false;
