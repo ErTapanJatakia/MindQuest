@@ -267,3 +267,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Settings reads and best-score reads now surface the existing localized storage-unavailable notice when browser storage cannot be read. The app continues with safe defaults/no stored best score rather than crashing.
 - This complements the earlier write-failure handling and avoids silently presenting inaccessible storage as an empty profile. Technical reference: MDN, [Using the Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API), which explains that localStorage may be unavailable even when the API exists.
 - Source-level change only. No browser runtime, denied-storage simulation, official content validator, CI, Android build or device QA was run. Baseline allocation unchanged; actual engineering time remains untracked.
+
+
+## Latest gameplay navigation and round teardown review — 2026-11-18
+
+- Centralized round teardown so an intentionally abandoned round clears its question list, score, answer history, feedback, progress display, answer controls and answer-review content.
+- Empty-pool recovery now uses the same teardown path. Returning Home, following the brand-home link, or saving changed settings also discards hidden round data; opening Help or backing out of Settings without saving continues to preserve the current view/round.
+- Added defensive checks so an answer callback cannot score against a stale question/translation, and the Next/Results action requires a non-empty round, an answered current question and a recorded answer at the current index.
+- Re-fetched the committed application source and confirmed the teardown and guards are present. These are source-level checks only; no browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline allocations remain unchanged at 1,265 / 2,400 minutes (52.71%); this targeted refinement is included in existing gameplay/navigation allocations, not counted as actual engineering time.
