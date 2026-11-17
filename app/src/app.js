@@ -354,6 +354,9 @@
     $("question-progress").setAttribute("aria-valuenow", String(progress));
     $("question-progress").setAttribute("aria-label", t("progress"));
     $("category-label").textContent = categoryName(item.category).toUpperCase();
+    $("category-label").lang = settings.interfaceLocale;
+    $("difficulty-label").textContent = t(item.difficulty).toUpperCase();
+    $("difficulty-label").lang = settings.interfaceLocale;
     $("question-title").textContent = copy.question;
     $("question-title").lang = settings.questionLocale;
     // Keep keyboard and screen-reader users oriented as each new question loads.
