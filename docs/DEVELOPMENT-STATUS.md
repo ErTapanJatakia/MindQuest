@@ -632,3 +632,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added the legacy `shouldOverrideUrlLoading(WebView, String)` override so the explicit local-document navigation allowlist also applies on the minimum supported Android API 23, where `WebResourceRequest` is unavailable.
 - Both callback paths now share one URI predicate: only `file:///android_asset/index.html` is permitted, optional URL fragments remain usable for in-app state, query strings are rejected, and API 24+ subframe navigation is blocked.
 - Source-level change only. No Kotlin compilation, Android build, API 23 emulator, runtime navigation or device test was run; CI/Android validation remain deferred.
+
+
+### Question-bank inventory source audit (2026-11-18)
+- Parsed the checked-in question-bank source text without executing the official validator or app. Found exactly 150 unique stable IDs: 50 each for India, Russia and the United States.
+- Each region has the intended category split: 13 Geography, 12 History, 12 Science and 13 Culture. Every category sequence is contiguous from 001 through its regional/category total; no duplicate IDs or sequence gaps were found in this inventory scan.
+- Found 150 translation blocks for each supported locale (en-IN, en-US, ru-RU), consistent with 450 localized question records.
+- This was a narrow source inventory check, not question-bank schema validation, factual verification, translation-quality review, or execution of npm run validate:content. The official validator, CI and Android validation remain deferred. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
