@@ -24,7 +24,7 @@ No setting is inferred from or forcibly coupled to another after initial setup. 
 
 ## Question data model
 
-Every conceptually unique question has a stable ID, region, category, difficulty, and a localized representation for each supported locale. All localized representations share the same answer identity and correct-answer key. Explanations are translated alongside the question and answer options. Runtime selection filters by region and difficulty, then renders the selected locale. Missing translations must be detected during content review; silently substituting a different question is not acceptable.
+Every conceptually unique question has a stable ID, region, category, difficulty, and a localized representation for each supported locale. All localized representations share the same answer identity and correct-answer key. Explanations are translated alongside the question and answer options. Runtime selection filters by region, category and difficulty, then renders the selected locale. Missing translations must be detected during content review; silently substituting a different question is not acceptable.
 
 ## Proposed Android packaging
 
