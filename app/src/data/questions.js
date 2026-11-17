@@ -3286,7 +3286,7 @@ window.MINDQUEST_QUESTIONS = [
   "correct": "c",
   "translations": {
     "en-IN": {
-      "question": "Which American author created the fictional town of Yoknapatawpha County, used in several of his novels?",
+      "question": "Which American author created the fictional Yoknapatawpha County, used as the setting for several of his novels?",
       "options": {
         "a": "Ernest Hemingway",
         "b": "John Steinbeck",
