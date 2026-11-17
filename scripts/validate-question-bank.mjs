@@ -14,7 +14,7 @@ const ids = new Set();
 const questionTextByLocale = new Map();
 const expectedQuestionKeys = ["category", "correct", "difficulty", "id", "region", "translations"];
 const expectedTranslationKeys = ["explanation", "options", "question"];
-const hasCleanText = (value) => typeof value === "string" && value.trim().length > 0 && !/[\\u0000-\\u001F\\u007F]/u.test(value);
+const hasCleanText = (value) => typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
 
 if (!Array.isArray(questions) || questions.length === 0) {
   throw new Error("Question bank is empty or not an array.");
@@ -68,7 +68,7 @@ for (const question of questions) {
       } else questionTextByLocale.set(duplicateKey, question.id);
     }
     if (!translation.options || typeof translation.options !== "object" || Array.isArray(translation.options) ||
-        keys.some((key) => typeof translation.options[key] !== "string" || !translation.options[key].trim())) {
+        keys.some((key) => !hasCleanText(translation.options[key]))) {
       errors.push(`${question.id}/${locale}: all four answer options are required`);
     } else if (JSON.stringify(Object.keys(translation.options).sort()) !== JSON.stringify(keys)) {
       errors.push(`${question.id}/${locale}: option keys must be exactly a, b, c and d`);
