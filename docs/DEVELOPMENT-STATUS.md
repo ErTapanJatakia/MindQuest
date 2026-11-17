@@ -412,3 +412,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The session-wide unseen-question cycle remains authoritative: available unseen questions are preferred within each difficulty quota, other unseen questions fill any quota shortfall, and previously seen questions are only used when fewer than ten unseen questions remain.
 - App change committed as `c8065a3`; roadmap updated as `214f74f`.
 - Source-level change only. No browser gameplay test, question-bank validator, CI, Android build, emulator, physical-device or screen-reader validation was run. Baseline credit remains unchanged pending validation.
+
+## Balanced round ordering and source correction — 2026-11-18
+
+- Corrected a block-scoped duplicate `const selectedIds` declaration in `startRound()` by giving the temporary membership set its own `selectedIdSet` name. This defect was found during source review of the previous difficulty-quota batch.
+- After difficulty quotas and unseen-question fill are complete, the selected round is now shuffled with Fisher–Yates. The intended proportional difficulty mix is retained without presenting fixed Easy/Medium/Hard blocks.
+- App change committed as `7ddbfc5`; roadmap updated as `476ab0c`.
+- The source was re-fetched for review. No JavaScript parser, browser gameplay test, question-bank validator, CI, Android build, emulator, physical-device or screen-reader validation was run. The correction is not counted as additional baseline progress.
