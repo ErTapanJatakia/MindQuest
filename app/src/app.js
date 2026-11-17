@@ -573,6 +573,8 @@
         !Array.isArray(answerHistory) || answerHistory.length !== round.length) return false;
 
     let verifiedScore = 0;
+    let verifiedStreak = 0;
+    let verifiedBestStreak = 0;
     for (let index = 0; index < round.length; index += 1) {
       const item = round[index];
       const entry = answerHistory[index];
@@ -589,9 +591,17 @@
           ) ||
           entry.explanation !== copy.explanation ||
           entry.isCorrect !== (entry.choice === item.correct)) return false;
-      if (entry.isCorrect) verifiedScore += 1;
+      if (entry.isCorrect) {
+        verifiedScore += 1;
+        verifiedStreak += 1;
+        verifiedBestStreak = Math.max(verifiedBestStreak, verifiedStreak);
+      } else {
+        verifiedStreak = 0;
+      }
     }
-    return verifiedScore === score;
+    return verifiedScore === score &&
+      verifiedStreak === currentStreak &&
+      verifiedBestStreak === bestStreak;
   }
 
   function showResults() {
