@@ -10,6 +10,8 @@ class MainActivity : Activity() {
     private lateinit var gameView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Replace the launch-only theme before creating the game view.
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
         gameView = WebView(this)
