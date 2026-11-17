@@ -1058,37 +1058,37 @@ window.MINDQUEST_QUESTIONS = [
   "region": "IN",
   "category": "Science",
   "difficulty": "medium",
-  "correct": "d",
+  "correct": "b",
   "translations": {
     "en-IN": {
-      "question": "Which Indian physicist discovered the Raman effect?",
+      "question": "Which Indian physicist developed the ionisation equation used to explain the distribution of elements in stellar atmospheres?",
       "options": {
         "a": "Homi J. Bhabha",
         "b": "Meghnad Saha",
         "c": "S. N. Bose",
         "d": "C. V. Raman"
       },
-      "explanation": "C. V. Raman discovered the light-scattering effect named after him and received the 1930 Nobel Prize in Physics."
+      "explanation": "Meghnad Saha developed the Saha ionisation equation, which relates the ionisation state of a gas to its temperature and pressure and is important in astrophysics."
     },
     "en-US": {
-      "question": "Who discovered the light-scattering phenomenon known as the Raman effect?",
+      "question": "Which Indian physicist developed the ionization equation used to explain the distribution of elements in stellar atmospheres?",
       "options": {
         "a": "Homi J. Bhabha",
         "b": "Meghnad Saha",
         "c": "S. N. Bose",
         "d": "C. V. Raman"
       },
-      "explanation": "C. V. Raman discovered the light-scattering effect named after him and received the 1930 Nobel Prize in Physics."
+      "explanation": "Meghnad Saha developed the Saha ionization equation, which relates the ionization state of a gas to its temperature and pressure and is important in astrophysics."
     },
     "ru-RU": {
-      "question": "Кто открыл явление рассеяния света, известное как эффект Рамана?",
+      "question": "Какой индийский физик разработал уравнение ионизации, используемое для объяснения распределения элементов в звёздных атмосферах?",
       "options": {
         "a": "Хоми Дж. Бхабха",
         "b": "Мегнад Саха",
         "c": "Сатьендра Нат Бозе",
         "d": "Чандрасекара Венката Раман"
       },
-      "explanation": "Чандрасекара Венката Раман открыл названный в его честь эффект рассеяния света и получил Нобелевскую премию по физике в 1930 году."
+      "explanation": "Мегнад Саха разработал уравнение ионизации Саха, связывающее степень ионизации газа с его температурой и давлением; оно широко применяется в астрофизике."
     }
   }
 },
@@ -1097,37 +1097,37 @@ window.MINDQUEST_QUESTIONS = [
   "region": "IN",
   "category": "Science",
   "difficulty": "hard",
-  "correct": "b",
+  "correct": "c",
   "translations": {
     "en-IN": {
-      "question": "What was India's first satellite, launched in 1975?",
+      "question": "Which launch vehicle placed the Rohini RS-1 satellite into orbit in 1980?",
       "options": {
-        "a": "Rohini",
-        "b": "Aryabhata",
-        "c": "INSAT-1A",
-        "d": "Bhaskara"
+        "a": "PSLV",
+        "b": "ASLV",
+        "c": "SLV-3",
+        "d": "GSLV"
       },
-      "explanation": "Aryabhata, India's first satellite, was launched by the Soviet Union on 19 April 1975."
+      "explanation": "India's SLV-3 placed the Rohini RS-1 satellite into orbit on 18 July 1980, marking the country's first successful indigenous satellite launch."
     },
     "en-US": {
-      "question": "Which was India's first satellite, launched in 1975?",
+      "question": "Which launch vehicle placed the Rohini RS-1 satellite into orbit in 1980?",
       "options": {
-        "a": "Rohini",
-        "b": "Aryabhata",
-        "c": "INSAT-1A",
-        "d": "Bhaskara"
+        "a": "PSLV",
+        "b": "ASLV",
+        "c": "SLV-3",
+        "d": "GSLV"
       },
-      "explanation": "Aryabhata, India's first satellite, was launched by the Soviet Union on April 19, 1975."
+      "explanation": "India's SLV-3 placed the Rohini RS-1 satellite into orbit on July 18, 1980, marking the country's first successful indigenous satellite launch."
     },
     "ru-RU": {
-      "question": "Как назывался первый индийский спутник, запущенный в 1975 году?",
+      "question": "Какая ракета-носитель вывела спутник «Рохини RS-1» на орбиту в 1980 году?",
       "options": {
-        "a": "«Рохини»",
-        "b": "«Арьябхата»",
-        "c": "«Инсат-1А»",
-        "d": "«Бхаскара»"
+        "a": "PSLV",
+        "b": "ASLV",
+        "c": "SLV-3",
+        "d": "GSLV"
       },
-      "explanation": "Первый индийский спутник «Арьябхата» был запущен Советским Союзом 19 апреля 1975 года."
+      "explanation": "18 июля 1980 года индийская ракета SLV-3 вывела спутник «Рохини RS-1» на орбиту. Это был первый успешный запуск спутника с помощью индийской ракеты-носителя."
     }
   }
 },
@@ -1448,37 +1448,37 @@ window.MINDQUEST_QUESTIONS = [
   "region": "US",
   "category": "Science",
   "difficulty": "medium",
-  "correct": "a",
+  "correct": "d",
   "translations": {
     "en-IN": {
-      "question": "Which American scientist developed the inactivated polio vaccine declared safe in 1955?",
+      "question": "Which American physicist directed the Los Alamos Laboratory during the Manhattan Project?",
       "options": {
-        "a": "Jonas Salk",
-        "b": "Edward Jenner",
-        "c": "Charles Drew",
-        "d": "Walter Reed"
+        "a": "Enrico Fermi",
+        "b": "Richard Feynman",
+        "c": "Ernest Lawrence",
+        "d": "J. Robert Oppenheimer"
       },
-      "explanation": "Jonas Salk's inactivated polio vaccine was declared safe and effective in 1955."
+      "explanation": "J. Robert Oppenheimer served as the scientific director of the Los Alamos Laboratory, where the Manhattan Project developed the first nuclear weapons."
     },
     "en-US": {
-      "question": "Who developed the inactivated polio vaccine declared safe and effective in 1955?",
+      "question": "Who directed the Los Alamos Laboratory during the Manhattan Project?",
       "options": {
-        "a": "Jonas Salk",
-        "b": "Edward Jenner",
-        "c": "Charles Drew",
-        "d": "Walter Reed"
+        "a": "Enrico Fermi",
+        "b": "Richard Feynman",
+        "c": "Ernest Lawrence",
+        "d": "J. Robert Oppenheimer"
       },
-      "explanation": "Jonas Salk's inactivated polio vaccine was declared safe and effective in 1955."
+      "explanation": "J. Robert Oppenheimer served as the scientific director of the Los Alamos Laboratory, where the Manhattan Project developed the first nuclear weapons."
     },
     "ru-RU": {
-      "question": "Кто разработал инактивированную вакцину против полиомиелита, признанную безопасной и эффективной в 1955 году?",
+      "question": "Какой американский физик руководил лабораторией в Лос-Аламосе в рамках Манхэттенского проекта?",
       "options": {
-        "a": "Джонас Солк",
-        "b": "Эдвард Дженнер",
-        "c": "Чарльз Дрю",
-        "d": "Уолтер Рид"
+        "a": "Энрико Ферми",
+        "b": "Ричард Фейнман",
+        "c": "Эрнест Лоуренс",
+        "d": "Дж. Роберт Оппенгеймер"
       },
-      "explanation": "Инактивированная вакцина Джонаса Солка против полиомиелита была признана безопасной и эффективной в 1955 году."
+      "explanation": "Дж. Роберт Оппенгеймер был научным руководителем лаборатории в Лос-Аламосе, где в рамках Манхэттенского проекта разрабатывали первое ядерное оружие."
     }
   }
 },
@@ -1487,37 +1487,37 @@ window.MINDQUEST_QUESTIONS = [
   "region": "US",
   "category": "Science",
   "difficulty": "hard",
-  "correct": "b",
+  "correct": "c",
   "translations": {
     "en-IN": {
-      "question": "Which NASA mission first landed humans on the Moon?",
+      "question": "Which NASA spacecraft made the first close flyby of Pluto in July 2015?",
       "options": {
-        "a": "Gemini 8",
-        "b": "Apollo 11",
-        "c": "Apollo 13",
-        "d": "Mercury-Atlas 6"
+        "a": "Voyager 2",
+        "b": "Juno",
+        "c": "New Horizons",
+        "d": "Cassini"
       },
-      "explanation": "Apollo 11 landed astronauts Neil Armstrong and Buzz Aldrin on the Moon on 20 July 1969."
+      "explanation": "NASA's New Horizons spacecraft flew past Pluto on 14 July 2015 and returned the first close-up observations of the distant dwarf planet."
     },
     "en-US": {
-      "question": "Which NASA mission first carried astronauts to a lunar landing?",
+      "question": "Which NASA spacecraft made the first close flyby of Pluto in July 2015?",
       "options": {
-        "a": "Gemini 8",
-        "b": "Apollo 11",
-        "c": "Apollo 13",
-        "d": "Mercury-Atlas 6"
+        "a": "Voyager 2",
+        "b": "Juno",
+        "c": "New Horizons",
+        "d": "Cassini"
       },
-      "explanation": "Apollo 11 landed astronauts Neil Armstrong and Buzz Aldrin on the Moon on July 20, 1969."
+      "explanation": "NASA's New Horizons spacecraft flew past Pluto on July 14, 2015, and returned the first close-up observations of the distant dwarf planet."
     },
     "ru-RU": {
-      "question": "Какая миссия NASA первой доставила астронавтов на поверхность Луны?",
+      "question": "Какой космический аппарат NASA впервые совершил близкий пролёт мимо Плутона в июле 2015 года?",
       "options": {
-        "a": "«Джемини-8»",
-        "b": "«Аполлон-11»",
-        "c": "«Аполлон-13»",
-        "d": "«Меркурий-Атлас-6»"
+        "a": "«Вояджер-2»",
+        "b": "«Юнона»",
+        "c": "New Horizons",
+        "d": "«Кассини»"
       },
-      "explanation": "Миссия «Аполлон-11» доставила Нила Армстронга и Базза Олдрина на Луну 20 июля 1969 года."
+      "explanation": "14 июля 2015 года аппарат NASA New Horizons пролетел мимо Плутона и передал первые подробные изображения и данные об этой далёкой карликовой планете."
     }
   }
 },
