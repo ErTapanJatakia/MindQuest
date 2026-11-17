@@ -257,3 +257,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Explanations distinguish the amendment's legal prohibition from historical reality: discriminatory practices continued to obstruct many Black Americans' access to voting. Reference: U.S. National Archives, https://www.archives.gov/milestone-documents/15th-amendment.
 - This is a targeted factual and duplication correction, not full content certification. The official validator, browser/runtime, CI, Android build and device QA were not run. CI and Android validation remain deferred.
 - Baseline implementation remains 330 / 2,400 minutes (13.75%); this targeted correction does not reclassify a roadmap workstream.
+
+
+## Latest mixed-language accessibility refinement — 2026-11-18
+
+- Gameplay questions, answer-option text, answer feedback and answer-review content can use the independently selected question language while the interface and its labels use a different language. Added explicit `lang` attributes to the relevant question-language passages and kept interface-language labels marked separately.
+- In incorrect-answer feedback, the interface-language correction label is now separate from the question-language correct answer and explanation. In the results review, question text, selected/correct option text and explanations are marked with the question language, while labels and status text retain the interface language.
+- This addresses the source-level language-identification gap for mixed-language gameplay content. WCAG 2.2 SC 3.1.2 requires the language of passages to be programmatically determinable; see https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.
+- Source change committed and re-fetched. No browser runtime, assistive-technology test, official content validator, CI, Android build or device QA was run. This does not establish WCAG conformance; runtime and screen-reader verification remain required.
+- Baseline implementation remains 330 / 2,400 minutes (13.75%); this targeted refinement does not reclassify a roadmap workstream.
