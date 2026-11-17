@@ -220,3 +220,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Checked all static HTML translation and accessible-label keys against the English (India) UI dictionary: all 43 distinct keys are present. Prior three-locale dictionary coverage remains a source-level check, not a translation-quality assessment.
 - This was a source consistency inspection only. No JavaScript parser, browser runtime, accessibility tree, official question-bank validator, CI, Android build or physical-device test was run. CI and Android validation remain deferred until the development batch is complete.
 - No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
+
+
+## Latest factual question-bank review — 2026-11-18
+
+- Corrected the Baisakhi explanation for question `IN-CUL-002` in both English variants and Russian. The previous wording incorrectly called Baisakhi the Sikh New Year under the Nanakshahi calendar. The revised wording accurately describes its spring-harvest association in Punjab and its significance commemorating the founding of the Khalsa by Guru Gobind Singh in 1699.
+- Reference checks: [World Sikh Organization of Canada — Vaisakhi FAQ](https://worldsikh.org/), which distinguishes the harvest festival, the 1699 Khalsa founding and the Nanakshahi New Year; and [U.S. Office of Personnel Management — Significant Days for Sikhs](https://www.reginfo.gov/public/do/eoDownloadDocument?documentID=219143&eodoc=true), which describes Vaisakhi as a Punjab spring-harvest occasion and the 1699 formalization of the Khalsa.
+- Stable question ID, category, difficulty, answer key and option identities were preserved. No new question records were added or removed.
+- This is a targeted factual correction, not a full factual or native-speaker audit. No official question-bank validator, browser runtime, CI, Android build or physical-device test was run.
+- No workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
