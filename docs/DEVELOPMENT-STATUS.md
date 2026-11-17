@@ -294,3 +294,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The 1,265 minutes are estimate-weighted implemented scope, not actual labour hours. Actual engineering time remains untracked.
 - No workstream has been marked Complete. Question-bank architecture and content remain in Review; partial workstreams remain In progress. Formal acceptance and validation are separate from implementation credit.
 - No application code was changed in this reconciliation. No browser runtime, official content validator, CI, Android build, emulator, physical-device, screen-reader or RuStore validation was run. CI and Android validation remain deferred until the agreed development freeze.
+
+
+## Latest local-storage read-failure handling — 2026-11-18
+
+- The storage adapter now distinguishes a successful read of a missing key from an exception while accessing local storage.
+- Settings-load failures and best-score-read failures now set the existing localized storage warning. A normal missing key remains a normal first-run condition; inaccessible storage no longer masquerades as an empty record.
+- Gameplay continues with normalized defaults or without a displayed best score when storage cannot be read. This complements the existing write-failure warning.
+- Source change committed and re-fetched. No browser runtime, denied-storage simulation, official content validator, CI, Android build or device QA was run. Runtime verification remains pending.
+- No roadmap estimate or earned implementation allocation changed; baseline remains 1,265 / 2,400 minutes (52.71%). Actual engineering time remains untracked.
