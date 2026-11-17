@@ -58,10 +58,13 @@ for (const question of questions) {
       errors.push(`${question.id}/${locale}: translation fields must be exactly ${expectedTranslationKeys.join(", ")}`);
     }
     const keys = ["a", "b", "c", "d"];
+    if (typeof question.correct === "string" && !hasCleanText(translation.options?.[question.correct])) {
+      errors.push(`${question.id}/${locale}: the shared correct-answer key must resolve to non-empty localized text`);
+    }
     if (!hasCleanText(translation.question) || !hasCleanText(translation.explanation)) {
       errors.push(`${question.id}/${locale}: question and explanation must be non-empty text without control characters`);
     } else {
-      const normalizedQuestion = translation.question.trim().replace(/\s+/g, " ").toLocaleLowerCase(locale);
+      const normalizedQuestion = translation.question.normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(locale);
       const duplicateKey = `${question.region}/${locale}/${normalizedQuestion}`;
       if (questionTextByLocale.has(duplicateKey)) {
         errors.push(`${question.id}/${locale}: duplicate question text also used by ${questionTextByLocale.get(duplicateKey)}`);
@@ -73,7 +76,7 @@ for (const question of questions) {
     } else if (JSON.stringify(Object.keys(translation.options).sort()) !== JSON.stringify(keys)) {
       errors.push(`${question.id}/${locale}: option keys must be exactly a, b, c and d`);
     } else {
-      const optionValues = keys.map((key) => translation.options[key].trim().replace(/\s+/g, " ").toLocaleLowerCase(locale));
+      const optionValues = keys.map((key) => translation.options[key].normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(locale));
       if (new Set(optionValues).size !== 4) {
         errors.push(`${question.id}/${locale}: answer option text must be unique`);
       }
