@@ -1,29 +1,29 @@
 # MindQuest implementation tracker
 
-**Planning baseline:** 2,400 minutes (40 engineering hours). Estimates are working-time estimates, not a calendar delivery promise. Actual effort will be updated as implementation and source review progress.
+**Planning baseline:** 2,400 minutes (40 engineering hours). Estimates are working-time estimates, not a calendar delivery promise. Actual effort will be updated as implementation progresses.
 
-Statuses: `Planned` = not started; `In progress` = actively being implemented; `Review` = implementation complete, awaiting source review; `Complete` = accepted against its criteria.
+Statuses: `Planned` = not started; `In progress` = partial implementation; `Review` = implementation complete, awaiting review; `Complete` = accepted against its criteria.
 
 | # | Workstream | Acceptance criteria | Status | Estimate (min) |
 |---:|---|---|---|---:|
 | 1 | Project foundation | Standalone repository structure, documentation, metadata and clean baseline | In progress | 60 |
-| 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | Planned | 90 |
-| 3 | Home screen | Play, settings, help/about and navigation | Planned | 120 |
-| 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | Planned | 150 |
-| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Planned | 150 |
-| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Planned | 180 |
-| 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | Planned | 180 |
+| 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | In progress | 90 |
+| 3 | Home screen | Play, settings, help/about and navigation | In progress | 120 |
+| 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 |
+| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | In progress | 150 |
+| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | In progress | 180 |
+| 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 |
 | 8 | Game modes | Ten-question rounds, category selection and replay | Planned | 120 |
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | Planned | 90 |
-| 10 | Results screen | Score, accuracy, answers, explanations and replay | Planned | 90 |
-| 11 | Local persistence | Settings and best score persist locally without an account | Planned | 120 |
+| 10 | Results screen | Score, accuracy, answers, explanations and replay | In progress | 90 |
+| 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 |
 | 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | Planned | 120 |
-| 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | Planned | 180 |
-| 14 | Offline/security hardening | Airplane-mode operation, safe WebView configuration and no remote runtime dependencies | Planned | 120 |
+| 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 |
+| 14 | Offline/security hardening | Airplane-mode operation, safe WebView configuration and no remote runtime dependencies | In progress | 120 |
 | 15 | Device compatibility | Small/standard/large screen and density checks | Planned | 180 |
 | 16 | Manual functional testing | Gameplay, all language combinations, data integrity, persistence and regression | Planned | 180 |
 | 17 | RuStore release readiness | Package, signing, metadata, Russian listing, screenshots, disclosures and rating preparation | Planned | 180 |
-| 18 | Documentation/release | Installation, changelog, versioning and release checklist | Planned | 90 |
+| 18 | Documentation/release | Installation, changelog, versioning and release checklist | In progress | 90 |
 |  | **Total** |  |  | **2,400** |
 
 ## Delivery milestones
@@ -39,6 +39,18 @@ Statuses: `Planned` = not started; `In progress` = actively being implemented; `
 
 Milestone allocations are planning buckets and will be reconciled against the detailed workstream estimates as implementation progresses.
 
+## Current implementation slice
+
+- Repository and project documentation created.
+- Responsive web game shell with home, quiz, result and settings views.
+- Three independent preference values and local persistence.
+- Nine starter questions (three per region), each with three language variants.
+- Basic quiz flow, answer feedback, score, replay and best-score persistence.
+- Dependency-free question-bank structural validator.
+- Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
+
+The current content is a development seed, not the release bank. It is not yet the full 50 questions per region. The Android shell is also not yet a release-ready signed package.
+
 ## Release gates
 
 1. Feature development complete.
@@ -48,4 +60,4 @@ Milestone allocations are planning buckets and will be reconciled against the de
 5. Only then enable/run the agreed CI suite and Android release validation.
 6. Submit to RuStore after all release gates pass.
 
-**CI is intentionally deferred.** No workflow should be run during development. The repository must not contain an accidentally active CI trigger.
+**CI is intentionally deferred.** No workflow should be run during development. The repository currently has no workflow files.
