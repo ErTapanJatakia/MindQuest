@@ -142,7 +142,9 @@
     }
     try {
       const record = JSON.parse(serialized || "null");
-      if (!record || !Number.isInteger(record.score) || !Number.isInteger(record.total) ||
+      if (!record || typeof record !== "object" || Array.isArray(record) ||
+          Object.keys(record).sort().join("|") !== "score|total" ||
+          !Number.isInteger(record.score) || !Number.isInteger(record.total) ||
           record.total < 1 || record.total > settings.roundLength ||
           record.score < 0 || record.score > record.total) return null;
       if (migrateLegacyTenQuestionScore &&
@@ -392,7 +394,7 @@
         }
       }
     }
-    // Near the end of a cycle fewer than ten unseen questions may remain.
+    // Near the end of a cycle fewer unseen questions than the selected round length may remain.
     // Include every remaining unseen question, then fill from the seen pool.
     if (selectedRound.length < targetRoundLength) {
       for (const question of shuffled) {
