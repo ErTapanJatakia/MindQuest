@@ -47,7 +47,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - One hundred fifty questions (fifty per region), each with three language variants (450 localized records).
 - Current difficulty spread per region: fifteen easy, twenty medium and fifteen hard questions.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
-- Consecutive replay rounds avoid repeating the same question set when the eligible pool contains alternatives; the safeguard is session-local and leaves single-set pools playable.
+- Replay selection now tracks question IDs across a session-local cycle: every eligible question is presented once before any question is reused, while each round remains capped at ten distinct questions. When fewer than ten unseen questions remain, all remaining unseen questions are included and the round is filled with previously seen questions; a changed eligible pool starts a fresh cycle.
 - Results accuracy percentage and localized per-question answer review.
 - Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
 - View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
