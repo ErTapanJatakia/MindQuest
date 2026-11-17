@@ -48,7 +48,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Current difficulty spread per region: fifteen easy, twenty medium and fifteen hard questions.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
 - Replay selection now tracks question IDs across a session-local cycle: every eligible question is presented once before any question is reused, while each round remains capped at ten distinct questions. When fewer than ten unseen questions remain, all remaining unseen questions are included and the round is filled with previously seen questions; a changed eligible pool starts a fresh cycle.
-- Mixed-difficulty rounds now apportion their easy/medium/hard question counts proportionally to the eligible filtered pool, using whole-number largest-remainder quotas. Remaining unseen questions take priority if a difficulty's quota cannot be met near the end of a session cycle; previously seen questions are used only to fill the final round.
+- Mixed-difficulty rounds now apportion their easy/medium/hard question counts proportionally to the eligible filtered pool, using whole-number largest-remainder quotas. Remaining unseen questions take priority if a difficulty's quota cannot be met near the end of a session cycle; previously seen questions are used only to fill the final round. The final selected questions are shuffled after quota allocation so difficulty levels do not appear in fixed consecutive blocks.
 - Results accuracy percentage and localized per-question answer review.
 - Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
 - View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
