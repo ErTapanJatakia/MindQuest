@@ -24,7 +24,7 @@ These are three separate preferences. For example, Russian interface + India que
 
 ## Question bank
 
-The current content set contains 150 question IDs: 50 for each region, with three localized variants per question (450 localized records). Each question has a stable ID. The three language versions share the same correct-answer identity and are intended to preserve the same meaning, answer options and explanation. Structural coverage is implemented; factual accuracy, cultural suitability and native-speaker review remain release gates.
+The current content set contains 150 question IDs: 50 for each region, with three localized variants per question (450 localized records). Each question has a stable ID. The three language versions share the same correct-answer identity and are intended to preserve the same meaning, answer options and explanation. Structural coverage is implemented, and a bounded cross-locale factual review of all 150 question IDs (450 localized records) has been completed. This is not exhaustive independent verification of every explanation/distractor or professional native-speaker acceptance; cultural/editorial acceptance and the official structural validator remain release gates.
 
 ## MVP scope
 
