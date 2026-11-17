@@ -25,3 +25,4 @@ footer span:last-child{text-align:left}
   .hero-orbit{right:12px;top:46px;width:88px;height:88px}
   .home-stats{grid-template-columns:1fr}
 }
+.streak-indicator{display:flex;justify-content:flex-end;align-items:center;gap:6px;margin:-22px 0 18px;color:var(--muted);font-size:12px}.streak-indicator strong{display:inline-grid;place-items:center;min-width:25px;height:25px;padding:0 7px;border:1px solid #47716d;border-radius:999px;background:var(--panel2);color:var(--accent);font-size:13px;font-variant-numeric:tabular-nums}
