@@ -36,7 +36,7 @@
       settingsIntro:"These choices are independent. Mix any interface, region and question language.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",
       freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",
-      noQuestions:"There are no questions available for this selection yet.",question:"QUESTION",round:"ROUND 1"
+      noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Change your category or difficulty settings to find questions.",question:"QUESTION",round:"ROUND 1"
     },
     "ru-RU": {
       categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная",categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
@@ -251,7 +251,14 @@
     };
     safeStorage.set("mindquest.settings", JSON.stringify(settings));
     applyInterface();
-    showView(lastView);
+    if (noQuestionsForSelection) {
+      noQuestionsForSelection = false;
+      $("replay-button").hidden = false;
+      $("home-button").textContent = t("home");
+      showView("home-view");
+    } else {
+      showView(lastView);
+    }
   });
   $("next-button").addEventListener("click", () => {
     if (!answered) return;
