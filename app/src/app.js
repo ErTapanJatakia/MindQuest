@@ -388,11 +388,33 @@
     });
   }
 
+  function isCompleteRound() {
+    if (!Array.isArray(round) || !round.length || current !== round.length - 1 || !answered ||
+        !Array.isArray(answerHistory) || answerHistory.length !== round.length) return false;
+
+    let verifiedScore = 0;
+    for (let index = 0; index < round.length; index += 1) {
+      const item = round[index];
+      const entry = answerHistory[index];
+      if (!isPlayableQuestion(item) || !entry || typeof entry !== "object" || Array.isArray(entry)) return false;
+      const copy = item.translations[settings.questionLocale];
+      if (!["a", "b", "c", "d"].includes(entry.choice) ||
+          entry.correct !== item.correct ||
+          !entry.options || typeof entry.options !== "object" || Array.isArray(entry.options) ||
+          !["a", "b", "c", "d"].every((key) =>
+            typeof entry.options[key] === "string" &&
+            entry.options[key] === copy.options[key]
+          ) ||
+          entry.explanation !== copy.explanation ||
+          entry.isCorrect !== (entry.choice === item.correct)) return false;
+      if (entry.isCorrect) verifiedScore += 1;
+    }
+    return verifiedScore === score;
+  }
+
   function showResults() {
-    // Results are valid only after the final question has been answered and every
-    // round slot has a recorded response.
-    if (!round.length || current !== round.length - 1 || !answered ||
-        answerHistory.length !== round.length || answerHistory.some((entry) => !entry)) return;
+    // Revalidate the complete answer ledger before displaying or persisting a score.
+    if (!isCompleteRound()) return;
     $("result-title").textContent = t("wellPlayed");
     $("final-score").textContent = score + "/" + round.length;
     const percent = Math.round((score / round.length) * 100);
