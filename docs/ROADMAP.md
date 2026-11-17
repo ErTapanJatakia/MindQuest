@@ -177,3 +177,10 @@ The full 50-question-per-region content target is now populated, but the bank re
 - This is an estimate-weighted implementation measure derived from the roadmap, **not a timesheet or a claim that 330 minutes of engineer time were actually spent**. Actual elapsed/recorded engineering minutes have not been tracked.
 - No workstream is yet marked Complete in the roadmap; Review means implementation is present but acceptance/review remains outstanding. The remaining 2,070 minutes (86.25%) are still In progress, Planned, or awaiting acceptance across the remaining workstreams.
 - Future progress reporting will keep these measures separate: baseline scope implemented, baseline scope accepted, and actual engineering time logged. No actual-time figure will be invented.
+
+
+## Latest answer-group context refinement — 2026-11-17
+
+- Associated the current question heading with the answer-options group through `aria-describedby`, retaining the localized group name. This provides question context when assistive-technology users navigate into the four answer controls.
+- Source-only accessibility refinement; runtime keyboard and screen-reader verification remains pending. Official content validation, CI and Android validation remain deferred.
+- The change does not alter the baseline workstream status or estimate-weighted progress accounting.
