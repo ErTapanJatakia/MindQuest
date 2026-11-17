@@ -14,6 +14,8 @@ class MainActivity : Activity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
+        // The game is a bundled offline asset; remote WebView debugging is never needed.
+        WebView.setWebContentsDebuggingEnabled(false)
         gameView = WebView(this)
         gameView.settings.apply {
             javaScriptEnabled = true // Required by the bundled game only.
@@ -31,14 +33,34 @@ class MainActivity : Activity() {
                 view: WebView,
                 request: WebResourceRequest
             ): Boolean {
-                // The game is fully bundled. Do not navigate to external or remote pages.
-                return request.url.scheme != "file" ||
-                    request.url.host != null ||
-                    !request.url.path.orEmpty().startsWith("/android_asset/")
+                // Permit only the single bundled app document as a top-level destination.
+                // Hash-based in-app state remains valid because it does not change the path.
+                val uri = request.url
+                val isBundledEntryPoint =
+                    uri.scheme == "file" &&
+                    uri.host == null &&
+                    uri.path == "/android_asset/index.html"
+                return !request.isForMainFrame || !isBundledEntryPoint
             }
         }
         setContentView(gameView)
         gameView.loadUrl("file:///android_asset/index.html")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::gameView.isInitialized) {
+            gameView.onResume()
+            gameView.resumeTimers()
+        }
+    }
+
+    override fun onPause() {
+        if (::gameView.isInitialized) {
+            gameView.onPause()
+            gameView.pauseTimers()
+        }
+        super.onPause()
     }
 
     @Deprecated("Deprecated by Android; retained for compatibility with the minimum SDK.")
@@ -54,7 +76,7 @@ class MainActivity : Activity() {
         if (::gameView.isInitialized) {
             gameView.apply {
                 stopLoading()
-                loadUrl("about:blank")
+                onPause()
                 removeAllViews()
                 destroy()
             }
