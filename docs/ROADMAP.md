@@ -200,3 +200,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Cross-checked against the [World Sikh Organization of Canada Vaisakhi FAQ](https://assets.nationbuilder.com/worldsikh/pages/5435/attachments/original/1775773649/Upload_Vaisakhi___Sikh_Heritage_Month_Resource_Guide.pdf?1775773649=) and the [U.S. Office of Personnel Management's Sikh significant-days guidance](https://www.reginfo.gov/public/do/eoDownloadDocument?documentID=219143&eodoc=true).
 - Preserved the question ID, correct answer key and option identity across translations. This is one targeted factual correction, not full content certification. Official validator, CI, browser/runtime, Android and device validation remain deferred.
 - Baseline progress remains 330 / 2,400 minutes (13.75%); this correction does not reclassify a roadmap workstream.
+
+
+## Latest question-bank diversity review — 2026-11-18
+
+- Replaced the repeated U.S. Declaration of Independence date question in `US-HIS-004` with a distinct Gettysburg Address question in English (India), English (US) and Russian. The Library of Congress confirms Lincoln delivered the address at the cemetery dedication on 19 November 1863: https://guides.loc.gov/gettysburg-address.
+- Stable ID, region, category, difficulty and correct-answer key were preserved. The three translations retain the same correct option identity.
+- This is a targeted content-quality correction, not full content certification. No official validator, browser/runtime, CI, Android build or device QA was run.
+- Baseline implementation remains 330 / 2,400 minutes (13.75%); no full workstream status or estimate changed.
