@@ -19,7 +19,7 @@
     "en-IN": {
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard",categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
       eyebrow:"A little challenge for your mind",welcome:"Ready to think?",intro:"Explore the world, one question at a time.",
-      play:"Start a round",bestScore:"Best score",questionRegion:"Question region",offline:"Ready to play offline",
+      play:"Start a round",bestScore:"Best score",questionRegion:"Question region",offline:"Ready to play offline",progress:"Question progress",
       next:"Next question",roundComplete:"ROUND COMPLETE",wellPlayed:"Well played!",points:"points",
       playAgain:"Play again",home:"Home",personalise:"MAKE IT YOURS",settings:"Settings",
       settingsIntro:"These choices are independent. Mix any interface, region and question language.",
@@ -41,7 +41,7 @@
     "ru-RU": {
       categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная",categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
       eyebrow:"Небольшая тренировка для ума",welcome:"Готовы подумать?",intro:"Открывайте мир — вопрос за вопросом.",
-      play:"Начать раунд",bestScore:"Лучший результат",questionRegion:"Регион вопросов",offline:"Можно играть офлайн",
+      play:"Начать раунд",bestScore:"Лучший результат",questionRegion:"Регион вопросов",offline:"Можно играть офлайн",progress:"Ход игры",
       next:"Следующий вопрос",roundComplete:"РАУНД ЗАВЕРШЁН",wellPlayed:"Отличная игра!",points:"баллов",
       playAgain:"Сыграть ещё раз",home:"На главную",personalise:"ВАШИ НАСТРОЙКИ",settings:"Настройки",
       settingsIntro:"Эти параметры независимы. Вы можете сочетать любой язык интерфейса, регион и язык вопросов.",
@@ -182,7 +182,10 @@
     const copy = item.translations[settings.questionLocale];
     $("round-label").textContent = t("round");
     $("progress-label").textContent = (current + 1) + " / " + round.length;
-    $("progress-fill").style.width = (((current + 1) / round.length) * 100) + "%";
+    const progress = Math.round(((current + 1) / round.length) * 100);
+    $("progress-fill").style.width = progress + "%";
+    $("question-progress").setAttribute("aria-valuenow", String(progress));
+    $("question-progress").setAttribute("aria-label", t("progress"));
     $("category-label").textContent = categoryName(item.category).toUpperCase();
     $("question-title").textContent = copy.question;
     $("feedback").textContent = "";
