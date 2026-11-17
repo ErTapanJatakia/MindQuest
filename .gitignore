@@ -1,0 +1,21 @@
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.jks
+*.keystore
+*.hprof
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local test output
+coverage/
+playwright-report/
+test-results/
