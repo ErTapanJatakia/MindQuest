@@ -389,3 +389,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated `app/index.html`, `app/src/app.js` and `app/styles.css`; updated the roadmap implementation slice. Commits: `451e7a1`, `beecad7`, `158da1a`, `0f9093f` (roadmap).
 - Post-commit re-fetch verification passed 10/10 targeted source/documentation checks, including the HTML target, localized runtime rendering, interface-language marking, CSS styling, all three difficulty dictionaries, roadmap/status updates and unchanged baseline. No browser runtime, automated gameplay test, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run.
 - No additional baseline credit claimed; earned implementation remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes remaining. Actual engineering time remains untracked.
+
+## Duplicate-prompt whitespace normalization correction — 2026-11-18
+
+- A focused source review found that the runtime duplicate-prompt normalization expression had an over-escaped whitespace pattern. It matched a literal backslash-plus-s rather than whitespace, so its comment overstated the normalization actually performed.
+- Corrected the runtime expression to use the Unicode-aware whitespace matcher `/\\s+/gu`, matching the already-correct official validator implementation. The normalization now folds tabs, line breaks and repeated whitespace before case comparison.
+- Updated `app/src/app.js` in commit `86b1925`. The official validator source was inspected but not executed or changed.
+- This is a source correction, not a new feature or baseline-progress increment. No browser runtime, validator execution, CI, Android build, emulator or device QA was performed.
