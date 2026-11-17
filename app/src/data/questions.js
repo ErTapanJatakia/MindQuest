@@ -140,4 +140,36 @@ window.MINDQUEST_QUESTIONS = [
   "ru-RU":{question:"В каком году миссия «Аполлон-11» доставила первых людей на Луну?",options:{a:"1961",b:"1965",c:"1969",d:"1972"},explanation:"«Аполлон-11» совершил посадку на Луне 20 июля 1969 года; Нил Армстронг и Базз Олдрин вышли на её поверхность."}
  }}
 
+,
+ {id:"IN-GEO-004",region:"IN",category:"Geography",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"Chilika Lake, one of Asia's largest brackish-water lagoons, is located in which Indian state?",options:{a:"West Bengal",b:"Andhra Pradesh",c:"Odisha",d:"Kerala"},explanation:"Chilika Lake is a brackish-water lagoon on the coast of Odisha, connected to the Bay of Bengal."},
+  "en-US":{question:"In which Indian state is Chilika Lake, one of Asia's largest brackish-water lagoons?",options:{a:"West Bengal",b:"Andhra Pradesh",c:"Odisha",d:"Kerala"},explanation:"Chilika Lake is a brackish-water lagoon on the coast of Odisha, connected to the Bay of Bengal."},
+  "ru-RU":{question:"В каком индийском штате находится озеро Чилика — одна из крупнейших солоноватоводных лагун Азии?",options:{a:"Западная Бенгалия",b:"Андхра-Прадеш",c:"Одиша",d:"Керала"},explanation:"Озеро Чилика — солоноватоводная лагуна на побережье штата Одиша, соединённая с Бенгальским заливом."}
+ }},
+ {id:"IN-HIS-003",region:"IN",category:"History",difficulty:"hard",correct:"a",translations:{
+  "en-IN":{question:"At which Indian National Congress session was the Purna Swaraj resolution adopted in 1929?",options:{a:"Lahore",b:"Karachi",c:"Lucknow",d:"Surat"},explanation:"The Lahore session of the Indian National Congress in December 1929 adopted the Purna Swaraj, or complete independence, resolution."},
+  "en-US":{question:"At which Indian National Congress session was the Purna Swaraj (complete independence) resolution adopted in 1929?",options:{a:"Lahore",b:"Karachi",c:"Lucknow",d:"Surat"},explanation:"The Lahore session of the Indian National Congress in December 1929 adopted the Purna Swaraj, or complete independence, resolution."},
+  "ru-RU":{question:"На какой сессии Индийского национального конгресса в 1929 году приняли резолюцию о Пурна Сварадж (полной независимости)?",options:{a:"Лахорской",b:"Карачинской",c:"Лакхнауской",d:"Суратской"},explanation:"На Лахорской сессии Индийского национального конгресса в декабре 1929 года приняли резолюцию о Пурна Сварадж — полной независимости."}
+ }},
+ {id:"RU-GEO-004",region:"RU",category:"Geography",difficulty:"medium",correct:"b",translations:{
+  "en-IN":{question:"Which mountain range is commonly used as part of the boundary between Europe and Asia in Russia?",options:{a:"Altai Mountains",b:"Ural Mountains",c:"Caucasus Mountains",d:"Sayan Mountains"},explanation:"The Ural Mountains are the conventional geographic boundary between Europe and Asia across much of Russia."},
+  "en-US":{question:"Which mountain range is commonly used as part of the Europe–Asia boundary in Russia?",options:{a:"Altai Mountains",b:"Ural Mountains",c:"Caucasus Mountains",d:"Sayan Mountains"},explanation:"The Ural Mountains are the conventional geographic boundary between Europe and Asia across much of Russia."},
+  "ru-RU":{question:"Какой горный хребет традиционно считается частью границы между Европой и Азией на территории России?",options:{a:"Алтай",b:"Уральские горы",c:"Кавказ",d:"Саянские горы"},explanation:"Уральские горы служат условной географической границей между Европой и Азией на значительной части территории России."}
+ }},
+ {id:"RU-CUL-003",region:"RU",category:"Culture",difficulty:"hard",correct:"d",translations:{
+  "en-IN":{question:"Which Russian writer created the fictional character Woland in the novel The Master and Margarita?",options:{a:"Boris Pasternak",b:"Maksim Gorky",c:"Mikhail Sholokhov",d:"Mikhail Bulgakov"},explanation:"Mikhail Bulgakov wrote The Master and Margarita, in which Woland is a central supernatural character."},
+  "en-US":{question:"Who created the character Woland in the Russian novel The Master and Margarita?",options:{a:"Boris Pasternak",b:"Maxim Gorky",c:"Mikhail Sholokhov",d:"Mikhail Bulgakov"},explanation:"Mikhail Bulgakov wrote The Master and Margarita, in which Woland is a central supernatural character."},
+  "ru-RU":{question:"Кто создал персонажа Воланда в романе «Мастер и Маргарита»?",options:{a:"Борис Пастернак",b:"Максим Горький",c:"Михаил Шолохов",d:"Михаил Булгаков"},explanation:"Михаил Булгаков — автор романа «Мастер и Маргарита», в котором Воланд является одним из центральных персонажей."}
+ }},
+ {id:"US-GEO-004",region:"US",category:"Geography",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"Which of the five Great Lakes lies entirely within the United States?",options:{a:"Lake Superior",b:"Lake Erie",c:"Lake Michigan",d:"Lake Ontario"},explanation:"Lake Michigan is the only Great Lake located entirely within the United States; the other four are shared with Canada."},
+  "en-US":{question:"Which Great Lake is located entirely within the United States?",options:{a:"Lake Superior",b:"Lake Erie",c:"Lake Michigan",d:"Lake Ontario"},explanation:"Lake Michigan is the only Great Lake located entirely within the United States; the other four are shared with Canada."},
+  "ru-RU":{question:"Какое из пяти Великих озёр полностью находится на территории США?",options:{a:"Верхнее",b:"Эри",c:"Мичиган",d:"Онтарио"},explanation:"Озеро Мичиган — единственное из Великих озёр, полностью расположенное в США; остальные четыре разделены с Канадой."}
+ }},
+ {id:"US-CUL-002",region:"US",category:"Culture",difficulty:"hard",correct:"a",translations:{
+  "en-IN":{question:"Which American architect designed the house known as Fallingwater in Pennsylvania?",options:{a:"Frank Lloyd Wright",b:"Louis Sullivan",c:"Philip Johnson",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed Fallingwater, a house built over a waterfall in Pennsylvania and completed in the 1930s."},
+  "en-US":{question:"Who designed Fallingwater, the famous house built over a waterfall in Pennsylvania?",options:{a:"Frank Lloyd Wright",b:"Louis Sullivan",c:"Philip Johnson",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed Fallingwater, a house built over a waterfall in Pennsylvania and completed in the 1930s."},
+  "ru-RU":{question:"Какой американский архитектор спроектировал дом «Дом над водопадом» (Fallingwater) в Пенсильвании?",options:{a:"Фрэнк Ллойд Райт",b:"Луис Салливан",c:"Филип Джонсон",d:"И. М. Пей"},explanation:"Фрэнк Ллойд Райт спроектировал Fallingwater — дом над водопадом в Пенсильвании, построенный в 1930-х годах."}
+ }}
+
 ];
