@@ -857,3 +857,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Confirmed the three selector-label maps contain entries for all supported interface locales; the document root language follows the selected interface locale; question prompt and answer-option text carry the selected question locale; and the app controller updates accessible labels for the settings and answer controls.
 - No concrete defect was found that justified an application-code change in this bounded pass. This is a static source inspection, not browser execution, keyboard/screen-reader testing, localization proofreading, or official validator execution.
 - CI, `npm run validate:content`, Android compilation/package validation and runtime/device testing remain deferred until the agreed development freeze. No baseline allocation or product scope changed.
+
+
+### Gameplay and round-selection source review — 2026-11-18
+
+- Re-inspected `app/src/app.js` round selection and state transitions: regional eligibility, category/difficulty filters, stable-ID uniqueness, normalized duplicate-prompt detection across all three locales, session-local cycle signatures, unseen-question prioritization, largest-remainder difficulty quotas, shortage filling, final question shuffle and selected-round postconditions.
+- Reviewed defensive paths for malformed/empty pools, question rendering, stale answer callbacks, advancement gating, answer-ledger snapshots and completed-round score/streak recomputation. Recovery consistently discards active round state and presents the localized recovery view.
+- Source inspection confirmed the selection code applies the configured region through `isPlayableQuestion`, filters category and difficulty before selection, verifies unique IDs and prompts, and checks selected-round length/uniqueness/playability before rendering. The quota algorithm uses integer largest-remainder apportionment; unseen questions are preferred, and seen questions are used only when the remaining unseen pool cannot fill the round.
+- No concrete correctness defect was identified in this bounded source review; no application-code change was justified. These are source-presence and control-flow checks, not execution of the browser app, randomized property tests, or full functional regression.
+- The official content validator, CI, Android build and runtime/device testing remain deferred until the agreed development freeze. No baseline allocation or product scope changed.
