@@ -4,39 +4,61 @@ Last updated: 2026-11-17
 
 ## Current phase
 
-**Phase 1 — foundation and first playable web vertical slice.**
+**Phase 1 — foundation and first playable web vertical slice; core-logic refinement in progress.**
 
-Repository verified: public `ErTapanJatakia/MindQuest`, default branch `main`.
+Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQuest), default branch `main`.
 
 ### Delivered to the repository
 
-- Project README with product boundaries and release principles.
-- Detailed roadmap with 18 workstreams and a 2,400-minute planning baseline.
+- Project README, product boundaries and release principles.
 - Architecture decisions for offline operation, independent localization, question identity and Android packaging.
+- Roadmap covering 18 workstreams with a 2,400-minute / 40-hour planning baseline.
 - Responsive home, quiz, results and settings views.
-- Independent interface locale, question region and question locale preferences, persisted separately in one settings record.
-- Starter question content: three questions per region, each represented in all three locales (nine question IDs / 27 localized records).
-- Basic answer feedback, scoring, replay and local best-score persistence.
-- Dependency-free structural question-bank validation script.
+- Independent interface locale, question region and question locale settings.
+- Starter question content: 3 questions per region, each in all 3 locales (9 question IDs / 27 localized records).
+- Answer feedback, scoring, replay and local best-score persistence.
+- Device-locale suggestion for the interface only; it does not change question region or question language.
+- Fair Fisher–Yates question shuffle.
+- Defensive handling of malformed persisted settings.
+- Score display based on the actual round size, with best-score records retaining their round denominator.
+- Localised region and language selector option labels.
+- Dependency-free question-bank structural validator, strengthened to check locale coverage, region-matching IDs and unique answer-option text.
+- Initial Android WebView shell and restrictive navigation / network configuration.
 
-### Important scope limitations
+### Current implementation limits
 
-- This is an early development slice, **not a release candidate**.
-- Content currently has 3 questions per region, not the 50-per-region release target.
-- Category and difficulty selection, full content coverage, final accessibility review, Android packaging, signing and RuStore assets remain outstanding.
-- Translation strings and question facts require editorial and native-language review before release.
-- The browser shell has not yet been validated on physical Android devices.
+- The current question bank contains **9 of 150 target questions**: 3 India, 3 Russia and 3 United States.
+- Each question has 3 locale variants, giving 27 localised records; this is not yet the final reviewed content bank.
+- Category and difficulty selection, full question coverage, final accessibility review, complete UI copy localisation, Android wrapper completion, signing and RuStore assets remain outstanding.
+- English India / English US copy is not yet sufficiently differentiated throughout the interface.
+- Russian copy and question facts still require editorial and native-speaker review.
+- Android Gradle wrapper has not been added; the Android shell has not been compiled or tested on physical devices.
+- No APK or AAB has been produced. This is **not a release candidate**.
 
-## CI freeze
+## CI freeze and validation
 
-No GitHub Actions workflows have been added by this implementation. Do not enable or run CI during feature development. The final validation phase will be scheduled after feature completion and source review.
+- No GitHub Actions workflows have been introduced for this development work.
+- CI and Android validation remain deliberately deferred until feature development and source review are complete.
+- No CI run has been started.
+- The updated structural validator has been committed but has **not yet been executed** in this work batch.
+- No physical-device or offline runtime validation is claimed.
 
-## Immediate next work
+## Latest completed batch
 
-1. Review the first web vertical slice for functional and localization edge cases.
-2. Expand the question schema and implement category/difficulty selection.
-3. Build the full 150-question aligned multilingual bank.
-4. Complete game UX, persistence and accessibility.
-5. Add and review the native Android wrapper.
-6. Perform manual source, offline and device QA.
-7. Only after feature completion, introduce and run final CI / Android validation.
+- Replaced random-sort question ordering with Fisher–Yates.
+- Added device-locale suggestion for the interface locale only.
+- Added malformed-settings defensive handling.
+- Corrected score denominator handling and removed the conflicting score override in the UI polish script.
+- Localised region and language selector option labels.
+- Strengthened question-bank structural checks.
+
+## Remaining development priorities
+
+1. Complete the first-slice source review and validate the current web game without enabling CI.
+2. Implement category and difficulty selection with accessible navigation.
+3. Expand the content bank to 50 reviewed questions per region, each aligned across all three locales.
+4. Complete all interface translations, accessibility, settings and persistence edge cases.
+5. Finish and review the Android wrapper, Gradle wrapper and release configuration.
+6. Conduct manual source, offline and Android device QA.
+7. Only after feature completion and source review, enable and run final CI / Android validation.
+8. Prepare RuStore and GitHub APK release materials after a successful signed build.
