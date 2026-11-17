@@ -20,7 +20,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
 - Question bank expanded to **150 question IDs**, with 50 per region and all 3 language variants (450 localized question records).
-- Bounded cross-locale factual review is complete for records 1–105 (seven 15-record batches); records 106–120 are the next review segment. No full-bank fact audit or professional native-speaker acceptance is claimed.
+- Bounded cross-locale factual review is complete for records 1–120 (eight 15-record batches); records 121–135 are the next review segment. No full-bank fact audit or professional native-speaker acceptance is claimed.
 - Current difficulty spread in each region: 15 easy, 20 medium and 15 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
