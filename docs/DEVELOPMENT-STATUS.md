@@ -196,3 +196,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The question-bank collection itself is checked to be an array before filtering, preventing malformed top-level data or null records from causing a gameplay exception.
 - This is a defensive runtime boundary, not a replacement for the strict content validator; invalid records are excluded from play and the official validator remains a separate release gate.
 - Source change committed and re-fetched. No JavaScript parser, browser runtime, official content validator, CI, Android build or device test was run.
+
+
+## Baseline progress accounting — 2026-11-17
+
+- **330 / 2,400 baseline minutes (13.75%)** are currently represented by workstreams whose implementation has reached Review: question-bank architecture (150 min) and question content population (180 min).
+- This is roadmap-estimate-weighted implementation progress, not actual engineer time spent. Actual engineering minutes have not been recorded, so an actual-time-completed figure cannot be stated.
+- No workstream is yet marked Complete; both Review workstreams still require acceptance. The remaining baseline scope is 2,070 minutes (86.25%), subject to the existing workstream statuses and release gates.
+- Progress reporting will distinguish implementation estimate, accepted scope, and actual time logged.
