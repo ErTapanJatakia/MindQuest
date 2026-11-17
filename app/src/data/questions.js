@@ -2731,4 +2731,590 @@ window.MINDQUEST_QUESTIONS = [
     }
   }
 }
+,
+{
+  "id": "IN-GEO-013",
+  "region": "IN",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which strait separates the southern coast of India from Sri Lanka?",
+      "options": {
+        "a": "Malacca Strait",
+        "b": "Palk Strait",
+        "c": "Hormuz Strait",
+        "d": "Bering Strait"
+      },
+      "explanation": "The Palk Strait lies between Tamil Nadu in India and the northern part of Sri Lanka."
+    },
+    "en-US": {
+      "question": "Which strait separates southern India from Sri Lanka?",
+      "options": {
+        "a": "Strait of Malacca",
+        "b": "Palk Strait",
+        "c": "Strait of Hormuz",
+        "d": "Bering Strait"
+      },
+      "explanation": "The Palk Strait lies between Tamil Nadu in India and the northern part of Sri Lanka."
+    },
+    "ru-RU": {
+      "question": "Какой пролив отделяет южную часть Индии от Шри-Ланки?",
+      "options": {
+        "a": "Малаккский пролив",
+        "b": "Полкский пролив",
+        "c": "Ормузский пролив",
+        "d": "Берингов пролив"
+      },
+      "explanation": "Полкский пролив расположен между индийским штатом Тамилнад и северной частью Шри-Ланки."
+    }
+  }
+},
+{
+  "id": "IN-HIS-012",
+  "region": "IN",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Who founded the Maurya Empire in ancient India?",
+      "options": {
+        "a": "Ashoka",
+        "b": "Bindusara",
+        "c": "Chandragupta Maurya",
+        "d": "Harsha"
+      },
+      "explanation": "Chandragupta Maurya founded the Maurya Empire around 322 BCE, establishing a major dynasty in the Indian subcontinent."
+    },
+    "en-US": {
+      "question": "Who founded the Maurya Empire in ancient India?",
+      "options": {
+        "a": "Ashoka",
+        "b": "Bindusara",
+        "c": "Chandragupta Maurya",
+        "d": "Harsha"
+      },
+      "explanation": "Chandragupta Maurya founded the Maurya Empire around 322 BCE, establishing a major dynasty in the Indian subcontinent."
+    },
+    "ru-RU": {
+      "question": "Кто основал империю Маурьев в Древней Индии?",
+      "options": {
+        "a": "Ашока",
+        "b": "Биндусара",
+        "c": "Чандрагупта Маурья",
+        "d": "Харша"
+      },
+      "explanation": "Чандрагупта Маурья основал империю Маурьев примерно в 322 году до н. э., создав одну из крупнейших держав Индийского субконтинента."
+    }
+  }
+},
+{
+  "id": "IN-SCI-012",
+  "region": "IN",
+  "category": "Science",
+  "difficulty": "hard",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which Indian scientist is widely known as the father of India's Green Revolution?",
+      "options": {
+        "a": "M. S. Swaminathan",
+        "b": "Homi J. Bhabha",
+        "c": "Vikram Sarabhai",
+        "d": "S. N. Bose"
+      },
+      "explanation": "Agricultural scientist M. S. Swaminathan played a leading role in introducing high-yielding crop varieties and advancing India's Green Revolution."
+    },
+    "en-US": {
+      "question": "Which Indian scientist is widely known as the father of India's Green Revolution?",
+      "options": {
+        "a": "M. S. Swaminathan",
+        "b": "Homi J. Bhabha",
+        "c": "Vikram Sarabhai",
+        "d": "S. N. Bose"
+      },
+      "explanation": "Agricultural scientist M. S. Swaminathan played a leading role in introducing high-yielding crop varieties and advancing India's Green Revolution."
+    },
+    "ru-RU": {
+      "question": "Какого индийского учёного широко называют отцом Зелёной революции в Индии?",
+      "options": {
+        "a": "М. С. Сваминатан",
+        "b": "Хоми Дж. Бхабха",
+        "c": "Викрам Сарабхаи",
+        "d": "С. Н. Бозе"
+      },
+      "explanation": "Агроном М. С. Сваминатан сыграл ведущую роль во внедрении высокоурожайных сортов сельскохозяйственных культур и развитии Зелёной революции в Индии."
+    }
+  }
+},
+{
+  "id": "IN-CUL-012",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "easy",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which string instrument is traditionally associated with Indian classical music and has a long resonating neck?",
+      "options": {
+        "a": "Tabla",
+        "b": "Shehnai",
+        "c": "Mridangam",
+        "d": "Veena"
+      },
+      "explanation": "The veena is a family of plucked string instruments with a long history in Indian classical music."
+    },
+    "en-US": {
+      "question": "Which string instrument, with a long resonating neck, is associated with Indian classical music?",
+      "options": {
+        "a": "Tabla",
+        "b": "Shehnai",
+        "c": "Mridangam",
+        "d": "Veena"
+      },
+      "explanation": "The veena is a family of plucked string instruments with a long history in Indian classical music."
+    },
+    "ru-RU": {
+      "question": "Какой струнный инструмент с длинным резонаторным грифом связан с классической музыкой Индии?",
+      "options": {
+        "a": "Табла",
+        "b": "Шехнай",
+        "c": "Мридангам",
+        "d": "Вина"
+      },
+      "explanation": "Вина — семейство щипковых струнных инструментов с давней историей в классической музыке Индии."
+    }
+  }
+},
+{
+  "id": "IN-CUL-013",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "medium",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which Indian state is especially associated with the traditional theatre form Yakshagana?",
+      "options": {
+        "a": "Gujarat",
+        "b": "Karnataka",
+        "c": "Bihar",
+        "d": "Nagaland"
+      },
+      "explanation": "Yakshagana is a traditional dance-drama form strongly associated with coastal and Malnad Karnataka."
+    },
+    "en-US": {
+      "question": "Which Indian state is especially associated with the traditional theatre form Yakshagana?",
+      "options": {
+        "a": "Gujarat",
+        "b": "Karnataka",
+        "c": "Bihar",
+        "d": "Nagaland"
+      },
+      "explanation": "Yakshagana is a traditional dance-drama form strongly associated with coastal and Malnad Karnataka."
+    },
+    "ru-RU": {
+      "question": "С каким индийским штатом особенно связан традиционный театральный жанр якшагана?",
+      "options": {
+        "a": "Гуджарат",
+        "b": "Карнатака",
+        "c": "Бихар",
+        "d": "Нагаленд"
+      },
+      "explanation": "Якшагана — традиционный музыкально-танцевальный театр, особенно распространённый в прибрежных районах и регионе Малнад штата Карнатака."
+    }
+  }
+},
+{
+  "id": "RU-GEO-013",
+  "region": "RU",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which sea lies off the eastern coast of Russia, north of Japan?",
+      "options": {
+        "a": "Sea of Okhotsk",
+        "b": "Adriatic Sea",
+        "c": "Baltic Sea",
+        "d": "Caspian Sea"
+      },
+      "explanation": "The Sea of Okhotsk is a marginal sea of the northwestern Pacific, bordered by Russia and the Kamchatka Peninsula."
+    },
+    "en-US": {
+      "question": "Which sea lies off Russia's eastern coast, north of Japan?",
+      "options": {
+        "a": "Sea of Okhotsk",
+        "b": "Adriatic Sea",
+        "c": "Baltic Sea",
+        "d": "Caspian Sea"
+      },
+      "explanation": "The Sea of Okhotsk is a marginal sea of the northwestern Pacific, bordered by Russia and the Kamchatka Peninsula."
+    },
+    "ru-RU": {
+      "question": "Какое море расположено у восточного побережья России, к северу от Японии?",
+      "options": {
+        "a": "Охотское море",
+        "b": "Адриатическое море",
+        "c": "Балтийское море",
+        "d": "Каспийское море"
+      },
+      "explanation": "Охотское море — окраинное море северо-западной части Тихого океана, омывающее берега России и полуострова Камчатка."
+    }
+  }
+},
+{
+  "id": "RU-HIS-012",
+  "region": "RU",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "In which year was the Battle of Borodino fought during Napoleon's invasion of Russia?",
+      "options": {
+        "a": "1805",
+        "b": "1810",
+        "c": "1815",
+        "d": "1812"
+      },
+      "explanation": "The Battle of Borodino took place on 7 September 1812 during Napoleon's campaign in Russia."
+    },
+    "en-US": {
+      "question": "In what year was the Battle of Borodino fought during Napoleon's invasion of Russia?",
+      "options": {
+        "a": "1805",
+        "b": "1810",
+        "c": "1815",
+        "d": "1812"
+      },
+      "explanation": "The Battle of Borodino took place on September 7, 1812, during Napoleon's campaign in Russia."
+    },
+    "ru-RU": {
+      "question": "В каком году состоялось Бородинское сражение во время вторжения Наполеона в Россию?",
+      "options": {
+        "a": "1805",
+        "b": "1810",
+        "c": "1815",
+        "d": "1812"
+      },
+      "explanation": "Бородинское сражение произошло 7 сентября 1812 года во время похода Наполеона в Россию."
+    }
+  }
+},
+{
+  "id": "RU-SCI-012",
+  "region": "RU",
+  "category": "Science",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "What was the name of the Soviet space station launched in 1986 and operated for more than 15 years?",
+      "options": {
+        "a": "Salyut 1",
+        "b": "Skylab",
+        "c": "Mir",
+        "d": "Almaz 2"
+      },
+      "explanation": "The Mir space station was launched in 1986 and remained in orbit until its controlled deorbit in 2001."
+    },
+    "en-US": {
+      "question": "Which Soviet space station was launched in 1986 and operated for more than 15 years?",
+      "options": {
+        "a": "Salyut 1",
+        "b": "Skylab",
+        "c": "Mir",
+        "d": "Almaz 2"
+      },
+      "explanation": "The Mir space station was launched in 1986 and remained in orbit until its controlled deorbit in 2001."
+    },
+    "ru-RU": {
+      "question": "Как называлась советская орбитальная станция, запущенная в 1986 году и проработавшая более 15 лет?",
+      "options": {
+        "a": "«Салют-1»",
+        "b": "«Скайлэб»",
+        "c": "«Мир»",
+        "d": "«Алмаз-2»"
+      },
+      "explanation": "Орбитальная станция «Мир» была выведена на орбиту в 1986 году и оставалась там до управляемого сведения с орбиты в 2001 году."
+    }
+  }
+},
+{
+  "id": "RU-CUL-012",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "easy",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which traditional Russian folk instrument has a triangular body and usually three strings?",
+      "options": {
+        "a": "Domra",
+        "b": "Balalaika",
+        "c": "Gusli",
+        "d": "Accordion"
+      },
+      "explanation": "The balalaika is a traditional Russian string instrument recognised by its triangular body."
+    },
+    "en-US": {
+      "question": "Which traditional Russian folk instrument has a triangular body and usually three strings?",
+      "options": {
+        "a": "Domra",
+        "b": "Balalaika",
+        "c": "Gusli",
+        "d": "Accordion"
+      },
+      "explanation": "The balalaika is a traditional Russian string instrument recognised by its triangular body."
+    },
+    "ru-RU": {
+      "question": "Какой традиционный русский народный инструмент имеет треугольный корпус и обычно три струны?",
+      "options": {
+        "a": "Домра",
+        "b": "Балалайка",
+        "c": "Гусли",
+        "d": "Аккордеон"
+      },
+      "explanation": "Балалайка — традиционный русский струнный инструмент, который легко узнать по треугольному корпусу."
+    }
+  }
+},
+{
+  "id": "RU-CUL-013",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which Russian playwright wrote the plays 'The Cherry Orchard' and 'Three Sisters'?",
+      "options": {
+        "a": "Anton Chekhov",
+        "b": "Maxim Gorky",
+        "c": "Alexander Ostrovsky",
+        "d": "Nikolai Gogol"
+      },
+      "explanation": "Anton Chekhov wrote both The Cherry Orchard and Three Sisters, influential works of modern theatre."
+    },
+    "en-US": {
+      "question": "Which Russian playwright wrote 'The Cherry Orchard' and 'Three Sisters'?",
+      "options": {
+        "a": "Anton Chekhov",
+        "b": "Maxim Gorky",
+        "c": "Alexander Ostrovsky",
+        "d": "Nikolai Gogol"
+      },
+      "explanation": "Anton Chekhov wrote both The Cherry Orchard and Three Sisters, influential works of modern theatre."
+    },
+    "ru-RU": {
+      "question": "Какой русский драматург написал пьесы «Вишнёвый сад» и «Три сестры»?",
+      "options": {
+        "a": "Антон Чехов",
+        "b": "Максим Горький",
+        "c": "Александр Островский",
+        "d": "Николай Гоголь"
+      },
+      "explanation": "Антон Чехов написал «Вишнёвый сад» и «Три сестры» — произведения, оказавшие большое влияние на современный театр."
+    }
+  }
+},
+{
+  "id": "US-GEO-013",
+  "region": "US",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which desert covers parts of California, Nevada, Utah and Arizona?",
+      "options": {
+        "a": "Sonoran Desert",
+        "b": "Chihuahuan Desert",
+        "c": "Mojave Desert",
+        "d": "Great Basin Desert"
+      },
+      "explanation": "The Mojave Desert spans parts of southeastern California, southern Nevada, southwestern Utah and northwestern Arizona."
+    },
+    "en-US": {
+      "question": "Which desert extends across parts of California, Nevada, Utah, and Arizona?",
+      "options": {
+        "a": "Sonoran Desert",
+        "b": "Chihuahuan Desert",
+        "c": "Mojave Desert",
+        "d": "Great Basin Desert"
+      },
+      "explanation": "The Mojave Desert spans parts of southeastern California, southern Nevada, southwestern Utah, and northwestern Arizona."
+    },
+    "ru-RU": {
+      "question": "Какая пустыня занимает части Калифорнии, Невады, Юты и Аризоны?",
+      "options": {
+        "a": "Пустыня Сонора",
+        "b": "Пустыня Чиуауа",
+        "c": "Пустыня Мохаве",
+        "d": "Большой Бассейн"
+      },
+      "explanation": "Пустыня Мохаве охватывает части юго-восточной Калифорнии, южной Невады, юго-западной Юты и северо-западной Аризоны."
+    }
+  }
+},
+{
+  "id": "US-HIS-012",
+  "region": "US",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "In which year was the US Civil Rights Act, which prohibited segregation in public places and employment discrimination, signed into law?",
+      "options": {
+        "a": "1964",
+        "b": "1954",
+        "c": "1968",
+        "d": "1972"
+      },
+      "explanation": "President Lyndon B. Johnson signed the Civil Rights Act of 1964 on 2 July 1964."
+    },
+    "en-US": {
+      "question": "In what year was the Civil Rights Act of 1964, which prohibited segregation in public places and employment discrimination, signed into law?",
+      "options": {
+        "a": "1964",
+        "b": "1954",
+        "c": "1968",
+        "d": "1972"
+      },
+      "explanation": "President Lyndon B. Johnson signed the Civil Rights Act of 1964 on July 2, 1964."
+    },
+    "ru-RU": {
+      "question": "В каком году был подписан Закон о гражданских правах США, запретивший сегрегацию в общественных местах и дискриминацию при трудоустройстве?",
+      "options": {
+        "a": "1964",
+        "b": "1954",
+        "c": "1968",
+        "d": "1972"
+      },
+      "explanation": "Президент Линдон Б. Джонсон подписал Закон о гражданских правах 2 июля 1964 года."
+    }
+  }
+},
+{
+  "id": "US-SCI-012",
+  "region": "US",
+  "category": "Science",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which NASA space telescope, launched in December 2021, observes the universe primarily in infrared light?",
+      "options": {
+        "a": "Kepler",
+        "b": "Chandra",
+        "c": "Hubble",
+        "d": "James Webb"
+      },
+      "explanation": "The James Webb Space Telescope launched on 25 December 2021 and is designed primarily for infrared astronomy."
+    },
+    "en-US": {
+      "question": "Which NASA space telescope, launched in December 2021, observes the universe primarily in infrared light?",
+      "options": {
+        "a": "Kepler",
+        "b": "Chandra",
+        "c": "Hubble",
+        "d": "James Webb"
+      },
+      "explanation": "The James Webb Space Telescope launched on December 25, 2021, and is designed primarily for infrared astronomy."
+    },
+    "ru-RU": {
+      "question": "Какой космический телескоп NASA, запущенный в декабре 2021 года, наблюдает Вселенную преимущественно в инфракрасном диапазоне?",
+      "options": {
+        "a": "«Кеплер»",
+        "b": "«Чандра»",
+        "c": "«Хаббл»",
+        "d": "«Джеймс Уэбб»"
+      },
+      "explanation": "Космический телескоп «Джеймс Уэбб» был запущен 25 декабря 2021 года и предназначен прежде всего для инфракрасных астрономических наблюдений."
+    }
+  }
+},
+{
+  "id": "US-CUL-012",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "easy",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Who painted the famous American artwork 'American Gothic' in 1930?",
+      "options": {
+        "a": "Edward Hopper",
+        "b": "Grant Wood",
+        "c": "Georgia O'Keeffe",
+        "d": "Norman Rockwell"
+      },
+      "explanation": "Grant Wood painted American Gothic in 1930; the work became one of the best-known images in American art."
+    },
+    "en-US": {
+      "question": "Who painted the famous American artwork 'American Gothic' in 1930?",
+      "options": {
+        "a": "Edward Hopper",
+        "b": "Grant Wood",
+        "c": "Georgia O'Keeffe",
+        "d": "Norman Rockwell"
+      },
+      "explanation": "Grant Wood painted American Gothic in 1930; the work became one of the best-known images in American art."
+    },
+    "ru-RU": {
+      "question": "Кто написал знаменитую картину «Американская готика» в 1930 году?",
+      "options": {
+        "a": "Эдвард Хоппер",
+        "b": "Грант Вуд",
+        "c": "Джорджия О’Киф",
+        "d": "Норман Роквелл"
+      },
+      "explanation": "Грант Вуд написал картину «Американская готика» в 1930 году; она стала одним из самых известных произведений американского искусства."
+    }
+  }
+},
+{
+  "id": "US-CUL-013",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which American author created the fictional town of Yoknapatawpha County, used in several of his novels?",
+      "options": {
+        "a": "Ernest Hemingway",
+        "b": "John Steinbeck",
+        "c": "William Faulkner",
+        "d": "F. Scott Fitzgerald"
+      },
+      "explanation": "William Faulkner created the fictional Mississippi setting of Yoknapatawpha County for many of his novels and stories."
+    },
+    "en-US": {
+      "question": "Which American author created the fictional Yoknapatawpha County, the setting for several novels?",
+      "options": {
+        "a": "Ernest Hemingway",
+        "b": "John Steinbeck",
+        "c": "William Faulkner",
+        "d": "F. Scott Fitzgerald"
+      },
+      "explanation": "William Faulkner created the fictional Mississippi setting of Yoknapatawpha County for many of his novels and stories."
+    },
+    "ru-RU": {
+      "question": "Какой американский писатель придумал вымышленный округ Йокнапатофа, где происходит действие нескольких его романов?",
+      "options": {
+        "a": "Эрнест Хемингуэй",
+        "b": "Джон Стейнбек",
+        "c": "Уильям Фолкнер",
+        "d": "Фрэнсис Скотт Фицджеральд"
+      },
+      "explanation": "Уильям Фолкнер создал вымышленный округ Йокнапатофа в штате Миссисипи как место действия многих своих романов и рассказов."
+    }
+  }
+}
 ];
