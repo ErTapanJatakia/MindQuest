@@ -297,7 +297,7 @@
         question.translations[locale].question
           .normalize("NFC")
           .trim()
-          .replace(/\\s+/gu, " ")
+          .replace(/\s+/gu, " ")
           .toLocaleLowerCase(locale)
       );
       return new Set(prompts).size !== prompts.length;
