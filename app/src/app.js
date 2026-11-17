@@ -328,11 +328,42 @@
     }
     const targetRoundLength = Math.min(10, pool.length);
     const unseen = shuffled.filter((question) => !seenQuestionIds.has(question.id));
-    const selectedRound = unseen.slice(0, targetRoundLength);
-    // If fewer than ten unseen questions remain in this cycle, include all of them
-    // and fill the rest from previously seen questions without duplicating this round.
+    const difficultyOrder = ["easy", "medium", "hard"];
+    // Allocate the ten-question mix proportionally to the eligible pool.
+    // Largest-remainder apportionment keeps quotas whole and totals exact.
+    const difficultyQuotas = difficultyOrder.map((difficulty, order) => {
+      const count = pool.filter((question) => question.difficulty === difficulty).length;
+      const exactQuota = targetRoundLength * count / pool.length;
+      const quota = Math.floor(exactQuota);
+      return { difficulty, order, quota, remainder: exactQuota - quota };
+    });
+    let unallocated = targetRoundLength -
+      difficultyQuotas.reduce((total, item) => total + item.quota, 0);
+    [...difficultyQuotas]
+      .sort((a, b) => b.remainder - a.remainder || a.order - b.order)
+      .slice(0, unallocated)
+      .forEach((item) => { item.quota += 1; });
+
+    const selectedRound = [];
+    for (const item of difficultyQuotas) {
+      const available = unseen.filter((question) => question.difficulty === item.difficulty);
+      selectedRound.push(...available.slice(0, item.quota));
+    }
+    // If a difficulty has too few unseen questions left, fill from other unseen
+    // questions first so the session cycle still avoids repeats whenever possible.
+    const selectedIds = new Set(selectedRound.map((question) => question.id));
     if (selectedRound.length < targetRoundLength) {
-      const selectedIds = new Set(selectedRound.map((question) => question.id));
+      for (const question of unseen) {
+        if (selectedRound.length >= targetRoundLength) break;
+        if (!selectedIds.has(question.id)) {
+          selectedRound.push(question);
+          selectedIds.add(question.id);
+        }
+      }
+    }
+    // Near the end of a cycle fewer than ten unseen questions may remain.
+    // Include every remaining unseen question, then fill from the seen pool.
+    if (selectedRound.length < targetRoundLength) {
       for (const question of shuffled) {
         if (selectedRound.length >= targetRoundLength) break;
         if (!selectedIds.has(question.id)) {
