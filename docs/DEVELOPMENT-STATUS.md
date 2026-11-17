@@ -24,7 +24,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
 - A localized help guide explains round flow, scoring, filters, independent language/region settings and offline/privacy principles.
-- Accessible view-focus management when navigating between home, quiz, results and settings.
+- Accessible view-focus management when navigating between home, quiz, results and settings; quiz progression now transfers focus to the next action after answering and to the new question heading on progression.
 - Quiz progress exposes progress-bar semantics and a localized accessible label/value; result updates use a polite live region.
 - Fair Fisher–Yates question shuffle and defensive handling of malformed persisted settings.
 - Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator. The home card displays score, accuracy percentage and the active pool scope.
@@ -57,6 +57,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
+
+- Improved keyboard continuity during quiz progression: after a player selects an answer, focus moves from the now-disabled answer buttons to the enabled Next / See results action. When the next question renders, focus moves to its question heading so keyboard and screen-reader users are oriented to the new content.
+- Reviewed the Android Gradle Kotlin DSL configuration. Plugin versions are pinned (Android Gradle Plugin 8.7.3 and Kotlin 2.0.21), repositories are centrally declared, the app targets SDK 35 with min SDK 23, and Java/Kotlin targets are 17. The Android Gradle wrapper is still absent; no Gradle build was attempted.
+- No JavaScript parser, browser runtime, validator, CI, Android build or device test was run in this batch.
+
 
 - Completed another targeted localization/accessibility source pass. Corrected a malformed literal newline sequence in `app/src/app.js` that had been introduced during the previous localization edit; the three accessible-label assignments are now separate JavaScript statements. This was identified by direct source inspection, not by running a JavaScript parser.
 - Updated the static HTML defaults for the quiz round/category labels and added explicit accessible progress-bar minimum/maximum values and a default accessible label.
@@ -105,7 +110,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup; the saved-score parser hardening is complete.
 2. Complete factual, cultural and native-speaker review of all 150 questions, especially Russian phrasing and translation alignment.
 3. Complete the interface localization audit; initial English (India) / English (US) wording and accessibility-label differentiation is implemented. A malformed source escape was corrected, but parser/runtime validation remains pending.
-4. Continue accessibility review and final visual refinement.
+4. Continue accessibility review and final visual refinement; keyboard focus now follows answer → next action → next question heading.
 5. Finish and review the Android wrapper, Gradle wrapper and release configuration.
 6. Conduct manual source, offline and Android device QA.
 7. Only after feature development and source review, enable and run final CI / Android validation.
