@@ -389,3 +389,10 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Corrected the static HTML fallback text in the Help guide so it describes the selected round length, rather than claiming a fixed ten-question maximum. The live localized dictionaries already described the selected length; this aligns the pre-localization markup fallback with actual 5/10/15 behaviour.
 - Documentation/markup alignment only; no new product scope or baseline allocation. No runtime, validator, CI, Android build or device validation was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining allocation remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Keyboard focus visibility — 2026-11-18
+
+- Added an explicit `:focus-visible` outline to the home brand link. Existing focus styling covered buttons and selects but not the brand anchor, leaving this keyboard-operable navigation link without the same visible focus treatment.
+- The new outline uses the existing accent contrast token and does not change layout or introduce a new component. This is a bounded accessibility refinement within the existing accessibility workstream.
+- Source/documentation change only. No browser, screen-reader, parser, official validator, CI, Android build or device test was run. Baseline allocation remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; actual engineering time remains untracked.
