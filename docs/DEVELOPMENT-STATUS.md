@@ -451,3 +451,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - This rejects malformed arrays and unexpected record shapes rather than silently treating extra fields as part of the supported persistence contract. Valid historical two-field records and the lazy ten-question migration path remain compatible.
 - Corrected the question-cycle source comment to describe the selected round length (5/10/15) rather than implying a fixed ten-question round. Updated the roadmap's round postcondition wording to reflect the configurable length and eligible-pool cap.
 - Source/documentation change only. No parser, browser runtime, official content validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Completed-round answer-ledger schema hardening — 2026-11-18
+
+- Tightened the final-round answer-history integrity gate to require the exact five-field answer-entry shape and the exact four-key option map (a/b/c/d).
+- Existing semantic checks remain in place: selected and correct keys, localized option values, explanation text, correctness flag and recomputed score must all agree with the active question bank.
+- This is defensive source hardening; it does not change gameplay, scoring or the persisted best-score schema. No baseline credit was added.
+- App commit: 654c44d. Roadmap documentation commit: ff060cf.
+- No JavaScript parser, browser runtime, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining baseline scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
