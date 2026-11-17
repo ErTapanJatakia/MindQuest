@@ -19,8 +19,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Category filter: All categories, Geography, History, Science and Culture.
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
-- Question bank expanded to **27 question IDs**, with 9 per region and all 3 language variants (81 localized question records).
-- Current difficulty spread in each region: 5 easy, 3 medium and 1 hard question.
+- Question bank expanded to **33 question IDs**, with 11 per region and all 3 language variants (99 localized question records).
+- Current difficulty spread in each region: 5 easy, 4 medium and 2 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
 - A localized help guide explains round flow, scoring, filters, independent language/region settings and offline/privacy principles.
@@ -34,8 +34,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ### Current implementation limits
 
-- The question bank contains **27 of 150 target questions**: 9 India, 9 Russia and 9 United States.
-- Each question has 3 locale variants: 81 localized records out of the 450 target records.
+- The question bank contains **33 of 150 target questions**: 11 India, 11 Russia and 11 United States.
+- Each question has 3 locale variants: 99 localized records out of the 450 target records.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
@@ -49,11 +49,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
 - The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
-- Source consistency checks confirmed 27 question IDs, 9 questions per region, all three locales on each record, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- Source consistency checks previously confirmed 27 question IDs, 9 questions per region, all three locales on each record; the latest batch adds six more records and has been syntax/structure checked separately, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
 - Latest question-bank review repaired a missing comma that had made the previous bank file syntactically invalid; six additional regional questions were added. Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
+
+- Expanded the question bank from 27 to 33 stable IDs (11 per region), adding six questions with all three translations. The new material covers Chilika Lake and the 1929 Purna Swaraj resolution (India), the Ural Mountains and Mikhail Bulgakov (Russia), and Lake Michigan and Frank Lloyd Wright (United States). Each region gained one medium and one hard question; the new distribution is five easy, four medium and two hard per region.
 
 - Refined the home-screen best-score card to show score, percentage accuracy and the active region/category/difficulty scope; the scope is localized using the current interface language.
 
@@ -66,18 +68,18 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added keyboard/screen-reader focus movement to each view heading, accessible progress-bar state and localized progress announcements.
 - Added six regional questions: one easy and one medium question for each region.
 - Implemented results accuracy percentage and a localized per-question review of selected answer, correct answer and explanation; cleared stale review content for empty question selections.
-- Expanded the bank to 27 stable question IDs / 81 localized records; all four categories are now represented in each region.
+- Expanded the bank to 33 stable question IDs / 99 localized records; all four categories are represented in each region.
 - Retained the three existing independent selectors and filter preferences.
 - Strengthened the question-bank validator to enforce the supported category list, supported difficulty values and exact answer-option key set.
-- Updated the roadmap and this status record to reflect 27 questions and the current difficulty spread.
+- Updated the roadmap and this status record to reflect 33 questions and the current difficulty spread.
 
 ## Remaining development priorities
 
 1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup.
 2. Expand the question bank toward 50 per region in small reviewed batches, maintaining category/difficulty coverage and aligned translations.
-4. Complete all interface translations and native-speaker/factual review.
-5. Implement help/about, richer results and accessibility improvements.
-6. Finish and review the Android wrapper, Gradle wrapper and release configuration.
-7. Conduct manual source, offline and Android device QA.
-8. Only after feature development and source review, enable and run final CI / Android validation.
-9. Prepare RuStore and GitHub APK release materials after a successful signed build.
+3. Complete interface localization and native-speaker/factual review.
+4. Continue accessibility review and final visual refinement.
+5. Finish and review the Android wrapper, Gradle wrapper and release configuration.
+6. Conduct manual source, offline and Android device QA.
+7. Only after feature development and source review, enable and run final CI / Android validation.
+8. Prepare RuStore and GitHub APK release materials after a successful signed build.
