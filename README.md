@@ -22,9 +22,9 @@ MindQuest is a free, offline-first puzzle and trivia game designed for Android, 
 
 These are three separate preferences. For example, Russian interface + India question bank + American English questions is a valid combination. Device locale may suggest an initial interface language only; it must not silently select the question region or question language.
 
-## Initial content target
+## Question bank
 
-150 original questions in total: 50 for each region. Each question will have a stable ID and three aligned language versions. Translations must preserve the same meaning, answer options, correct answer, and explanation.
+The current content set contains 150 question IDs: 50 for each region, with three localized variants per question (450 localized records). Each question has a stable ID. The three language versions share the same correct-answer identity and are intended to preserve the same meaning, answer options and explanation. Structural coverage is implemented; factual accuracy, cultural suitability and native-speaker review remain release gates.
 
 ## MVP scope
 
@@ -48,7 +48,7 @@ app/                 Offline web application
     app.js
     data/
     i18n/
-android/             Native Android wrapper (planned)
+android/             Native Android WebView wrapper (initial shell implemented)
 docs/                Architecture, roadmap, QA and release notes
 assets/              App artwork and local assets
 ```
