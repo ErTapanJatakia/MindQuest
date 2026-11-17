@@ -522,3 +522,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added a system-colour fallback for forced-colors mode covering existing cards, controls, answer options, score panel and keyboard-focus outlines.
 - Correct and incorrect answer states remain distinguishable through solid versus dashed borders, not colour alone. This stays within the planned accessibility workstream and introduces no new product scope.
 - Post-commit verification is source-level only. No forced-colors browser simulation, screen-reader, parser, official validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
+
+## Latest documentation consistency correction — 2026-11-18
+
+- Corrected the session-rotation description in the roadmap: round capacity follows the player's selected 5-, 10- or 15-question setting, rather than the superseded ten-question cap. The implementation and current product setting were already configurable; this change aligns the planning document with delivered behaviour. No application code, scope or baseline allocation changed.
+- Re-fetched both updated documentation files after committing. No parser, validator, CI, Android build or runtime test was run in this documentation-only correction.
