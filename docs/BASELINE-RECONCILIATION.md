@@ -23,7 +23,7 @@ This follows established project-controls practice: use quantifiable work-packag
 | 5 | Question-bank architecture | 150 | 150 | 0 | Offline schema, stable IDs, region/category/difficulty metadata and translation mapping implemented; status remains Review pending acceptance |
 | 6 | Question content | 180 | 180 | 0 | 150 IDs / 450 localized records populated to planned distribution; factual, cultural and native-speaker acceptance remains, so status remains Review |
 | 7 | Core gameplay | 180 | 120 | 60 | Multiple-choice flow, answer validation/feedback, scoring, progression and defensive state guards implemented; runtime/regression verification remains |
-| 8 | Game modes | 120 | 80 | 40 | Ten-question rounds, category/difficulty selection and replay implemented; runtime behavior and complete mode acceptance remain |
+| 8 | Game modes | 120 | 80 | 40 | Configurable 5/10/15-question rounds, category/difficulty selection and replay implemented; runtime behavior and complete mode acceptance remain |
 | 9 | Difficulty progression | 90 | 70 | 20 | Easy/medium/hard metadata, balanced per-region distribution and filters implemented; gameplay balance verification remains |
 | 10 | Results screen | 90 | 70 | 20 | Score, accuracy, answer review and explanations implemented; complete runtime/accessibility acceptance remains |
 | 11 | Local persistence | 120 | 75 | 45 | Settings and scoped best scores, robust comparison/parsing and write-failure warning implemented; storage failure/restart runtime verification remains |
