@@ -212,6 +212,24 @@
     );
   }
 
+  function discardRound() {
+    round = [];
+    current = 0;
+    score = 0;
+    answerHistory = [];
+    answered = false;
+    $("next-button").disabled = true;
+    $("answers").replaceChildren();
+    $("feedback").replaceChildren();
+    $("feedback").className = "feedback";
+    $("question-title").textContent = "";
+    $("progress-label").textContent = "";
+    $("progress-fill").style.width = "0%";
+    $("question-progress").setAttribute("aria-valuenow", "0");
+    $("answer-review-list").replaceChildren();
+    $("answer-review-title").hidden = true;
+  }
+
   function startRound() {
     const pool = (Array.isArray(window.MINDQUEST_QUESTIONS) ? window.MINDQUEST_QUESTIONS : [])
       .filter((q) =>
@@ -220,15 +238,7 @@
         (settings.difficulty === "all" || q.difficulty === settings.difficulty)
       );
     if (!pool.length) {
-      // Discard any previous round so the empty-selection state cannot retain stale gameplay data.
-      round = [];
-      current = 0;
-      score = 0;
-      answered = false;
-      answerHistory = [];
-      $("next-button").disabled = true;
-      $("answer-review-list").replaceChildren();
-      $("answer-review-title").hidden = true;
+      discardRound();
       noQuestionsForSelection = true;
       $("replay-button").hidden = true;
       $("home-button").textContent = t("settings");
@@ -293,7 +303,8 @@
   }
 
   function chooseAnswer(choice, item, copy) {
-    if (answered) return;
+    if (answered || !round.length || current < 0 || current >= round.length ||
+        round[current] !== item || item.translations[settings.questionLocale] !== copy) return;
     answered = true;
     const correct = choice === item.correct;
     if (correct) score += 1;
@@ -391,7 +402,15 @@
 
   $("play-button").addEventListener("click", startRound);
   $("replay-button").addEventListener("click", startRound);
-  $("home-button").addEventListener("click", () => { if (noQuestionsForSelection) openSettings(); else showView("home-view"); });
+  $("home-button").addEventListener("click", () => {
+    if (noQuestionsForSelection) {
+      openSettings();
+      return;
+    }
+    noQuestionsForSelection = false;
+    discardRound();
+    showView("home-view");
+  });
   $("settings-open").addEventListener("click", openSettings);
   $("home-help").addEventListener("click", openHelp);
   $("settings-help").addEventListener("click", openHelp);
@@ -399,6 +418,7 @@
   $("brand-home").addEventListener("click", (event) => {
     event.preventDefault();
     noQuestionsForSelection = false;
+    discardRound();
     $("replay-button").hidden = false;
     $("home-button").textContent = t("home");
     showView("home-view");
@@ -413,16 +433,17 @@
       difficulty: $("question-difficulty").value
     });
     if (!safeStorage.set("mindquest.settings", JSON.stringify(settings))) storageWarning = true;
-    applyInterface();
-    // Settings can change the question pool or locale. Return to the home screen
-    // so an in-progress round cannot continue with stale question data.
+    // Settings can change the question pool or locale. Discard hidden round data
+    // as well as returning home, so no stale answer history can be reused.
+    discardRound();
     noQuestionsForSelection = false;
+    applyInterface();
     $("replay-button").hidden = false;
     $("home-button").textContent = t("home");
     showView("home-view");
   });
   $("next-button").addEventListener("click", () => {
-    if (!answered) return;
+    if (!round.length || !answered || !answerHistory[current]) return;
     if (current < round.length - 1) { current += 1; renderQuestion(); }
     else showResults();
   });
