@@ -432,11 +432,17 @@
     $("feedback").className = "feedback";
     $("next-button").disabled = true;
     $("next-button").textContent = current === round.length - 1 ? t("seeResults") : t("next");
-    const labels = ["A", "B", "C", "D"];
+    const optionOrder = ["a", "b", "c", "d"];
+    // Shuffle answer positions independently for every question. The answer keys
+    // remain attached to their option text, so scoring and review stay canonical.
+    for (let i = optionOrder.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [optionOrder[i], optionOrder[j]] = [optionOrder[j], optionOrder[i]];
+    }
     const host = $("answers");
     host.replaceChildren();
-    labels.forEach((letter, index) => {
-      const key = letter.toLowerCase();
+    optionOrder.forEach((key) => {
+      const letter = key.toUpperCase();
       const button = document.createElement("button");
       button.type = "button";
       button.className = "answer-option";
