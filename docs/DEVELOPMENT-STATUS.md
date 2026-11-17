@@ -180,3 +180,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated the repository layout description to reflect that the initial Android WebView shell exists, while Android packaging/build validation remains pending.
 - Corrected the architecture description to include category as a runtime question filter alongside region and difficulty.
 - Documentation/source consistency pass only. No parser, official content validator, browser runtime, CI, Android build or device test was run.
+
+
+## Latest best-score comparison refinement — 2026-11-17
+
+- Best-score comparisons now use integer cross-multiplication rather than floating-point division, avoiding precision-dependent percentage comparisons.
+- When two results have exactly equal accuracy, the result completed across more questions is now retained as the stronger record. Lower accuracy never replaces a higher-accuracy record.
+- Existing best-score storage format and region/category/difficulty scoping are unchanged.
+- Source change committed and re-fetched. No JavaScript parser, browser runtime, content validator, CI, Android build or device test was run.
