@@ -497,7 +497,7 @@
       currentStreak = 0;
     }
     $("streak-value").textContent = String(currentStreak);
-    answerHistory[current] = { choice, correct: item.correct, options: copy.options, explanation: copy.explanation, isCorrect: correct };
+    answerHistory[current] = { choice, correct: item.correct, options: { ...copy.options }, explanation: copy.explanation, isCorrect: correct };
     $("answers").querySelectorAll("button").forEach((button) => {
       button.disabled = true;
       if (button.dataset.answer === item.correct) button.classList.add("correct");
