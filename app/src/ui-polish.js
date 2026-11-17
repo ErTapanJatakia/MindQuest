@@ -15,7 +15,7 @@
     "ru-RU": { "en-IN": "Английский (Индия)", "en-US": "Английский (США)", "ru-RU": "Русский" }
   };
   const interfaceNames = {
-    "en-IN": ["English (India)", "English (United States)", "Русский"],
+    "en-IN": ["English (India)", "English (United States)", "Russian"],
     "en-US": ["English (India)", "English (United States)", "Russian"],
     "ru-RU": ["Английский (Индия)", "Английский (США)", "Русский"]
   };
