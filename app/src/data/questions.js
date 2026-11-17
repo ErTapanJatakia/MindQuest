@@ -44,5 +44,37 @@ window.MINDQUEST_QUESTIONS = [
   "en-IN":{question:"Which US agency is responsible for the civilian space programme?",options:{a:"NOAA",b:"FBI",c:"EPA",d:"NASA"},explanation:"NASA leads the United States civilian space programme."},
   "en-US":{question:"Which US agency leads the civilian space programme?",options:{a:"NOAA",b:"FBI",c:"EPA",d:"NASA"},explanation:"NASA leads the United States civilian space programme."},
   "ru-RU":{question:"Какое ведомство США отвечает за гражданскую космическую программу?",options:{a:"NOAA",b:"ФБР",c:"EPA",d:"NASA"},explanation:"NASA руководит гражданской космической программой США."}
+ }},
+
+ {id:"IN-GEO-002",region:"IN",category:"Geography",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"The Tropic of Cancer passes through how many Indian states?",options:{a:"6",b:"7",c:"8",d:"9"},explanation:"It crosses eight states, from Gujarat in the west to Mizoram in the east."},
+  "en-US":{question:"How many Indian states does the Tropic of Cancer cross?",options:{a:"6",b:"7",c:"8",d:"9"},explanation:"It crosses eight states, from Gujarat in the west to Mizoram in the east."},
+  "ru-RU":{question:"Через сколько штатов Индии проходит Северный тропик?",options:{a:"6",b:"7",c:"8",d:"9"},explanation:"Он пересекает восемь штатов — от Гуджарата на западе до Мизорама на востоке."}
+ }},
+ {id:"IN-SCI-002",region:"IN",category:"Science",difficulty:"hard",correct:"a",translations:{
+  "en-IN":{question:"In which year was India's first satellite, Aryabhata, launched?",options:{a:"1975",b:"1972",c:"1980",d:"1984"},explanation:"Aryabhata was launched on 19 April 1975, using a Soviet launch vehicle."},
+  "en-US":{question:"When was India's first satellite, Aryabhata, launched?",options:{a:"1975",b:"1972",c:"1980",d:"1984"},explanation:"Aryabhata launched on April 19, 1975, aboard a Soviet launch vehicle."},
+  "ru-RU":{question:"В каком году был запущен первый индийский спутник «Арьябхата»?",options:{a:"1975",b:"1972",c:"1980",d:"1984"},explanation:"«Арьябхата» был запущен 19 апреля 1975 года с помощью советской ракеты-носителя."}
+ }},
+ {id:"RU-SCI-001",region:"RU",category:"Science",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"Which Russian chemist is credited with formulating the periodic table?",options:{a:"Alexander Butlerov",b:"Nikolay Semenov",c:"Sofia Kovalevskaya",d:"Dmitri Mendeleev"},explanation:"Dmitri Mendeleev published an early periodic table in 1869."},
+  "en-US":{question:"Which Russian chemist developed the periodic table?",options:{a:"Alexander Butlerov",b:"Nikolay Semenov",c:"Sofia Kovalevskaya",d:"Dmitri Mendeleev"},explanation:"Dmitri Mendeleev published an early periodic table in 1869."},
+  "ru-RU":{question:"Какой российский химик разработал периодическую систему химических элементов?",options:{a:"Александр Бутлеров",b:"Николай Семёнов",c:"Софья Ковалевская",d:"Дмитрий Менделеев"},explanation:"Дмитрий Менделеев опубликовал один из первых вариантов периодической системы в 1869 году."}
+ }},
+ {id:"RU-HIS-001",region:"RU",category:"History",difficulty:"hard",correct:"b",translations:{
+  "en-IN":{question:"In which year was the Treaty of Brest-Litovsk signed?",options:{a:"1914",b:"1918",c:"1921",d:"1905"},explanation:"The treaty between Soviet Russia and the Central Powers was signed on 3 March 1918."},
+  "en-US":{question:"What year was the Treaty of Brest-Litovsk signed?",options:{a:"1914",b:"1918",c:"1921",d:"1905"},explanation:"The treaty between Soviet Russia and the Central Powers was signed on March 3, 1918."},
+  "ru-RU":{question:"В каком году был подписан Брест-Литовский мирный договор?",options:{a:"1914",b:"1918",c:"1921",d:"1905"},explanation:"Договор между Советской Россией и Центральными державами был подписан 3 марта 1918 года."}
+ }},
+ {id:"US-GEO-002",region:"US",category:"Geography",difficulty:"medium",correct:"a",translations:{
+  "en-IN":{question:"Which river carved much of the Grand Canyon?",options:{a:"Colorado River",b:"Mississippi River",c:"Rio Grande",d:"Columbia River"},explanation:"The Colorado River and its tributaries carved the Grand Canyon over millions of years."},
+  "en-US":{question:"Which river carved much of the Grand Canyon?",options:{a:"Colorado River",b:"Mississippi River",c:"Rio Grande",d:"Columbia River"},explanation:"The Colorado River and its tributaries carved the Grand Canyon over millions of years."},
+  "ru-RU":{question:"Какая река сформировала большую часть Большого каньона?",options:{a:"Река Колорадо",b:"Река Миссисипи",c:"Рио-Гранде",d:"Река Колумбия"},explanation:"Река Колорадо и её притоки формировали Большой каньон на протяжении миллионов лет."}
+ }},
+ {id:"US-HIS-002",region:"US",category:"History",difficulty:"hard",correct:"c",translations:{
+  "en-IN":{question:"In which year did the United States complete the Louisiana Purchase?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"The United States acquired the Louisiana Territory from France in 1803."},
+  "en-US":{question:"When did the United States make the Louisiana Purchase?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"The United States acquired the Louisiana Territory from France in 1803."},
+  "ru-RU":{question:"В каком году США приобрели Луизиану у Франции?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"Соединённые Штаты приобрели территорию Луизианы у Франции в 1803 году."}
  }}
+
 ];
