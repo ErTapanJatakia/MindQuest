@@ -22,6 +22,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Question bank expanded to **15 question IDs**, with 5 per region and all 3 language variants (45 localized question records).
 - Current difficulty spread in each region: 3 easy, 1 medium and 1 hard question.
 - Answer feedback, scoring, replay and local best-score persistence.
+- Accessible view-focus management when navigating between home, quiz, results and settings.
+- Quiz progress exposes progress-bar semantics and a localized accessible label/value; result updates use a polite live region.
 - Fair Fisher–Yates question shuffle and defensive handling of malformed persisted settings.
 - Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator.
 - Localised region, language, category and difficulty selector labels.
@@ -46,6 +48,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No CI run has been started.
 - The structural validator has been strengthened but has **not yet been executed**.
 - Source consistency checks confirmed 15 unique question IDs, 5 questions per region, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
@@ -53,6 +56,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Fixed category and difficulty translation dictionary placement so the game resolves labels from the active interface language.
 - Added a recovery path when filters produce no questions: the replay action is hidden, the settings action is offered, and saving revised filters returns to the home screen.
 - Segmented best-score persistence by region, category and difficulty, with defensive parsing of saved records.
+- Settings saves now return to home so changed locale/filter preferences cannot leave an active round displaying stale question content.
+- Added keyboard/screen-reader focus movement to each view heading, accessible progress-bar state and localized progress announcements.
 - Added six regional questions: one medium and one hard question for each region.
 - Retained the three existing independent selectors and filter preferences.
 - Strengthened the question-bank validator to enforce the supported category list, supported difficulty values and exact answer-option key set.
