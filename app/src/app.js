@@ -99,6 +99,7 @@
   let current = 0;
   let score = 0;
   let answerHistory = [];
+  let lastRoundSignature = "";
   let answered = false;
   let noQuestionsForSelection = false;
   let lastView = "home-view";
@@ -313,6 +314,14 @@
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     const selectedRound = shuffled.slice(0, 10);
+    const selectedSignature = (questions) =>
+      questions.map((question) => question.id).sort().join("|");
+    // Avoid giving the same ten-question set twice in a row when alternatives exist.
+    // The replacement comes from the same shuffled pool, preserving the round size.
+    if (selectedSignature(selectedRound) === lastRoundSignature &&
+        shuffled.length > selectedRound.length) {
+      selectedRound[selectedRound.length - 1] = shuffled[selectedRound.length];
+    }
     const selectedIds = selectedRound.map((question) => question.id);
     if (selectedRound.length !== Math.min(10, pool.length) ||
         new Set(selectedIds).size !== selectedIds.length ||
@@ -320,6 +329,7 @@
       showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
     }
+    lastRoundSignature = selectedSignature(selectedRound);
     round = selectedRound;
     current = 0;
     score = 0;
