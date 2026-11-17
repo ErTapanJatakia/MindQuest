@@ -4,7 +4,7 @@ Last updated: 2026-11-17
 
 ## Current phase
 
-**Phase 1 — foundation and first playable web vertical slice; gameplay and content expansion in progress.**
+**Phase 1 — foundation and playable web vertical slice; content volume is complete and source-quality review is underway.**
 
 Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQuest), default branch `main`.
 
@@ -29,7 +29,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Fair Fisher–Yates question shuffle and defensive handling of malformed persisted settings.
 - Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator. The home card displays score, accuracy percentage and the active pool scope.
 - Localised region, language, category and difficulty selector labels.
-- Dependency-free question-bank structural validator, including locale coverage, region-matching IDs, supported category/difficulty values, exact option keys and duplicate-option checks.
+- Dependency-free question-bank structural validator, including exact locale coverage, region-matching IDs, supported category/difficulty values, exact option keys, duplicate-option checks, duplicate question-text detection, strict text types and exact regional/total counts.
 - Initial Android WebView shell with restrictive navigation / network configuration.
 
 ### Current implementation limits
@@ -43,17 +43,23 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Android Gradle wrapper has not been added; the Android shell has not been compiled or tested on physical devices.
 - No APK or AAB has been produced. This is **not a release candidate**.
 
-## CI freeze and validation
+## Validation status
 
 - No GitHub Actions workflows have been introduced for this development work.
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
-- The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
-- The current 150-question bank has been syntax- and structure-checked for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- The structural validator now requires all four categories in each regional bank, exactly 50 questions per region / 150 total, strict non-empty text values, exact option keys, unique options and no duplicate question text within a region/locale; the official validator has **not yet been executed**.
+- Previous static review checked the current 150-question bank for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection. The strengthened validator is a separate executable check and has not been run.
 - Latest question-bank expansion added fifteen questions (five per region), with all three translations. Static structural checks passed for 150 unique IDs, regional assignment, translation completeness, option integrity, category coverage and difficulty distribution. The official validator, CI, Android build and device validation remain deferred.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
+
+- Reviewed the gameplay/persistence path and hardened saved best-score parsing: only integer scores from 0 through the recorded total, with a valid round total of 1–10, are accepted. Invalid or stale/corrupt records are ignored instead of being rendered or used in percentage comparisons.
+- Strengthened the question-bank validator to reject malformed question/translation/option types, duplicate normalized question text per region and locale, unexpected total counts, and regional banks that do not contain exactly 50 questions. Whitespace normalization is applied before duplicate-text and duplicate-option comparisons. The validator remains unexecuted pending the agreed QA phase.
+- Source review covered the question validator, gameplay flow, result review, settings persistence, HTML view structure, responsive CSS and Android WebView configuration. This was a targeted review, not a complete line-by-line audit; full localization, accessibility and Android build reviews remain open.
+
+
 
 - Expanded the question bank from 135 to **150 stable IDs** (50 per region), adding fifteen questions with all three translations. New topics include the Palk Strait, Chandragupta Maurya, M. S. Swaminathan, the veena and Yakshagana (India); the Sea of Okhotsk, Battle of Borodino, Mir space station, balalaika and Anton Chekhov's plays (Russia); and the Mojave Desert, the Civil Rights Act of 1964, the James Webb Space Telescope, Grant Wood's *American Gothic* and William Faulkner's Yoknapatawpha County (United States). Each region now has 13 Geography, 12 History, 12 Science and 13 Culture questions; difficulty distribution is 15 easy, 20 medium and 15 hard per region. The bank now contains 450 localized records. Static in-memory syntax and structural checks passed for all 150 unique IDs, three locale variants per question, non-empty question/explanation text, four distinct options, valid answer keys, supported metadata, category coverage and balanced difficulty distribution. The official validator, CI, Android build and device validation remain deferred.
 
@@ -79,7 +85,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Remaining development priorities
 
-1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup.
+1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup; the saved-score parser hardening is complete.
 2. Complete factual, cultural and native-speaker review of all 150 questions, especially Russian phrasing and translation alignment.
 3. Complete interface localization and English (India) / English (US) copy differentiation.
 4. Continue accessibility review and final visual refinement.
