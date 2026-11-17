@@ -243,7 +243,8 @@
       if (button.dataset.answer === item.correct) button.classList.add("correct");
       else if (button.dataset.answer === choice) button.classList.add("incorrect");
     });
-    $("feedback").textContent = (correct ? t("correct") : t("incorrect")) + copy.explanation;
+    const correction = correct ? "" : t("correctAnswer") + ": " + copy.options[item.correct] + ". ";
+    $("feedback").textContent = (correct ? t("correct") : t("incorrect")) + correction + copy.explanation;
     $("feedback").classList.add(correct ? "good" : "bad");
     $("next-button").disabled = false;
     // Answer buttons are disabled after selection; move focus to the newly available action.
