@@ -409,3 +409,13 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 
 - Added a lightweight vector launcher icon using the existing MindQuest dark, mint and gold palette, and referenced it as both the standard and round application icon in the Android manifest. The icon is a native resource and adds no image asset pipeline, dependency or runtime service.
 - This closes the missing launcher-icon source asset only. Adaptive-icon masking, launcher rendering across Android versions and installed-device appearance still require Android build/device QA. No CI or Android build was run.
+
+
+## Native Android launch presentation — 2026-11-18
+
+- Added a branded pre-Android 12 launch background using the existing dark-navy, mint and gold launcher identity.
+- Added an Android 12+ system splash configuration using the existing vector launcher mark and the same dark-navy background; the system transitions to the regular application theme after the splash.
+- Added shared native application colors and themes, assigned the launch theme to the launcher activity, and explicitly switches to the regular app theme before the Activity creates its WebView.
+- This completes the source-level splash integration within the existing visual-identity and Android-shell scope. No new platform, service, dependency, permission or release requirement was added.
+- Source files committed. No Gradle build, resource compilation, APK inspection, Android 12 splash rendering, emulator or physical-device test was run. The Android resource/theme integration remains unverified at runtime; CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and visual validation. Actual engineering time remains untracked.
