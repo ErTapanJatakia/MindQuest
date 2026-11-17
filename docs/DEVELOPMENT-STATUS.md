@@ -33,7 +33,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ### Current implementation limits
 
 - The question bank contains **21 of 150 target questions**: 7 India, 7 Russia and 7 United States.
-- Each question has 3 locale variants: 45 localized records out of the 450 target records.
+- Each question has 3 locale variants: 63 localized records out of the 450 target records.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
