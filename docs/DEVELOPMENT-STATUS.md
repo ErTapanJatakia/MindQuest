@@ -163,3 +163,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Incorrect-answer feedback now explicitly includes the correct answer text before the explanation. The existing polite, atomic live region therefore communicates the correction without relying on colour-only highlighting or requiring the player to reach the results review.
 - The correction label is sourced from the active interface dictionary, while the answer text and explanation use the independently selected question locale. This preserves all supported interface/region/question-language combinations.
 - Source change committed and subsequently re-fetched. No parser, browser runtime, accessibility-tree inspection, screen-reader test, official content validator, CI, Android build or device test was run.
+
+
+## Latest settings-state validation refinement — 2026-11-17
+
+- Extracted a shared settings normalizer and applied it both when loading persisted preferences and immediately before saving values from the settings controls.
+- Unsupported interface locales, question locales, regions, categories or difficulty values now fall back to the documented defaults at both boundaries, rather than relying only on startup validation.
+- This hardens the independent-selector model against malformed or unexpected values without changing normal user selections or the persisted settings schema.
+- Source change committed and re-fetched. No JavaScript parser, browser runtime, official content validator, CI, Android build or device test was run.
