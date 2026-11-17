@@ -238,3 +238,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Reference: [U.S. Library of Congress — Gettysburg Address: Primary Documents in American History](https://guides.loc.gov/gettysburg-address), which records the delivery date and dedication context.
 - This targeted correction improves topic diversity; it is not a full factual or native-speaker review. No official content validator, browser/runtime, CI, Android build or physical-device test was run.
 - No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
+
+
+## Latest U.S. history duplication and context review — 2026-11-18
+
+- Replaced the second Louisiana Purchase question (`US-HIS-006`), which duplicated the topic already covered by `US-HIS-002`, with a question about the Nineteenth Amendment's ratification on 18 August 1920.
+- Preserved the stable ID, region, category, difficulty and correct-answer key (`d`). All three language variants identify the Nineteenth Amendment as the correct answer.
+- Added historical context to the explanations: although the amendment prohibited denying or abridging voting rights on account of sex, discriminatory laws continued to disenfranchise many women, particularly women of colour.
+- Reference: [U.S. National Archives — 19th Amendment to the U.S. Constitution: Women's Right to Vote](https://www.archives.gov/milestone-documents/19th-amendment), including the ratification date and the continuing limits on full enfranchisement.
+- This is a targeted duplicate-removal and context correction, not full factual or native-speaker certification. No official content validator, browser/runtime, CI, Android build or physical-device test was run.
+- No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
