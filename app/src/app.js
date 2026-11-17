@@ -133,7 +133,9 @@
     const bestPercent = best ? Math.round((best.score / best.total) * 100) : null;
     $("best-score").textContent = best ? best.score + " / " + best.total + " · " + bestPercent + "%" : "—";
     $("best-score-scope").textContent = [regionName(settings.questionRegion), selectedCategoryName(), selectedDifficultyName()].join(" · ");
-    $("answers").setAttribute("aria-label", t("answerOptions"));\n    $("settings-open").setAttribute("aria-label", t("settingsButtonLabel"));\n    $("brand-home").setAttribute("aria-label", t("homeLinkLabel"));
+    $("answers").setAttribute("aria-label", t("answerOptions"));
+    $("settings-open").setAttribute("aria-label", t("settingsButtonLabel"));
+    $("brand-home").setAttribute("aria-label", t("homeLinkLabel"));
     [...$("question-category").options].forEach((option) => {
       if (option.value === "all") option.textContent = t("allCategories");
       else option.textContent = categoryName(option.value);
