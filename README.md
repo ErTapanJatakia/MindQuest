@@ -30,7 +30,7 @@ The current content set contains 150 question IDs: 50 for each region, with thre
 
 - Home screen, settings, help/about.
 - Offline multiple-choice quiz with feedback and scoring.
-- Ten-question rounds, category selection, replay, and difficulty levels.
+- Configurable 5-, 10- or 15-question rounds, category selection, replay, and difficulty levels.
 - Results and explanations.
 - Locally persisted preferences and best score.
 - Accessibility and small-screen support.
