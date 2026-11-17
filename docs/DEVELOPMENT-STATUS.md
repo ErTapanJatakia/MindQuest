@@ -602,3 +602,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated both manifest launcher icon references to `@mipmap/ic_launcher`; existing splash artwork is unchanged.
 - Resource compilation, APK inspection and launcher rendering have not been run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android keyboard resize dispatch alignment — 2026-11-18
+
+- Added `android:windowSoftInputMode="adjustResize"` to the launcher Activity so the target-SDK 35 edge-to-edge window can receive IME inset updates, matching the existing API 35+ `WindowInsets.Type.ime()` handling in `MainActivity`.
+- Updated Android build notes to document the manifest/window relationship. No dependency, permission, service or product scope was added.
+- Source and post-commit fetch verification only; no Gradle build, emulator, keyboard animation, viewport or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
