@@ -214,24 +214,33 @@
         !new RegExp("^(IN|RU|US)-" + categoryCodes[question.category] + "-\\d{3}$").test(question.id) ||
         !question.id.startsWith(question.region + "-")) return false;
 
-    const copy = question.translations && question.translations[settings.questionLocale];
-    if (!copy || typeof copy !== "object" || Array.isArray(copy)) return false;
+    const translations = question.translations;
+    if (!translations || typeof translations !== "object" || Array.isArray(translations) ||
+        Object.keys(translations).sort().join("|") !== [...LOCALES].sort().join("|")) return false;
+
     const expectedTranslationKeys = ["explanation", "options", "question"];
-    if (Object.keys(copy).sort().join("|") !== expectedTranslationKeys.join("|")) return false;
+    const answerKeys = ["a", "b", "c", "d"];
     const hasCleanText = (value) =>
       typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
-    if (!hasCleanText(copy.question) || !hasCleanText(copy.explanation)) return false;
-    if (!copy.options || typeof copy.options !== "object" || Array.isArray(copy.options)) return false;
-    const answerKeys = ["a", "b", "c", "d"];
-    if (Object.keys(copy.options).sort().join("|") !== answerKeys.join("|") ||
-        !answerKeys.every((key) => hasCleanText(copy.options[key]))) return false;
 
-    // NFC catches canonically equivalent Unicode strings; whitespace and case are
-    // normalized as well so visually duplicate answer choices cannot be selected.
-    const normalizedOptions = answerKeys.map((key) =>
-      copy.options[key].normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(settings.questionLocale)
-    );
-    return new Set(normalizedOptions).size === answerKeys.length;
+    // Validate every locale before admitting the shared question ID to a round.
+    // The question-level correct key is the canonical answer identity for all translations.
+    for (const locale of LOCALES) {
+      const copy = translations[locale];
+      if (!copy || typeof copy !== "object" || Array.isArray(copy) ||
+          Object.keys(copy).sort().join("|") !== expectedTranslationKeys.join("|") ||
+          !hasCleanText(copy.question) || !hasCleanText(copy.explanation) ||
+          !copy.options || typeof copy.options !== "object" || Array.isArray(copy.options) ||
+          Object.keys(copy.options).sort().join("|") !== answerKeys.join("|") ||
+          !answerKeys.every((key) => hasCleanText(copy.options[key])) ||
+          !hasCleanText(copy.options[question.correct])) return false;
+
+      const normalizedOptions = answerKeys.map((key) =>
+        copy.options[key].normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(locale)
+      );
+      if (new Set(normalizedOptions).size !== answerKeys.length) return false;
+    }
+    return true;
   }
 
   function discardRound() {
@@ -285,7 +294,15 @@
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    round = shuffled.slice(0, 10);
+    const selectedRound = shuffled.slice(0, 10);
+    const selectedIds = selectedRound.map((question) => question.id);
+    if (selectedRound.length !== Math.min(10, pool.length) ||
+        new Set(selectedIds).size !== selectedIds.length ||
+        selectedRound.some((question) => !isPlayableQuestion(question))) {
+      showRecovery("roundIntegrityError", "roundIntegrityHint");
+      return;
+    }
+    round = selectedRound;
     current = 0;
     score = 0;
     answerHistory = [];
