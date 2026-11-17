@@ -19,8 +19,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Category filter: All categories, Geography, History, Science and Culture.
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
-- Question bank expanded to **60 question IDs**, with 20 per region and all 3 language variants (180 localized question records).
-- Current difficulty spread in each region: 7 easy, 8 medium and 5 hard questions.
+- Question bank expanded to **75 question IDs**, with 25 per region and all 3 language variants (225 localized question records).
+- Current difficulty spread in each region: 9 easy, 10 medium and 6 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
 - A localized help guide explains round flow, scoring, filters, independent language/region settings and offline/privacy principles.
@@ -34,8 +34,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ### Current implementation limits
 
-- The question bank contains **60 of 150 target questions**: 20 India, 20 Russia and 20 United States.
-- Each question has 3 locale variants: 180 localized records out of the 450 target records.
+- The question bank contains **75 of 150 target questions**: 25 India, 25 Russia and 25 United States.
+- Each question has 3 locale variants: 225 localized records out of the 450 target records.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
@@ -49,7 +49,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
 - The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
-- The current 60-question bank has been syntax- and structure-checked for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- The current 75-question bank has been syntax- and structure-checked for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
 - Latest question-bank review repaired a missing comma that had made the previous bank file syntactically invalid; six additional regional questions were added. Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
@@ -68,10 +68,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added keyboard/screen-reader focus movement to each view heading, accessible progress-bar state and localized progress announcements.
 - Added six regional questions: one easy and one medium question for each region.
 - Implemented results accuracy percentage and a localized per-question review of selected answer, correct answer and explanation; cleared stale review content for empty question selections.
-- Expanded the bank to 60 stable question IDs / 180 localized records; each region has five questions in each of the four categories.
+- Expanded the bank to 75 stable question IDs / 225 localized records; each region has seven Geography questions and six each in History, Science and Culture.
 - Retained the three existing independent selectors and filter preferences.
 - Strengthened the question-bank validator to enforce the supported category list, supported difficulty values and exact answer-option key set.
-- Updated the roadmap and this status record to reflect 60 questions, balanced category coverage and the current difficulty spread.
+- Updated the roadmap and this status record to reflect 75 questions, category coverage and the current difficulty spread.
 
 ## Remaining development priorities
 
