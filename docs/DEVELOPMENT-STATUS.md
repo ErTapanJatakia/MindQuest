@@ -461,3 +461,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - App commit: 654c44d. Roadmap documentation commit: ff060cf.
 - No JavaScript parser, browser runtime, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining baseline scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Question-bank stable-ID taxonomy guard — 2026-11-18
+
+- The structural validator now checks that each question ID follows the runtime's region/category taxonomy, such as IN-GEO-001, RU-HIS-004 or US-SCI-012, rather than checking only the region prefix.
+- This adds an offline whole-bank check for mismatched category codes and preserves all existing stable IDs and question content.
+- Validator commit: c02d3fd. The official validator remains unexecuted until the agreed development freeze. No CI or Android validation was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining allocation remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
