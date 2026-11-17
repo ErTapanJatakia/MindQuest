@@ -322,7 +322,7 @@ window.MINDQUEST_QUESTIONS = [
  {id:"IN-GEO-007",region:"IN",category:"Geography",difficulty:"medium",correct:"a",translations:{
   "en-IN":{question:"Which mountain range runs along much of India's western coast?",options:{a:"Western Ghats",b:"Aravalli Range",c:"Vindhya Range",d:"Shivalik Hills"},explanation:"The Western Ghats run roughly parallel to India's western coast and form an important biodiversity hotspot."},
   "en-US":{question:"Which mountain range runs parallel to much of India's western coast?",options:{a:"Western Ghats",b:"Aravalli Range",c:"Vindhya Range",d:"Shivalik Hills"},explanation:"The Western Ghats run roughly parallel to India's western coast and form an important biodiversity hotspot."},
-  "ru-RU":{question:"Какая горная система тянется вдоль значительной части западного побережья Индии?",options:{a:"Западные Гаты",b:"Аравalliйский хребет",c:"хребет Виндхья",d:"холмы Шивалик"},explanation:"Западные Гаты проходят примерно параллельно западному побережью Индии и являются важным центром биоразнообразия."}
+  "ru-RU":{question:"Какая горная система тянется вдоль значительной части западного побережья Индии?",options:{a:"Западные Гаты",b:"Араваллийский хребет",c:"хребет Виндхья",d:"холмы Шивалик"},explanation:"Западные Гаты проходят примерно параллельно западному побережью Индии и являются важным центром биоразнообразия."}
  }},
  {id:"IN-HIS-006",region:"IN",category:"History",difficulty:"hard",correct:"d",translations:{
   "en-IN":{question:"Which Mughal emperor ordered the construction of Fatehpur Sikri as his imperial capital?",options:{a:"Babur",b:"Humayun",c:"Jahangir",d:"Akbar"},explanation:"Emperor Akbar developed Fatehpur Sikri as his imperial capital in the late 16th century."},
