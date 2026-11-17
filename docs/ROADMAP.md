@@ -162,3 +162,10 @@ The full 50-question-per-region content target is now populated, but the bank re
 
 - Best-score comparison uses exact integer cross-multiplication for accuracy; equal-accuracy results prefer the larger question count. Existing storage format and scope remain unchanged.
 - Source-only refinement; no runtime, official validator, CI or Android validation was run.
+
+
+## Latest runtime question-record guard — 2026-11-17
+
+- Gameplay now checks question record structure and selected-locale content before including a record in a round, including region/category/difficulty, correct-answer key, question/explanation text and all four options.
+- A malformed question collection or record no longer causes the round filter to throw. This guard complements, and does not replace, the strict official content validator.
+- Source-only refinement; no runtime, official validator, CI or Android validation was run.
