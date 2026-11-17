@@ -30,7 +30,7 @@
     "en-US": {
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard",categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
       eyebrow:"A little challenge for your mind",welcome:"Ready to think?",intro:"Explore the world, one question at a time.",
-      play:"Start a round",bestScore:"Best score",questionRegion:"Question region",offline:"Ready to play offline",
+      play:"Start a round",bestScore:"Best score",questionRegion:"Question region",offline:"Ready to play offline",progress:"Question progress",
       next:"Next question",roundComplete:"ROUND COMPLETE",wellPlayed:"Well played!",points:"points",
       playAgain:"Play again",home:"Home",personalise:"MAKE IT YOURS",settings:"Settings",
       settingsIntro:"These choices are independent. Mix any interface, region and question language.",
