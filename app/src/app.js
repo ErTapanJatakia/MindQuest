@@ -99,7 +99,8 @@
   let current = 0;
   let score = 0;
   let answerHistory = [];
-  let lastRoundSignature = "";
+  let questionCycleSignature = "";
+  let seenQuestionIds = new Set();
   let answered = false;
   let noQuestionsForSelection = false;
   let lastView = "home-view";
@@ -281,6 +282,8 @@
         (settings.difficulty === "all" || q.difficulty === settings.difficulty)
       );
     if (!pool.length) {
+      questionCycleSignature = "";
+      seenQuestionIds.clear();
       showRecovery();
       return;
     }
@@ -307,29 +310,45 @@
       return;
     }
 
+    const sortedPoolIds = [...questionIds].sort();
+    const poolSignature = sortedPoolIds.join("|");
+    // A changed region/category/difficulty pool starts a fresh session-local cycle.
+    if (poolSignature !== questionCycleSignature) {
+      questionCycleSignature = poolSignature;
+      seenQuestionIds.clear();
+    }
+    // Once every eligible question has appeared, begin a new cycle.
+    if (seenQuestionIds.size >= pool.length) seenQuestionIds.clear();
+
     const shuffled = [...pool];
-    // Fisher–Yates gives every question an equal chance of occupying each position.
+    // Fisher–Yates randomizes question order within the unseen and fill pools.
     for (let i = shuffled.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    const selectedRound = shuffled.slice(0, 10);
-    const selectedSignature = (questions) =>
-      questions.map((question) => question.id).sort().join("|");
-    // Avoid giving the same ten-question set twice in a row when alternatives exist.
-    // The replacement comes from the same shuffled pool, preserving the round size.
-    if (selectedSignature(selectedRound) === lastRoundSignature &&
-        shuffled.length > selectedRound.length) {
-      selectedRound[selectedRound.length - 1] = shuffled[selectedRound.length];
+    const targetRoundLength = Math.min(10, pool.length);
+    const unseen = shuffled.filter((question) => !seenQuestionIds.has(question.id));
+    const selectedRound = unseen.slice(0, targetRoundLength);
+    // If fewer than ten unseen questions remain in this cycle, include all of them
+    // and fill the rest from previously seen questions without duplicating this round.
+    if (selectedRound.length < targetRoundLength) {
+      const selectedIds = new Set(selectedRound.map((question) => question.id));
+      for (const question of shuffled) {
+        if (selectedRound.length >= targetRoundLength) break;
+        if (!selectedIds.has(question.id)) {
+          selectedRound.push(question);
+          selectedIds.add(question.id);
+        }
+      }
     }
     const selectedIds = selectedRound.map((question) => question.id);
-    if (selectedRound.length !== Math.min(10, pool.length) ||
+    if (selectedRound.length !== targetRoundLength ||
         new Set(selectedIds).size !== selectedIds.length ||
         selectedRound.some((question) => !isPlayableQuestion(question))) {
       showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
     }
-    lastRoundSignature = selectedSignature(selectedRound);
+    selectedIds.forEach((id) => seenQuestionIds.add(id));
     round = selectedRound;
     current = 0;
     score = 0;
