@@ -659,3 +659,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ### Help privacy fallback accuracy — 2026-11-18
 - Aligned the static HTML Help fallback with the three localized Help dictionaries: settings and best scores are stored on-device when browser storage is available, rather than implying persistence is guaranteed.
 - This is wording accuracy only; no storage implementation, feature scope or baseline allocation changed. No browser runtime, official content validator, CI, Android build or device test was run.
+
+
+### Android API 23 navigation documentation precision — 2026-11-18
+- Clarified that API 24+ `WebResourceRequest.isForMainFrame` enables explicit subframe rejection, while API 23's legacy string callback cannot distinguish frame type and instead enforces the exact bundled-document URL allowlist.
+- This aligns documentation with the existing `MainActivity` implementation; no application code, dependency, permission, scope or baseline allocation changed. No Kotlin compilation, Gradle build, emulator, runtime navigation or CI validation was run.
