@@ -19,8 +19,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Category filter: All categories, Geography, History, Science and Culture.
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
-- Question bank expanded to **21 question IDs**, with 7 per region and all 3 language variants (63 localized question records).
-- Current difficulty spread in each region: 4 easy, 2 medium and 1 hard question.
+- Question bank expanded to ****27 question IDs**, with 9 per region and all 3 language variants (81 localized question records).
+- Current difficulty spread in each region: 5 easy, 3 medium and 1 hard question.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Accessible view-focus management when navigating between home, quiz, results and settings.
 - Quiz progress exposes progress-bar semantics and a localized accessible label/value; result updates use a polite live region.
@@ -32,8 +32,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ### Current implementation limits
 
-- The question bank contains **21 of 150 target questions**: 7 India, 7 Russia and 7 United States.
-- Each question has 3 locale variants: 63 localized records out of the 450 target records.
+- The question bank contains **27 of 150 target questions**: 9 India, 9 Russia and 9 United States.
+- Each question has 3 locale variants: 81 localized records out of the 450 target records.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
@@ -47,8 +47,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
 - The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
-- Source consistency checks confirmed 21 question IDs, 7 questions per region, all three locales on each record, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
-- Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
+- Source consistency checks confirmed 27 question IDs, 9 questions per region, all three locales on each record, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- Latest question-bank review repaired a missing comma that had made the previous bank file syntactically invalid; six additional regional questions were added. Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
