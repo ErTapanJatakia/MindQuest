@@ -259,3 +259,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - The previous 330-minute figure counted only two fully implemented workstreams. It understated partial implementation in other workstreams and is superseded by this deliverable-based reconciliation.
 - This is estimate-weighted scope implementation, not actual engineering time, calendar duration, test pass rate or release readiness. Actual time remains untracked.
 - Workstream status labels remain conservative: partial work remains In progress; implementation awaiting acceptance remains Review. No workstream is marked Complete solely because source code exists.
+
+
+## Latest local-storage read-failure handling — 2026-11-18
+
+- Changed the storage adapter's read contract to distinguish a successful missing-key result from a failed storage access. A missing key remains a normal first-run state; a thrown access error is now recorded as a persistence warning.
+- Settings reads and best-score reads now surface the existing localized storage-unavailable notice when browser storage cannot be read. The app continues with safe defaults/no stored best score rather than crashing.
+- This complements the earlier write-failure handling and avoids silently presenting inaccessible storage as an empty profile. Technical reference: MDN, [Using the Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API), which explains that localStorage may be unavailable even when the API exists.
+- Source-level change only. No browser runtime, denied-storage simulation, official content validator, CI, Android build or device QA was run. Baseline allocation unchanged; actual engineering time remains untracked.
