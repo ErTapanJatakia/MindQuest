@@ -172,4 +172,36 @@ window.MINDQUEST_QUESTIONS = [
   "ru-RU":{question:"Какой американский архитектор спроектировал дом «Дом над водопадом» (Fallingwater) в Пенсильвании?",options:{a:"Фрэнк Ллойд Райт",b:"Луис Салливан",c:"Филип Джонсон",d:"И. М. Пей"},explanation:"Фрэнк Ллойд Райт спроектировал Fallingwater — дом над водопадом в Пенсильвании, построенный в 1930-х годах."}
  }}
 
+,
+ {id:"IN-CUL-003",region:"IN",category:"Culture",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"The Konark Sun Temple in Odisha is dedicated to which Hindu deity?",options:{a:"Shiva",b:"Vishnu",c:"Ganesha",d:"Surya"},explanation:"The 13th-century Konark Sun Temple was built in honour of Surya, the Sun god."},
+  "en-US":{question:"Which Hindu deity is honoured at the Konark Sun Temple in Odisha?",options:{a:"Shiva",b:"Vishnu",c:"Ganesha",d:"Surya"},explanation:"The 13th-century Konark Sun Temple was built in honour of Surya, the Sun god."},
+  "ru-RU":{question:"Какому индуистскому божеству посвящён храм Солнца в Конараке, штат Одиша?",options:{a:"Шиве",b:"Вишну",c:"Ганеше",d:"Сурье"},explanation:"Храм Солнца в Конараке, построенный в XIII веке, посвящён Сурье — богу Солнца."}
+ }},
+ {id:"IN-SCI-003",region:"IN",category:"Science",difficulty:"hard",correct:"b",translations:{
+  "en-IN":{question:"For which field did Indian physicist C. V. Raman receive the 1930 Nobel Prize?",options:{a:"Chemistry",b:"Physics",c:"Medicine",d:"Literature"},explanation:"C. V. Raman received the 1930 Nobel Prize in Physics for his work on the scattering of light, known as the Raman effect."},
+  "en-US":{question:"C. V. Raman received the 1930 Nobel Prize in which field?",options:{a:"Chemistry",b:"Physics",c:"Medicine",d:"Literature"},explanation:"C. V. Raman received the 1930 Nobel Prize in Physics for his work on the scattering of light, known as the Raman effect."},
+  "ru-RU":{question:"В какой области Чандрасекхара Венката Раман получил Нобелевскую премию в 1930 году?",options:{a:"Химия",b:"Физика",c:"Медицина",d:"Литература"},explanation:"Чандрасекхара Венката Раман получил Нобелевскую премию по физике в 1930 году за исследования рассеяния света, известные как эффект Рамана."}
+ }},
+ {id:"RU-HIS-003",region:"RU",category:"History",difficulty:"medium",correct:"a",translations:{
+  "en-IN":{question:"In which year was the city of Saint Petersburg founded by Peter the Great?",options:{a:"1703",b:"1721",c:"1812",d:"1613"},explanation:"Peter the Great founded Saint Petersburg in 1703; it later became the capital of the Russian Empire."},
+  "en-US":{question:"What year did Peter the Great found the city of Saint Petersburg?",options:{a:"1703",b:"1721",c:"1812",d:"1613"},explanation:"Peter the Great founded Saint Petersburg in 1703; it later became the capital of the Russian Empire."},
+  "ru-RU":{question:"В каком году Пётр I основал Санкт-Петербург?",options:{a:"1703",b:"1721",c:"1812",d:"1613"},explanation:"Пётр I основал Санкт-Петербург в 1703 году; позднее город стал столицей Российской империи."}
+ }},
+ {id:"RU-SCI-003",region:"RU",category:"Science",difficulty:"hard",correct:"c",translations:{
+  "en-IN":{question:"For which discovery did Russian physiologist Ivan Pavlov receive the 1904 Nobel Prize?",options:{a:"Radioactivity",b:"Blood groups",c:"Digestive physiology",d:"Penicillin"},explanation:"Ivan Pavlov received the 1904 Nobel Prize in Physiology or Medicine for his research on the physiology of digestion."},
+  "en-US":{question:"Ivan Pavlov received the 1904 Nobel Prize for research in which area?",options:{a:"Radioactivity",b:"Blood groups",c:"Digestive physiology",d:"Penicillin"},explanation:"Ivan Pavlov received the 1904 Nobel Prize in Physiology or Medicine for his research on the physiology of digestion."},
+  "ru-RU":{question:"За исследования в какой области Иван Павлов получил Нобелевскую премию в 1904 году?",options:{a:"Радиоактивность",b:"Группы крови",c:"Физиология пищеварения",d:"Пенициллин"},explanation:"Иван Павлов получил Нобелевскую премию по физиологии и медицине в 1904 году за исследования физиологии пищеварения."}
+ }},
+ {id:"US-HIS-003",region:"US",category:"History",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"In which year did Yellowstone become the world's first national park?",options:{a:"1861",b:"1865",c:"1885",d:"1872"},explanation:"Yellowstone was established as the world's first national park in 1872."},
+  "en-US":{question:"What year was Yellowstone established as the world's first national park?",options:{a:"1861",b:"1865",c:"1885",d:"1872"},explanation:"Yellowstone was established as the world's first national park in 1872."},
+  "ru-RU":{question:"В каком году Йеллоустон стал первым в мире национальным парком?",options:{a:"1861",b:"1865",c:"1885",d:"1872"},explanation:"Йеллоустон был учреждён как первый в мире национальный парк в 1872 году."}
+ }},
+ {id:"US-SCI-004",region:"US",category:"Science",difficulty:"hard",correct:"a",translations:{
+  "en-IN":{question:"Which brothers made the first successful sustained, controlled, powered airplane flight in 1903?",options:{a:"Orville and Wilbur Wright",b:"Charles and Frank Duryea",c:"Glenn and Edward Curtiss",d:"John and Washington Roebling"},explanation:"Orville and Wilbur Wright achieved the first successful sustained, controlled, powered airplane flight near Kitty Hawk, North Carolina, on 17 December 1903."},
+  "en-US":{question:"Who made the first successful sustained, controlled, powered airplane flight in 1903?",options:{a:"Orville and Wilbur Wright",b:"Charles and Frank Duryea",c:"Glenn and Edward Curtiss",d:"John and Washington Roebling"},explanation:"Orville and Wilbur Wright achieved the first successful sustained, controlled, powered airplane flight near Kitty Hawk, North Carolina, on December 17, 1903."},
+  "ru-RU":{question:"Кто в 1903 году совершил первый успешный продолжительный управляемый полёт на самолёте с двигателем?",options:{a:"Орвилл и Уилбур Райт",b:"Чарльз и Фрэнк Дьюриа",c:"Гленн и Эдвард Кёртисс",d:"Джон и Вашингтон Рёблинги"},explanation:"Орвилл и Уилбур Райт совершили первый успешный продолжительный управляемый полёт на самолёте с двигателем близ Китти-Хок, штат Северная Каролина, 17 декабря 1903 года."}
+ }}
+
 ];
