@@ -639,3 +639,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Each region has the intended category split: 13 Geography, 12 History, 12 Science and 13 Culture. Every category sequence is contiguous from 001 through its regional/category total; no duplicate IDs or sequence gaps were found in this inventory scan.
 - Found 150 translation blocks for each supported locale (en-IN, en-US, ru-RU), consistent with 450 localized question records.
 - This was a narrow source inventory check, not question-bank schema validation, factual verification, translation-quality review, or execution of npm run validate:content. The official validator, CI and Android validation remain deferred. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
+
+
+### Android predictive-back capability wording review (2026-11-18)
+- Clarified that the API 33+ implementation registers `OnBackInvokedCallback` and handles the committed system-back action; it does not implement `OnBackAnimationCallback` gesture progress, cancellation or a custom predictive animation.
+- This corrects documentation precision only. No Android source change, build, emulator test or device validation was performed. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
