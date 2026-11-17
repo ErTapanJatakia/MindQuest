@@ -27,7 +27,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Accessible view-focus management when navigating between home, quiz, results and settings.
 - Quiz progress exposes progress-bar semantics and a localized accessible label/value; result updates use a polite live region.
 - Fair Fisher–Yates question shuffle and defensive handling of malformed persisted settings.
-- Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator.
+- Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator. The home card displays score, accuracy percentage and the active pool scope.
 - Localised region, language, category and difficulty selector labels.
 - Dependency-free question-bank structural validator, including locale coverage, region-matching IDs, supported category/difficulty values, exact option keys and duplicate-option checks.
 - Initial Android WebView shell with restrictive navigation / network configuration.
@@ -54,6 +54,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
+
+- Refined the home-screen best-score card to show score, percentage accuracy and the active region/category/difficulty scope; the scope is localized using the current interface language.
 
 - Added a five-topic help guide in English (India), English (US) and Russian, reachable from both the home and settings views. Back navigation returns to the originating view.
 
