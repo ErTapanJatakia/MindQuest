@@ -60,7 +60,10 @@
   const DEFAULTS = { interfaceLocale:suggestedInterfaceLocale(), questionRegion:"IN", questionLocale:"en-IN" };
   let storageWarning = false;
   const safeStorage = {
-    get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
+    get(key) {
+      try { return { ok:true, value:localStorage.getItem(key) }; }
+      catch (_) { return { ok:false, value:null }; }
+    },
     set(key, value) {
       try { localStorage.setItem(key, value); return true; }
       catch (_) { return false; }
@@ -85,7 +88,9 @@
 
   function loadSettings() {
     let saved = {};
-    try { saved = JSON.parse(safeStorage.get("mindquest.settings") || "{}"); } catch (_) { saved = {}; }
+    const stored = safeStorage.get("mindquest.settings");
+    if (!stored.ok) storageWarning = true;
+    try { saved = JSON.parse(stored.value || "{}"); } catch (_) { saved = {}; }
     return normalizeSettings(saved);
   }
 
@@ -107,8 +112,14 @@
   const selectedDifficultyName = () => settings.difficulty === "all" ? t("anyDifficulty") : t(settings.difficulty);
   const bestScoreKey = () => "mindquest.best." + settings.questionRegion + "." + settings.category + "." + settings.difficulty;
   const readBestScore = () => {
+    const stored = safeStorage.get(bestScoreKey());
+    if (!stored.ok) {
+      storageWarning = true;
+      updateStorageStatus();
+      return null;
+    }
     try {
-      const record = JSON.parse(safeStorage.get(bestScoreKey()) || "null");
+      const record = JSON.parse(stored.value || "null");
       if (!record || !Number.isInteger(record.score) || !Number.isInteger(record.total) ||
           record.total < 1 || record.total > 10 || record.score < 0 || record.score > record.total) return null;
       return record;
