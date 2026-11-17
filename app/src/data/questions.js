@@ -75,8 +75,7 @@ window.MINDQUEST_QUESTIONS = [
   "en-IN":{question:"In which year did the United States complete the Louisiana Purchase?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"The United States acquired the Louisiana Territory from France in 1803."},
   "en-US":{question:"When did the United States make the Louisiana Purchase?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"The United States acquired the Louisiana Territory from France in 1803."},
   "ru-RU":{question:"В каком году США приобрели Луизиану у Франции?",options:{a:"1776",b:"1789",c:"1803",d:"1812"},explanation:"Соединённые Штаты приобрели территорию Луизианы у Франции в 1803 году."}
- }}
-
+ }},
 
  {id:"IN-CUL-001",region:"IN",category:"Culture",difficulty:"easy",correct:"b",translations:{
   "en-IN":{question:"Bharatanatyam is a classical dance form traditionally associated with which Indian state?",options:{a:"Kerala",b:"Tamil Nadu",c:"Punjab",d:"Assam"},explanation:"Bharatanatyam developed in Tamil Nadu and is one of India's major classical dance traditions."},
@@ -107,6 +106,38 @@ window.MINDQUEST_QUESTIONS = [
   "en-IN":{question:"On which planet did NASA's Perseverance rover land in 2021?",options:{a:"Venus",b:"Mars",c:"Jupiter",d:"Mercury"},explanation:"NASA's Perseverance rover landed in Jezero Crater on Mars on 18 February 2021."},
   "en-US":{question:"Which planet did NASA's Perseverance rover land on in 2021?",options:{a:"Venus",b:"Mars",c:"Jupiter",d:"Mercury"},explanation:"NASA's Perseverance rover landed in Jezero Crater on Mars on February 18, 2021."},
   "ru-RU":{question:"На какую планету в 2021 году совершил посадку марсоход NASA «Персеверанс»?",options:{a:"Венера",b:"Марс",c:"Юпитер",d:"Меркурий"},explanation:"Марсоход NASA «Персеверанс» совершил посадку в кратере Езеро на Марсе 18 февраля 2021 года."}
+ }}
+
+,
+ {id:"IN-HIS-002",region:"IN",category:"History",difficulty:"medium",correct:"b",translations:{
+  "en-IN":{question:"On which date was the Constitution of India adopted by the Constituent Assembly?",options:{a:"15 August 1947",b:"26 November 1949",c:"26 January 1950",d:"2 October 1950"},explanation:"The Constituent Assembly adopted the Constitution on 26 November 1949; it came into force on 26 January 1950."},
+  "en-US":{question:"When did India's Constituent Assembly adopt the Constitution?",options:{a:"August 15, 1947",b:"November 26, 1949",c:"January 26, 1950",d:"October 2, 1950"},explanation:"The Constituent Assembly adopted the Constitution on November 26, 1949; it took effect on January 26, 1950."},
+  "ru-RU":{question:"Когда Учредительное собрание Индии приняло Конституцию страны?",options:{a:"15 августа 1947 года",b:"26 ноября 1949 года",c:"26 января 1950 года",d:"2 октября 1950 года"},explanation:"Конституция была принята 26 ноября 1949 года и вступила в силу 26 января 1950 года."}
+ }},
+ {id:"IN-CUL-002",region:"IN",category:"Culture",difficulty:"easy",correct:"c",translations:{
+  "en-IN":{question:"Which harvest festival is especially associated with Punjab and is celebrated in April?",options:{a:"Onam",b:"Bihu",c:"Baisakhi",d:"Pongal"},explanation:"Baisakhi is an important spring harvest festival in Punjab and also marks the Sikh New Year in the Nanakshahi calendar."},
+  "en-US":{question:"Which April harvest festival is especially associated with the Indian state of Punjab?",options:{a:"Onam",b:"Bihu",c:"Baisakhi",d:"Pongal"},explanation:"Baisakhi is an important spring harvest festival in Punjab and also marks the Sikh New Year in the Nanakshahi calendar."},
+  "ru-RU":{question:"Какой апрельский праздник урожая особенно связан с индийским штатом Пенджаб?",options:{a:"Она́м",b:"Биху",c:"Вайсакхи",d:"Понгал"},explanation:"Вайсакхи — важный весенний праздник урожая в Пенджабе; он также отмечает сикхский Новый год по календарю Нанакшахи."}
+ }},
+ {id:"RU-GEO-003",region:"RU",category:"Geography",difficulty:"medium",correct:"a",translations:{
+  "en-IN":{question:"Which river is generally recognised as the longest river in Europe?",options:{a:"Volga",b:"Danube",c:"Rhine",d:"Don"},explanation:"The Volga, which flows through western Russia, is generally recognised as Europe's longest river."},
+  "en-US":{question:"What is generally recognised as the longest river in Europe?",options:{a:"Volga",b:"Danube",c:"Rhine",d:"Don"},explanation:"The Volga, which flows through western Russia, is generally recognised as Europe's longest river."},
+  "ru-RU":{question:"Какая река считается самой длинной в Европе?",options:{a:"Волга",b:"Дунай",c:"Рейн",d:"Дон"},explanation:"Волга, протекающая по европейской части России, считается самой длинной рекой Европы."}
+ }},
+ {id:"RU-SCI-002",region:"RU",category:"Science",difficulty:"easy",correct:"d",translations:{
+  "en-IN":{question:"What was the name of the first artificial satellite, launched by the Soviet Union in 1957?",options:{a:"Luna 2",b:"Vostok 1",c:"Explorer 1",d:"Sputnik 1"},explanation:"Sputnik 1 became the first artificial satellite of Earth when the Soviet Union launched it on 4 October 1957."},
+  "en-US":{question:"Which was the first artificial satellite, launched by the Soviet Union in 1957?",options:{a:"Luna 2",b:"Vostok 1",c:"Explorer 1",d:"Sputnik 1"},explanation:"Sputnik 1 became the first artificial satellite of Earth when the Soviet Union launched it on October 4, 1957."},
+  "ru-RU":{question:"Как назывался первый искусственный спутник Земли, запущенный СССР в 1957 году?",options:{a:"«Луна-2»",b:"«Восток-1»",c:"«Эксплорер-1»",d:"«Спутник-1»"},explanation:"«Спутник-1» стал первым искусственным спутником Земли; СССР запустил его 4 октября 1957 года."}
+ }},
+ {id:"US-GEO-003",region:"US",category:"Geography",difficulty:"easy",correct:"b",translations:{
+  "en-IN":{question:"Which US state is the largest by land area?",options:{a:"Texas",b:"Alaska",c:"California",d:"Montana"},explanation:"Alaska is the largest US state by area, larger than Texas, California and Montana."},
+  "en-US":{question:"What is the largest U.S. state by area?",options:{a:"Texas",b:"Alaska",c:"California",d:"Montana"},explanation:"Alaska is the largest U.S. state by area, larger than Texas, California and Montana."},
+  "ru-RU":{question:"Какой штат США является крупнейшим по площади?",options:{a:"Техас",b:"Аляска",c:"Калифорния",d:"Монтана"},explanation:"Аляска — крупнейший по площади штат США; она больше Техаса, Калифорнии и Монтаны."}
+ }},
+ {id:"US-SCI-003",region:"US",category:"Science",difficulty:"medium",correct:"c",translations:{
+  "en-IN":{question:"In which year did Apollo 11 land the first humans on the Moon?",options:{a:"1961",b:"1965",c:"1969",d:"1972"},explanation:"Apollo 11 landed on the Moon on 20 July 1969, and Neil Armstrong and Buzz Aldrin walked on its surface."},
+  "en-US":{question:"What year did Apollo 11 make the first crewed Moon landing?",options:{a:"1961",b:"1965",c:"1969",d:"1972"},explanation:"Apollo 11 landed on the Moon on July 20, 1969, and Neil Armstrong and Buzz Aldrin walked on its surface."},
+  "ru-RU":{question:"В каком году миссия «Аполлон-11» доставила первых людей на Луну?",options:{a:"1961",b:"1965",c:"1969",d:"1972"},explanation:"«Аполлон-11» совершил посадку на Луне 20 июля 1969 года; Нил Армстронг и Базз Олдрин вышли на её поверхность."}
  }}
 
 ];
