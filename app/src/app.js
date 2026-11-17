@@ -126,10 +126,30 @@
       updateStorageStatus();
       return null;
     }
+    let serialized = stored.value;
+    let migrateLegacyTenQuestionScore = false;
+    // Preserve best scores created before round length became a setting.
+    if (serialized === null && settings.roundLength === 10) {
+      const legacyKey = "mindquest.best." + settings.questionRegion + "." + settings.category + "." + settings.difficulty;
+      const legacy = safeStorage.get(legacyKey);
+      if (!legacy.ok) {
+        storageWarning = true;
+        updateStorageStatus();
+        return null;
+      }
+      serialized = legacy.value;
+      migrateLegacyTenQuestionScore = serialized !== null;
+    }
     try {
-      const record = JSON.parse(stored.value || "null");
+      const record = JSON.parse(serialized || "null");
       if (!record || !Number.isInteger(record.score) || !Number.isInteger(record.total) ||
-          record.total < 1 || record.total > 15 || record.score < 0 || record.score > record.total) return null;
+          record.total < 1 || record.total > settings.roundLength ||
+          record.score < 0 || record.score > record.total) return null;
+      if (migrateLegacyTenQuestionScore &&
+          !safeStorage.set(bestScoreKey(), JSON.stringify(record))) {
+        storageWarning = true;
+        updateStorageStatus();
+      }
       return record;
     } catch (_) {
       return null;
