@@ -5,10 +5,13 @@
   const REGIONS = ["IN", "RU", "US"];
   const REGION_NAMES = {
     "en-IN": {
+      categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
     "en-US": {
+      categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
     "ru-RU": {
+      categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
       categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Индия", RU: "Россия", US: "США" }
   };
   const UI = {
@@ -78,6 +81,7 @@
   const t = (key) => (UI[settings.interfaceLocale] || UI["en-IN"])[key] || key;
   const localeName = (locale) => locale === "ru-RU" ? "Русский" : locale === "en-US" ? "English (US)" : "English (India)";
   const regionName = (region) => REGION_NAMES[settings.interfaceLocale][region];
+  const categoryName = (category) => t("category" + category);
 
   function showView(id) {
     views.forEach((viewId) => {
@@ -103,8 +107,15 @@
     $("home-region").textContent = regionName(settings.questionRegion);
     const best = safeStorage.get("mindquest.best") || "0";
     const bestTotal = safeStorage.get("mindquest.bestTotal") || "0";
-    $("best-score").textContent = best + " / " + bestTotal;
+    $("best-score").textContent = Number(bestTotal) > 0 ? best + " / " + bestTotal : best;
     $("answers").setAttribute("aria-label", settings.interfaceLocale === "ru-RU" ? "Варианты ответа" : "Answer options");
+    [...$("question-category").options].forEach((option) => {
+      if (option.value === "all") option.textContent = t("allCategories");
+      else option.textContent = categoryName(option.value);
+    });
+    [...$("question-difficulty").options].forEach((option) => {
+      option.textContent = option.value === "all" ? t("anyDifficulty") : t(option.value);
+    });
   }
 
   function openSettings() {
@@ -151,7 +162,7 @@
     $("round-label").textContent = t("round");
     $("progress-label").textContent = (current + 1) + " / " + round.length;
     $("progress-fill").style.width = (((current + 1) / round.length) * 100) + "%";
-    $("category-label").textContent = item.category.toUpperCase();
+    $("category-label").textContent = categoryName(item.category).toUpperCase();
     $("question-title").textContent = copy.question;
     $("feedback").textContent = "";
     $("feedback").className = "feedback";
