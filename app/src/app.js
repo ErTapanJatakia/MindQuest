@@ -40,7 +40,13 @@
       noQuestions:"Для выбранных параметров пока нет вопросов.",question:"ВОПРОС",round:"РАУНД 1"
     }
   };
-  const DEFAULTS = { interfaceLocale:"en-IN", questionRegion:"IN", questionLocale:"en-IN" };
+  function suggestedInterfaceLocale() {
+    const deviceLocale = String(navigator.language || "").toLowerCase();
+    if (deviceLocale === "ru" || deviceLocale.startsWith("ru-")) return "ru-RU";
+    if (deviceLocale === "en-us" || deviceLocale.startsWith("en-us-")) return "en-US";
+    return "en-IN";
+  }
+  const DEFAULTS = { interfaceLocale:suggestedInterfaceLocale(), questionRegion:"IN", questionLocale:"en-IN" };
   const safeStorage = {
     get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
     set(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* Private mode: app remains usable. */ } }
@@ -87,7 +93,9 @@
     $("question-region").value = settings.questionRegion;
     $("question-locale").value = settings.questionLocale;
     $("home-region").textContent = regionName(settings.questionRegion);
-    $("best-score").textContent = (safeStorage.get("mindquest.best") || "0") + " / 10";
+    const best = safeStorage.get("mindquest.best") || "0";
+    const bestTotal = safeStorage.get("mindquest.bestTotal") || String(Math.min(10, (window.MINDQUEST_QUESTIONS || []).filter((q) => q.region === settings.questionRegion).length || 10));
+    $("best-score").textContent = best + " / " + bestTotal;
     $("answers").setAttribute("aria-label", settings.interfaceLocale === "ru-RU" ? "Варианты ответа" : "Answer options");
   }
 
@@ -108,7 +116,13 @@
       showView("result-view");
       return;
     }
-    round = [...pool].sort(() => Math.random() - 0.5).slice(0, 10);
+    const shuffled = [...pool];
+    // Fisher–Yates gives every question an equal chance of occupying each position.
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    round = shuffled.slice(0, 10);
     current = 0;
     score = 0;
     renderQuestion();
