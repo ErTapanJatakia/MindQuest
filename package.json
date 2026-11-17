@@ -1,0 +1,13 @@
+{
+  "name": "mindquest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free offline-first multilingual puzzle and trivia game",
+  "type": "module",
+  "scripts": {
+    "validate:content": "node scripts/validate-question-bank.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
