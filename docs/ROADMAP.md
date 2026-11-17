@@ -606,3 +606,10 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Replaced `IN-CUL-011` in all three locales with a question about the Hornbill Festival and Nagaland. Preserved stable ID, India region, Culture category, hard difficulty, four-option schema and correct key `a`; all translations identify Nagaland as the answer.
 - Factual references: Tourism Nagaland, Hornbill Festival https://tourism.nagaland.gov.in/events/hornbill-festival/ ; Ministry of Tourism, Government of India, Utsav portal https://www.utsav.gov.in/view-event/hornbill-festival . Both describe the festival as organised by Nagaland's state government to showcase Naga cultural heritage.
 - Source-level checks are targeted, not a complete factual audit or native-speaker review. The official content validator, CI, Android build and runtime tests remain deferred until the agreed development freeze. No baseline allocation or scope changed.
+
+
+### Russian localization wording correction — 2026-11-18
+
+- Review of the Russian question set found a redundant construction in `US-CUL-002`: `дом «Дом над водопадом»` (literally “house ‘House above the Waterfall’”) duplicated the generic noun and the translated title.
+- Reworded the Russian prompt to `виллу «Фоллингуотер» (Fallingwater)`, retaining the same question meaning, answer key, options, explanation, stable ID and all English translations.
+- This is a language-quality correction only; no factual answer or product scope changed. Broader native-speaker review remains pending.
