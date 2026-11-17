@@ -1,6 +1,6 @@
 # MindQuest (Мозговой вызов)
 
-**Check. Think. Conquer.** · **Проверь. Подумай. Победи.**
+**Check. Think. Conquer.** | **Проверь. Подумай. Победи.**
 
 MindQuest is a free, offline-first puzzle and trivia game designed for Android, with a lightweight web development shell. The first release is intended for RuStore and GitHub Releases.
 
