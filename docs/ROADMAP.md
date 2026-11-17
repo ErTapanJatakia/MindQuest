@@ -47,6 +47,8 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Fifteen starter questions (five per region), each with three language variants.
 - Starter difficulty spread per region: three easy, one medium and one hard question.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
+- Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
+- Best scores are scoped to region, category and difficulty and compared by percentage.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
 - Dependency-free question-bank structural validator.
