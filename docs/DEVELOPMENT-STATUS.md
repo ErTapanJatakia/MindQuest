@@ -171,3 +171,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Unsupported interface locales, question locales, regions, categories or difficulty values now fall back to the documented defaults at both boundaries, rather than relying only on startup validation.
 - This hardens the independent-selector model against malformed or unexpected values without changing normal user selections or the persisted settings schema.
 - Source change committed and re-fetched. No JavaScript parser, browser runtime, official content validator, CI, Android build or device test was run.
+
+
+## Latest content and documentation consistency pass — 2026-11-17
+
+- Corrected the question-bank source header: the repository now contains 150 stable question IDs (50 per region) with three localized variants each; factual, cultural and native-speaker review remains outstanding.
+- Updated the README to report the delivered 150-question / 450-localized-record content set and distinguish structural implementation from pending content-quality review.
+- Updated the repository layout description to reflect that the initial Android WebView shell exists, while Android packaging/build validation remains pending.
+- Corrected the architecture description to include category as a runtime question filter alongside region and difficulty.
+- Documentation/source consistency pass only. No parser, official content validator, browser runtime, CI, Android build or device test was run.
