@@ -404,3 +404,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - When the eligible pool changes, the cycle resets. When all eligible questions have appeared, a new cycle begins. The tracking is in memory only; it does not add storage, accounts, network access or persistent player history.
 - App change committed as `650f29c`; roadmap updated as `4ab043c`.
 - This is source-level implementation only. No browser gameplay test, question-bank validator, CI, Android build, emulator, physical-device or screen-reader validation was run. Baseline credit remains unchanged pending validation.
+
+## Proportional difficulty mix — 2026-11-18
+
+- Mixed-difficulty rounds now allocate easy, medium and hard question counts in proportion to the eligible filtered pool, using integer largest-remainder quotas that sum to the round size.
+- The current 15/20/15 per-region distribution produces a 3 easy / 4 medium / 3 hard mix for an unfiltered ten-question round. Category-filtered pools receive quotas based on their own composition; single-difficulty filters remain entirely within the selected difficulty.
+- The session-wide unseen-question cycle remains authoritative: available unseen questions are preferred within each difficulty quota, other unseen questions fill any quota shortfall, and previously seen questions are only used when fewer than ten unseen questions remain.
+- App change committed as `c8065a3`; roadmap updated as `214f74f`.
+- Source-level change only. No browser gameplay test, question-bank validator, CI, Android build, emulator, physical-device or screen-reader validation was run. Baseline credit remains unchanged pending validation.
