@@ -39,7 +39,8 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 
 ## Android system back compatibility
 
-- Android 13 (API 33) and newer use the platform `OnBackInvokedDispatcher`, including the system predictive-back pathway. Back navigates WebView history when available and otherwise finishes the Activity.
+- Android 13 (API 33) and newer register a platform `OnBackInvokedCallback` through `OnBackInvokedDispatcher` at default priority. It handles the committed system-back action by navigating WebView history when available and otherwise finishing the Activity.
+- This is dispatcher integration, not a custom predictive-back animation: the Activity does not implement `OnBackAnimationCallback` progress, cancellation or gesture-preview handling. OS-provided predictive-back presentation and callback timing must be confirmed on supported devices.
 - Android 6.0 through Android 12 retain the legacy Activity back callback. The API 33+ callback is unregistered when the Activity is destroyed.
 - This uses platform APIs already available through the configured compile SDK and introduces no AndroidX or other dependency. Device/gesture behaviour remains unverified until Android runtime QA.
 
