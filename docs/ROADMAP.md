@@ -65,7 +65,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Dependency-free question-bank structural validator, strengthened with strict schema/type checks, duplicate normalized question-text detection and exact 50-per-region / 150-total assertions (execution deferred).
 - Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
 
-The full 50-question-per-region content target is now populated, but the bank remains a development seed pending factual, cultural and native-speaker review. Gameplay source review has also hardened persisted best-score parsing against malformed or out-of-range values. Initial interface copy and accessible navigation labels have now been differentiated/localized for the three interface locales; a full localization audit remains open. The Android shell is also not yet a release-ready signed package.
+The full 50-question-per-region content target is populated. A bounded cross-locale factual review of all 150 IDs / 450 localized records is complete; exhaustive independent verification of every explanation/distractor and professional native-speaker/cultural editorial acceptance remain outstanding. Gameplay source review has hardened persisted best-score parsing against malformed or out-of-range values. Initial interface copy and accessible navigation labels are localized for the three interface locales; runtime localization acceptance remains open. The Android shell is not yet a release-ready signed package.
 
 ## Latest development review
 
@@ -90,11 +90,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 
 - Hardened best-score persistence reads: malformed values, fractional scores, negative scores, scores above the recorded total and impossible round totals are ignored.
 - Expanded the dependency-free content validator with strict object/string validation, normalized duplicate question-text checks per region and locale, and exact regional/total question-count assertions. The validator has not yet been executed; CI and Android validation remain deferred.
-- Targeted review of gameplay, result rendering, settings flow, HTML structure, CSS and Android WebView configuration is complete for this pass. It is not a complete source audit; localization, accessibility, factual/native-speaker review and Android build readiness remain open.
+- Targeted review of gameplay, result rendering, settings flow, HTML structure, CSS and Android WebView configuration is complete for that pass. It is not a complete source audit; runtime localization/accessibility acceptance and Android build readiness remain open. The bounded 150-record cross-locale factual review was subsequently completed in batches 1–10.
 
 ## Latest content milestone
 
-- Completed the 150-question content target: 50 questions per region and 450 localized records across English (India), English (US) and Russian. Each region has 13 Geography, 12 History, 12 Science and 13 Culture questions, with 15 easy, 20 medium and 15 hard. Static structural checks passed; factual and native-speaker review remains outstanding.
+- Completed the 150-question content target: 50 questions per region and 450 localized records across English (India), English (US) and Russian. Each region has 13 Geography, 12 History, 12 Science and 13 Culture questions, with 15 easy, 20 medium and 15 hard. Static source inventory checks confirmed coverage. Bounded cross-locale factual review is now complete; exhaustive independent explanation/distractor verification and professional native-speaker/cultural editorial acceptance remain outstanding.
 
 ## Release gates
 
@@ -158,7 +158,7 @@ The full 50-question-per-region content target is now populated, but the bank re
 
 ## Latest content and documentation consistency pass — 2026-11-17
 
-- Aligned the question-bank source header and README with the delivered 150 IDs / 450 localized variants; human factual, cultural and native-speaker review remains a release gate.
+- Aligned the question-bank source header and README with the delivered 150 IDs / 450 localized variants. Subsequent bounded factual review of all 150 IDs is recorded in batches 1–10; native-speaker and cultural editorial acceptance remain release gates.
 - Clarified that the initial Android WebView shell is implemented, but packaging/build validation remains pending.
 - Corrected the architecture's filter description to include category, region and difficulty.
 - No runtime, official validator, CI or Android validation was run.
