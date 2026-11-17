@@ -348,3 +348,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - This narrows the accepted in-memory result shape and prevents unexpected fields or malformed option maps from being treated as a valid completed round. It does not change scoring, question content or persistence format.
 - Source re-fetch verification is pending in this batch. No parser, browser runtime, official content validator, CI, Android build or device test is run; CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Question-bank ID taxonomy validation — 2026-11-18
+
+- Extended the dependency-free question-bank validator to enforce the same stable-ID taxonomy used by the runtime: the three-letter region prefix and category code must agree, followed by a three-digit sequence (for example, IN-GEO-001).
+- This catches records whose region prefix is plausible but whose category-coded identity is inconsistent before the bank is packaged. It does not validate historical accuracy, translation quality or semantic equivalence.
+- Validator source updated in commit c02d3fd. The validator was not executed; no CI, Android build or device validation was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No earned allocation changed; actual engineering time remains untracked.
