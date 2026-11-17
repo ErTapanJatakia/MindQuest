@@ -44,8 +44,8 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Repository and project documentation created.
 - Responsive web game shell with home, quiz, result, settings and localized help views.
 - Three independent preference values and local persistence.
-- One hundred thirty-five starter questions (forty-five per region), each with three language variants.
-- Starter difficulty spread per region: thirteen easy, eighteen medium and fourteen hard questions.
+- One hundred fifty questions (fifty per region), each with three language variants (450 localized records).
+- Current difficulty spread per region: fifteen easy, twenty medium and fifteen hard questions.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
 - Results accuracy percentage and localized per-question answer review.
 - Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
@@ -54,11 +54,15 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Best scores are scoped to region, category and difficulty and compared by percentage. The home card shows the best score, percentage accuracy and active pool scope.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
-- All four question categories are represented in each regional bank, with twelve Geography, eleven History, eleven Science and eleven Culture questions.
+- All four question categories are represented in each regional bank, with thirteen Geography, twelve History, twelve Science and thirteen Culture questions.
 - Dependency-free question-bank structural validator.
 - Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
 
-The current content is a development seed, not the release bank. It is not yet the full 50 questions per region. The Android shell is also not yet a release-ready signed package.
+The full 50-question-per-region content target is now populated, but the bank remains a development seed pending factual, cultural and native-speaker review. The Android shell is also not yet a release-ready signed package.
+
+## Latest content milestone
+
+- Completed the 150-question content target: 50 questions per region and 450 localized records across English (India), English (US) and Russian. Each region has 13 Geography, 12 History, 12 Science and 13 Culture questions, with 15 easy, 20 medium and 15 hard. Static structural checks passed; factual and native-speaker review remains outstanding.
 
 ## Release gates
 
