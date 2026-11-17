@@ -13,7 +13,7 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Review | 150 | 150 | 0 |
 | 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Review | 180 | 180 | 0 |
 | 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 | 120 | 60 |
-| 8 | Game modes | Ten-question rounds, category selection and replay | In progress | 120 | 80 | 40 |
+| 8 | Game modes | Configurable 5/10/15-question rounds, category selection and replay | In progress | 120 | 80 | 40 |
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 | 70 | 20 |
 | 10 | Results screen | Score, accuracy, per-question answers, explanations and replay | In progress | 90 | 70 | 20 |
 | 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 | 75 | 45 |
@@ -50,6 +50,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Replay selection now tracks question IDs across a session-local cycle: every eligible question is presented once before any question is reused, while each round remains capped at ten distinct questions. When fewer than ten unseen questions remain, all remaining unseen questions are included and the round is filled with previously seen questions; a changed eligible pool starts a fresh cycle.
 - Mixed-difficulty rounds now apportion their easy/medium/hard question counts proportionally to the eligible filtered pool, using whole-number largest-remainder quotas. Remaining unseen questions take priority if a difficulty's quota cannot be met near the end of a session cycle; previously seen questions are used only to fill the final round. The final selected questions are shuffled after quota allocation so difficulty levels do not appear in fixed consecutive blocks.
 - Results accuracy percentage and localized per-question answer review.
+- Configurable 5-, 10- or 15-question rounds, persisted independently of region, category and difficulty; short eligible pools automatically cap the actual round length to the number of available questions.
 - Answer choices are independently shuffled for every question with Fisher–Yates; each stable answer key remains attached to its option text, preserving scoring, feedback and answer-review identity.
 - Live correct-answer streak indicator during a round and a localized best-streak summary on results; streaks reset after an incorrect answer and do not change scoring or best-score calculations.
 - Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
