@@ -15,7 +15,7 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 |
 | 8 | Game modes | Ten-question rounds, category selection and replay | In progress | 120 |
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 |
-| 10 | Results screen | Score, accuracy, answers, explanations and replay | In progress | 90 |
+| 10 | Results screen | Score, accuracy, per-question answers, explanations and replay | In progress | 90 |
 | 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 |
 | 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | In progress | 120 |
 | 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 |
@@ -47,6 +47,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Twenty-seven starter questions (nine per region), each with three language variants.
 - Starter difficulty spread per region: five easy, three medium and one hard question.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
+- Results accuracy percentage and localized per-question answer review.
 - View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
 - Best scores are scoped to region, category and difficulty and compared by percentage.
