@@ -25,8 +25,8 @@
       settingsIntro:"Choose each setting independently: interface language, question region and question language.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",settingsButtonLabel:"Open settings",homeLinkLabel:"MindQuest home",
       freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",
-      streakLabel:"Current streak",bestStreak:"Best streak this round: {streak}",
-      help:"How to play",helpEyebrow:"THE QUICK GUIDE",helpTitle:"How to play",helpStartTitle:"Play a round",helpStartBody:"Choose a region, question language, category and difficulty in Settings, then start a round. Each round contains up to ten multiple-choice questions.",helpScoringTitle:"Scoring and results",helpScoringBody:"Choose one answer per question. Correct answers earn one point. Your results show your score, accuracy, the correct answers and explanations.",helpDifficultyTitle:"Categories and difficulty",helpDifficultyBody:"Explore Geography, History, Science or Culture. Choose Easy, Medium or Hard, or leave the filters open to mix the available questions.",helpLanguageTitle:"Three independent choices",helpLanguageBody:"Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination is valid.",helpPrivacyTitle:"Free, private and offline",helpPrivacyBody:"MindQuest is free to play, works offline and needs no account. Settings and best scores are stored on this device when browser storage is available; no ads or paid services are used.",noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Try a different category or difficulty in Settings.",storageUnavailable:"Device storage is unavailable; settings and best scores may not be saved.",roundIntegrityError:"This round could not be verified.",roundIntegrityHint:"Your answers were not recorded as a result. Return to Settings and start a new round.",question:"QUESTION",answerOptions:"Answer options"
+      streakLabel:"Current streak",bestStreak:"Best streak this round: {streak}",roundLength:"Questions per round",roundLengthScope:"{count} questions per round",
+      help:"How to play",helpEyebrow:"THE QUICK GUIDE",helpTitle:"How to play",helpStartTitle:"Play a round",helpStartBody:"Choose a region, question language, category and difficulty in Settings, then start a round. Each round contains up to the selected number of multiple-choice questions.",helpScoringTitle:"Scoring and results",helpScoringBody:"Choose one answer per question. Correct answers earn one point. Your results show your score, accuracy, the correct answers and explanations.",helpDifficultyTitle:"Categories and difficulty",helpDifficultyBody:"Explore Geography, History, Science or Culture. Choose Easy, Medium or Hard, or leave the filters open to mix the available questions.",helpLanguageTitle:"Three independent choices",helpLanguageBody:"Interface language controls menus; question region selects the knowledge set; question language controls question wording. Any supported combination is valid.",helpPrivacyTitle:"Free, private and offline",helpPrivacyBody:"MindQuest is free to play, works offline and needs no account. Settings and best scores are stored on this device when browser storage is available; no ads or paid services are used.",noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Try a different category or difficulty in Settings.",storageUnavailable:"Device storage is unavailable; settings and best scores may not be saved.",roundIntegrityError:"This round could not be verified.",roundIntegrityHint:"Your answers were not recorded as a result. Return to Settings and start a new round.",question:"QUESTION",answerOptions:"Answer options"
     },
     "en-US": {
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard",categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
@@ -50,7 +50,7 @@
       settingsIntro:"Эти параметры независимы. Вы можете сочетать любой язык интерфейса, регион и язык вопросов.",
       interfaceLanguage:"Язык интерфейса",questionLanguage:"Язык вопросов",save:"Сохранить настройки",back:"Назад",settingsButtonLabel:"Открыть настройки",homeLinkLabel:"На главную MindQuest",
       freeOffline:"Бесплатно · Офлайн · Без аккаунта",correct:"Верно! ",incorrect:"Не совсем. ",roundScore:"Ваш результат: {score} из {total}.",accuracy:"Точность: {percent}%",reviewTitle:"Разбор ответов",yourAnswer:"Ваш ответ",correctAnswer:"Правильный ответ",unanswered:"Нет ответа",
-      streakLabel:"Текущая серия",bestStreak:"Лучшая серия за раунд: {streak}",
+      streakLabel:"Текущая серия",bestStreak:"Лучшая серия за раунд: {streak}",roundLength:"Вопросов в раунде",roundLengthScope:"{count} вопросов в раунде",
       help:"Как играть",helpEyebrow:"КРАТКОЕ РУКОВОДСТВО",helpTitle:"Как играть",helpStartTitle:"Начало раунда",helpStartBody:"В настройках выберите регион, язык вопросов, категорию и сложность, затем начните раунд. В каждом раунде — до десяти вопросов с вариантами ответа.",helpScoringTitle:"Очки и результаты",helpScoringBody:"Выберите один ответ на каждый вопрос. За каждый правильный ответ начисляется одно очко. В результатах показаны счёт, точность, правильные ответы и пояснения.",helpDifficultyTitle:"Категории и сложность",helpDifficultyBody:"Изучайте географию, историю, науку и культуру. Выберите лёгкий, средний или сложный уровень либо оставьте фильтры без ограничений.",helpLanguageTitle:"Три независимых параметра",helpLanguageBody:"Язык интерфейса определяет язык меню, регион вопросов — набор знаний, а язык вопросов — формулировки. Доступны любые сочетания поддерживаемых параметров.",helpPrivacyTitle:"Бесплатно, конфиденциально, офлайн",helpPrivacyBody:"MindQuest бесплатен, работает без интернета и не требует аккаунта. Настройки и лучшие результаты сохраняются на устройстве, если доступно хранилище браузера. Рекламы и платных сервисов нет.",noQuestions:"Для выбранных параметров пока нет вопросов.",noQuestionsHint:"Попробуйте изменить категорию или сложность в настройках.",storageUnavailable:"Хранилище недоступно: настройки и лучшие результаты могут не сохраниться.",roundIntegrityError:"Не удалось проверить завершённый раунд.",roundIntegrityHint:"Результат не был сохранён. Откройте настройки и начните новый раунд.",question:"ВОПРОС",answerOptions:"Варианты ответа"
     }
   };
@@ -85,7 +85,8 @@
       questionRegion: REGIONS.includes(saved.questionRegion) ? saved.questionRegion : DEFAULTS.questionRegion,
       questionLocale: LOCALES.includes(saved.questionLocale) ? saved.questionLocale : DEFAULTS.questionLocale,
       category: CATEGORIES.includes(saved.category) ? saved.category : "all",
-      difficulty: ["all", "easy", "medium", "hard"].includes(saved.difficulty) ? saved.difficulty : "all"
+      difficulty: ["all", "easy", "medium", "hard"].includes(saved.difficulty) ? saved.difficulty : "all",
+      roundLength: [5, 10, 15].includes(saved.roundLength) ? saved.roundLength : 10
     };
   }
 
@@ -117,7 +118,7 @@
   const categoryName = (category) => t("category" + category);
   const selectedCategoryName = () => settings.category === "all" ? t("allCategories") : categoryName(settings.category);
   const selectedDifficultyName = () => settings.difficulty === "all" ? t("anyDifficulty") : t(settings.difficulty);
-  const bestScoreKey = () => "mindquest.best." + settings.questionRegion + "." + settings.category + "." + settings.difficulty;
+  const bestScoreKey = () => "mindquest.best." + settings.questionRegion + "." + settings.category + "." + settings.difficulty + "." + settings.roundLength;
   const readBestScore = () => {
     const stored = safeStorage.get(bestScoreKey());
     if (!stored.ok) {
@@ -170,12 +171,13 @@
     $("question-locale").value = settings.questionLocale;
     $("question-category").value = settings.category;
     $("question-difficulty").value = settings.difficulty;
+    $("round-length").value = String(settings.roundLength);
     $("home-region").textContent = regionName(settings.questionRegion);
     updateStorageStatus();
     const best = readBestScore();
     const bestPercent = best ? Math.round((best.score / best.total) * 100) : null;
     $("best-score").textContent = best ? best.score + " / " + best.total + " · " + bestPercent + "%" : "—";
-    $("best-score-scope").textContent = [regionName(settings.questionRegion), selectedCategoryName(), selectedDifficultyName()].join(" · ");
+    $("best-score-scope").textContent = [regionName(settings.questionRegion), selectedCategoryName(), selectedDifficultyName(), t("roundLengthScope").replace("{count}", settings.roundLength)].join(" · ");
     $("answers").setAttribute("aria-label", t("answerOptions"));
     $("settings-open").setAttribute("aria-label", t("settingsButtonLabel"));
     $("brand-home").setAttribute("aria-label", t("homeLinkLabel"));
@@ -200,6 +202,7 @@
     $("question-locale").value = settings.questionLocale;
     $("question-category").value = settings.category;
     $("question-difficulty").value = settings.difficulty;
+    $("round-length").value = String(settings.roundLength);
     showView("settings-view");
   }
 
@@ -334,10 +337,10 @@
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    const targetRoundLength = Math.min(10, pool.length);
+    const targetRoundLength = Math.min(settings.roundLength, pool.length);
     const unseen = shuffled.filter((question) => !seenQuestionIds.has(question.id));
     const difficultyOrder = ["easy", "medium", "hard"];
-    // Allocate the ten-question mix proportionally to the eligible pool.
+    // Allocate the selected round mix proportionally to the eligible pool.
     // Largest-remainder apportionment keeps quotas whole and totals exact.
     const difficultyQuotas = difficultyOrder.map((difficulty, order) => {
       const count = pool.filter((question) => question.difficulty === difficulty).length;
@@ -619,7 +622,8 @@
       questionRegion: $("question-region").value,
       questionLocale: $("question-locale").value,
       category: $("question-category").value,
-      difficulty: $("question-difficulty").value
+      difficulty: $("question-difficulty").value,
+      roundLength: Number($("round-length").value)
     });
     if (!safeStorage.set("mindquest.settings", JSON.stringify(settings))) storageWarning = true;
     // Settings can change the question pool or locale. Discard hidden round data
