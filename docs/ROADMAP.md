@@ -305,3 +305,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - A post-commit source consistency check caught one stale reference to the former recovery function name; it was corrected in a follow-up commit before final verification. The final re-fetch confirmed ten targeted checks, including no stale function references and correct recovery routing for empty pools, invalid active questions and invalid answer ledgers.
 - Source-level verification only. No browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
 - No roadmap estimate or earned allocation changed: 1,265 / 2,400 minutes (52.71%) implemented; 1,135 minutes (47.29%) remain. Actual engineering time remains untracked.
+
+
+## Runtime question-record integrity boundary — 2026-11-18
+
+- Strengthened `isPlayableQuestion()` to reject malformed question records before they enter a round: exact question and active-translation field sets, category-coded stable IDs matching the selected region, exact four-option keys, non-empty/control-character-free text, and four distinct normalized answer choices.
+- Answer-choice duplicate detection applies NFC Unicode normalization, whitespace folding and locale-aware case folding. MDN documents that canonically equivalent Unicode text can have different code-point sequences and that `String.prototype.normalize()` converts them to a common normalization form: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize.
+- Added a pool-level duplicate-ID guard. If otherwise playable records collide on stable identity, the app discards the candidate round and shows the existing localized integrity recovery instead of presenting ambiguous question identities.
+- The official dependency-free question-bank validator remains unchanged and stronger in scope: it continues to validate every locale, global uniqueness, total counts and regional distributions. It was not executed in this batch; no tests, browser runtime, CI, Android build or device QA were run.
+- This source-level hardening is included in existing gameplay/content-integrity allocations; baseline accounting remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
