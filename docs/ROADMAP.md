@@ -276,3 +276,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Added defensive checks so an answer callback cannot score against a stale question/translation, and the Next/Results action requires a non-empty round, an answered current question and a recorded answer at the current index.
 - Re-fetched the committed application source and confirmed the teardown and guards are present. These are source-level checks only; no browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline allocations remain unchanged at 1,265 / 2,400 minutes (52.71%); this targeted refinement is included in existing gameplay/navigation allocations, not counted as actual engineering time.
+
+
+## Latest defensive question-render recovery — 2026-11-18
+
+- Consolidated the no-playable-questions state into a shared recovery routine used both when a new round has no eligible questions and when an active round's current question fails its runtime integrity check.
+- Before rendering, the app now verifies that the round is an array, the current index is an in-range integer, and the selected question still passes the existing region/category/difficulty/answer/translation/content checks. Invalid state is discarded and the player receives the existing localized Settings recovery path rather than a rendering exception.
+- Re-fetched the committed source and confirmed six targeted source checks. MDN documents the standard semantics of [Array.isArray()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray) and [Number.isInteger()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger), used for the type and index guards.
+- Source inspection only: no browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
+- No roadmap estimate or earned allocation changed. Baseline implementation remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%).
