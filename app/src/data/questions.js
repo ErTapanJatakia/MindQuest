@@ -2310,34 +2310,34 @@ window.MINDQUEST_QUESTIONS = [
   "correct": "a",
   "translations": {
     "en-IN": {
-      "question": "Bihu is a major seasonal festival tradition most closely associated with which Indian state?",
+      "question": "The Hornbill Festival, a celebration of Naga culture, is organised in which Indian state?",
       "options": {
-        "a": "Assam",
-        "b": "Gujarat",
-        "c": "Goa",
-        "d": "Himachal Pradesh"
+        "a": "Nagaland",
+        "b": "Meghalaya",
+        "c": "Manipur",
+        "d": "Tripura"
       },
-      "explanation": "Bihu marks important points in the agricultural calendar of Assam and is celebrated through music, dance and community festivities."
+      "explanation": "Nagaland's state government organises the Hornbill Festival to showcase the state's Naga cultural heritage and traditions."
     },
     "en-US": {
-      "question": "Bihu is a major seasonal festival tradition most closely associated with which Indian state?",
+      "question": "The Hornbill Festival, a celebration of Naga culture, is held in which Indian state?",
       "options": {
-        "a": "Assam",
-        "b": "Gujarat",
-        "c": "Goa",
-        "d": "Himachal Pradesh"
+        "a": "Nagaland",
+        "b": "Meghalaya",
+        "c": "Manipur",
+        "d": "Tripura"
       },
-      "explanation": "Bihu marks important points in the agricultural calendar of Assam and is celebrated through music, dance and community festivities."
+      "explanation": "Nagaland's state government organises the Hornbill Festival to showcase the state's Naga cultural heritage and traditions."
     },
     "ru-RU": {
-      "question": "С каким индийским штатом прежде всего связана традиция сезонных праздников Биху?",
+      "question": "В каком индийском штате проводится фестиваль Хорнбилл, посвящённый культуре нага?",
       "options": {
-        "a": "Ассам",
-        "b": "Гуджарат",
-        "c": "Гоа",
-        "d": "Химачал-Прадеш"
+        "a": "Нагаленд",
+        "b": "Мегхалая",
+        "c": "Манипур",
+        "d": "Трипура"
       },
-      "explanation": "Праздники Биху отмечают важные этапы сельскохозяйственного календаря Ассама и сопровождаются музыкой, танцами и народными гуляньями."
+      "explanation": "Правительство штата Нагаленд организует фестиваль Хорнбилл, чтобы представить культурное наследие и традиции народов нага."
     }
   }
 },
