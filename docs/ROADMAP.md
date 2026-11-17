@@ -365,3 +365,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - This does not alter question content, displayed choices, scoring, localization or persistence. It strengthens the evidence captured for result review and integrity verification.
 - App commit: 17ae826. Source/documentation re-fetch verification pending. No runtime test, CI, official validator or Android validation was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No baseline credit added; actual engineering time remains untracked.
+
+
+## Streak-summary integrity verification — 2026-11-18
+
+- The completed-round answer-ledger gate now independently recomputes the current consecutive-correct streak and the maximum streak reached during the round.
+- Both derived values must match the live `currentStreak` and `bestStreak` state before results are displayed or a best score is persisted. This prevents an inconsistent streak summary from being presented as a verified round result.
+- The calculation uses the already-validated per-question correctness entries; it does not affect points, accuracy, question selection or storage.
+- App commit: 2699ae0. Source/documentation re-fetch verification pending. No runtime test, CI, official validator or Android validation was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No baseline credit added; actual engineering time remains untracked.
