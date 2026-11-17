@@ -3,8 +3,8 @@
         android:enableOnBackInvokedCallback="true"
         android:allowBackup="false"
         android:label="MindQuest"
-        android:icon="@drawable/ic_launcher"
-        android:roundIcon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="false">
