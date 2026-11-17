@@ -5,3 +5,23 @@
 .help-card{padding:17px;margin:13px 0;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.help-card h2{font-size:17px;margin:0 0 8px}.help-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}#help-back{margin-top:20px}
 
 .stat-card .stat-context{display:block;margin-top:7px;color:var(--muted);font-size:10px;line-height:1.45;overflow-wrap:anywhere}
+
+
+/* Keep long localized labels and narrow screens from forcing horizontal overflow. */
+.app-shell,.view,.brand,.brand>span:last-child{min-width:0}
+.brand strong,.brand small,.hero-copy,.settings-intro,.view h1,.view h2,.help-card p,.review-card p{overflow-wrap:anywhere}
+select{min-width:0;max-width:100%}
+footer{flex-wrap:wrap}
+footer span:last-child{text-align:left}
+@media(max-width:340px){
+  .app-shell{width:calc(100% - 20px)}
+  .topbar{gap:8px}
+  .brand{gap:8px}
+  .brand-mark{width:38px;height:38px;flex:0 0 38px}
+  .brand strong{font-size:15px}
+  .brand small{font-size:10px}
+  .hero{padding:24px 16px;min-height:350px}
+  .hero h1{font-size:clamp(30px,10vw,38px);max-width:100%}
+  .hero-orbit{right:12px;top:46px;width:88px;height:88px}
+  .home-stats{grid-template-columns:1fr}
+}
