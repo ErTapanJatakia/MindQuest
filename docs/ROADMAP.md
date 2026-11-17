@@ -404,3 +404,8 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Correct and incorrect answers retain distinct non-colour-only cues: a solid Highlight border for correct and a dashed CanvasText border for incorrect. Feedback/status text uses CanvasText rather than depending on the normal theme's accent colours.
 - This is an accessibility refinement within the existing workstream, not a new product feature. CSS source/documentation checks only; no browser forced-colors simulation, assistive-technology test, parser, official validator, CI, Android build or device test was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining allocation remains 1,135 minutes (47.29%). Actual engineering time remains untracked; no additional baseline credit claimed.
+
+## Latest Android visual-identity refinement — 2026-11-18
+
+- Added a lightweight vector launcher icon using the existing MindQuest dark, mint and gold palette, and referenced it as both the standard and round application icon in the Android manifest. The icon is a native resource and adds no image asset pipeline, dependency or runtime service.
+- This closes the missing launcher-icon source asset only. Adaptive-icon masking, launcher rendering across Android versions and installed-device appearance still require Android build/device QA. No CI or Android build was run.
