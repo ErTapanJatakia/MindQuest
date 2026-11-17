@@ -578,3 +578,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No new dependency, permission, service or product scope. Keyboard animation, focus and resize behaviour remain unverified at runtime.
 - No Kotlin compilation, Gradle build, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android Gradle project defaults — 2026-11-18
+
+- Added `android/gradle.properties` for consistent UTF-8 JVM output, a 2 GB Gradle heap setting and Kotlin official code style; enabled the AndroidX project flag without adding AndroidX dependencies.
+- Documented the current Android Gradle Plugin 8.7.3 / Kotlin 2.0.21 pairing and Gradle 8.9 wrapper target. Wrapper scripts and JAR remain outstanding, so fresh-checkout reproducibility is not yet achieved.
+- No Gradle build, Kotlin compilation, APK packaging or Android validation was run. CI remains deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
