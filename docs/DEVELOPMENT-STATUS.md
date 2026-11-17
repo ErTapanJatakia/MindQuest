@@ -364,3 +364,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - MDN explains that visually equivalent Unicode strings may use different code-point sequences and that NFC normalization converts canonically equivalent sequences to a common form: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize.
 - Source-level verification only; no official validator, browser runtime, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
 - No earned allocation changed: baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
+
+
+## Runtime duplicate-prompt pool guard — 2026-11-18
+
+- Added a pre-shuffle duplicate-prompt check across the complete eligible pool, separately for \`en-IN\`, \`en-US\` and \`ru-RU\`. Prompt text is normalized using NFC, trimmed, whitespace-folded and locale-aware case folding before comparison.
+- The check runs before randomization, so a duplicate stable question identity/content pair cannot be hidden by selecting a different subset for one particular round. The existing localized integrity-recovery route handles a collision.
+- This is a defensive runtime layer; the official question-bank validator remains the primary whole-bank structural gate and its execution is still deferred. This source-only batch did not run browser tests, CI, Android builds or device QA.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; no additional allocation was claimed. Actual engineering time remains untracked.
