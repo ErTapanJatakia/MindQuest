@@ -108,3 +108,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Added responsive safeguards for narrow viewports and long localized strings, including flexible footer wrapping and a compact treatment at 340px and below.
 - A source-level scan confirmed that every HTML `data-i18n` key exists in all three UI dictionaries. Translation quality and runtime localization behavior remain to be reviewed.
 - No JavaScript parser, browser runtime, official validator, CI, Android build or device test was run. Responsive, keyboard and screen-reader behavior remain pending runtime QA.
+
+
+## Additional source-review update — 2026-11-17
+
+- Quiz feedback and final result messages now explicitly use atomic polite live-region semantics.
+- Source-level scans found complete dictionary coverage for statically referenced runtime strings and HTML translation / accessible-label keys in all three locales.
+- Android asset mapping, local-only navigation controls and manifest permissions received another source inspection. Build and runtime validation remain outstanding.
+- The official content validator, parser/runtime, CI and Android validation remain deferred.
