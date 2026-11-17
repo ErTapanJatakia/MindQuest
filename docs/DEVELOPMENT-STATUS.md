@@ -204,3 +204,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - This is roadmap-estimate-weighted implementation progress, not actual engineer time spent. Actual engineering minutes have not been recorded, so an actual-time-completed figure cannot be stated.
 - No workstream is yet marked Complete; both Review workstreams still require acceptance. The remaining baseline scope is 2,070 minutes (86.25%), subject to the existing workstream statuses and release gates.
 - Progress reporting will distinguish implementation estimate, accepted scope, and actual time logged.
+
+
+## Latest answer-group context refinement — 2026-11-17
+
+- The multiple-choice answer group now exposes the current question prompt as its accessible description while retaining its localized “Answer options” accessible name. This gives assistive-technology users the question context when entering the answer controls.
+- The change is source-level only. Keyboard, accessibility-tree and screen-reader behavior still require runtime verification; no parser, browser runtime, official validator, CI, Android build or device test was run.
+- Baseline implementation accounting remains 330 / 2,400 minutes (13.75%) estimate-weighted; this small accessibility refinement does not reclassify a full roadmap workstream or count as logged engineering time.
