@@ -147,3 +147,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added exact per-region distribution assertions: 13 Geography, 12 History, 12 Science, 13 Culture; and 15 easy, 20 medium, 15 hard. The validator now checks these targets rather than merely reporting difficulty counts or checking that each category appears.
 - Reviewed the existing palette contrast ratios at source level: primary text, muted text, accent, warning and feedback colors exceed WCAG AA normal-text contrast against the main background and primary panel in the checked combinations. This calculation does not replace full UI-state/contrast testing.
 - The validator source was updated but deliberately not executed; no parser, browser runtime, CI, Android build or device test was run. Content accuracy and native-speaker review remain separate requirements.
+
+
+## Latest validator schema-integrity refinement — 2026-11-17
+
+- Tightened the question-bank validator to require exact top-level question fields and exact translation-object fields, preventing unreviewed schema drift.
+- Added clean-text checks for question prompts, explanations and answer options; empty values and ASCII control characters are now rejected.
+- Kept the existing exact locale, option-key, question-count, category and difficulty distribution assertions.
+- Re-fetched the committed validator source and confirmed the strict-field and text checks are present. The official validator was deliberately not executed, in accordance with the development-freeze QA sequence.
+- No browser runtime, CI, Android build or device test was run. Translation meaning, factual accuracy and cross-language answer identity still require human review.
