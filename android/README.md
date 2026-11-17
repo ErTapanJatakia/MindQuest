@@ -52,3 +52,6 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 
 
 - The same API 35+ safe-inset calculation includes the on-screen keyboard (IME), so the WebView's usable area can respond when Android displays the keyboard.
+
+
+- The application manifest explicitly enables Android's platform back-invoked callback dispatch, matching the API 33+ `OnBackInvokedDispatcher` implementation in `MainActivity`.
