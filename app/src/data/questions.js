@@ -204,4 +204,36 @@ window.MINDQUEST_QUESTIONS = [
   "ru-RU":{question:"Кто в 1903 году совершил первый успешный продолжительный управляемый полёт на самолёте с двигателем?",options:{a:"Орвилл и Уилбур Райт",b:"Чарльз и Фрэнк Дьюриа",c:"Гленн и Эдвард Кёртисс",d:"Джон и Вашингтон Рёблинги"},explanation:"Орвилл и Уилбур Райт совершили первый успешный продолжительный управляемый полёт на самолёте с двигателем близ Китти-Хок, штат Северная Каролина, 17 декабря 1903 года."}
  }}
 
+,
+ {id:"IN-GEO-005",region:"IN",category:"Geography",difficulty:"medium",correct:"a",translations:{
+  "en-IN":{question:"Which Indian state is home to the Kaziranga National Park, famous for its one-horned rhinoceroses?",options:{a:"Assam",b:"Gujarat",c:"Rajasthan",d:"Tamil Nadu"},explanation:"Kaziranga National Park is in Assam and is renowned for its population of greater one-horned rhinoceroses."},
+  "en-US":{question:"In which Indian state is Kaziranga National Park, known for its one-horned rhinoceroses?",options:{a:"Assam",b:"Gujarat",c:"Rajasthan",d:"Tamil Nadu"},explanation:"Kaziranga National Park is in Assam and is renowned for its population of greater one-horned rhinoceroses."},
+  "ru-RU":{question:"В каком индийском штате находится национальный парк Казиранга, известный своими однорогими носорогами?",options:{a:"Ассам",b:"Гуджарат",c:"Раджастхан",d:"Тамилнад"},explanation:"Национальный парк Казиранга расположен в Ассаме и известен популяцией индийских однорогих носорогов."}
+ }},
+ {id:"IN-HIS-004",region:"IN",category:"History",difficulty:"hard",correct:"c",translations:{
+  "en-IN":{question:"Who presided over the first session of the Indian National Congress in 1885?",options:{a:"Dadabhai Naoroji",b:"Surendranath Banerjee",c:"Womesh Chunder Bonnerjee",d:"Gopal Krishna Gokhale"},explanation:"Womesh Chunder Bonnerjee (also known as Umesh Chandra Banerjee) presided over the first Indian National Congress session in Bombay in December 1885."},
+  "en-US":{question:"Who chaired the first session of the Indian National Congress in 1885?",options:{a:"Dadabhai Naoroji",b:"Surendranath Banerjee",c:"Womesh Chunder Bonnerjee",d:"Gopal Krishna Gokhale"},explanation:"Womesh Chunder Bonnerjee (also known as Umesh Chandra Banerjee) presided over the first Indian National Congress session in Bombay in December 1885."},
+  "ru-RU":{question:"Кто председательствовал на первой сессии Индийского национального конгресса в 1885 году?",options:{a:"Дадабхай Наороджи",b:"Сурендранатх Банерджи",c:"Вомеш Чандер Боннерджи",d:"Гопал Кришна Гокхале"},explanation:"Вомеш Чандер Боннерджи (также известный как Умеш Чандра Банерджи) председательствовал на первой сессии Индийского национального конгресса в Бомбее в декабре 1885 года."}
+ }},
+ {id:"RU-GEO-005",region:"RU",category:"Geography",difficulty:"medium",correct:"d",translations:{
+  "en-IN":{question:"Which Russian peninsula is home to the Valley of Geysers?",options:{a:"Kola Peninsula",b:"Yamal Peninsula",c:"Taimyr Peninsula",d:"Kamchatka Peninsula"},explanation:"The Valley of Geysers is in the Kronotsky Nature Reserve on the Kamchatka Peninsula in Russia's Far East."},
+  "en-US":{question:"On which Russian peninsula is the Valley of Geysers located?",options:{a:"Kola Peninsula",b:"Yamal Peninsula",c:"Taimyr Peninsula",d:"Kamchatka Peninsula"},explanation:"The Valley of Geysers is in the Kronotsky Nature Reserve on the Kamchatka Peninsula in Russia's Far East."},
+  "ru-RU":{question:"На каком российском полуострове находится Долина гейзеров?",options:{a:"Кольский полуостров",b:"Полуостров Ямал",c:"Полуостров Таймыр",d:"Полуостров Камчатка"},explanation:"Долина гейзеров расположена в Кроноцком заповеднике на Камчатке, на Дальнем Востоке России."}
+ }},
+ {id:"RU-HIS-004",region:"RU",category:"History",difficulty:"hard",correct:"b",translations:{
+  "en-IN":{question:"Which treaty formally ended the state of war between Soviet Russia and Germany after World War I?",options:{a:"Treaty of Versailles",b:"Treaty of Rapallo",c:"Treaty of Brest-Litovsk",d:"Treaty of Tartu"},explanation:"The Treaty of Rapallo, signed in 1922 by Soviet Russia and Germany, restored diplomatic relations and renounced mutual claims; the Treaty of Brest-Litovsk had taken Soviet Russia out of the war in 1918."},
+  "en-US":{question:"Which 1922 treaty between Soviet Russia and Germany restored diplomatic relations and renounced mutual claims?",options:{a:"Treaty of Versailles",b:"Treaty of Rapallo",c:"Treaty of Brest-Litovsk",d:"Treaty of Tartu"},explanation:"The Treaty of Rapallo, signed in 1922 by Soviet Russia and Germany, restored diplomatic relations and renounced mutual claims; the Treaty of Brest-Litovsk had taken Soviet Russia out of the war in 1918."},
+  "ru-RU":{question:"Какой договор 1922 года между Советской Россией и Германией восстановил дипломатические отношения и предусматривал отказ от взаимных претензий?",options:{a:"Версальский договор",b:"Рапалльский договор",c:"Брест-Литовский договор",d:"Тартуский договор"},explanation:"Рапалльский договор, подписанный Советской Россией и Германией в 1922 году, восстановил дипломатические отношения и предусматривал отказ от взаимных претензий; Брест-Литовский договор вывел Советскую Россию из Первой мировой войны в 1918 году."}
+ }},
+ {id:"US-GEO-005",region:"US",category:"Geography",difficulty:"medium",correct:"b",translations:{
+  "en-IN":{question:"Which US state contains the highest point in North America, Denali?",options:{a:"Montana",b:"Alaska",c:"Colorado",d:"Washington"},explanation:"Denali, at 20,310 feet (6,190 metres), is in Alaska and is the highest mountain in North America."},
+  "en-US":{question:"In which U.S. state is Denali, the highest mountain in North America?",options:{a:"Montana",b:"Alaska",c:"Colorado",d:"Washington"},explanation:"Denali, at 20,310 feet (6,190 metres), is in Alaska and is the highest mountain in North America."},
+  "ru-RU":{question:"В каком штате США находится Денали — высочайшая гора Северной Америки?",options:{a:"Монтана",b:"Аляска",c:"Колорадо",d:"Вашингтон"},explanation:"Денали высотой 6190 метров находится на Аляске и является самой высокой горой Северной Америки."}
+ }},
+ {id:"US-CUL-003",region:"US",category:"Culture",difficulty:"hard",correct:"c",translations:{
+  "en-IN":{question:"Which American poet wrote the collection Leaves of Grass?",options:{a:"Robert Frost",b:"Emily Dickinson",c:"Walt Whitman",d:"Langston Hughes"},explanation:"Walt Whitman wrote Leaves of Grass, first published in 1855 and revised throughout his life."},
+  "en-US":{question:"Who wrote the poetry collection Leaves of Grass?",options:{a:"Robert Frost",b:"Emily Dickinson",c:"Walt Whitman",d:"Langston Hughes"},explanation:"Walt Whitman wrote Leaves of Grass, first published in 1855 and revised throughout his life."},
+  "ru-RU":{question:"Кто написал поэтический сборник «Листья травы» (Leaves of Grass)?",options:{a:"Роберт Фрост",b:"Эмили Дикинсон",c:"Уолт Уитмен",d:"Лэнгстон Хьюз"},explanation:"Уолт Уитмен — автор сборника «Листья травы», впервые опубликованного в 1855 году и неоднократно перерабатывавшегося им на протяжении жизни."}
+ }}
+
 ];
