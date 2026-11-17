@@ -288,6 +288,24 @@
       showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
     }
+
+    // Stable IDs must also represent distinct prompts in every supported language.
+    // Catch duplicate content before shuffling so it cannot appear in a later round.
+    const hasDuplicatePrompt = LOCALES.some((locale) => {
+      const prompts = pool.map((question) =>
+        question.translations[locale].question
+          .normalize("NFC")
+          .trim()
+          .replace(/\\s+/gu, " ")
+          .toLocaleLowerCase(locale)
+      );
+      return new Set(prompts).size !== prompts.length;
+    });
+    if (hasDuplicatePrompt) {
+      showRecovery("roundIntegrityError", "roundIntegrityHint");
+      return;
+    }
+
     const shuffled = [...pool];
     // Fisher–Yates gives every question an equal chance of occupying each position.
     for (let i = shuffled.length - 1; i > 0; i -= 1) {
