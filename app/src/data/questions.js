@@ -975,4 +975,588 @@ window.MINDQUEST_QUESTIONS = [
    }
   }
  }
-];
+,{
+  "id": "IN-GEO-009",
+  "region": "IN",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which Indian state contains the Valley of Flowers National Park?",
+      "options": {
+        "a": "Himachal Pradesh",
+        "b": "Sikkim",
+        "c": "Uttarakhand",
+        "d": "Arunachal Pradesh"
+      },
+      "explanation": "The Valley of Flowers National Park is in Uttarakhand, in the western Himalaya."
+    },
+    "en-US": {
+      "question": "Which Indian state is home to the Valley of Flowers National Park?",
+      "options": {
+        "a": "Himachal Pradesh",
+        "b": "Sikkim",
+        "c": "Uttarakhand",
+        "d": "Arunachal Pradesh"
+      },
+      "explanation": "The Valley of Flowers National Park is in Uttarakhand, in the western Himalaya."
+    },
+    "ru-RU": {
+      "question": "В каком индийском штате находится национальный парк «Долина цветов»?",
+      "options": {
+        "a": "Химачал-Прадеш",
+        "b": "Сикким",
+        "c": "Уттаракханд",
+        "d": "Аруначал-Прадеш"
+      },
+      "explanation": "Национальный парк «Долина цветов» расположен в Уттаракханде, в западной части Гималаев."
+    }
+  }
+},
+{
+  "id": "IN-HIS-009",
+  "region": "IN",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which ancient centre of learning was located in present-day Bihar?",
+      "options": {
+        "a": "Nalanda",
+        "b": "Taxila",
+        "c": "Vallabhi",
+        "d": "Kanchipuram"
+      },
+      "explanation": "Nalanda Mahavihara, in present-day Bihar, was a major centre of learning in ancient India."
+    },
+    "en-US": {
+      "question": "Which ancient university was located in what is now Bihar?",
+      "options": {
+        "a": "Nalanda",
+        "b": "Taxila",
+        "c": "Vallabhi",
+        "d": "Kanchipuram"
+      },
+      "explanation": "Nalanda Mahavihara, in present-day Bihar, was a major centre of learning in ancient India."
+    },
+    "ru-RU": {
+      "question": "Какой древний университет находился на территории современного штата Бихар?",
+      "options": {
+        "a": "Наланда",
+        "b": "Таксила",
+        "c": "Валлабхи",
+        "d": "Канчипурам"
+      },
+      "explanation": "Наланда-Махавихара в современном штате Бихар была крупным центром образования в древней Индии."
+    }
+  }
+},
+{
+  "id": "IN-SCI-008",
+  "region": "IN",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which Indian physicist discovered the Raman effect?",
+      "options": {
+        "a": "Homi J. Bhabha",
+        "b": "Meghnad Saha",
+        "c": "S. N. Bose",
+        "d": "C. V. Raman"
+      },
+      "explanation": "C. V. Raman discovered the light-scattering effect named after him and received the 1930 Nobel Prize in Physics."
+    },
+    "en-US": {
+      "question": "Who discovered the light-scattering phenomenon known as the Raman effect?",
+      "options": {
+        "a": "Homi J. Bhabha",
+        "b": "Meghnad Saha",
+        "c": "S. N. Bose",
+        "d": "C. V. Raman"
+      },
+      "explanation": "C. V. Raman discovered the light-scattering effect named after him and received the 1930 Nobel Prize in Physics."
+    },
+    "ru-RU": {
+      "question": "Кто открыл явление рассеяния света, известное как эффект Рамана?",
+      "options": {
+        "a": "Хоми Дж. Бхабха",
+        "b": "Мегнад Саха",
+        "c": "Сатьендра Нат Бозе",
+        "d": "Чандрасекара Венката Раман"
+      },
+      "explanation": "Чандрасекара Венката Раман открыл названный в его честь эффект рассеяния света и получил Нобелевскую премию по физике в 1930 году."
+    }
+  }
+},
+{
+  "id": "IN-SCI-009",
+  "region": "IN",
+  "category": "Science",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "What was India's first satellite, launched in 1975?",
+      "options": {
+        "a": "Rohini",
+        "b": "Aryabhata",
+        "c": "INSAT-1A",
+        "d": "Bhaskara"
+      },
+      "explanation": "Aryabhata, India's first satellite, was launched by the Soviet Union on 19 April 1975."
+    },
+    "en-US": {
+      "question": "Which was India's first satellite, launched in 1975?",
+      "options": {
+        "a": "Rohini",
+        "b": "Aryabhata",
+        "c": "INSAT-1A",
+        "d": "Bhaskara"
+      },
+      "explanation": "Aryabhata, India's first satellite, was launched by the Soviet Union on April 19, 1975."
+    },
+    "ru-RU": {
+      "question": "Как назывался первый индийский спутник, запущенный в 1975 году?",
+      "options": {
+        "a": "«Рохини»",
+        "b": "«Арьябхата»",
+        "c": "«Инсат-1А»",
+        "d": "«Бхаскара»"
+      },
+      "explanation": "Первый индийский спутник «Арьябхата» был запущен Советским Союзом 19 апреля 1975 года."
+    }
+  }
+},
+{
+  "id": "IN-CUL-008",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which South Indian classical music tradition is associated with Purandara Dasa?",
+      "options": {
+        "a": "Hindustani",
+        "b": "Rabindra Sangeet",
+        "c": "Carnatic",
+        "d": "Qawwali"
+      },
+      "explanation": "Carnatic music is the classical music tradition of southern India; Purandara Dasa is regarded as a foundational composer and teacher."
+    },
+    "en-US": {
+      "question": "Which South Indian classical music tradition counts Purandara Dasa among its foundational figures?",
+      "options": {
+        "a": "Hindustani",
+        "b": "Rabindra Sangeet",
+        "c": "Carnatic",
+        "d": "Qawwali"
+      },
+      "explanation": "Carnatic music is the classical music tradition of southern India; Purandara Dasa is regarded as a foundational composer and teacher."
+    },
+    "ru-RU": {
+      "question": "С какой традицией южноиндийской классической музыки связан Пурандара Даса?",
+      "options": {
+        "a": "Хиндустани",
+        "b": "Рабиндра-сангит",
+        "c": "Карнатическая музыка",
+        "d": "Каввали"
+      },
+      "explanation": "Карнатическая музыка — классическая музыкальная традиция Южной Индии; Пурандара Даса считается одним из её основоположников."
+    }
+  }
+},
+{
+  "id": "RU-GEO-009",
+  "region": "RU",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which Russian city stands on the Neva River?",
+      "options": {
+        "a": "Saint Petersburg",
+        "b": "Yekaterinburg",
+        "c": "Novosibirsk",
+        "d": "Krasnoyarsk"
+      },
+      "explanation": "Saint Petersburg is built around the Neva River, which flows from Lake Ladoga to the Gulf of Finland."
+    },
+    "en-US": {
+      "question": "Which Russian city is situated on the Neva River?",
+      "options": {
+        "a": "Saint Petersburg",
+        "b": "Yekaterinburg",
+        "c": "Novosibirsk",
+        "d": "Krasnoyarsk"
+      },
+      "explanation": "Saint Petersburg is built around the Neva River, which flows from Lake Ladoga to the Gulf of Finland."
+    },
+    "ru-RU": {
+      "question": "Какой российский город расположен на реке Неве?",
+      "options": {
+        "a": "Санкт-Петербург",
+        "b": "Екатеринбург",
+        "c": "Новосибирск",
+        "d": "Красноярск"
+      },
+      "explanation": "Санкт-Петербург расположен на Неве, которая течёт из Ладожского озера в Финский залив."
+    }
+  }
+},
+{
+  "id": "RU-HIS-009",
+  "region": "RU",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "In which year did the Soviet Union dissolve?",
+      "options": {
+        "a": "1985",
+        "b": "1989",
+        "c": "1990",
+        "d": "1991"
+      },
+      "explanation": "The Soviet Union formally ceased to exist in December 1991."
+    },
+    "en-US": {
+      "question": "When did the Soviet Union formally cease to exist?",
+      "options": {
+        "a": "1985",
+        "b": "1989",
+        "c": "1990",
+        "d": "1991"
+      },
+      "explanation": "The Soviet Union formally ceased to exist in December 1991."
+    },
+    "ru-RU": {
+      "question": "В каком году прекратил существование Советский Союз?",
+      "options": {
+        "a": "1985",
+        "b": "1989",
+        "c": "1990",
+        "d": "1991"
+      },
+      "explanation": "Советский Союз официально прекратил существование в декабре 1991 года."
+    }
+  }
+},
+{
+  "id": "RU-SCI-008",
+  "region": "RU",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which Russian scholar described conservation of mass in chemical transformations in the 18th century?",
+      "options": {
+        "a": "Ivan Sechenov",
+        "b": "Mikhail Lomonosov",
+        "c": "Nikolay Lobachevsky",
+        "d": "Alexander Popov"
+      },
+      "explanation": "Mikhail Lomonosov described the conservation of mass in chemical transformations in the 18th century."
+    },
+    "en-US": {
+      "question": "Which Russian scientist formulated conservation of mass in chemical reactions in the 18th century?",
+      "options": {
+        "a": "Ivan Sechenov",
+        "b": "Mikhail Lomonosov",
+        "c": "Nikolay Lobachevsky",
+        "d": "Alexander Popov"
+      },
+      "explanation": "Mikhail Lomonosov described the conservation of mass in chemical transformations in the 18th century."
+    },
+    "ru-RU": {
+      "question": "Какой российский учёный в XVIII веке сформулировал закон сохранения массы при химических превращениях?",
+      "options": {
+        "a": "Иван Сеченов",
+        "b": "Михаил Ломоносов",
+        "c": "Николай Лобачевский",
+        "d": "Александр Попов"
+      },
+      "explanation": "Михаил Ломоносов описал сохранение массы при химических превращениях в XVIII веке."
+    }
+  }
+},
+{
+  "id": "RU-SCI-009",
+  "region": "RU",
+  "category": "Science",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which Soviet spacecraft made the first successful soft landing on the Moon in 1966?",
+      "options": {
+        "a": "Luna 2",
+        "b": "Vostok 1",
+        "c": "Luna 9",
+        "d": "Soyuz 1"
+      },
+      "explanation": "Luna 9 achieved the first successful soft landing on the Moon on 3 February 1966."
+    },
+    "en-US": {
+      "question": "Which Soviet mission achieved the first successful soft landing on the Moon?",
+      "options": {
+        "a": "Luna 2",
+        "b": "Vostok 1",
+        "c": "Luna 9",
+        "d": "Soyuz 1"
+      },
+      "explanation": "Luna 9 achieved the first successful soft landing on the Moon on February 3, 1966."
+    },
+    "ru-RU": {
+      "question": "Какой советский аппарат первым успешно совершил мягкую посадку на Луну в 1966 году?",
+      "options": {
+        "a": "«Луна-2»",
+        "b": "«Восток-1»",
+        "c": "«Луна-9»",
+        "d": "«Союз-1»"
+      },
+      "explanation": "«Луна-9» совершила первую успешную мягкую посадку на Луне 3 февраля 1966 года."
+    }
+  }
+},
+{
+  "id": "RU-CUL-008",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which Russian city is home to the State Hermitage Museum?",
+      "options": {
+        "a": "Saint Petersburg",
+        "b": "Moscow",
+        "c": "Kazan",
+        "d": "Vladivostok"
+      },
+      "explanation": "The State Hermitage Museum is located in Saint Petersburg, with its historic core in the Winter Palace."
+    },
+    "en-US": {
+      "question": "In which Russian city is the State Hermitage Museum located?",
+      "options": {
+        "a": "Saint Petersburg",
+        "b": "Moscow",
+        "c": "Kazan",
+        "d": "Vladivostok"
+      },
+      "explanation": "The State Hermitage Museum is located in Saint Petersburg, with its historic core in the Winter Palace."
+    },
+    "ru-RU": {
+      "question": "В каком российском городе находится Государственный Эрмитаж?",
+      "options": {
+        "a": "Санкт-Петербург",
+        "b": "Москва",
+        "c": "Казань",
+        "d": "Владивосток"
+      },
+      "explanation": "Государственный Эрмитаж находится в Санкт-Петербурге; его историческое ядро размещается в Зимнем дворце."
+    }
+  }
+},
+{
+  "id": "US-GEO-009",
+  "region": "US",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which US state is known as the Aloha State?",
+      "options": {
+        "a": "Florida",
+        "b": "Alaska",
+        "c": "California",
+        "d": "Hawaii"
+      },
+      "explanation": "Hawaii's official nickname is the Aloha State."
+    },
+    "en-US": {
+      "question": "What is the official nickname of the US state of Hawaii?",
+      "options": {
+        "a": "Florida",
+        "b": "Alaska",
+        "c": "California",
+        "d": "Hawaii"
+      },
+      "explanation": "Hawaii's official nickname is the Aloha State."
+    },
+    "ru-RU": {
+      "question": "Какое прозвище носит американский штат Гавайи?",
+      "options": {
+        "a": "Флорида",
+        "b": "Аляска",
+        "c": "Калифорния",
+        "d": "Гавайи"
+      },
+      "explanation": "Официальное прозвище Гавайев — «Штат алоха»."
+    }
+  }
+},
+{
+  "id": "US-HIS-009",
+  "region": "US",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which document established the framework of the US federal government in 1787?",
+      "options": {
+        "a": "Declaration of Independence",
+        "b": "Bill of Rights",
+        "c": "US Constitution",
+        "d": "Emancipation Proclamation"
+      },
+      "explanation": "The US Constitution was drafted in 1787 and established the federal government's framework."
+    },
+    "en-US": {
+      "question": "What document, drafted in 1787, established the framework of the US federal government?",
+      "options": {
+        "a": "Declaration of Independence",
+        "b": "Bill of Rights",
+        "c": "US Constitution",
+        "d": "Emancipation Proclamation"
+      },
+      "explanation": "The US Constitution was drafted in 1787 and established the federal government's framework."
+    },
+    "ru-RU": {
+      "question": "Какой документ, составленный в 1787 году, определил устройство федерального правительства США?",
+      "options": {
+        "a": "Декларация независимости",
+        "b": "Билль о правах",
+        "c": "Конституция США",
+        "d": "Прокламация об освобождении рабов"
+      },
+      "explanation": "Конституция США была составлена в 1787 году и установила основы федерального государственного устройства."
+    }
+  }
+},
+{
+  "id": "US-SCI-008",
+  "region": "US",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which American scientist developed the inactivated polio vaccine declared safe in 1955?",
+      "options": {
+        "a": "Jonas Salk",
+        "b": "Edward Jenner",
+        "c": "Charles Drew",
+        "d": "Walter Reed"
+      },
+      "explanation": "Jonas Salk's inactivated polio vaccine was declared safe and effective in 1955."
+    },
+    "en-US": {
+      "question": "Who developed the inactivated polio vaccine declared safe and effective in 1955?",
+      "options": {
+        "a": "Jonas Salk",
+        "b": "Edward Jenner",
+        "c": "Charles Drew",
+        "d": "Walter Reed"
+      },
+      "explanation": "Jonas Salk's inactivated polio vaccine was declared safe and effective in 1955."
+    },
+    "ru-RU": {
+      "question": "Кто разработал инактивированную вакцину против полиомиелита, признанную безопасной и эффективной в 1955 году?",
+      "options": {
+        "a": "Джонас Солк",
+        "b": "Эдвард Дженнер",
+        "c": "Чарльз Дрю",
+        "d": "Уолтер Рид"
+      },
+      "explanation": "Инактивированная вакцина Джонаса Солка против полиомиелита была признана безопасной и эффективной в 1955 году."
+    }
+  }
+},
+{
+  "id": "US-SCI-009",
+  "region": "US",
+  "category": "Science",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which NASA mission first landed humans on the Moon?",
+      "options": {
+        "a": "Gemini 8",
+        "b": "Apollo 11",
+        "c": "Apollo 13",
+        "d": "Mercury-Atlas 6"
+      },
+      "explanation": "Apollo 11 landed astronauts Neil Armstrong and Buzz Aldrin on the Moon on 20 July 1969."
+    },
+    "en-US": {
+      "question": "Which NASA mission first carried astronauts to a lunar landing?",
+      "options": {
+        "a": "Gemini 8",
+        "b": "Apollo 11",
+        "c": "Apollo 13",
+        "d": "Mercury-Atlas 6"
+      },
+      "explanation": "Apollo 11 landed astronauts Neil Armstrong and Buzz Aldrin on the Moon on July 20, 1969."
+    },
+    "ru-RU": {
+      "question": "Какая миссия NASA первой доставила астронавтов на поверхность Луны?",
+      "options": {
+        "a": "«Джемини-8»",
+        "b": "«Аполлон-11»",
+        "c": "«Аполлон-13»",
+        "d": "«Меркурий-Атлас-6»"
+      },
+      "explanation": "Миссия «Аполлон-11» доставила Нила Армстронга и Базза Олдрина на Луну 20 июля 1969 года."
+    }
+  }
+},
+{
+  "id": "US-CUL-008",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which American author wrote The Adventures of Tom Sawyer?",
+      "options": {
+        "a": "Herman Melville",
+        "b": "Jack London",
+        "c": "Ernest Hemingway",
+        "d": "Mark Twain"
+      },
+      "explanation": "Mark Twain published The Adventures of Tom Sawyer in 1876."
+    },
+    "en-US": {
+      "question": "Who wrote the American novel The Adventures of Tom Sawyer?",
+      "options": {
+        "a": "Herman Melville",
+        "b": "Jack London",
+        "c": "Ernest Hemingway",
+        "d": "Mark Twain"
+      },
+      "explanation": "Mark Twain published The Adventures of Tom Sawyer in 1876."
+    },
+    "ru-RU": {
+      "question": "Кто написал роман «Приключения Тома Сойера»?",
+      "options": {
+        "a": "Герман Мелвилл",
+        "b": "Джек Лондон",
+        "c": "Эрнест Хемингуэй",
+        "d": "Марк Твен"
+      },
+      "explanation": "Марк Твен опубликовал роман «Приключения Тома Сойера» в 1876 году."
+    }
+  }
+}];
