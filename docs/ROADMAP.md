@@ -192,3 +192,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Verified all 43 distinct static HTML translation/accessibility keys exist in the English (India) dictionary. This confirms key presence only, not translation quality or rendered behavior.
 - No parser, browser runtime, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the development batch is complete.
 - This review does not change workstream status or baseline progress accounting (330 / 2,400 minutes; 13.75%). Actual engineering time is not tracked.
+
+
+## Latest factual content correction — 2026-11-18
+
+- Corrected the Baisakhi explanation for `IN-CUL-002` across English (India), English (US) and Russian. The old wording incorrectly described Baisakhi as the Sikh New Year under the Nanakshahi calendar; the revised copy identifies its Punjab spring-harvest association and its significance as commemorating the founding of the Khalsa by Guru Gobind Singh in 1699.
+- Cross-checked against the [World Sikh Organization of Canada Vaisakhi FAQ](https://worldsikh.org/) and the [U.S. Office of Personnel Management's Sikh significant-days guidance](https://www.reginfo.gov/public/do/eoDownloadDocument?documentID=219143&eodoc=true).
+- Preserved the question ID, correct answer key and option identity across translations. This is one targeted factual correction, not full content certification. Official validator, CI, browser/runtime, Android and device validation remain deferred.
+- Baseline progress remains 330 / 2,400 minutes (13.75%); this correction does not reclassify a roadmap workstream.
