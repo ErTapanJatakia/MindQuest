@@ -3,6 +3,7 @@
 
   const LOCALES = ["en-IN", "en-US", "ru-RU"];
   const REGIONS = ["IN", "RU", "US"];
+  const CATEGORIES = ["Geography", "History", "Science", "Culture"];
   const REGION_NAMES = {
     "en-IN": {
       categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
@@ -65,7 +66,7 @@
       interfaceLocale: LOCALES.includes(saved.interfaceLocale) ? saved.interfaceLocale : DEFAULTS.interfaceLocale,
       questionRegion: REGIONS.includes(saved.questionRegion) ? saved.questionRegion : DEFAULTS.questionRegion,
       questionLocale: LOCALES.includes(saved.questionLocale) ? saved.questionLocale : DEFAULTS.questionLocale,
-      category: typeof saved.category === "string" ? saved.category : "all",
+      category: CATEGORIES.includes(saved.category) ? saved.category : "all",
       difficulty: ["all", "easy", "medium", "hard"].includes(saved.difficulty) ? saved.difficulty : "all"
     };
   }
