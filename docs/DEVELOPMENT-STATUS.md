@@ -211,3 +211,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The multiple-choice answer group now exposes the current question prompt as its accessible description while retaining its localized “Answer options” accessible name. This gives assistive-technology users the question context when entering the answer controls.
 - The change is source-level only. Keyboard, accessibility-tree and screen-reader behavior still require runtime verification; no parser, browser runtime, official validator, CI, Android build or device test was run.
 - Baseline implementation accounting remains 330 / 2,400 minutes (13.75%) estimate-weighted; this small accessibility refinement does not reclassify a full roadmap workstream or count as logged engineering time.
+
+
+## Latest HTML-to-gameplay source consistency review — 2026-11-17
+
+- Cross-checked every static element ID referenced by the gameplay script against the HTML document: all 32 unique JavaScript ID selectors resolve to an existing element.
+- Checked the HTML document for duplicate IDs: none were found across its 40 identified elements.
+- Checked all static HTML translation and accessible-label keys against the English (India) UI dictionary: all 43 distinct keys are present. Prior three-locale dictionary coverage remains a source-level check, not a translation-quality assessment.
+- This was a source consistency inspection only. No JavaScript parser, browser runtime, accessibility tree, official question-bank validator, CI, Android build or physical-device test was run. CI and Android validation remain deferred until the development batch is complete.
+- No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
