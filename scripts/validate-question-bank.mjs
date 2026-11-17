@@ -28,13 +28,16 @@ for (const question of questions) {
   if (!categories.includes(question.category) || !difficulties.includes(question.difficulty)) {
     errors.push(`${question.id}: missing category or invalid difficulty`);
   }
-  if (!question.translations || typeof question.translations !== "object") {
-    errors.push(`${question.id}: translations missing`);
+  if (!question.translations || typeof question.translations !== "object" || Array.isArray(question.translations)) {
+    errors.push(`${question.id}: translations must be a plain object`);
     continue;
   }
   const translationLocales = Object.keys(question.translations).sort();
   if (JSON.stringify(translationLocales) !== JSON.stringify([...locales].sort())) {
     errors.push(`${question.id}: translation locales must be exactly ${locales.join(", ")}`);
+  }
+  if (!["a", "b", "c", "d"].includes(question.correct)) {
+    errors.push(`${question.id}: correct answer key must be a, b, c or d`);
   }
   if (typeof question.id === "string" && !question.id.startsWith(`${question.region}-`)) {
     errors.push(`${question.id}: ID prefix must match its region`);
@@ -67,9 +70,6 @@ for (const question of questions) {
         errors.push(`${question.id}/${locale}: answer option text must be unique`);
       }
     }
-    if (!keys.includes(question.correct)) {
-      errors.push(`${question.id}: correct answer key must be a, b, c or d`);
-    }
   }
 }
 
@@ -79,13 +79,22 @@ for (const region of regions) {
   const byDifficulty = Object.fromEntries(difficulties.map((level) => [
     level, regional.filter((question) => question.difficulty === level).length
   ]));
-  const missingCategories = categories.filter((category) =>
-    !regional.some((question) => question.category === category)
-  );
-  if (missingCategories.length) {
-    errors.push(`${region}: missing category coverage for ${missingCategories.join(", ")}`);
+  const expectedDifficulty = { easy: 15, medium: 20, hard: 15 };
+  for (const level of difficulties) {
+    if (byDifficulty[level] !== expectedDifficulty[level]) {
+      errors.push(`${region}: expected ${expectedDifficulty[level]} ${level} questions, found ${byDifficulty[level]}`);
+    }
   }
-  console.log(`${region}: ${regional.length} questions (easy ${byDifficulty.easy}, medium ${byDifficulty.medium}, hard ${byDifficulty.hard})`);
+  const byCategory = Object.fromEntries(categories.map((category) => [
+    category, regional.filter((question) => question.category === category).length
+  ]));
+  const expectedCategory = { Geography: 13, History: 12, Science: 12, Culture: 13 };
+  for (const category of categories) {
+    if (byCategory[category] !== expectedCategory[category]) {
+      errors.push(`${region}: expected ${expectedCategory[category]} ${category} questions, found ${byCategory[category]}`);
+    }
+  }
+  console.log(`${region}: ${regional.length} questions (easy ${byDifficulty.easy}, medium ${byDifficulty.medium}, hard ${byDifficulty.hard}; categories ${categories.map((category) => `${category} ${byCategory[category]}`).join(", ")})`);
 }
 
 if (questions.length !== 150) errors.push(`Expected exactly 150 question IDs, found ${questions.length}`);
