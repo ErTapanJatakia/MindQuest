@@ -438,3 +438,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Uses platform APIs only; no dependency, permission, service or product scope was added.
 - Source-only implementation and re-fetch verification; no Kotlin compilation, Gradle build, emulator, gesture-navigation or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and device validation. Actual engineering time remains untracked.
+
+
+## Android 15 edge-to-edge safe-area handling — 2026-11-18
+
+- Added API 35+ `WindowInsets` handling to the WebView container, applying system-bar and display-cutout insets as content padding. This addresses edge-to-edge enforcement for the app's target SDK 35 without changing the web game source.
+- The listener is gated to API 35+ and uses platform APIs only; no AndroidX dependency, permission, service or product scope was added.
+- Source-only implementation and re-fetch verification; no Kotlin compilation, Gradle/resource build, emulator, gesture-navigation, cutout, keyboard/IME or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and device validation. Actual engineering time remains untracked.
