@@ -25,7 +25,7 @@
       settingsIntro:"These choices are independent. Mix any interface, region and question language.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",
       freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",
-      noQuestions:"There are no questions available for this selection yet.",question:"QUESTION",round:"ROUND 1"
+      noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Change your category or difficulty settings to find questions.",question:"QUESTION",round:"ROUND 1"
     },
     "en-US": {
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard",categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
@@ -47,7 +47,7 @@
       settingsIntro:"Эти параметры независимы. Вы можете сочетать любой язык интерфейса, регион и язык вопросов.",
       interfaceLanguage:"Язык интерфейса",questionLanguage:"Язык вопросов",save:"Сохранить настройки",back:"Назад",
       freeOffline:"Бесплатно · Офлайн · Без аккаунта",correct:"Верно! ",incorrect:"Не совсем. ",roundScore:"Ваш результат: {score} из {total}.",
-      noQuestions:"Для выбранных параметров пока нет вопросов.",question:"ВОПРОС",round:"РАУНД 1"
+      noQuestions:"Для выбранных параметров пока нет вопросов.",noQuestionsHint:"Измените категорию или уровень сложности в настройках.",question:"ВОПРОС",round:"РАУНД 1"
     }
   };
   function suggestedInterfaceLocale() {
@@ -79,6 +79,7 @@
   let current = 0;
   let score = 0;
   let answered = false;
+  let noQuestionsForSelection = false;
   let lastView = "home-view";
   const $ = (id) => document.getElementById(id);
   const views = ["home-view", "quiz-view", "result-view", "settings-view"];
@@ -86,6 +87,16 @@
   const localeName = (locale) => locale === "ru-RU" ? "Русский" : locale === "en-US" ? "English (US)" : "English (India)";
   const regionName = (region) => REGION_NAMES[settings.interfaceLocale][region];
   const categoryName = (category) => t("category" + category);
+  const bestScoreKey = () => "mindquest.best." + settings.questionRegion + "." + settings.category + "." + settings.difficulty;
+  const readBestScore = () => {
+    try {
+      const record = JSON.parse(safeStorage.get(bestScoreKey()) || "null");
+      if (!record || !Number.isFinite(record.score) || !Number.isFinite(record.total) || record.total <= 0) return null;
+      return record;
+    } catch (_) {
+      return null;
+    }
+  };
 
   function showView(id) {
     views.forEach((viewId) => {
@@ -109,9 +120,8 @@
     $("question-category").value = settings.category;
     $("question-difficulty").value = settings.difficulty;
     $("home-region").textContent = regionName(settings.questionRegion);
-    const best = safeStorage.get("mindquest.best") || "0";
-    const bestTotal = safeStorage.get("mindquest.bestTotal") || "0";
-    $("best-score").textContent = Number(bestTotal) > 0 ? best + " / " + bestTotal : best;
+    const best = readBestScore();
+    $("best-score").textContent = best ? best.score + " / " + best.total : "—";
     $("answers").setAttribute("aria-label", settings.interfaceLocale === "ru-RU" ? "Варианты ответа" : "Answer options");
     [...$("question-category").options].forEach((option) => {
       if (option.value === "all") option.textContent = t("allCategories");
@@ -140,9 +150,12 @@
       (settings.difficulty === "all" || q.difficulty === settings.difficulty)
     );
     if (!pool.length) {
+      noQuestionsForSelection = true;
+      $("replay-button").hidden = true;
+      $("home-button").textContent = t("settings");
       $("result-title").textContent = t("noQuestions");
       $("final-score").textContent = "—";
-      $("result-message").textContent = "";
+      $("result-message").textContent = t("noQuestionsHint");
       showView("result-view");
       return;
     }
@@ -211,19 +224,20 @@
     $("result-title").textContent = t("wellPlayed");
     $("final-score").textContent = score + "/" + round.length;
     $("result-message").textContent = t("roundScore").replace("{score}", score).replace("{total}", round.length);
-    const best = Number(safeStorage.get("mindquest.best") || 0);
-    const bestTotal = Number(safeStorage.get("mindquest.bestTotal") || 0);
-    if (!bestTotal || score / round.length > best / bestTotal) {
-      safeStorage.set("mindquest.best", String(score));
-      safeStorage.set("mindquest.bestTotal", String(round.length));
+    const best = readBestScore();
+    if (!best || score / round.length > best.score / best.total) {
+      safeStorage.set(bestScoreKey(), JSON.stringify({ score, total: round.length }));
     }
+    noQuestionsForSelection = false;
+    $("replay-button").hidden = false;
+    $("home-button").textContent = t("home");
     applyInterface();
     showView("result-view");
   }
 
   $("play-button").addEventListener("click", startRound);
   $("replay-button").addEventListener("click", startRound);
-  $("home-button").addEventListener("click", () => showView("home-view"));
+  $("home-button").addEventListener("click", () => { if (noQuestionsForSelection) openSettings(); else showView("home-view"); });
   $("settings-open").addEventListener("click", openSettings);
   $("brand-home").addEventListener("click", (event) => { event.preventDefault(); showView("home-view"); });
   $("settings-back").addEventListener("click", () => showView(lastView));
