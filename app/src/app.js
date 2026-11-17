@@ -95,7 +95,8 @@
   const readBestScore = () => {
     try {
       const record = JSON.parse(safeStorage.get(bestScoreKey()) || "null");
-      if (!record || !Number.isFinite(record.score) || !Number.isFinite(record.total) || record.total <= 0) return null;
+      if (!record || !Number.isInteger(record.score) || !Number.isInteger(record.total) ||
+          record.total < 1 || record.total > 10 || record.score < 0 || record.score > record.total) return null;
       return record;
     } catch (_) {
       return null;
