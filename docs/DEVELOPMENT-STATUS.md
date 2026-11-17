@@ -248,3 +248,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Reference: [U.S. National Archives — 19th Amendment to the U.S. Constitution: Women's Right to Vote](https://www.archives.gov/milestone-documents/19th-amendment), including the ratification date and the continuing limits on full enfranchisement.
 - This is a targeted duplicate-removal and context correction, not full factual or native-speaker certification. No official content validator, browser/runtime, CI, Android build or physical-device test was run.
 - No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
+
+
+## Latest U.S. history duplication and rights-context review — 2026-11-18
+
+- A source-level scan of the twelve U.S. history records found that `US-HIS-006` and `US-HIS-007` both tested the Nineteenth Amendment. Replaced `US-HIS-007` with a question about the Fifteenth Amendment, ratified on 3 February 1870.
+- Preserved the stable ID, region, History category, hard difficulty and correct-answer key `a`; all three locale variants now identify the Fifteenth Amendment as the same correct answer.
+- Explanations distinguish the amendment's legal prohibition from historical reality: discriminatory practices continued to obstruct many Black Americans' access to voting. Reference: U.S. National Archives, https://www.archives.gov/milestone-documents/15th-amendment.
+- This is a targeted factual and duplication correction, not full content certification. The official validator, browser/runtime, CI, Android build and device QA were not run. CI and Android validation remain deferred.
+- Baseline implementation remains 330 / 2,400 minutes (13.75%); this targeted correction does not reclassify a roadmap workstream.
