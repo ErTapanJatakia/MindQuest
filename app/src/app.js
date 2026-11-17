@@ -4,9 +4,12 @@
   const LOCALES = ["en-IN", "en-US", "ru-RU"];
   const REGIONS = ["IN", "RU", "US"];
   const REGION_NAMES = {
-    "en-IN": { IN: "India", RU: "Russia", US: "United States" },
-    "en-US": { IN: "India", RU: "Russia", US: "United States" },
-    "ru-RU": { IN: "Индия", RU: "Россия", US: "США" }
+    "en-IN": {
+      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
+    "en-US": {
+      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
+    "ru-RU": {
+      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Индия", RU: "Россия", US: "США" }
   };
   const UI = {
     "en-IN": {
@@ -58,7 +61,9 @@
     return {
       interfaceLocale: LOCALES.includes(saved.interfaceLocale) ? saved.interfaceLocale : DEFAULTS.interfaceLocale,
       questionRegion: REGIONS.includes(saved.questionRegion) ? saved.questionRegion : DEFAULTS.questionRegion,
-      questionLocale: LOCALES.includes(saved.questionLocale) ? saved.questionLocale : DEFAULTS.questionLocale
+      questionLocale: LOCALES.includes(saved.questionLocale) ? saved.questionLocale : DEFAULTS.questionLocale,
+      category: typeof saved.category === "string" ? saved.category : "all",
+      difficulty: ["all", "easy", "medium", "hard"].includes(saved.difficulty) ? saved.difficulty : "all"
     };
   }
 
@@ -93,9 +98,11 @@
     $("interface-locale").value = settings.interfaceLocale;
     $("question-region").value = settings.questionRegion;
     $("question-locale").value = settings.questionLocale;
+    $("question-category").value = settings.category;
+    $("question-difficulty").value = settings.difficulty;
     $("home-region").textContent = regionName(settings.questionRegion);
     const best = safeStorage.get("mindquest.best") || "0";
-    const bestTotal = safeStorage.get("mindquest.bestTotal") || String(Math.min(10, (window.MINDQUEST_QUESTIONS || []).filter((q) => q.region === settings.questionRegion).length || 10));
+    const bestTotal = safeStorage.get("mindquest.bestTotal") || "0";
     $("best-score").textContent = best + " / " + bestTotal;
     $("answers").setAttribute("aria-label", settings.interfaceLocale === "ru-RU" ? "Варианты ответа" : "Answer options");
   }
@@ -105,11 +112,18 @@
     $("interface-locale").value = settings.interfaceLocale;
     $("question-region").value = settings.questionRegion;
     $("question-locale").value = settings.questionLocale;
+    $("question-category").value = settings.category;
+    $("question-difficulty").value = settings.difficulty;
     showView("settings-view");
   }
 
   function startRound() {
-    const pool = (window.MINDQUEST_QUESTIONS || []).filter((q) => q.region === settings.questionRegion && q.translations[settings.questionLocale]);
+    const pool = (window.MINDQUEST_QUESTIONS || []).filter((q) =>
+      q.region === settings.questionRegion &&
+      q.translations[settings.questionLocale] &&
+      (settings.category === "all" || q.category === settings.category) &&
+      (settings.difficulty === "all" || q.difficulty === settings.difficulty)
+    );
     if (!pool.length) {
       $("result-title").textContent = t("noQuestions");
       $("final-score").textContent = "—";
@@ -183,7 +197,11 @@
     $("final-score").textContent = score + "/" + round.length;
     $("result-message").textContent = t("roundScore").replace("{score}", score).replace("{total}", round.length);
     const best = Number(safeStorage.get("mindquest.best") || 0);
-    if (score > best) safeStorage.set("mindquest.best", String(score));
+    const bestTotal = Number(safeStorage.get("mindquest.bestTotal") || 0);
+    if (!bestTotal || score / round.length > best / bestTotal) {
+      safeStorage.set("mindquest.best", String(score));
+      safeStorage.set("mindquest.bestTotal", String(round.length));
+    }
     applyInterface();
     showView("result-view");
   }
@@ -198,7 +216,9 @@
     settings = {
       interfaceLocale: $("interface-locale").value,
       questionRegion: $("question-region").value,
-      questionLocale: $("question-locale").value
+      questionLocale: $("question-locale").value,
+      category: $("question-category").value,
+      difficulty: $("question-difficulty").value
     };
     safeStorage.set("mindquest.settings", JSON.stringify(settings));
     applyInterface();
