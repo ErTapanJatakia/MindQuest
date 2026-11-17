@@ -54,6 +54,7 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
 - Best scores are scoped to region, category and difficulty and compared by percentage. The home card shows the best score, percentage accuracy and active pool scope.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
+- Each quiz question displays its localized difficulty level alongside its category, including mixed-difficulty rounds.
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
 - Initial English (India) / English (US) UI copy differentiation, localized accessible names for navigation controls and answer group, and localized final-question results action.
 - All four question categories are represented in each regional bank, with thirteen Geography, twelve History, twelve Science and thirteen Culture questions.
