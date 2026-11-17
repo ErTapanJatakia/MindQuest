@@ -443,3 +443,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated all three interface locales, the settings control, Help copy, roadmap and architecture documentation. The selected length is also shown in the home best-score scope.
 - App logic committed as 88dd1a4 and f54566c; localization as 99f5263; settings markup as e54b668; roadmap as e3db899; architecture as b3d2fda.
 - Source/documentation changes only. No JavaScript parser, browser runtime, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. Baseline credit remains unchanged pending validation.
+
+
+## Best-score record schema hardening — 2026-11-18
+
+- Tightened local best-score parsing to accept only a plain JSON object with exactly the two expected fields, `score` and `total`, before applying the existing integer, range and selected-round-length checks.
+- This rejects malformed arrays and unexpected record shapes rather than silently treating extra fields as part of the supported persistence contract. Valid historical two-field records and the lazy ten-question migration path remain compatible.
+- Corrected the question-cycle source comment to describe the selected round length (5/10/15) rather than implying a fixed ten-question round. Updated the roadmap's round postcondition wording to reflect the configurable length and eligible-pool cap.
+- Source/documentation change only. No parser, browser runtime, official content validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
