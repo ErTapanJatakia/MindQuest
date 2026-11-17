@@ -4,7 +4,7 @@ Last updated: 2026-11-18
 
 ## Current phase
 
-**Phase 1 — foundation and playable web vertical slice; content volume is complete and source-quality review is underway.**
+**Phase 1 — foundation and playable web vertical slice; the 150-record bounded factual review is complete, and implementation/source-readiness refinement continues.**
 
 Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQuest), default branch `main`.
 
@@ -20,7 +20,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
 - Question bank expanded to **150 question IDs**, with 50 per region and all 3 language variants (450 localized question records).
-- Bounded cross-locale factual review is complete for records 1–135 (nine 15-record batches); records 136–150 are the next review segment. No full-bank fact audit or professional native-speaker acceptance is claimed.
+- Bounded cross-locale factual review is complete for all 150 records (ten 15-record batches). This is not exhaustive independent verification of every explanation/distractor or professional native-speaker acceptance.
 - Current difficulty spread in each region: 15 easy, 20 medium and 15 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
@@ -40,7 +40,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 - The question bank contains the full **150-question target**: 50 India, 50 Russia and 50 United States.
 - Each question has 3 locale variants: all 450 localized records are present.
-- The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
+- The content has completed bounded factual review across all 150 IDs and three locales. Professional native-speaker review, cultural/editorial acceptance and executable structural validation remain release gates.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
 - Interface localization now has initial English (India) / English (US) copy differentiation, localized settings/home accessible names, and localized answer-group labels. A targeted pass corrected a malformed JavaScript newline sequence and improved static quiz/progress accessibility defaults; a complete audit of every visible and assistive-technology string, plus full accessibility review and final visual polish, remains outstanding.
@@ -109,7 +109,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ## Remaining development priorities
 
 1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup; the saved-score parser hardening is complete.
-2. Complete factual, cultural and native-speaker review of all 150 questions, especially Russian phrasing and translation alignment.
+2. Obtain professional native-speaker and cultural/editorial acceptance for all 150 questions, especially Russian phrasing and translation alignment; the bounded factual review is complete.
 3. Complete the interface localization audit; initial English (India) / English (US) wording and accessibility-label differentiation is implemented. A malformed source escape was corrected, but parser/runtime validation remains pending.
 4. Continue accessibility review and final visual refinement; keyboard focus now follows answer → next action → next question heading.
 5. Finish and review the Android wrapper, Gradle wrapper and release configuration.
