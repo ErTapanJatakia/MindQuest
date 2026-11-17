@@ -553,3 +553,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated the Android implementation notes. No new dependency, permission, service, network access or product scope was added.
 - Source-level verification only. No Kotlin compiler, Gradle build, APK inspection, runtime navigation test, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android system back integration — 2026-11-18
+
+- Added platform `OnBackInvokedDispatcher` handling for Android 13+ system back/predictive-back dispatch; WebView history is used when available, otherwise the Activity finishes.
+- Retained legacy Activity back handling for Android 6.0–12 and unregisters the API 33+ callback during Activity destruction.
+- No AndroidX dependency, permission, service or new product scope added. Device/gesture behaviour remains unverified.
+- No Kotlin compilation, Gradle build, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
