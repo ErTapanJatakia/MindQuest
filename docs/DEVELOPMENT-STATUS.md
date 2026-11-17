@@ -139,3 +139,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Reviewed the settings-selector refresh sequence: interface-language changes refresh the region, question-language and interface-language option labels immediately; saving settings refreshes labels again after the application persists and applies the selected interface locale.
 - Re-reviewed gameplay state transitions for this pass: answer selection is guarded against duplicate scoring, answer history is indexed by round position, empty-filter recovery clears stale review content, replay starts a fresh round, and settings saves return to home to avoid stale question content. These are source-inspection findings, not runtime test results.
 - No JavaScript parser, browser runtime, content validator, CI, Android build or device test was run. All remain pending the agreed development freeze and QA sequence.
+
+
+## Latest question-bank validator strengthening — 2026-11-17
+
+- Strengthened the dependency-free validator to reject array-shaped translation containers and to validate each question's shared correct-answer key once at question level.
+- Added exact per-region distribution assertions: 13 Geography, 12 History, 12 Science, 13 Culture; and 15 easy, 20 medium, 15 hard. The validator now checks these targets rather than merely reporting difficulty counts or checking that each category appears.
+- Reviewed the existing palette contrast ratios at source level: primary text, muted text, accent, warning and feedback colors exceed WCAG AA normal-text contrast against the main background and primary panel in the checked combinations. This calculation does not replace full UI-state/contrast testing.
+- The validator source was updated but deliberately not executed; no parser, browser runtime, CI, Android build or device test was run. Content accuracy and native-speaker review remain separate requirements.
