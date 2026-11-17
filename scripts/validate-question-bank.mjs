@@ -45,6 +45,12 @@ for (const question of questions) {
     if (!translation.options || keys.some((key) => !translation.options[key]?.toString().trim())) {
       errors.push(`${question.id}/${locale}: all four answer options are required`);
     }
+    else {
+      const optionValues = keys.map((key) => String(translation.options[key]).trim().toLocaleLowerCase(locale));
+      if (new Set(optionValues).size !== 4) {
+        errors.push(`${question.id}/${locale}: answer option text must be unique`);
+      }
+    }
     if (!keys.includes(question.correct)) {
       errors.push(`${question.id}: correct answer key must be a, b, c or d`);
     }
