@@ -589,3 +589,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Factual references: Cambridge University Press, “The reign of Alexander II: a watershed?” https://www.cambridge.org/core/books/abs/cambridge-history-of-russia/reign-of-alexander-ii-a-watershed/136BC2DA5C0E6AD904F1BDC24C6CB0CC ; Polish Office of the Commissioner for Human Rights, “The 1861 Emancipation Manifesto of Tzar Alexander II” https://bip.brpo.gov.pl/pliki/12289971420.pdf .
 - Post-update source scan verified 150 unique IDs, 50 records per region, 150 translations per locale, unchanged per-region category and difficulty distributions, four unique options and a valid correct key in every translation, and no exact duplicate prompts within any region/locale.
 - This is source-level structural and targeted factual review only. The official `npm run validate:content` validator remains unexecuted until the agreed development freeze; no CI, Android build or runtime testing was performed. No baseline allocation or product scope changed.
+
+
+### US culture topic-variety correction — 2026-11-18
+
+- A cross-record scan of correct-answer identities within each region/category found two repeated answer identities in US culture/geography. The two Alaska answers refer to distinct geography facts (largest state by area; location of Denali) and were retained.
+- The US culture pair both tested Frank Lloyd Wright: `US-CUL-002` (Fallingwater) and `US-CUL-006` (Solomon R. Guggenheim Museum). Replaced `US-CUL-006` in all three locales with a question about Maya Lin designing the Vietnam Veterans Memorial.
+- Preserved stable ID, US region, Culture category, hard difficulty, four-option schema and correct key `c`. All translations identify Maya Lin as the correct answer.
+- Factual source: U.S. National Park Service, Vietnam Veterans Memorial overview https://www.nps.gov/places/000/vietnam-veterans-memorial.htm . The National Park Service confirms Maya Lin designed the memorial; it was selected through a national design competition and dedicated in 1982.
+- This is a targeted topic-variety correction and source-level review. No baseline allocation or product scope changed. The official content validator, CI, Android build and runtime tests remain deferred until the agreed development freeze.
