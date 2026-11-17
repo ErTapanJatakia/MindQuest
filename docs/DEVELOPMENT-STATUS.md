@@ -485,3 +485,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - `isCompleteRound()` continues to compare the captured four option values with the active question translation; snapshotting ensures that comparison is meaningful if the source object is later mutated.
 - App commit: 17ae826. This is source hardening only; no baseline credit added. No browser runtime, parser, official content validator, CI, Android build or device testing was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
+
+
+## Streak-summary integrity verification — 2026-11-18
+
+- `isCompleteRound()` now recomputes both the trailing current streak and the maximum correct-answer streak from the validated answer ledger.
+- Results are accepted only when those derived values agree with the in-memory streak counters, in addition to the existing option snapshot, correctness, explanation and score checks.
+- App commit: 2699ae0. Source hardening only; no baseline credit added. No browser runtime, parser, official content validator, CI, Android build or device testing was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
