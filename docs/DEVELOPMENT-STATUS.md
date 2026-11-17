@@ -434,3 +434,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The stable answer key remains bound to its original option text throughout selection, correctness feedback, answer-history capture and result review. The question-bank data and shared correct-answer identity are unchanged.
 - App change committed as 178e8a2; roadmap updated as a5d5c7e.
 - Source-level review only. No JavaScript parser, browser gameplay test, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. Baseline credit remains unchanged pending validation.
+
+## Configurable round length — 2026-11-18
+
+- Added a persisted round-length preference with 5, 10 and 15 question choices; 10 remains the default for existing installations and malformed values normalize back to 10.
+- Round selection now targets the selected length, caps the actual round to the eligible pool size and retains proportional difficulty quotas, unseen-question rotation and randomized question ordering.
+- Best-score records are now separated by selected round length so a short-round result cannot overwrite or be compared against a longer-round record. The score-record reader accepts valid totals up to 15.
+- Updated all three interface locales, the settings control, Help copy, roadmap and architecture documentation. The selected length is also shown in the home best-score scope.
+- App logic committed as 88dd1a4 and f54566c; localization as 99f5263; settings markup as e54b668; roadmap as e3db899; architecture as b3d2fda.
+- Source/documentation changes only. No JavaScript parser, browser runtime, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. Baseline credit remains unchanged pending validation.
