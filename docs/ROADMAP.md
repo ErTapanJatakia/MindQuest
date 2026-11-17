@@ -469,3 +469,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Explicitly enabled `android:enableOnBackInvokedCallback` on the application manifest to align Android 13+ system back dispatch with the existing `OnBackInvokedDispatcher` callback. Older supported Android versions ignore the API 33 manifest attribute.
 - No dependency, permission or product scope added. Source-level manifest verification only; Android resource/manifest merge and gesture behaviour remain untested until the agreed validation phase.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit claimed pending build and runtime acceptance. Actual engineering time remains untracked.
+
+
+## Adaptive launcher icon resources — 2026-11-18
+
+- Added a foreground-only vector mark and an Android 8.0+ adaptive icon resource, with a matching `mipmap-anydpi` vector fallback for the minimum supported API 23–25 range.
+- Updated the manifest to reference the version-qualified `@mipmap/ic_launcher` resource for both launcher icon attributes. Existing splash artwork is retained.
+- This is source-level resource integration only; AAPT resource compilation, APK inspection, launcher masking and device rendering remain unverified. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit claimed pending build and runtime acceptance. Actual engineering time remains untracked.
