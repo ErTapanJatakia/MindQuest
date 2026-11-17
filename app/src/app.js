@@ -206,6 +206,8 @@
     $("question-progress").setAttribute("aria-label", t("progress"));
     $("category-label").textContent = categoryName(item.category).toUpperCase();
     $("question-title").textContent = copy.question;
+    // Keep keyboard and screen-reader users oriented as each new question loads.
+    $("question-title").focus();
     $("feedback").textContent = "";
     $("feedback").className = "feedback";
     $("next-button").disabled = true;
@@ -244,6 +246,8 @@
     $("feedback").textContent = (correct ? t("correct") : t("incorrect")) + copy.explanation;
     $("feedback").classList.add(correct ? "good" : "bad");
     $("next-button").disabled = false;
+    // Answer buttons are disabled after selection; move focus to the newly available action.
+    $("next-button").focus();
   }
 
 
