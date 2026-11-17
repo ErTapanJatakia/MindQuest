@@ -827,34 +827,34 @@ window.MINDQUEST_QUESTIONS = [
   "correct": "a",
   "translations": {
    "en-IN": {
-    "question": "Which amendment to the US Constitution, ratified in 1920, prohibited denying the vote on the basis of sex?",
+    "question": "Which amendment to the US Constitution, ratified in 1870, prohibited denying the right to vote on account of race, colour or previous condition of servitude?",
     "options": {
-     "a": "19th Amendment",
-     "b": "15th Amendment",
-     "c": "18th Amendment",
-     "d": "21st Amendment"
+     "a": "15th Amendment",
+     "b": "14th Amendment",
+     "c": "13th Amendment",
+     "d": "19th Amendment"
     },
-    "explanation": "The 19th Amendment was ratified in 1920 and prohibited denying voting rights on the basis of sex."
+    "explanation": "The 15th Amendment was ratified on 3 February 1870. It prohibited federal and state governments from denying or abridging voting rights on account of race, colour or previous condition of servitude. Discriminatory practices nevertheless continued to obstruct many Black Americans' access to the ballot."
    },
    "en-US": {
-    "question": "Which U.S. constitutional amendment, ratified in 1920, prohibited denying the vote based on sex?",
+    "question": "Which amendment to the U.S. Constitution, ratified in 1870, prohibited denying the right to vote on account of race, color, or previous condition of servitude?",
     "options": {
-     "a": "19th Amendment",
-     "b": "15th Amendment",
-     "c": "18th Amendment",
-     "d": "21st Amendment"
+     "a": "15th Amendment",
+     "b": "14th Amendment",
+     "c": "13th Amendment",
+     "d": "19th Amendment"
     },
-    "explanation": "The 19th Amendment was ratified in 1920 and prohibited denying voting rights on the basis of sex."
+    "explanation": "The 15th Amendment was ratified on February 3, 1870. It prohibited federal and state governments from denying or abridging voting rights on account of race, color, or previous condition of servitude. Discriminatory practices nevertheless continued to obstruct many Black Americans' access to the ballot."
    },
    "ru-RU": {
-    "question": "Какая поправка к Конституции США, ратифицированная в 1920 году, запретила отказывать в праве голоса по признаку пола?",
+    "question": "Какая поправка к Конституции США, ратифицированная в 1870 году, запретила отказывать в праве голоса по признаку расы, цвета кожи или прежнего подневольного положения?",
     "options": {
-     "a": "Девятнадцатая поправка",
-     "b": "Пятнадцатая поправка",
-     "c": "Восемнадцатая поправка",
-     "d": "Двадцать первая поправка"
+     "a": "Пятнадцатая поправка",
+     "b": "Четырнадцатая поправка",
+     "c": "Тринадцатая поправка",
+     "d": "Девятнадцатая поправка"
     },
-    "explanation": "Девятнадцатая поправка была ратифицирована в 1920 году и запретила ограничивать избирательные права по признаку пола."
+    "explanation": "Пятнадцатая поправка была ратифицирована 3 февраля 1870 года. Она запретила федеральным властям и властям штатов отказывать в избирательных правах или ограничивать их по признаку расы, цвета кожи или прежнего подневольного положения. Однако дискриминационные практики продолжали мешать многим чернокожим американцам участвовать в голосовании."
    }
   }
  },
