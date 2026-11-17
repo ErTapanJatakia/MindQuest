@@ -723,3 +723,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Preserved stable ID, US region, Culture category, hard difficulty, four-option schema and correct key `c`. All translations identify Maya Lin as the correct answer.
 - Factual source: U.S. National Park Service, Vietnam Veterans Memorial overview https://www.nps.gov/places/000/vietnam-veterans-memorial.htm . The National Park Service confirms Maya Lin designed the memorial; it was selected through a national design competition and dedicated in 1982.
 - This is a targeted topic-variety correction and source-level review. No baseline allocation or product scope changed. The official content validator, CI, Android build and runtime tests remain deferred until the agreed development freeze.
+
+
+### Indian culture topic-variety correction — 2026-11-18
+
+- The cross-record correct-answer scan found `IN-CUL-007` (Sattriya dance) and `IN-CUL-011` (Bihu festival) both used Assam as the answer in the India/Culture category. The facts were distinct, but this repeated state answer reduced answer variety.
+- Replaced `IN-CUL-011` in all three locales with a question about the Hornbill Festival and Nagaland. Preserved stable ID, India region, Culture category, hard difficulty, four-option schema and correct key `a`; all translations identify Nagaland as the answer.
+- Factual references: Tourism Nagaland, Hornbill Festival https://tourism.nagaland.gov.in/events/hornbill-festival/ ; Ministry of Tourism, Government of India, Utsav portal https://www.utsav.gov.in/view-event/hornbill-festival . Both describe the festival as organised by Nagaland's state government to showcase Naga cultural heritage.
+- Source-level checks are targeted, not a complete factual audit or native-speaker review. The official content validator, CI, Android build and runtime tests remain deferred until the agreed development freeze. No baseline allocation or scope changed.
