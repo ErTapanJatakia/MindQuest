@@ -610,3 +610,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated Android build notes to document the manifest/window relationship. No dependency, permission, service or product scope was added.
 - Source and post-commit fetch verification only; no Gradle build, emulator, keyboard animation, viewport or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android resource-linkage source audit — 2026-11-18
+
+- Cross-checked the application manifest's `@mipmap/ic_launcher` and `@style/AppTheme` / `@style/LaunchTheme` references against the available resource files.
+- Confirmed the adaptive icon's foreground and background references resolve to the existing vector and colour resources; the API 23–25 `mipmap-anydpi` fallback is present, and the Android 12+ splash theme's `@drawable/ic_launcher` reference also resolves.
+- Confirmed the Activity's `adjustResize` declaration and API 35+ IME/system-bar/display-cutout inset listener are both present in source. The Android asset source set points to the repository's canonical `app/` directory.
+- This was a source/reference audit only. AAPT resource linking, Gradle configuration, Kotlin compilation, APK contents, splash rendering and keyboard behaviour remain unverified until the agreed Android validation phase. No baseline credit added; CI remains deferred.
