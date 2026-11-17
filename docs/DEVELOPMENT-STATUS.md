@@ -427,3 +427,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Streaks are informational only: they do not award bonus points, alter accuracy, change best-score comparisons or add persistent storage.
 - App logic committed as `523e717`; quiz markup as `643ff80`; styling as `dee866c`; roadmap as `3b0f05c`.
 - Source/documentation changes only. No JavaScript parser, browser gameplay, accessibility runtime, official question-bank validator, CI, Android build, emulator or device test was run. Baseline credit remains unchanged pending validation.
+
+## Per-question answer-position randomization — 2026-11-18
+
+- Each question now shuffles its four answer positions independently using Fisher–Yates rather than always displaying option keys in A/B/C/D order.
+- The stable answer key remains bound to its original option text throughout selection, correctness feedback, answer-history capture and result review. The question-bank data and shared correct-answer identity are unchanged.
+- App change committed as 178e8a2; roadmap updated as a5d5c7e.
+- Source-level review only. No JavaScript parser, browser gameplay test, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run. Baseline credit remains unchanged pending validation.
