@@ -19,7 +19,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Category filter: All categories, Geography, History, Science and Culture.
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
-- Question bank expanded to **39 question IDs**, with 13 per region and all 3 language variants (117 localized question records).
+- Question bank expanded to **45 question IDs**, with 15 per region and all 3 language variants (135 localized question records).
 - Current difficulty spread in each region: 5 easy, 6 medium and 4 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
@@ -34,8 +34,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ### Current implementation limits
 
-- The question bank contains **39 of 150 target questions**: 13 India, 13 Russia and 13 United States.
-- Each question has 3 locale variants: 117 localized records out of the 450 target records.
+- The question bank contains **45 of 150 target questions**: 15 India, 15 Russia and 15 United States.
+- Each question has 3 locale variants: 135 localized records out of the 450 target records.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
