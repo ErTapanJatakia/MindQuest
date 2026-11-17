@@ -13,8 +13,8 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | In progress | 150 |
 | 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | In progress | 180 |
 | 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 |
-| 8 | Game modes | Ten-question rounds, category selection and replay | Planned | 120 |
-| 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | Planned | 90 |
+| 8 | Game modes | Ten-question rounds, category selection and replay | In progress | 120 |
+| 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 |
 | 10 | Results screen | Score, accuracy, answers, explanations and replay | In progress | 90 |
 | 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 |
 | 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | Planned | 120 |
@@ -46,6 +46,8 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Three independent preference values and local persistence.
 - Nine starter questions (three per region), each with three language variants.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
+- Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
+- Category and difficulty filter labels localised for English (India), English (US) and Russian.
 - Dependency-free question-bank structural validator.
 - Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
 
