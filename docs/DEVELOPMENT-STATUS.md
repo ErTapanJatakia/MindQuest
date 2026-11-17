@@ -20,7 +20,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
 - Question bank expanded to **39 question IDs**, with 13 per region and all 3 language variants (117 localized question records).
-- Current difficulty spread in each region: 5 easy, 5 medium and 3 hard questions.
+- Current difficulty spread in each region: 5 easy, 6 medium and 4 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
 - A localized help guide explains round flow, scoring, filters, independent language/region settings and offline/privacy principles.
@@ -49,7 +49,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
 - The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
-- Source consistency checks previously confirmed 27 question IDs, 9 questions per region, all three locales on each record; the latest batch adds six more records and has been syntax/structure checked separately, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- The current 45-question bank has been syntax- and structure-checked for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
 - Latest question-bank review repaired a missing comma that had made the previous bank file syntactically invalid; six additional regional questions were added. Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
