@@ -115,3 +115,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 6. Conduct manual source, offline and Android device QA.
 7. Only after feature development and source review, enable and run final CI / Android validation.
 8. Prepare RuStore and GitHub APK release materials after a successful signed build.
+
+
+## Latest development batch — progress announcements and narrow-screen resilience
+
+- Added a polite, atomic live announcement to the quiz question counter so assistive technology can announce progression as the player advances. The existing progress bar retains its numeric percentage semantics and localized accessible label.
+- Added narrow-screen layout safeguards for very small devices: flexible footer wrapping, minimum-width protection for key containers and controls, long localized text wrapping, and a compact layout treatment at viewport widths of 340px and below.
+- Ran a source-level localization coverage scan: every HTML `data-i18n` key is present in each of the three interface dictionaries. This checks key coverage only; it does not validate translation quality or runtime behavior.
+- No JavaScript parser, browser runtime, official question-bank validator, CI, Android build or physical-device test was run. The responsive and assistive-technology changes still require runtime verification.
