@@ -1559,4 +1559,590 @@ window.MINDQUEST_QUESTIONS = [
       "explanation": "Марк Твен опубликовал роман «Приключения Тома Сойера» в 1876 году."
     }
   }
-}];
+},
+{
+  "id": "IN-GEO-010",
+  "region": "IN",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Into which major water body does the Brahmaputra River eventually flow?",
+      "options": {
+        "a": "Arabian Sea",
+        "b": "Bay of Bengal directly from Assam",
+        "c": "Bay of Bengal through the Ganges-Brahmaputra delta",
+        "d": "Indian Ocean near Kerala"
+      },
+      "explanation": "The Brahmaputra joins the Ganges system in Bangladesh and reaches the Bay of Bengal through the delta."
+    },
+    "en-US": {
+      "question": "Into which major body of water does the Brahmaputra River ultimately flow?",
+      "options": {
+        "a": "Arabian Sea",
+        "b": "Bay of Bengal directly from Assam",
+        "c": "Bay of Bengal through the Ganges-Brahmaputra delta",
+        "d": "Indian Ocean near Kerala"
+      },
+      "explanation": "The Brahmaputra joins the Ganges system in Bangladesh and reaches the Bay of Bengal through the delta."
+    },
+    "ru-RU": {
+      "question": "В какой крупный водоём в конечном итоге впадает река Брахмапутра?",
+      "options": {
+        "a": "Аравийское море",
+        "b": "Бенгальский залив непосредственно из Ассама",
+        "c": "Бенгальский залив через дельту Ганга и Брахмапутры",
+        "d": "Индийский океан у побережья Кералы"
+      },
+      "explanation": "В Бангладеш Брахмапутра соединяется с системой Ганга и через общую дельту впадает в Бенгальский залив."
+    }
+  }
+},
+{
+  "id": "IN-HIS-010",
+  "region": "IN",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Who founded the Mughal Empire in India after the First Battle of Panipat in 1526?",
+      "options": {
+        "a": "Babur",
+        "b": "Akbar",
+        "c": "Humayun",
+        "d": "Sher Shah Suri"
+      },
+      "explanation": "Babur defeated Ibrahim Lodi at the First Battle of Panipat in 1526, establishing Mughal rule in northern India."
+    },
+    "en-US": {
+      "question": "Who founded the Mughal Empire in India after the First Battle of Panipat in 1526?",
+      "options": {
+        "a": "Babur",
+        "b": "Akbar",
+        "c": "Humayun",
+        "d": "Sher Shah Suri"
+      },
+      "explanation": "Babur defeated Ibrahim Lodi at the First Battle of Panipat in 1526, establishing Mughal rule in northern India."
+    },
+    "ru-RU": {
+      "question": "Кто основал Империю Великих Моголов в Индии после Первой битвы при Панипате в 1526 году?",
+      "options": {
+        "a": "Бабур",
+        "b": "Акбар",
+        "c": "Хумаюн",
+        "d": "Шер-шах Сури"
+      },
+      "explanation": "В 1526 году Бабур победил Ибрагима Лоди в Первой битве при Панипате и установил власть Моголов на севере Индии."
+    }
+  }
+},
+{
+  "id": "IN-SCI-010",
+  "region": "IN",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "At which site did India conduct its first nuclear test in 1974?",
+      "options": {
+        "a": "Sriharikota",
+        "b": "Tarapur",
+        "c": "Kalpakkam",
+        "d": "Pokhran"
+      },
+      "explanation": "India conducted its first nuclear test, code-named Smiling Buddha, at Pokhran in Rajasthan on 18 May 1974."
+    },
+    "en-US": {
+      "question": "Where did India conduct its first nuclear test in 1974?",
+      "options": {
+        "a": "Sriharikota",
+        "b": "Tarapur",
+        "c": "Kalpakkam",
+        "d": "Pokhran"
+      },
+      "explanation": "India conducted its first nuclear test, code-named Smiling Buddha, at Pokhran in Rajasthan on May 18, 1974."
+    },
+    "ru-RU": {
+      "question": "Где Индия провела своё первое ядерное испытание в 1974 году?",
+      "options": {
+        "a": "Шрихарикота",
+        "b": "Тарапур",
+        "c": "Калпаккам",
+        "d": "Покхран"
+      },
+      "explanation": "18 мая 1974 года Индия провела первое ядерное испытание под кодовым названием «Улыбающийся Будда» на полигоне Покхран в Раджастхане."
+    }
+  }
+},
+{
+  "id": "IN-CUL-009",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "The ancient Sangam corpus is primarily associated with which language?",
+      "options": {
+        "a": "Sanskrit",
+        "b": "Tamil",
+        "c": "Pali",
+        "d": "Prakrit"
+      },
+      "explanation": "Sangam literature is a major body of early classical Tamil poetry and prose."
+    },
+    "en-US": {
+      "question": "The ancient Sangam literary corpus is primarily associated with which language?",
+      "options": {
+        "a": "Sanskrit",
+        "b": "Tamil",
+        "c": "Pali",
+        "d": "Prakrit"
+      },
+      "explanation": "Sangam literature is a major body of early classical Tamil poetry and prose."
+    },
+    "ru-RU": {
+      "question": "С каким языком прежде всего связан древний литературный корпус Сангам?",
+      "options": {
+        "a": "Санскрит",
+        "b": "Тамильский",
+        "c": "Пали",
+        "d": "Пракрит"
+      },
+      "explanation": "Литература Сангам — это значительный корпус ранней классической тамильской поэзии и прозы."
+    }
+  }
+},
+{
+  "id": "IN-CUL-010",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Kuchipudi is a classical dance tradition originating in which Indian state?",
+      "options": {
+        "a": "Andhra Pradesh",
+        "b": "Odisha",
+        "c": "Manipur",
+        "d": "Uttar Pradesh"
+      },
+      "explanation": "Kuchipudi takes its name from a village in Andhra Pradesh and developed as a classical dance-drama tradition there."
+    },
+    "en-US": {
+      "question": "Kuchipudi is a classical dance tradition that originated in which Indian state?",
+      "options": {
+        "a": "Andhra Pradesh",
+        "b": "Odisha",
+        "c": "Manipur",
+        "d": "Uttar Pradesh"
+      },
+      "explanation": "Kuchipudi takes its name from a village in Andhra Pradesh and developed as a classical dance-drama tradition there."
+    },
+    "ru-RU": {
+      "question": "В каком индийском штате возник классический танец кучипуди?",
+      "options": {
+        "a": "Андхра-Прадеш",
+        "b": "Одиша",
+        "c": "Манипур",
+        "d": "Уттар-Прадеш"
+      },
+      "explanation": "Кучипуди получил название от деревни в Андхра-Прадеш и сформировался там как традиция классического танца-драмы."
+    }
+  }
+},
+{
+  "id": "RU-GEO-010",
+  "region": "RU",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Into which sea does the Yenisei River flow?",
+      "options": {
+        "a": "Black Sea",
+        "b": "Kara Sea",
+        "c": "Baltic Sea",
+        "d": "Caspian Sea"
+      },
+      "explanation": "The Yenisei flows north through Siberia and empties into the Kara Sea in the Arctic Ocean."
+    },
+    "en-US": {
+      "question": "Into which sea does the Yenisei River flow?",
+      "options": {
+        "a": "Black Sea",
+        "b": "Kara Sea",
+        "c": "Baltic Sea",
+        "d": "Caspian Sea"
+      },
+      "explanation": "The Yenisei flows north through Siberia and empties into the Kara Sea in the Arctic Ocean."
+    },
+    "ru-RU": {
+      "question": "В какое море впадает река Енисей?",
+      "options": {
+        "a": "Чёрное море",
+        "b": "Карское море",
+        "c": "Балтийское море",
+        "d": "Каспийское море"
+      },
+      "explanation": "Енисей течёт на север через Сибирь и впадает в Карское море Северного Ледовитого океана."
+    }
+  }
+},
+{
+  "id": "RU-HIS-010",
+  "region": "RU",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "In which year was the Battle of Kulikovo fought?",
+      "options": {
+        "a": "1240",
+        "b": "1382",
+        "c": "1380",
+        "d": "1480"
+      },
+      "explanation": "The Battle of Kulikovo was fought in 1380 between forces led by Dmitry of Moscow and the army of Mamai."
+    },
+    "en-US": {
+      "question": "In what year was the Battle of Kulikovo fought?",
+      "options": {
+        "a": "1240",
+        "b": "1382",
+        "c": "1380",
+        "d": "1480"
+      },
+      "explanation": "The Battle of Kulikovo was fought in 1380 between forces led by Dmitry of Moscow and the army of Mamai."
+    },
+    "ru-RU": {
+      "question": "В каком году состоялась Куликовская битва?",
+      "options": {
+        "a": "1240",
+        "b": "1382",
+        "c": "1380",
+        "d": "1480"
+      },
+      "explanation": "Куликовская битва произошла в 1380 году между войском Дмитрия Московского и силами Мамая."
+    }
+  }
+},
+{
+  "id": "RU-SCI-010",
+  "region": "RU",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Who became the first person to perform a spacewalk in 1965?",
+      "options": {
+        "a": "Alexei Leonov",
+        "b": "Yuri Gagarin",
+        "c": "Vladimir Komarov",
+        "d": "Pavel Belyayev"
+      },
+      "explanation": "Soviet cosmonaut Alexei Leonov completed the first spacewalk on 18 March 1965 during the Voskhod 2 mission."
+    },
+    "en-US": {
+      "question": "Who became the first person to perform a spacewalk in 1965?",
+      "options": {
+        "a": "Alexei Leonov",
+        "b": "Yuri Gagarin",
+        "c": "Vladimir Komarov",
+        "d": "Pavel Belyayev"
+      },
+      "explanation": "Soviet cosmonaut Alexei Leonov completed the first spacewalk on March 18, 1965, during the Voskhod 2 mission."
+    },
+    "ru-RU": {
+      "question": "Кто первым в истории вышел в открытый космос в 1965 году?",
+      "options": {
+        "a": "Алексей Леонов",
+        "b": "Юрий Гагарин",
+        "c": "Владимир Комаров",
+        "d": "Павел Беляев"
+      },
+      "explanation": "Советский космонавт Алексей Леонов совершил первый выход в открытый космос 18 марта 1965 года во время полёта «Восхода-2»."
+    }
+  }
+},
+{
+  "id": "RU-CUL-009",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Which Russian jeweller is most closely associated with the ornate imperial Easter eggs made for the Romanov court?",
+      "options": {
+        "a": "Ivan Shishkin",
+        "b": "Vasily Perov",
+        "c": "Mikhail Vrubel",
+        "d": "Peter Carl Fabergé"
+      },
+      "explanation": "Peter Carl Fabergé and his workshop created the celebrated series of imperial Easter eggs for the Russian royal family."
+    },
+    "en-US": {
+      "question": "Which Russian jeweller is most closely associated with the ornate imperial Easter eggs made for the Romanov court?",
+      "options": {
+        "a": "Ivan Shishkin",
+        "b": "Vasily Perov",
+        "c": "Mikhail Vrubel",
+        "d": "Peter Carl Fabergé"
+      },
+      "explanation": "Peter Carl Fabergé and his workshop created the celebrated series of imperial Easter eggs for the Russian royal family."
+    },
+    "ru-RU": {
+      "question": "Какой ювелир наиболее известен созданием роскошных императорских пасхальных яиц для дома Романовых?",
+      "options": {
+        "a": "Иван Шишкин",
+        "b": "Василий Перов",
+        "c": "Михаил Врубель",
+        "d": "Петер Карл Фаберже"
+      },
+      "explanation": "Петер Карл Фаберже и его мастерская создали знаменитую серию императорских пасхальных яиц для российской царской семьи."
+    }
+  }
+},
+{
+  "id": "RU-CUL-010",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+    "en-IN": {
+      "question": "Which Moscow art museum is especially known for its collection of Russian fine art, including works by the Peredvizhniki?",
+      "options": {
+        "a": "Pushkin Museum",
+        "b": "State Tretyakov Gallery",
+        "c": "Hermitage Museum",
+        "d": "Polytechnic Museum"
+      },
+      "explanation": "The State Tretyakov Gallery is a major Moscow museum devoted to Russian art, with extensive works by the Peredvizhniki."
+    },
+    "en-US": {
+      "question": "Which Moscow art museum is especially known for its collection of Russian fine art, including works by the Peredvizhniki?",
+      "options": {
+        "a": "Pushkin Museum",
+        "b": "State Tretyakov Gallery",
+        "c": "Hermitage Museum",
+        "d": "Polytechnic Museum"
+      },
+      "explanation": "The State Tretyakov Gallery is a major Moscow museum devoted to Russian art, with extensive works by the Peredvizhniki."
+    },
+    "ru-RU": {
+      "question": "Какой московский художественный музей особенно известен коллекцией русского искусства, в том числе работами передвижников?",
+      "options": {
+        "a": "Музей имени Пушкина",
+        "b": "Государственная Третьяковская галерея",
+        "c": "Эрмитаж",
+        "d": "Политехнический музей"
+      },
+      "explanation": "Государственная Третьяковская галерея — один из главных московских музеев русского искусства; в её собрании представлены многочисленные работы передвижников."
+    }
+  }
+},
+{
+  "id": "US-GEO-010",
+  "region": "US",
+  "category": "Geography",
+  "difficulty": "easy",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "The Mississippi River empties into which body of water?",
+      "options": {
+        "a": "Atlantic Ocean near Florida",
+        "b": "Chesapeake Bay",
+        "c": "Gulf of Mexico",
+        "d": "Pacific Ocean near California"
+      },
+      "explanation": "The Mississippi River reaches the Gulf of Mexico through its extensive delta in Louisiana."
+    },
+    "en-US": {
+      "question": "The Mississippi River empties into which body of water?",
+      "options": {
+        "a": "Atlantic Ocean near Florida",
+        "b": "Chesapeake Bay",
+        "c": "Gulf of Mexico",
+        "d": "Pacific Ocean near California"
+      },
+      "explanation": "The Mississippi River reaches the Gulf of Mexico through its extensive delta in Louisiana."
+    },
+    "ru-RU": {
+      "question": "В какой водоём впадает река Миссисипи?",
+      "options": {
+        "a": "Атлантический океан у Флориды",
+        "b": "Чесапикский залив",
+        "c": "Мексиканский залив",
+        "d": "Тихий океан у Калифорнии"
+      },
+      "explanation": "Миссисипи впадает в Мексиканский залив через обширную дельту в Луизиане."
+    }
+  }
+},
+{
+  "id": "US-HIS-010",
+  "region": "US",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "At which 1848 gathering did activists issue a declaration calling for women's rights in the United States?",
+      "options": {
+        "a": "Seneca Falls Convention",
+        "b": "Continental Congress",
+        "c": "Hartford Convention",
+        "d": "Albany Congress"
+      },
+      "explanation": "The Seneca Falls Convention in New York in July 1848 produced the Declaration of Sentiments, a landmark document in the US women's rights movement."
+    },
+    "en-US": {
+      "question": "At which 1848 gathering did activists issue a declaration calling for women's rights in the United States?",
+      "options": {
+        "a": "Seneca Falls Convention",
+        "b": "Continental Congress",
+        "c": "Hartford Convention",
+        "d": "Albany Congress"
+      },
+      "explanation": "The Seneca Falls Convention in New York in July 1848 produced the Declaration of Sentiments, a landmark document in the US women's rights movement."
+    },
+    "ru-RU": {
+      "question": "На каком собрании 1848 года активистки приняли декларацию с призывом к защите прав женщин в США?",
+      "options": {
+        "a": "Съезд в Сенека-Фолс",
+        "b": "Континентальный конгресс",
+        "c": "Хартфордский конвент",
+        "d": "Олбанский конгресс"
+      },
+      "explanation": "Съезд в Сенека-Фолс в штате Нью-Йорк в июле 1848 года принял Декларацию чувств — важный документ американского движения за права женщин."
+    }
+  }
+},
+{
+  "id": "US-SCI-010",
+  "region": "US",
+  "category": "Science",
+  "difficulty": "medium",
+  "correct": "d",
+  "translations": {
+    "en-IN": {
+      "question": "Who became the first American woman to travel into space, in 1983?",
+      "options": {
+        "a": "Mae Jemison",
+        "b": "Eileen Collins",
+        "c": "Judith Resnik",
+        "d": "Sally Ride"
+      },
+      "explanation": "Sally Ride flew aboard the Space Shuttle Challenger mission STS-7 in June 1983."
+    },
+    "en-US": {
+      "question": "Who became the first American woman to travel into space, in 1983?",
+      "options": {
+        "a": "Mae Jemison",
+        "b": "Eileen Collins",
+        "c": "Judith Resnik",
+        "d": "Sally Ride"
+      },
+      "explanation": "Sally Ride flew aboard the Space Shuttle Challenger mission STS-7 in June 1983."
+    },
+    "ru-RU": {
+      "question": "Кто стала первой американкой, отправившейся в космос в 1983 году?",
+      "options": {
+        "a": "Мэй Джемисон",
+        "b": "Эйлин Коллинз",
+        "c": "Джудит Резник",
+        "d": "Салли Райд"
+      },
+      "explanation": "Салли Райд отправилась в космос на борту шаттла «Челленджер» во время миссии STS-7 в июне 1983 года."
+    }
+  }
+},
+{
+  "id": "US-CUL-009",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+    "en-IN": {
+      "question": "Which cultural movement that flourished in 1920s New York is closely associated with writers such as Langston Hughes?",
+      "options": {
+        "a": "Beat Generation",
+        "b": "Transcendentalism",
+        "c": "Harlem Renaissance",
+        "d": "Lost Generation"
+      },
+      "explanation": "The Harlem Renaissance was a major African American cultural movement centred in Harlem during the 1920s and early 1930s."
+    },
+    "en-US": {
+      "question": "Which cultural movement that flourished in 1920s New York is closely associated with writers such as Langston Hughes?",
+      "options": {
+        "a": "Beat Generation",
+        "b": "Transcendentalism",
+        "c": "Harlem Renaissance",
+        "d": "Lost Generation"
+      },
+      "explanation": "The Harlem Renaissance was a major African American cultural movement centred in Harlem during the 1920s and early 1930s."
+    },
+    "ru-RU": {
+      "question": "Какое культурное движение, расцветшее в Нью-Йорке в 1920-е годы, связано с такими писателями, как Лэнгстон Хьюз?",
+      "options": {
+        "a": "Поколение битников",
+        "b": "Трансцендентализм",
+        "c": "Гарлемский ренессанс",
+        "d": "Потерянное поколение"
+      },
+      "explanation": "Гарлемский ренессанс — крупное афроамериканское культурное движение, центром которого был район Гарлем в 1920-е и начале 1930-х годов."
+    }
+  }
+},
+{
+  "id": "US-CUL-010",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "a",
+  "translations": {
+    "en-IN": {
+      "question": "Which music and dance culture emerged in the Bronx during the 1970s and later spread worldwide?",
+      "options": {
+        "a": "Hip-hop",
+        "b": "Bluegrass",
+        "c": "Bebop",
+        "d": "Surf rock"
+      },
+      "explanation": "Hip-hop culture emerged in the Bronx in the 1970s, combining elements such as DJing, MCing, breakdancing and graffiti art."
+    },
+    "en-US": {
+      "question": "Which music and dance culture emerged in the Bronx during the 1970s and later spread worldwide?",
+      "options": {
+        "a": "Hip-hop",
+        "b": "Bluegrass",
+        "c": "Bebop",
+        "d": "Surf rock"
+      },
+      "explanation": "Hip-hop culture emerged in the Bronx in the 1970s, combining elements such as DJing, MCing, breakdancing and graffiti art."
+    },
+    "ru-RU": {
+      "question": "Какая музыкальная и танцевальная культура возникла в Бронксе в 1970-е годы и позднее распространилась по всему миру?",
+      "options": {
+        "a": "Хип-хоп",
+        "b": "Блюграсс",
+        "c": "Бибоп",
+        "d": "Сёрф-рок"
+      },
+      "explanation": "Культура хип-хопа зародилась в Бронксе в 1970-е годы и объединила диджеинг, рэп, брейк-данс и граффити."
+    }
+  }
+}
+];
