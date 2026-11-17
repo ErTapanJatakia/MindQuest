@@ -313,3 +313,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Post-commit source re-fetch confirmed all seven targeted source checks: shared teardown exists; empty-pool branch uses it; Home navigation clears the round; settings save clears before returning home; stale item/translation callbacks are rejected; Next requires a recorded answer; and review content is cleared.
 - This is source inspection, not runtime verification. No browser test, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
 - No roadmap estimate or earned allocation changed. Baseline implementation remains 1,265 / 2,400 minutes (52.71%); remaining baseline scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Latest defensive question-render recovery — 2026-11-18
+
+- Consolidated the empty-question recovery UI into one shared function, used by both round startup and question rendering.
+- Added a pre-render guard for round type, non-empty content, integer/in-range question index and the existing playable-question integrity contract. If the active question becomes invalid after selection, the app now clears the stale round and routes to the localized Settings recovery view rather than dereferencing invalid translation data.
+- Post-commit re-fetch confirmed six targeted source checks: shared recovery exists; empty-pool startup uses it; render checks the round array; render checks index bounds; render revalidates the active question; and recovery discards stale round state.
+- This is source-level verification only. No browser runtime, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Technical reference: MDN, [Array.isArray()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray) and [Number.isInteger()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger).
+- No workstream estimate or earned allocation changed. Baseline implementation remains 1,265 / 2,400 minutes (52.71%); remaining baseline scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
