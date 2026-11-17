@@ -63,6 +63,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 
 ## Latest development review
 
+- Improved quiz keyboard focus: answer selection moves focus to the newly enabled Next / See results button after disabling answer options; advancing moves focus to the new question heading. This is a source implementation change and still needs keyboard and screen-reader runtime testing.
+- Reviewed Android Gradle Kotlin DSL: plugin versions are pinned, dependency repositories are centrally declared, app SDK levels are set to min 23 / compile-target 35, and Java/Kotlin target 17. No Gradle wrapper is present and no build was attempted.
+- No parser, browser runtime, official validator, CI, Android build or device test was run in this batch.
+
+
 - Corrected a malformed literal newline sequence in the application script found during manual source inspection; the accessible-label assignments are now validly separated in source. No JavaScript parser or runtime was run, so syntax validation remains an explicit QA item.
 - Added accessible default text and explicit minimum/maximum values for the quiz progress indicator in the static HTML.
 - Rechecked all three locale dictionaries for the answer-group and navigation accessible labels, and confirmed local script loading order.
