@@ -347,7 +347,7 @@ window.MINDQUEST_QUESTIONS = [
  {id:"RU-GEO-007",region:"RU",category:"Geography",difficulty:"medium",correct:"d",translations:{
   "en-IN":{question:"Mount Elbrus, often listed as Europe's highest peak, is located in which Russian region?",options:{a:"Karelia",b:"Siberia",c:"Kamchatka",d:"The Caucasus"},explanation:"Mount Elbrus is a dormant volcano in the Caucasus in southwestern Russia, commonly regarded as Europe's highest mountain."},
   "en-US":{question:"Mount Elbrus, commonly regarded as Europe's highest peak, is in which region of Russia?",options:{a:"Karelia",b:"Siberia",c:"Kamchatka",d:"The Caucasus"},explanation:"Mount Elbrus is a dormant volcano in the Caucasus in southwestern Russia, commonly regarded as Europe's highest mountain."},
-  "ru-RU":{question:"В каком российском регионе находится Эльбрус, который часто считают высочайшей вершиной Европы?",options:{a:"Карелия",b:"Сибирь",c:"Камчатка",d:"Кавказ"},explanation:"Эльбрус — потухший вулкан на Кавказе, на юго-западе России; его обычно считают высочайшей горой Европы."}
+  "ru-RU":{question:"В каком российском регионе находится Эльбрус, который часто считают высочайшей вершиной Европы?",options:{a:"Карелия",b:"Сибирь",c:"Камчатка",d:"Кавказ"},explanation:"Эльбрус — спящий вулкан на Кавказе, на юго-западе России; его обычно считают высочайшей горой Европы."}
  }},
  {id:"RU-HIS-006",region:"RU",category:"History",difficulty:"hard",correct:"a",translations:{
   "en-IN":{question:"In which year did the Siege of Leningrad come to a complete end?",options:{a:"1944",b:"1942",c:"1943",d:"1945"},explanation:"The Siege of Leningrad was fully lifted on 27 January 1944, after 872 days. Soviet forces had opened a land corridor in January 1943, but the siege continued."},
