@@ -519,3 +519,8 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 ### Android predictive-back capability wording review (2026-11-18)
 - Clarified that the API 33+ implementation registers `OnBackInvokedCallback` and handles the committed system-back action; it does not implement `OnBackAnimationCallback` gesture progress, cancellation or a custom predictive animation.
 - This corrects documentation precision only. No Android source change, build, emulator test or device validation was performed. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
+
+
+### Interface-language selector label correction (2026-11-18)
+- Corrected the English (India) interface-language selector so its Russian option is labelled `Russian`, consistent with the English-language selector convention and the established product decision. The Russian interface continues to label the option `Русский`.
+- This is a targeted localization consistency fix; no new locale or product scope was added. Source and documentation were re-fetched for verification. No browser runtime, official content validator, CI, Android build or device test was run. Baseline remains 1,265 / 2,400 minutes (52.71%); no additional credit is claimed.
