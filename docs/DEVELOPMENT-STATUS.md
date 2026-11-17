@@ -533,3 +533,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added `android/app/src/main/res/drawable/ic_launcher.xml`, a scalable vector launcher mark based on the existing MindQuest visual palette.
 - Connected the vector resource through `android:icon` and `android:roundIcon` in the application manifest. This replaces the platform-default launcher artwork when the APK is built.
 - This is a source-level resource integration; no Gradle build, APK inspection, launcher rendering test or physical-device validation was performed. Existing scope and 2,400-minute baseline are unchanged.
+
+
+## Native Android launch presentation — 2026-11-18
+
+- Added values/colors.xml and values/styles.xml for the shared MindQuest native palette, regular app theme and pre-Android 12 launch theme.
+- Added drawable/launch_background.xml for a centered branded launch mark on the dark-navy background on Android 6.0 through Android 11.
+- Added values-v31/styles.xml for the Android 12+ system splash background, vector icon and post-splash application theme.
+- Updated the manifest to apply the regular application theme and the launch-only Activity theme. MainActivity switches to the regular theme before super.onCreate() and WebView creation.
+- This is source-level integration only. No Gradle/resource build, APK inspection, Android 12 splash rendering, emulator or physical-device validation was run. CI and Android validation remain deferred until the agreed development freeze.
+- No new product scope, dependency, permission, service or release requirement was introduced. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
