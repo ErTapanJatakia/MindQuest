@@ -664,3 +664,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ### Android API 23 navigation documentation precision — 2026-11-18
 - Clarified that API 24+ `WebResourceRequest.isForMainFrame` enables explicit subframe rejection, while API 23's legacy string callback cannot distinguish frame type and instead enforces the exact bundled-document URL allowlist.
 - This aligns documentation with the existing `MainActivity` implementation; no application code, dependency, permission, scope or baseline allocation changed. No Kotlin compilation, Gradle build, emulator, runtime navigation or CI validation was run.
+
+
+### Baseline ledger round-length wording correction — 2026-11-18
+- Corrected the game-modes evidence description in `docs/BASELINE-RECONCILIATION.md` from fixed ten-question rounds to the implemented configurable 5/10/15-question rounds.
+- This aligns the baseline evidence ledger with the current README, architecture and gameplay settings. No implementation, scope, earned allocation or remaining estimate changed. No validator, CI, Android build or runtime test was run.
