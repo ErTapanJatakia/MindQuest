@@ -578,9 +578,11 @@
       const entry = answerHistory[index];
       if (!isPlayableQuestion(item) || !entry || typeof entry !== "object" || Array.isArray(entry)) return false;
       const copy = item.translations[settings.questionLocale];
-      if (!["a", "b", "c", "d"].includes(entry.choice) ||
+      if (Object.keys(entry).sort().join("|") !== "choice|correct|explanation|isCorrect|options" ||
+          !["a", "b", "c", "d"].includes(entry.choice) ||
           entry.correct !== item.correct ||
           !entry.options || typeof entry.options !== "object" || Array.isArray(entry.options) ||
+          Object.keys(entry.options).sort().join("|") !== "a|b|c|d" ||
           !["a", "b", "c", "d"].every((key) =>
             typeof entry.options[key] === "string" &&
             entry.options[key] === copy.options[key]
