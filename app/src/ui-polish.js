@@ -15,7 +15,8 @@
     });
   }
   function refreshScoreLabels() {
-    const best = localStorage.getItem("mindquest.best") || "0";
+    let best = "0";
+    try { best = localStorage.getItem("mindquest.best") || "0"; } catch (_) { /* Storage may be unavailable. */ }
     bestScore.textContent = best;
     if (finalScore.textContent === "0/10") finalScore.textContent = "0";
   }
