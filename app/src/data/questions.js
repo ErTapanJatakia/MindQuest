@@ -1,4 +1,4 @@
-/* Starter content for the first vertical slice. Expand to 50 reviewed questions per region before release. */
+/* MindQuest question bank: 150 stable IDs, 50 per region, with three localized variants per question. Content review remains a release gate. */
 window.MINDQUEST_QUESTIONS = [
  {id:"IN-GEO-001",region:"IN",category:"Geography",difficulty:"easy",correct:"b",translations:{
   "en-IN":{question:"Which city is known as the Pink City of India?",options:{a:"Delhi",b:"Jaipur",c:"Jodhpur",d:"Udaipur"},explanation:"Jaipur is widely known as the Pink City."},
