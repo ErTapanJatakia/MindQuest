@@ -142,3 +142,9 @@ The full 50-question-per-region content target is now populated, but the bank re
 
 - Incorrect-answer feedback now announces the correct answer text as part of the existing polite atomic feedback message, using the active interface language for the label and the selected question language for the answer content.
 - Source-only change; runtime keyboard and screen-reader verification remains pending. Official validator, CI and Android validation remain deferred until development freeze.
+
+
+## Latest settings-state validation refinement — 2026-11-17
+
+- A shared settings normalizer now validates both loaded preferences and settings-control values before persistence, keeping locale, region, category and difficulty values within supported options.
+- Source-only hardening; no runtime or automated validation was run. Official validator, CI and Android validation remain deferred until development freeze.
