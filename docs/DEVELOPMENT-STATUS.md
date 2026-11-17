@@ -284,3 +284,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Results rendering now has a defensive completion guard: a non-empty round must be at its final question, the final question must be answered, and every round position must have a recorded answer before scoring/review/best-score persistence can proceed.
 - This is a source-level state-integrity refinement. No browser runtime, unit test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred.
 - No roadmap workstream was reclassified. Estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%); actual engineering time remains untracked.
+
+
+## Baseline implementation reconciliation — 2026-11-18
+
+- Reconciled all 18 original roadmap workstreams into evidence-backed implementation allocations without changing the original 2,400-minute / 40-hour baseline.
+- **Earned implementation scope is 1,265 / 2,400 minutes (52.71%)**; remaining baseline scope is 1,135 minutes (47.29%).
+- The previous 330-minute / 13.75% report counted only the two fully implemented workstreams and omitted partial deliverables in other workstreams. It is superseded by the deliverable-based ledger in [BASELINE-RECONCILIATION.md](BASELINE-RECONCILIATION.md).
+- The 1,265 minutes are estimate-weighted implemented scope, not actual labour hours. Actual engineering time remains untracked.
+- No workstream has been marked Complete. Question-bank architecture and content remain in Review; partial workstreams remain In progress. Formal acceptance and validation are separate from implementation credit.
+- No application code was changed in this reconciliation. No browser runtime, official content validator, CI, Android build, emulator, physical-device, screen-reader or RuStore validation was run. CI and Android validation remain deferred until the agreed development freeze.
