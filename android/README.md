@@ -42,3 +42,10 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 - Android 13 (API 33) and newer use the platform `OnBackInvokedDispatcher`, including the system predictive-back pathway. Back navigates WebView history when available and otherwise finishes the Activity.
 - Android 6.0 through Android 12 retain the legacy Activity back callback. The API 33+ callback is unregistered when the Activity is destroyed.
 - This uses platform APIs already available through the configured compile SDK and introduces no AndroidX or other dependency. Device/gesture behaviour remains unverified until Android runtime QA.
+
+
+## Android 15 edge-to-edge layout
+
+- For API 35 and newer, the WebView applies system-bar and display-cutout insets as content padding. This keeps the game interface inside the safe visible area while retaining the platform edge-to-edge window behaviour.
+- The inset listener is only installed on API 35+, matching the target-SDK edge-to-edge enforcement boundary. No AndroidX dependency or permission is added.
+- Rendering around gesture navigation, three-button navigation, cutouts and keyboard/IME remains subject to runtime device validation.
