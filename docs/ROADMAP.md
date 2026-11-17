@@ -216,3 +216,12 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Explanations note that discriminatory laws continued to disenfranchise many women after ratification, particularly women of colour. Reference: U.S. National Archives, https://www.archives.gov/milestone-documents/19th-amendment.
 - Stable question ID and metadata were preserved. This targeted change is not full content certification; validator, browser/runtime, CI, Android and device QA remain deferred.
 - Baseline implementation remains 330 / 2,400 minutes (13.75%); no full workstream status or estimate changed.
+
+
+## Latest U.S. history content review — 2026-11-18
+
+- Removed duplicate Nineteenth Amendment coverage between `US-HIS-006` and `US-HIS-007`. The latter now tests the Fifteenth Amendment's ratification and voting-rights protection, with a historical caveat about continued disenfranchisement.
+- Kept the stable question ID, metadata and correct-answer key; English (India), English (US) and Russian retain the same answer identity.
+- Source: U.S. National Archives, https://www.archives.gov/milestone-documents/15th-amendment.
+- Targeted source/content review only. No official validator, browser/runtime, CI, Android build or device QA was run; CI and Android validation remain deferred.
+- No roadmap workstream status or estimate changed. Baseline implementation remains 330 / 2,400 minutes (13.75%); actual engineering time remains untracked.
