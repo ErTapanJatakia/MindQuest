@@ -55,7 +55,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Latest completed batch
 
-- Expanded the question bank from 33 to 39 stable IDs (13 per region), adding six questions with all three translations. New material covers the Konark Sun Temple and C. V. Raman (India), Saint Petersburg's founding and Ivan Pavlov (Russia), and Yellowstone's establishment and the Wright brothers' first powered flight (United States). Each region gained one medium and one hard question; the new distribution is five easy, five medium and three hard per region.
+- Expanded the question bank from 39 to 45 stable IDs (15 per region), adding six questions with all three translations. New material covers Kaziranga National Park and the first Indian National Congress session (India), Kamchatka's Valley of Geysers and the Treaty of Rapallo (Russia), and Denali and Walt Whitman's *Leaves of Grass* (United States). Each region gained one medium and one hard question; the current distribution is five easy, six medium and four hard per region.
 
 - Refined the home-screen best-score card to show score, percentage accuracy and the active region/category/difficulty scope; the scope is localized using the current interface language.
 
