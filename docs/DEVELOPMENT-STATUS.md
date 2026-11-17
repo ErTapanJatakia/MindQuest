@@ -756,3 +756,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Reviewed all 150 English question variants (75 `en-IN` and 75 `en-US`) against their marked correct-answer options, checking prompt scope, grammar, locale spelling and obvious question/answer mismatches.
 - No clear English prompt-to-answer mismatch or wording defect justified an edit in this pass. Existing locale differences in spelling and date formatting were retained; no question records, IDs, answer keys, options or counts changed.
 - This was a targeted source review, not an independent fact-check of every explanation or distractor, complete factual audit, or native-editorial review. The official content validator, CI, Android build and runtime tests remain deferred until the agreed development freeze. No baseline allocation or product scope changed.
+
+
+### Question-bank factual consistency review — batch 1 (2026-11-18)
+
+- Reviewed the first 15 stable question records: `IN-GEO-001`, `IN-HIS-001`, `IN-SCI-001`, `RU-GEO-001`, `RU-GEO-002`, `RU-CUL-001`, `US-GEO-001`, `US-HIS-001`, `US-SCI-001`, `IN-GEO-002`, `IN-SCI-002`, `RU-SCI-001`, `RU-HIS-001`, `US-GEO-002`, and `US-HIS-002`.
+- Cross-checked selected factual claims against institutional sources: ISRO on Aryabhata; the U.S. National Archives on the Louisiana Purchase treaty; the U.S. Department of State historical record on the Treaty of Brest-Litovsk; NobelPrize.org on Lev Landau; and the U.S. National Park Service on the Colorado River and Grand Canyon.
+- No clear error in the reviewed question, marked answer, or explanation justified a content edit. Question IDs, options, answer keys, translations, counts and distributions remain unchanged.
+- Bounded 15-record review only; remaining records, all distractors, and all translated explanations still require review. The official validator, CI, Android build and runtime tests remain deferred until development freeze. No baseline allocation or product scope changed.
