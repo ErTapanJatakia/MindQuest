@@ -3,20 +3,37 @@
 
   const regionSelect = document.getElementById("question-region");
   const interfaceSelect = document.getElementById("interface-locale");
-  const names = {
+  const questionLocaleSelect = document.getElementById("question-locale");
+  const regionNames = {
     "en-IN": { IN: "India", RU: "Russia", US: "United States" },
     "en-US": { IN: "India", RU: "Russia", US: "United States" },
     "ru-RU": { IN: "Индия", RU: "Россия", US: "США" }
   };
+  const localeNames = {
+    "en-IN": { "en-IN": "English (India)", "en-US": "English (United States)", "ru-RU": "Русский" },
+    "en-US": { "en-IN": "English (India)", "en-US": "English (United States)", "ru-RU": "Russian" },
+    "ru-RU": { "en-IN": "Английский (Индия)", "en-US": "Английский (США)", "ru-RU": "Русский" }
+  };
+  const interfaceNames = {
+    "en-IN": ["English (India)", "English (United States)", "Русский"],
+    "en-US": ["English (India)", "English (United States)", "Russian"],
+    "ru-RU": ["Английский (Индия)", "Английский (США)", "Русский"]
+  };
 
-  function refreshRegionLabels() {
+  function refreshSelectorLabels() {
     const locale = interfaceSelect.value;
     [...regionSelect.options].forEach((option) => {
-      option.textContent = names[locale][option.value];
+      option.textContent = regionNames[locale][option.value];
+    });
+    [...questionLocaleSelect.options].forEach((option) => {
+      option.textContent = localeNames[locale][option.value];
+    });
+    [...interfaceSelect.options].forEach((option, index) => {
+      option.textContent = interfaceNames[locale][index];
     });
   }
 
-  interfaceSelect.addEventListener("change", refreshRegionLabels);
-  document.getElementById("settings-save").addEventListener("click", refreshRegionLabels);
-  refreshRegionLabels();
+  interfaceSelect.addEventListener("change", refreshSelectorLabels);
+  document.getElementById("settings-save").addEventListener("click", refreshSelectorLabels);
+  refreshSelectorLabels();
 })();
