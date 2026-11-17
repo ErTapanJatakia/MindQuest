@@ -493,3 +493,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Results are accepted only when those derived values agree with the in-memory streak counters, in addition to the existing option snapshot, correctness, explanation and score checks.
 - App commit: 2699ae0. Source hardening only; no baseline credit added. No browser runtime, parser, official content validator, CI, Android build or device testing was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
+
+
+## MVP scope wording alignment — 2026-11-18
+
+- Updated the README MVP feature summary from fixed ten-question rounds to the implemented configurable 5/10/15-question choices.
+- Re-fetched the README and both tracking documents after the commits to verify the wording and scope note. This documentation correction does not change product scope or baseline progress.
+- No validator, CI, Android build, emulator or physical-device test was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
