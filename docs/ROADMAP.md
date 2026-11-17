@@ -419,3 +419,13 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - This completes the source-level splash integration within the existing visual-identity and Android-shell scope. No new platform, service, dependency, permission or release requirement was added.
 - Source files committed. No Gradle build, resource compilation, APK inspection, Android 12 splash rendering, emulator or physical-device test was run. The Android resource/theme integration remains unverified at runtime; CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and visual validation. Actual engineering time remains untracked.
+
+
+## Android WebView boundary and lifecycle review — 2026-11-18
+
+- Tightened top-level navigation from a broad APK-assets path prefix to the single bundled entry document, `file:///android_asset/index.html`. Hash-based in-app state remains allowed because it does not change the document path; non-entry-point top-level destinations and subframe navigations are blocked.
+- Explicitly disabled WebView content debugging, retained the existing no-pop-up / no-multiple-window and origin-access restrictions, and added Activity pause/resume handling for WebView rendering and timers.
+- WebView shutdown now stops loading, pauses the view, removes child views and destroys the instance without initiating a final blank-page navigation.
+- This is a bounded hardening of the existing offline WebView shell; it adds no dependency, permission, service, network capability or product scope.
+- Source-only review and re-fetch verification; no Kotlin compilation, Gradle build, APK inspection, runtime navigation test, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit is claimed pending build and runtime validation. Actual engineering time remains untracked.
