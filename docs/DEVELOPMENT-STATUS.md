@@ -562,3 +562,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No AndroidX dependency, permission, service or new product scope added. Device/gesture behaviour remains unverified.
 - No Kotlin compilation, Gradle build, emulator or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
+
+
+## Android 15 edge-to-edge safe-area handling — 2026-11-18
+
+- Added API 35+ platform `WindowInsets` handling to apply system-bar and display-cutout safe insets to the WebView content area.
+- This is scoped to the configured target SDK 35 behaviour and introduces no dependency, permission, service or new feature.
+- No Kotlin compilation, Gradle/resource build, emulator, gesture-navigation, display-cutout, keyboard/IME or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
