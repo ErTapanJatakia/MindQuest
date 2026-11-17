@@ -156,3 +156,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Kept the existing exact locale, option-key, question-count, category and difficulty distribution assertions.
 - Re-fetched the committed validator source and confirmed the strict-field and text checks are present. The official validator was deliberately not executed, in accordance with the development-freeze QA sequence.
 - No browser runtime, CI, Android build or device test was run. Translation meaning, factual accuracy and cross-language answer identity still require human review.
+
+
+## Latest gameplay accessibility refinement — 2026-11-17
+
+- Incorrect-answer feedback now explicitly includes the correct answer text before the explanation. The existing polite, atomic live region therefore communicates the correction without relying on colour-only highlighting or requiring the player to reach the results review.
+- The correction label is sourced from the active interface dictionary, while the answer text and explanation use the independently selected question locale. This preserves all supported interface/region/question-language combinations.
+- Source change committed and subsequently re-fetched. No parser, browser runtime, accessibility-tree inspection, screen-reader test, official content validator, CI, Android build or device test was run.
