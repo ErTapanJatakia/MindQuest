@@ -56,10 +56,10 @@ window.MINDQUEST_QUESTIONS = [
   "en-US":{question:"When was India's first satellite, Aryabhata, launched?",options:{a:"1975",b:"1972",c:"1980",d:"1984"},explanation:"Aryabhata launched on April 19, 1975, aboard a Soviet launch vehicle."},
   "ru-RU":{question:"В каком году был запущен первый индийский спутник «Арьябхата»?",options:{a:"1975",b:"1972",c:"1980",d:"1984"},explanation:"«Арьябхата» был запущен 19 апреля 1975 года с помощью советской ракеты-носителя."}
  }},
- {id:"RU-SCI-001",region:"RU",category:"Science",difficulty:"medium",correct:"d",translations:{
-  "en-IN":{question:"Which Russian chemist is credited with formulating the periodic table?",options:{a:"Alexander Butlerov",b:"Nikolay Semenov",c:"Sofia Kovalevskaya",d:"Dmitri Mendeleev"},explanation:"Dmitri Mendeleev published an early periodic table in 1869."},
-  "en-US":{question:"Which Russian chemist developed the periodic table?",options:{a:"Alexander Butlerov",b:"Nikolay Semenov",c:"Sofia Kovalevskaya",d:"Dmitri Mendeleev"},explanation:"Dmitri Mendeleev published an early periodic table in 1869."},
-  "ru-RU":{question:"Какой российский химик разработал периодическую систему химических элементов?",options:{a:"Александр Бутлеров",b:"Николай Семёнов",c:"Софья Ковалевская",d:"Дмитрий Менделеев"},explanation:"Дмитрий Менделеев опубликовал один из первых вариантов периодической системы в 1869 году."}
+ {id:"RU-SCI-001",region:"RU",category:"Science",difficulty:"medium",correct:"a",translations:{
+  "en-IN":{question:"Which Soviet physicist received the 1962 Nobel Prize in Physics for his theories of condensed matter?",options:{a:"Lev Landau",b:"Igor Tamm",c:"Pyotr Kapitsa",d:"Andrei Sakharov"},explanation:"Lev Landau received the 1962 Nobel Prize in Physics for his pioneering theories of condensed matter, especially liquid helium."},
+  "en-US":{question:"Which Soviet physicist was awarded the 1962 Nobel Prize in Physics for his theories of condensed matter?",options:{a:"Lev Landau",b:"Igor Tamm",c:"Pyotr Kapitsa",d:"Andrei Sakharov"},explanation:"Lev Landau received the 1962 Nobel Prize in Physics for his pioneering theories of condensed matter, especially liquid helium."},
+  "ru-RU":{question:"Какой советский физик получил Нобелевскую премию по физике в 1962 году за свои теории конденсированного состояния вещества?",options:{a:"Лев Ландау",b:"Игорь Тамм",c:"Пётр Капица",d:"Андрей Сахаров"},explanation:"Лев Ландау получил Нобелевскую премию по физике 1962 года за новаторские теории конденсированного состояния вещества, особенно жидкого гелия."}
  }},
  {id:"RU-HIS-001",region:"RU",category:"History",difficulty:"hard",correct:"b",translations:{
   "en-IN":{question:"In which year was the Treaty of Brest-Litovsk signed?",options:{a:"1914",b:"1918",c:"1921",d:"1905"},explanation:"The treaty between Soviet Russia and the Central Powers was signed on 3 March 1918."},
@@ -242,10 +242,10 @@ window.MINDQUEST_QUESTIONS = [
   "en-US":{question:"From which place did Mahatma Gandhi begin the 1930 Salt March?",options:{a:"Wardha",b:"Sabarmati Ashram",c:"Sevagram",d:"Porbandar"},explanation:"Gandhi began the Salt March from Sabarmati Ashram near Ahmedabad on March 12, 1930, walking to Dandi to challenge the British salt tax."},
   "ru-RU":{question:"Откуда Махатма Ганди начал Соляной поход 1930 года?",options:{a:"Вардха",b:"ашрам Сабармати",c:"Севаграм",d:"Порбандар"},explanation:"12 марта 1930 года Ганди вышел из ашрама Сабармати близ Ахмадабада и направился в Данди, выступая против британского налога на соль."}
  }},
- {id:"IN-SCI-004",region:"IN",category:"Science",difficulty:"easy",correct:"d",translations:{
-  "en-IN":{question:"What was the name of India's first satellite, launched in 1975?",options:{a:"Rohini",b:"INSAT-1A",c:"Bhaskara-I",d:"Aryabhata"},explanation:"Aryabhata, named after the ancient Indian mathematician, was India's first satellite. It was launched by the Soviet Union on 19 April 1975."},
-  "en-US":{question:"Which satellite became India's first when it was launched in 1975?",options:{a:"Rohini",b:"INSAT-1A",c:"Bhaskara-I",d:"Aryabhata"},explanation:"Aryabhata, named after the ancient Indian mathematician, was India's first satellite. It was launched by the Soviet Union on April 19, 1975."},
-  "ru-RU":{question:"Как назывался первый индийский спутник, запущенный в 1975 году?",options:{a:"«Рохини»",b:"INSAT-1A",c:"«Бхаскара-I»",d:"«Арьябхата»"},explanation:"«Арьябхата», названный в честь древнеиндийского математика, стал первым спутником Индии. Его запустили с помощью советской ракеты 19 апреля 1975 года."}
+ {id:"IN-SCI-004",region:"IN",category:"Science",difficulty:"easy",correct:"b",translations:{
+  "en-IN":{question:"Which Indian mathematician is associated with the number 1729, known as the Hardy–Ramanujan number?",options:{a:"Bhaskara II",b:"Srinivasa Ramanujan",c:"Aryabhata",d:"D. R. Kaprekar"},explanation:"The number 1729 is known as the Hardy–Ramanujan number after a famous anecdote involving Srinivasa Ramanujan and G. H. Hardy."},
+  "en-US":{question:"Which Indian mathematician is associated with 1729, known as the Hardy–Ramanujan number?",options:{a:"Bhaskara II",b:"Srinivasa Ramanujan",c:"Aryabhata",d:"D. R. Kaprekar"},explanation:"The number 1729 is known as the Hardy–Ramanujan number after a famous anecdote involving Srinivasa Ramanujan and G. H. Hardy."},
+  "ru-RU":{question:"Какой индийский математик связан с числом 1729, известным как число Харди — Рамануджана?",options:{a:"Бхаскара II",b:"Сриниваса Рамануджан",c:"Арьябхата",d:"Д. Р. Капрекар"},explanation:"Число 1729 получило название числа Харди — Рамануджана благодаря известному рассказу о беседе Сринивасы Рамануджана и Г. Х. Харди."}
  }},
  {id:"IN-SCI-005",region:"IN",category:"Science",difficulty:"medium",correct:"a",translations:{
   "en-IN":{question:"Which Indian mission achieved a soft landing near the Moon's south polar region in August 2023?",options:{a:"Chandrayaan-3",b:"Mangalyaan",c:"Chandrayaan-1",d:"AstroSat"},explanation:"India's Chandrayaan-3 mission achieved a successful lunar soft landing on 23 August 2023, with the Vikram lander deploying the Pragyan rover."},
@@ -277,10 +277,10 @@ window.MINDQUEST_QUESTIONS = [
   "en-US":{question:"Which Soviet spacecraft made the first successful soft landing on the Moon in 1966?",options:{a:"Luna 2",b:"Luna 3",c:"Vostok 1",d:"Luna 9"},explanation:"The Soviet Luna 9 spacecraft made the first successful soft landing on the Moon on February 3, 1966, and transmitted photographs from the surface."},
   "ru-RU":{question:"Какой советский космический аппарат впервые совершил успешную мягкую посадку на Луну в 1966 году?",options:{a:"«Луна-2»",b:"«Луна-3»",c:"«Восток-1»",d:"«Луна-9»"},explanation:"Советская автоматическая станция «Луна-9» совершила первую успешную мягкую посадку на Луну 3 февраля 1966 года и передала фотографии её поверхности."}
  }},
- {id:"RU-CUL-004",region:"RU",category:"Culture",difficulty:"easy",correct:"b",translations:{
-  "en-IN":{question:"Which Russian author wrote the novel War and Peace?",options:{a:"Fyodor Dostoevsky",b:"Leo Tolstoy",c:"Anton Chekhov",d:"Ivan Turgenev"},explanation:"Leo Tolstoy wrote War and Peace, the historical novel set during the Napoleonic era and first published in book form in 1869."},
-  "en-US":{question:"Who wrote the novel War and Peace?",options:{a:"Fyodor Dostoevsky",b:"Leo Tolstoy",c:"Anton Chekhov",d:"Ivan Turgenev"},explanation:"Leo Tolstoy wrote War and Peace, the historical novel set during the Napoleonic era and first published in book form in 1869."},
-  "ru-RU":{question:"Кто написал роман «Война и мир»?",options:{a:"Фёдор Достоевский",b:"Лев Толстой",c:"Антон Чехов",d:"Иван Тургенев"},explanation:"Лев Толстой — автор исторического романа «Война и мир», действие которого разворачивается в эпоху Наполеоновских войн; отдельным изданием роман вышел в 1869 году."}
+ {id:"RU-CUL-004",region:"RU",category:"Culture",difficulty:"easy",correct:"c",translations:{
+  "en-IN":{question:"Which Russian novelist wrote the novel Fathers and Sons?",options:{a:"Leo Tolstoy",b:"Fyodor Dostoevsky",c:"Ivan Turgenev",d:"Anton Chekhov"},explanation:"Ivan Turgenev wrote Fathers and Sons, a novel first published in 1862."},
+  "en-US":{question:"Who wrote the Russian novel Fathers and Sons?",options:{a:"Leo Tolstoy",b:"Fyodor Dostoevsky",c:"Ivan Turgenev",d:"Anton Chekhov"},explanation:"Ivan Turgenev wrote Fathers and Sons, a novel first published in 1862."},
+  "ru-RU":{question:"Кто написал роман «Отцы и дети»?",options:{a:"Лев Толстой",b:"Фёдор Достоевский",c:"Иван Тургенев",d:"Антон Чехов"},explanation:"Иван Тургенев написал роман «Отцы и дети», впервые опубликованный в 1862 году."}
  }},
  {id:"RU-CUL-005",region:"RU",category:"Culture",difficulty:"hard",correct:"c",translations:{
   "en-IN":{question:"Which Russian composer wrote the ballet The Firebird?",options:{a:"Pyotr Tchaikovsky",b:"Sergei Rachmaninoff",c:"Igor Stravinsky",d:"Modest Mussorgsky"},explanation:"Igor Stravinsky composed The Firebird for Sergei Diaghilev's Ballets Russes; it premiered in Paris in 1910."},
@@ -339,10 +339,10 @@ window.MINDQUEST_QUESTIONS = [
   "en-US":{question:"The Ajanta Caves in Maharashtra are especially famous for which form of art?",options:{a:"Bronze sculpture",b:"Mosaic glasswork",c:"Buddhist paintings",d:"Mughal miniature painting"},explanation:"The Ajanta Caves are celebrated for their ancient Buddhist murals and sculptures, created over several centuries."},
   "ru-RU":{question:"Чем особенно знамениты пещеры Аджанты в индийском штате Махараштра?",options:{a:"Бронзовой скульптурой",b:"Мозаикой из стекла",c:"Буддийскими росписями",d:"Могольской миниатюрной живописью"},explanation:"Пещеры Аджанты известны древними буддийскими настенными росписями и скульптурами, создававшимися на протяжении нескольких столетий."}
  }},
- {id:"RU-GEO-006",region:"RU",category:"Geography",difficulty:"easy",correct:"b",translations:{
-  "en-IN":{question:"Which lake in Siberia is the world's deepest freshwater lake?",options:{a:"Lake Ladoga",b:"Lake Baikal",c:"Lake Onega",d:"Lake Peipus"},explanation:"Lake Baikal in southern Siberia reaches a maximum depth of about 1,642 metres, making it the world's deepest freshwater lake."},
-  "en-US":{question:"What is the name of the world's deepest freshwater lake, located in Siberia?",options:{a:"Lake Ladoga",b:"Lake Baikal",c:"Lake Onega",d:"Lake Peipus"},explanation:"Lake Baikal in southern Siberia reaches a maximum depth of about 1,642 metres, making it the world's deepest freshwater lake."},
-  "ru-RU":{question:"Какое озеро в Сибири является самым глубоким пресноводным озером в мире?",options:{a:"Ладожское озеро",b:"озеро Байкал",c:"Онежское озеро",d:"Чудское озеро"},explanation:"Максимальная глубина Байкала в южной Сибири составляет около 1642 метров, что делает его самым глубоким пресноводным озером мира."}
+ {id:"RU-GEO-006",region:"RU",category:"Geography",difficulty:"easy",correct:"a",translations:{
+  "en-IN":{question:"Which sea borders the Russian city of Sochi?",options:{a:"Black Sea",b:"Baltic Sea",c:"Caspian Sea",d:"Barents Sea"},explanation:"Sochi lies on the northeastern coast of the Black Sea in southwestern Russia."},
+  "en-US":{question:"Which sea is the Russian city of Sochi located on?",options:{a:"Black Sea",b:"Baltic Sea",c:"Caspian Sea",d:"Barents Sea"},explanation:"Sochi lies on the northeastern coast of the Black Sea in southwestern Russia."},
+  "ru-RU":{question:"На побережье какого моря расположен российский город Сочи?",options:{a:"Чёрного моря",b:"Балтийского моря",c:"Каспийского моря",d:"Баренцева моря"},explanation:"Сочи расположен на северо-восточном побережье Чёрного моря на юго-западе России."}
  }},
  {id:"RU-GEO-007",region:"RU",category:"Geography",difficulty:"medium",correct:"d",translations:{
   "en-IN":{question:"Mount Elbrus, often listed as Europe's highest peak, is located in which Russian region?",options:{a:"Karelia",b:"Siberia",c:"Kamchatka",d:"The Caucasus"},explanation:"Mount Elbrus is a dormant volcano in the Caucasus in southwestern Russia, commonly regarded as Europe's highest mountain."},
@@ -1295,34 +1295,34 @@ window.MINDQUEST_QUESTIONS = [
   "correct": "c",
   "translations": {
     "en-IN": {
-      "question": "Which Soviet spacecraft made the first successful soft landing on the Moon in 1966?",
+      "question": "Which Soviet spacecraft sent the first photographs of the Moon's far side in 1959?",
       "options": {
-        "a": "Luna 2",
-        "b": "Vostok 1",
-        "c": "Luna 9",
-        "d": "Soyuz 1"
+        "a": "Luna 1",
+        "b": "Luna 2",
+        "c": "Luna 3",
+        "d": "Luna 9"
       },
-      "explanation": "Luna 9 achieved the first successful soft landing on the Moon on 3 February 1966."
+      "explanation": "Luna 3 photographed the Moon's far side in October 1959 and returned the first images of this previously unseen hemisphere."
     },
     "en-US": {
-      "question": "Which Soviet mission achieved the first successful soft landing on the Moon?",
+      "question": "Which Soviet spacecraft returned the first images of the Moon's far side in 1959?",
       "options": {
-        "a": "Luna 2",
-        "b": "Vostok 1",
-        "c": "Luna 9",
-        "d": "Soyuz 1"
+        "a": "Luna 1",
+        "b": "Luna 2",
+        "c": "Luna 3",
+        "d": "Luna 9"
       },
-      "explanation": "Luna 9 achieved the first successful soft landing on the Moon on February 3, 1966."
+      "explanation": "Luna 3 photographed the Moon's far side in October 1959 and returned the first images of this previously unseen hemisphere."
     },
     "ru-RU": {
-      "question": "Какой советский аппарат первым успешно совершил мягкую посадку на Луну в 1966 году?",
+      "question": "Какой советский космический аппарат в 1959 году передал первые фотографии обратной стороны Луны?",
       "options": {
-        "a": "«Луна-2»",
-        "b": "«Восток-1»",
-        "c": "«Луна-9»",
-        "d": "«Союз-1»"
+        "a": "«Луна-1»",
+        "b": "«Луна-2»",
+        "c": "«Луна-3»",
+        "d": "«Луна-9»"
       },
-      "explanation": "«Луна-9» совершила первую успешную мягкую посадку на Луне 3 февраля 1966 года."
+      "explanation": "В октябре 1959 года аппарат «Луна-3» сфотографировал обратную сторону Луны и передал первые изображения этого ранее не видимого полушария."
     }
   }
 },
@@ -2385,37 +2385,37 @@ window.MINDQUEST_QUESTIONS = [
   "region": "RU",
   "category": "Geography",
   "difficulty": "hard",
-  "correct": "d",
+  "correct": "a",
   "translations": {
     "en-IN": {
-      "question": "Which Russian peninsula is the location of the Valley of Geysers, one of the world's largest geyser fields?",
+      "question": "Which strait separates Sakhalin Island from mainland Russia?",
       "options": {
-        "a": "Kola Peninsula",
-        "b": "Taimyr Peninsula",
-        "c": "Yamal Peninsula",
-        "d": "Kamchatka Peninsula"
+        "a": "Strait of Tartary",
+        "b": "La Pérouse Strait",
+        "c": "Bering Strait",
+        "d": "Korea Strait"
       },
-      "explanation": "The Valley of Geysers lies in the Kronotsky Nature Reserve on the Kamchatka Peninsula in Russia's Far East."
+      "explanation": "The Strait of Tartary separates Sakhalin Island from the Asian mainland; La Pérouse Strait lies between Sakhalin and Hokkaido."
     },
     "en-US": {
-      "question": "Which Russian peninsula is home to the Valley of Geysers, one of the world's largest geyser fields?",
+      "question": "Which strait separates Sakhalin Island from the Russian mainland?",
       "options": {
-        "a": "Kola Peninsula",
-        "b": "Taimyr Peninsula",
-        "c": "Yamal Peninsula",
-        "d": "Kamchatka Peninsula"
+        "a": "Strait of Tartary",
+        "b": "La Pérouse Strait",
+        "c": "Bering Strait",
+        "d": "Korea Strait"
       },
-      "explanation": "The Valley of Geysers lies in the Kronotsky Nature Reserve on the Kamchatka Peninsula in Russia's Far East."
+      "explanation": "The Strait of Tartary separates Sakhalin Island from the Asian mainland; La Pérouse Strait lies between Sakhalin and Hokkaido."
     },
     "ru-RU": {
-      "question": "На каком российском полуострове расположена Долина гейзеров — одно из крупнейших гейзерных полей мира?",
+      "question": "Какой пролив отделяет остров Сахалин от материковой части России?",
       "options": {
-        "a": "Кольский полуостров",
-        "b": "Полуостров Таймыр",
-        "c": "Полуостров Ямал",
-        "d": "Полуостров Камчатка"
+        "a": "Татарский пролив",
+        "b": "Пролив Лаперуза",
+        "c": "Берингов пролив",
+        "d": "Корейский пролив"
       },
-      "explanation": "Долина гейзеров находится в Кроноцком заповеднике на Камчатке, на Дальнем Востоке России."
+      "explanation": "Татарский пролив отделяет Сахалин от материковой Азии; пролив Лаперуза расположен между Сахалином и Хоккайдо."
     }
   }
 },
