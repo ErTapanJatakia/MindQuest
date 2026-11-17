@@ -501,3 +501,9 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - A source-level resource-reference scan covered 16 manifest/theme/splash/adaptive-icon references across the Android XML resources. All 16 matched a resource definition in the inspected source files; no unresolved reference was found.
 - Confirmed the canonical web asset source set remains `../../app` from the Android app module and that the Gradle wrapper is still absent. The configured Gradle 8.9 distribution target is documented, but no wrapper scripts/JAR were fabricated.
 - This audit does not substitute for Gradle configuration, AAPT resource linking, Kotlin compilation, APK inspection or runtime testing. No build/CI was run; the agreed validation deferral remains in force. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; no additional baseline credit is claimed. Actual engineering time remains untracked.
+
+
+### API 23 WebView navigation callback compatibility (2026-11-18)
+- Added the legacy `shouldOverrideUrlLoading(WebView, String)` override so the explicit local-document navigation allowlist also applies on the minimum supported Android API 23, where `WebResourceRequest` is unavailable.
+- Both callback paths now share one URI predicate: only `file:///android_asset/index.html` is permitted, optional URL fragments remain usable for in-app state, query strings are rejected, and API 24+ subframe navigation is blocked.
+- Source-level change only. No Kotlin compilation, Android build, API 23 emulator, runtime navigation or device test was run; CI/Android validation remain deferred.
