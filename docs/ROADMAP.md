@@ -116,3 +116,10 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Source-level scans found complete dictionary coverage for statically referenced runtime strings and HTML translation / accessible-label keys in all three locales.
 - Android asset mapping, local-only navigation controls and manifest permissions received another source inspection. Build and runtime validation remain outstanding.
 - The official content validator, parser/runtime, CI and Android validation remain deferred.
+
+
+## Latest selector-label and gameplay source review — 2026-11-17
+
+- Standardized the Russian-language selector option as “Russian” in the English (India) interface, matching English (US); Russian UI continues to use “Русский”.
+- Inspected selector refresh ordering and the gameplay transitions for duplicate answer protection, answer-history indexing, empty-pool cleanup, replay reset and settings navigation. This was source review only; no browser runtime or automated test was run.
+- Official content validation, parser/runtime checks, CI, Android build and device QA remain deferred until the development batch is complete.
