@@ -3,3 +3,5 @@
 .answer-review{margin-top:28px}.answer-review>h2{font-size:20px;margin:0 0 14px}.review-card{padding:16px;margin:12px 0;border:1px solid var(--line);border-radius:16px;background:var(--panel)}.review-card h3{font-size:15px;line-height:1.45;margin:0 0 10px}.review-card p{font-size:13px;line-height:1.5;margin:7px 0;color:var(--muted)}.review-card .review-status{font-weight:800}.review-status.good{color:var(--accent)}.review-status.bad{color:var(--danger)}.review-card .review-explanation{padding-top:9px;border-top:1px solid var(--line);color:var(--text)}
 
 .help-card{padding:17px;margin:13px 0;border:1px solid var(--line);border-radius:17px;background:var(--panel)}.help-card h2{font-size:17px;margin:0 0 8px}.help-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}#help-back{margin-top:20px}
+
+.stat-card .stat-context{display:block;margin-top:7px;color:var(--muted);font-size:10px;line-height:1.45;overflow-wrap:anywhere}
