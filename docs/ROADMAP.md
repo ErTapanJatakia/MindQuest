@@ -339,3 +339,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - The check runs before randomization, so a duplicate stable question identity/content pair cannot be hidden by selecting a different subset for one particular round. The existing localized integrity-recovery route handles a collision.
 - This is a defensive runtime layer; the official question-bank validator remains the primary whole-bank structural gate and its execution is still deferred. This source-only batch did not run browser tests, CI, Android builds or device QA.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; no additional allocation was claimed. Actual engineering time remains untracked.
+
+
+## Completed-round answer-ledger schema hardening — 2026-11-18
+
+- The final-round integrity gate now requires each answer-history entry to contain exactly the five fields written by the gameplay flow: choice, correct, explanation, isCorrect and options.
+- The captured options object must contain exactly a, b, c and d; the existing checks still compare every captured option and explanation with the active localized question and recompute the score.
+- This narrows the accepted in-memory result shape and prevents unexpected fields or malformed option maps from being treated as a valid completed round. It does not change scoring, question content or persistence format.
+- Source re-fetch verification is pending in this batch. No parser, browser runtime, official content validator, CI, Android build or device test is run; CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
