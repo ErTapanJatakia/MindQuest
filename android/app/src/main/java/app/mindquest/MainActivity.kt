@@ -1,6 +1,7 @@
 package app.mindquest
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.webkit.WebResourceRequest
@@ -33,18 +34,25 @@ class MainActivity : Activity() {
             mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW
         }
         gameView.webViewClient = object : WebViewClient() {
+            private fun isAllowedEntryPoint(uri: Uri): Boolean {
+                // Permit only the bundled document; allow its fragment for in-app state.
+                return uri.scheme == "file" &&
+                    uri.host == null &&
+                    uri.path == "/android_asset/index.html" &&
+                    uri.query == null
+            }
+
+            @Deprecated("Deprecated by Android; retained for API 23 compatibility.")
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                // API 23 does not provide WebResourceRequest or an isForMainFrame flag.
+                return !isAllowedEntryPoint(Uri.parse(url))
+            }
+
             override fun shouldOverrideUrlLoading(
                 view: WebView,
                 request: WebResourceRequest
             ): Boolean {
-                // Permit only the single bundled app document as a top-level destination.
-                // Hash-based in-app state remains valid because it does not change the path.
-                val uri = request.url
-                val isBundledEntryPoint =
-                    uri.scheme == "file" &&
-                    uri.host == null &&
-                    uri.path == "/android_asset/index.html"
-                return !request.isForMainFrame || !isBundledEntryPoint
+                return !request.isForMainFrame || !isAllowedEntryPoint(request.url)
             }
         }
         setContentView(gameView)
