@@ -53,7 +53,8 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
 - Best scores are scoped to region, category and difficulty and compared by percentage. The home card shows the best score, percentage accuracy and active pool scope.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
-- Category and difficulty filter labels localised for English (India), English (US) and Russian.\n- Initial English (India) / English (US) UI copy differentiation, localized accessible names for navigation controls and answer group, and localized final-question results action.
+- Category and difficulty filter labels localised for English (India), English (US) and Russian.
+- Initial English (India) / English (US) UI copy differentiation, localized accessible names for navigation controls and answer group, and localized final-question results action.
 - All four question categories are represented in each regional bank, with thirteen Geography, twelve History, twelve Science and thirteen Culture questions.
 - Dependency-free question-bank structural validator, strengthened with strict schema/type checks, duplicate normalized question-text detection and exact 50-per-region / 150-total assertions (execution deferred).
 - Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
@@ -61,6 +62,13 @@ Milestone allocations are planning buckets and will be reconciled against the de
 The full 50-question-per-region content target is now populated, but the bank remains a development seed pending factual, cultural and native-speaker review. Gameplay source review has also hardened persisted best-score parsing against malformed or out-of-range values. Initial interface copy and accessible navigation labels have now been differentiated/localized for the three interface locales; a full localization audit remains open. The Android shell is also not yet a release-ready signed package.
 
 ## Latest development review
+
+- Corrected a malformed literal newline sequence in the application script found during manual source inspection; the accessible-label assignments are now validly separated in source. No JavaScript parser or runtime was run, so syntax validation remains an explicit QA item.
+- Added accessible default text and explicit minimum/maximum values for the quiz progress indicator in the static HTML.
+- Rechecked all three locale dictionaries for the answer-group and navigation accessible labels, and confirmed local script loading order.
+- Re-reviewed Android shell source configuration: no declared network permission, cleartext disabled, file/content access restrictions and external top-level navigation blocking are present. This does not replace a compiled APK security test.
+- No validator, browser runtime, CI, Android build or physical-device test was run in this batch.
+
 
 - Added initial English (India) / English (US) wording differentiation, including regional spelling, and refined the independence guidance for the three selectors.
 - Localized accessible labels for the settings button, home brand link and answer-option group in English (India), English (US) and Russian.
