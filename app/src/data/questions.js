@@ -389,5 +389,590 @@ window.MINDQUEST_QUESTIONS = [
   "en-US":{question:"Who designed New York City's Solomon R. Guggenheim Museum, which opened in 1959?",options:{a:"Eero Saarinen",b:"Philip Johnson",c:"Frank Lloyd Wright",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed the Solomon R. Guggenheim Museum in New York City; the distinctive building opened in 1959."},
   "ru-RU":{question:"Кто спроектировал музей Соломона Гуггенхайма в Нью-Йорке, открывшийся в 1959 году?",options:{a:"Ээро Сааринен",b:"Филип Джонсон",c:"Фрэнк Ллойд Райт",d:"Ай. Эм. Пей"},explanation:"Музей Соломона Гуггенхайма в Нью-Йорке спроектировал Фрэнк Ллойд Райт. Знаменитое здание открылось в 1959 году."}
  }}
-
+,
+ {
+  "id": "IN-GEO-008",
+  "region": "IN",
+  "category": "Geography",
+  "difficulty": "medium",
+  "correct": "c",
+  "translations": {
+   "en-IN": {
+    "question": "Which major Indian river flows westward into the Arabian Sea?",
+    "options": {
+     "a": "Ganga",
+     "b": "Godavari",
+     "c": "Narmada",
+     "d": "Mahanadi"
+    },
+    "explanation": "The Narmada flows west through central India and empties into the Arabian Sea."
+   },
+   "en-US": {
+    "question": "Which major Indian river flows west into the Arabian Sea?",
+    "options": {
+     "a": "Ganga",
+     "b": "Godavari",
+     "c": "Narmada",
+     "d": "Mahanadi"
+    },
+    "explanation": "The Narmada flows west through central India and empties into the Arabian Sea."
+   },
+   "ru-RU": {
+    "question": "Какая крупная река Индии течёт на запад и впадает в Аравийское море?",
+    "options": {
+     "a": "Ганг",
+     "b": "Годавари",
+     "c": "Нармада",
+     "d": "Маханади"
+    },
+    "explanation": "Нармада течёт на запад через центральную часть Индии и впадает в Аравийское море."
+   }
+  }
+ },
+ {
+  "id": "IN-HIS-007",
+  "region": "IN",
+  "category": "History",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+   "en-IN": {
+    "question": "In which year did the Quit India Movement begin?",
+    "options": {
+     "a": "1919",
+     "b": "1942",
+     "c": "1930",
+     "d": "1947"
+    },
+    "explanation": "The Quit India Movement was launched by the Indian National Congress in August 1942."
+   },
+   "en-US": {
+    "question": "When did the Quit India Movement begin?",
+    "options": {
+     "a": "1919",
+     "b": "1942",
+     "c": "1930",
+     "d": "1947"
+    },
+    "explanation": "The Quit India Movement was launched by the Indian National Congress in August 1942."
+   },
+   "ru-RU": {
+    "question": "В каком году началось движение «Прочь из Индии»?",
+    "options": {
+     "a": "1919",
+     "b": "1942",
+     "c": "1930",
+     "d": "1947"
+    },
+    "explanation": "Движение «Прочь из Индии» было начато Индийским национальным конгрессом в августе 1942 года."
+   }
+  }
+ },
+ {
+  "id": "IN-HIS-008",
+  "region": "IN",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+   "en-IN": {
+    "question": "The Battle of Plassey, a turning point in British expansion in India, took place in which year?",
+    "options": {
+     "a": "1757",
+     "b": "1764",
+     "c": "1857",
+     "d": "1707"
+    },
+    "explanation": "The Battle of Plassey was fought in 1757 between the forces of the East India Company and the Nawab of Bengal."
+   },
+   "en-US": {
+    "question": "In what year was the Battle of Plassey fought, marking a turning point in British expansion in India?",
+    "options": {
+     "a": "1757",
+     "b": "1764",
+     "c": "1857",
+     "d": "1707"
+    },
+    "explanation": "The Battle of Plassey was fought in 1757 between the forces of the East India Company and the Nawab of Bengal."
+   },
+   "ru-RU": {
+    "question": "В каком году произошла битва при Плесси, ставшая поворотным моментом в расширении британского влияния в Индии?",
+    "options": {
+     "a": "1757",
+     "b": "1764",
+     "c": "1857",
+     "d": "1707"
+    },
+    "explanation": "Битва при Плесси произошла в 1757 году между войсками Ост-Индской компании и наваба Бенгалии."
+   }
+  }
+ },
+ {
+  "id": "IN-SCI-007",
+  "region": "IN",
+  "category": "Science",
+  "difficulty": "easy",
+  "correct": "d",
+  "translations": {
+   "en-IN": {
+    "question": "Which Indian physicist is associated with Bose–Einstein statistics?",
+    "options": {
+     "a": "Homi J. Bhabha",
+     "b": "C. V. Raman",
+     "c": "Meghnad Saha",
+     "d": "Satyendra Nath Bose"
+    },
+    "explanation": "Satyendra Nath Bose's work on quantum statistics led to the term Bose–Einstein statistics."
+   },
+   "en-US": {
+    "question": "Which Indian physicist is known for the work that led to Bose–Einstein statistics?",
+    "options": {
+     "a": "Homi J. Bhabha",
+     "b": "C. V. Raman",
+     "c": "Meghnad Saha",
+     "d": "Satyendra Nath Bose"
+    },
+    "explanation": "Satyendra Nath Bose's work on quantum statistics led to the term Bose–Einstein statistics."
+   },
+   "ru-RU": {
+    "question": "Какой индийский физик известен работами, положившими начало статистике Бозе — Эйнштейна?",
+    "options": {
+     "a": "Хоми Джахангир Бхабха",
+     "b": "Чандрасекхара Венката Раман",
+     "c": "Мегнад Саха",
+     "d": "Сатьендранат Бозе"
+    },
+    "explanation": "Работы Сатьендраната Бозе по квантовой статистике привели к появлению термина «статистика Бозе — Эйнштейна»."
+   }
+  }
+ },
+ {
+  "id": "IN-CUL-007",
+  "region": "IN",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+   "en-IN": {
+    "question": "Sattriya, one of India's classical dance forms, originated in which state?",
+    "options": {
+     "a": "Odisha",
+     "b": "Manipur",
+     "c": "Assam",
+     "d": "Kerala"
+    },
+    "explanation": "Sattriya developed in Assam within the Vaishnavite monastic tradition associated with Srimanta Sankardeva."
+   },
+   "en-US": {
+    "question": "In which Indian state did the classical dance form Sattriya originate?",
+    "options": {
+     "a": "Odisha",
+     "b": "Manipur",
+     "c": "Assam",
+     "d": "Kerala"
+    },
+    "explanation": "Sattriya developed in Assam within the Vaishnavite monastic tradition associated with Srimanta Sankardeva."
+   },
+   "ru-RU": {
+    "question": "В каком индийском штате возник классический танец сатрия?",
+    "options": {
+     "a": "Одиша",
+     "b": "Манипур",
+     "c": "Ассам",
+     "d": "Керала"
+    },
+    "explanation": "Сатрия сформировалась в Ассаме в вайшнавской монастырской традиции, связанной со Шримантой Шанкардевой."
+   }
+  }
+ },
+ {
+  "id": "RU-GEO-008",
+  "region": "RU",
+  "category": "Geography",
+  "difficulty": "medium",
+  "correct": "a",
+  "translations": {
+   "en-IN": {
+    "question": "The Kola Peninsula is located in which part of Russia?",
+    "options": {
+     "a": "Northwest",
+     "b": "Far East",
+     "c": "Southwest",
+     "d": "Central Siberia"
+    },
+    "explanation": "The Kola Peninsula lies in northwestern Russia, mostly within Murmansk Oblast."
+   },
+   "en-US": {
+    "question": "In which part of Russia is the Kola Peninsula located?",
+    "options": {
+     "a": "Northwest",
+     "b": "Far East",
+     "c": "Southwest",
+     "d": "Central Siberia"
+    },
+    "explanation": "The Kola Peninsula lies in northwestern Russia, mostly within Murmansk Oblast."
+   },
+   "ru-RU": {
+    "question": "В какой части России находится Кольский полуостров?",
+    "options": {
+     "a": "На северо-западе",
+     "b": "На Дальнем Востоке",
+     "c": "На юго-западе",
+     "d": "В Центральной Сибири"
+    },
+    "explanation": "Кольский полуостров расположен на северо-западе России, главным образом в Мурманской области."
+   }
+  }
+ },
+ {
+  "id": "RU-HIS-007",
+  "region": "RU",
+  "category": "History",
+  "difficulty": "hard",
+  "correct": "d",
+  "translations": {
+   "en-IN": {
+    "question": "In which year did the October Revolution take place in Russia?",
+    "options": {
+     "a": "1905",
+     "b": "1914",
+     "c": "1922",
+     "d": "1917"
+    },
+    "explanation": "The October Revolution took place in 1917; under the Gregorian calendar, its key events occurred in November."
+   },
+   "en-US": {
+    "question": "When did the October Revolution take place in Russia?",
+    "options": {
+     "a": "1905",
+     "b": "1914",
+     "c": "1922",
+     "d": "1917"
+    },
+    "explanation": "The October Revolution took place in 1917; under the Gregorian calendar, its key events occurred in November."
+   },
+   "ru-RU": {
+    "question": "В каком году произошла Октябрьская революция в России?",
+    "options": {
+     "a": "1905",
+     "b": "1914",
+     "c": "1922",
+     "d": "1917"
+    },
+    "explanation": "Октябрьская революция произошла в 1917 году; по григорианскому календарю ключевые события пришлись на ноябрь."
+   }
+  }
+ },
+ {
+  "id": "RU-HIS-008",
+  "region": "RU",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "b",
+  "translations": {
+   "en-IN": {
+    "question": "Which French leader led the invasion of Russia in 1812?",
+    "options": {
+     "a": "Louis XIV",
+     "b": "Napoleon Bonaparte",
+     "c": "Charles de Gaulle",
+     "d": "Louis XVI"
+    },
+    "explanation": "Napoleon Bonaparte led the French invasion of the Russian Empire in 1812."
+   },
+   "en-US": {
+    "question": "Who led the French invasion of Russia in 1812?",
+    "options": {
+     "a": "Louis XIV",
+     "b": "Napoleon Bonaparte",
+     "c": "Charles de Gaulle",
+     "d": "Louis XVI"
+    },
+    "explanation": "Napoleon Bonaparte led the French invasion of the Russian Empire in 1812."
+   },
+   "ru-RU": {
+    "question": "Кто возглавил французское вторжение в Россию в 1812 году?",
+    "options": {
+     "a": "Людовик XIV",
+     "b": "Наполеон Бонапарт",
+     "c": "Шарль де Голль",
+     "d": "Людовик XVI"
+    },
+    "explanation": "Наполеон Бонапарт возглавил вторжение французской армии в Российскую империю в 1812 году."
+   }
+  }
+ },
+ {
+  "id": "RU-SCI-007",
+  "region": "RU",
+  "category": "Science",
+  "difficulty": "easy",
+  "correct": "a",
+  "translations": {
+   "en-IN": {
+    "question": "Which Russian scientist is widely regarded as a pioneer of astronautics and rocketry theory?",
+    "options": {
+     "a": "Konstantin Tsiolkovsky",
+     "b": "Dmitri Mendeleev",
+     "c": "Ivan Pavlov",
+     "d": "Nikolai Lobachevsky"
+    },
+    "explanation": "Konstantin Tsiolkovsky developed foundational theoretical work on spaceflight and rocket propulsion."
+   },
+   "en-US": {
+    "question": "Which Russian scientist is regarded as a pioneer of astronautics and rocket theory?",
+    "options": {
+     "a": "Konstantin Tsiolkovsky",
+     "b": "Dmitri Mendeleev",
+     "c": "Ivan Pavlov",
+     "d": "Nikolai Lobachevsky"
+    },
+    "explanation": "Konstantin Tsiolkovsky developed foundational theoretical work on spaceflight and rocket propulsion."
+   },
+   "ru-RU": {
+    "question": "Какого российского учёного считают одним из основоположников космонавтики и теории ракетного движения?",
+    "options": {
+     "a": "Константин Циолковский",
+     "b": "Дмитрий Менделеев",
+     "c": "Иван Павлов",
+     "d": "Николай Лобачевский"
+    },
+    "explanation": "Константин Циолковский разработал основополагающие теоретические идеи о космических полётах и ракетном движении."
+   }
+  }
+ },
+ {
+  "id": "RU-CUL-007",
+  "region": "RU",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "c",
+  "translations": {
+   "en-IN": {
+    "question": "Which Russian artist painted the 1915 work Black Square?",
+    "options": {
+     "a": "Wassily Kandinsky",
+     "b": "Marc Chagall",
+     "c": "Kazimir Malevich",
+     "d": "Ilya Repin"
+    },
+    "explanation": "Kazimir Malevich presented his influential Black Square in 1915, a landmark of Suprematism."
+   },
+   "en-US": {
+    "question": "Who painted the influential 1915 artwork Black Square?",
+    "options": {
+     "a": "Wassily Kandinsky",
+     "b": "Marc Chagall",
+     "c": "Kazimir Malevich",
+     "d": "Ilya Repin"
+    },
+    "explanation": "Kazimir Malevich presented his influential Black Square in 1915, a landmark of Suprematism."
+   },
+   "ru-RU": {
+    "question": "Кто написал знаменитую картину «Чёрный квадрат» в 1915 году?",
+    "options": {
+     "a": "Василий Кандинский",
+     "b": "Марк Шагал",
+     "c": "Казимир Малевич",
+     "d": "Илья Репин"
+    },
+    "explanation": "Казимир Малевич представил свою влиятельную картину «Чёрный квадрат» в 1915 году; она стала знаковым произведением супрематизма."
+   }
+  }
+ },
+ {
+  "id": "US-GEO-008",
+  "region": "US",
+  "category": "Geography",
+  "difficulty": "medium",
+  "correct": "b",
+  "translations": {
+   "en-IN": {
+    "question": "Which mountain range runs along much of the eastern United States?",
+    "options": {
+     "a": "Rocky Mountains",
+     "b": "Appalachian Mountains",
+     "c": "Sierra Nevada",
+     "d": "Cascade Range"
+    },
+    "explanation": "The Appalachian Mountains extend through much of eastern North America, including the eastern United States."
+   },
+   "en-US": {
+    "question": "Which mountain range extends along much of the eastern United States?",
+    "options": {
+     "a": "Rocky Mountains",
+     "b": "Appalachian Mountains",
+     "c": "Sierra Nevada",
+     "d": "Cascade Range"
+    },
+    "explanation": "The Appalachian Mountains extend through much of eastern North America, including the eastern United States."
+   },
+   "ru-RU": {
+    "question": "Какая горная система протянулась вдоль значительной части востока США?",
+    "options": {
+     "a": "Скалистые горы",
+     "b": "Аппалачи",
+     "c": "Сьерра-Невада",
+     "d": "Каскадные горы"
+    },
+    "explanation": "Аппалачи простираются по значительной части востока Северной Америки, включая восток США."
+   }
+  }
+ },
+ {
+  "id": "US-HIS-007",
+  "region": "US",
+  "category": "History",
+  "difficulty": "hard",
+  "correct": "a",
+  "translations": {
+   "en-IN": {
+    "question": "Which amendment to the US Constitution, ratified in 1920, prohibited denying the vote on the basis of sex?",
+    "options": {
+     "a": "19th Amendment",
+     "b": "15th Amendment",
+     "c": "18th Amendment",
+     "d": "21st Amendment"
+    },
+    "explanation": "The 19th Amendment was ratified in 1920 and prohibited denying voting rights on the basis of sex."
+   },
+   "en-US": {
+    "question": "Which U.S. constitutional amendment, ratified in 1920, prohibited denying the vote based on sex?",
+    "options": {
+     "a": "19th Amendment",
+     "b": "15th Amendment",
+     "c": "18th Amendment",
+     "d": "21st Amendment"
+    },
+    "explanation": "The 19th Amendment was ratified in 1920 and prohibited denying voting rights on the basis of sex."
+   },
+   "ru-RU": {
+    "question": "Какая поправка к Конституции США, ратифицированная в 1920 году, запретила отказывать в праве голоса по признаку пола?",
+    "options": {
+     "a": "Девятнадцатая поправка",
+     "b": "Пятнадцатая поправка",
+     "c": "Восемнадцатая поправка",
+     "d": "Двадцать первая поправка"
+    },
+    "explanation": "Девятнадцатая поправка была ратифицирована в 1920 году и запретила ограничивать избирательные права по признаку пола."
+   }
+  }
+ },
+ {
+  "id": "US-HIS-008",
+  "region": "US",
+  "category": "History",
+  "difficulty": "medium",
+  "correct": "d",
+  "translations": {
+   "en-IN": {
+    "question": "In which year did the American Civil War end?",
+    "options": {
+     "a": "1776",
+     "b": "1812",
+     "c": "1861",
+     "d": "1865"
+    },
+    "explanation": "The American Civil War effectively ended in 1865 with the surrender of the major Confederate armies."
+   },
+   "en-US": {
+    "question": "When did the American Civil War end?",
+    "options": {
+     "a": "1776",
+     "b": "1812",
+     "c": "1861",
+     "d": "1865"
+    },
+    "explanation": "The American Civil War effectively ended in 1865 with the surrender of the major Confederate armies."
+   },
+   "ru-RU": {
+    "question": "В каком году завершилась Гражданская война в США?",
+    "options": {
+     "a": "1776",
+     "b": "1812",
+     "c": "1861",
+     "d": "1865"
+    },
+    "explanation": "Гражданская война в США фактически завершилась в 1865 году после капитуляции основных армий Конфедерации."
+   }
+  }
+ },
+ {
+  "id": "US-SCI-007",
+  "region": "US",
+  "category": "Science",
+  "difficulty": "easy",
+  "correct": "c",
+  "translations": {
+   "en-IN": {
+    "question": "Which American medical researcher developed the first widely used polio vaccine?",
+    "options": {
+     "a": "Alexander Fleming",
+     "b": "Robert Koch",
+     "c": "Jonas Salk",
+     "d": "Louis Pasteur"
+    },
+    "explanation": "Jonas Salk developed an inactivated polio vaccine that was declared safe and effective in 1955."
+   },
+   "en-US": {
+    "question": "Who developed the first widely used polio vaccine in the United States?",
+    "options": {
+     "a": "Alexander Fleming",
+     "b": "Robert Koch",
+     "c": "Jonas Salk",
+     "d": "Louis Pasteur"
+    },
+    "explanation": "Jonas Salk developed an inactivated polio vaccine that was declared safe and effective in 1955."
+   },
+   "ru-RU": {
+    "question": "Какой американский исследователь-медик разработал первую широко применявшуюся вакцину против полиомиелита?",
+    "options": {
+     "a": "Александр Флеминг",
+     "b": "Роберт Кох",
+     "c": "Джонас Солк",
+     "d": "Луи Пастер"
+    },
+    "explanation": "Джонас Солк разработал инактивированную вакцину против полиомиелита, безопасность и эффективность которой подтвердили в 1955 году."
+   }
+  }
+ },
+ {
+  "id": "US-CUL-007",
+  "region": "US",
+  "category": "Culture",
+  "difficulty": "hard",
+  "correct": "b",
+  "translations": {
+   "en-IN": {
+    "question": "Which art movement is most closely associated with Jackson Pollock's drip paintings?",
+    "options": {
+     "a": "Pop Art",
+     "b": "Abstract Expressionism",
+     "c": "Cubism",
+     "d": "Regionalism"
+    },
+    "explanation": "Jackson Pollock became a leading figure of Abstract Expressionism, known for his poured and dripped paint technique."
+   },
+   "en-US": {
+    "question": "Which art movement is associated with Jackson Pollock's drip paintings?",
+    "options": {
+     "a": "Pop Art",
+     "b": "Abstract Expressionism",
+     "c": "Cubism",
+     "d": "Regionalism"
+    },
+    "explanation": "Jackson Pollock became a leading figure of Abstract Expressionism, known for his poured and dripped paint technique."
+   },
+   "ru-RU": {
+    "question": "С каким художественным направлением прежде всего связаны живописные работы Джексона Поллока в технике разбрызгивания краски?",
+    "options": {
+     "a": "Поп-арт",
+     "b": "Абстрактный экспрессионизм",
+     "c": "Кубизм",
+     "d": "Регионализм"
+    },
+    "explanation": "Джексон Поллок стал одним из ведущих представителей абстрактного экспрессионизма; он прославился техникой разбрызгивания и наливания краски."
+   }
+  }
+ }
 ];
