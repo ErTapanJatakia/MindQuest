@@ -477,3 +477,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Final re-fetch checks passed 9/9: imports and source loading, category mapping, complete ID expression and diagnostic, locale/option checks, regional distributions, and both documentation records.
 - Final validator commit: c431a20. The earlier intermediate validator commit c02d3fd is superseded by this repair.
 - This remains source inspection only. The official validator was not executed, and CI/Android validation remain deferred. Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time is untracked.
+
+
+## Answer-history option snapshot isolation — 2026-11-18
+
+- `chooseAnswer()` now copies the active localized option map into the answer-history entry rather than storing the original question-bank object reference.
+- `isCompleteRound()` continues to compare the captured four option values with the active question translation; snapshotting ensures that comparison is meaningful if the source object is later mutated.
+- App commit: 17ae826. This is source hardening only; no baseline credit added. No browser runtime, parser, official content validator, CI, Android build or device testing was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
