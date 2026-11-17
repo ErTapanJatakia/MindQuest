@@ -42,12 +42,13 @@ Milestone allocations are planning buckets and will be reconciled against the de
 ## Current implementation slice
 
 - Repository and project documentation created.
-- Responsive web game shell with home, quiz, result and settings views.
+- Responsive web game shell with home, quiz, result, settings and localized help views.
 - Three independent preference values and local persistence.
 - Twenty-seven starter questions (nine per region), each with three language variants.
 - Starter difficulty spread per region: five easy, three medium and one hard question.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
 - Results accuracy percentage and localized per-question answer review.
+- Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
 - View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
 - Best scores are scoped to region, category and difficulty and compared by percentage.
