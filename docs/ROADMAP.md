@@ -493,3 +493,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Confirmed the adaptive icon's foreground and background references resolve to the existing vector and colour resources; the API 23–25 `mipmap-anydpi` fallback is present, and the Android 12+ splash theme's `@drawable/ic_launcher` reference also resolves.
 - Confirmed the Activity's `adjustResize` declaration and API 35+ IME/system-bar/display-cutout inset listener are both present in source. The Android asset source set points to the repository's canonical `app/` directory.
 - This was a source/reference audit only. AAPT resource linking, Gradle configuration, Kotlin compilation, APK contents, splash rendering and keyboard behaviour remain unverified until the agreed Android validation phase. No baseline credit added; CI remains deferred.
+
+
+## Android resource-reference and build-configuration audit — 2026-11-18
+
+- Rechecked the Android settings/plugin declarations: Google, Maven Central and Gradle Plugin Portal are configured; Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21 are pinned; the app targets compile/target SDK 35 with min SDK 23 and Java/Kotlin 17.
+- A source-level resource-reference scan covered 16 manifest/theme/splash/adaptive-icon references across the Android XML resources. All 16 matched a resource definition in the inspected source files; no unresolved reference was found.
+- Confirmed the canonical web asset source set remains `../../app` from the Android app module and that the Gradle wrapper is still absent. The configured Gradle 8.9 distribution target is documented, but no wrapper scripts/JAR were fabricated.
+- This audit does not substitute for Gradle configuration, AAPT resource linking, Kotlin compilation, APK inspection or runtime testing. No build/CI was run; the agreed validation deferral remains in force. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; no additional baseline credit is claimed. Actual engineering time remains untracked.
