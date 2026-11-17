@@ -285,3 +285,12 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Re-fetched the committed source and confirmed six targeted source checks. MDN documents the standard semantics of [Array.isArray()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray) and [Number.isInteger()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger), used for the type and index guards.
 - Source inspection only: no browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
 - No roadmap estimate or earned allocation changed. Baseline implementation remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%).
+
+
+## Latest answer-ledger integrity review — 2026-11-18
+
+- Replaced the minimal final-round completion check with a complete answer-ledger validation before results are displayed or best scores are persisted.
+- The gate now revalidates every question against the active settings, checks the answer-history length and each record's selected/correct answer identity, verifies the captured option and explanation snapshots against the active localized question, checks the correctness flag, and recomputes the score from the answer ledger.
+- Results review and best-score persistence are reached only after the complete ledger matches the recorded score. This reduces the chance that malformed, stale or internally inconsistent answer state is treated as a completed round.
+- Re-fetched the committed source and confirmed ten targeted source checks. No browser runtime, automated test, official content validator, CI, Android build or device QA was run. CI and Android validation remain deferred until the agreed development freeze.
+- No roadmap estimate or earned allocation changed: 1,265 / 2,400 minutes (52.71%) implemented; 1,135 minutes (47.29%) remain. Actual engineering time remains untracked.
