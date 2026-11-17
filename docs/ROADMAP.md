@@ -130,3 +130,9 @@ The full 50-question-per-region content target is now populated, but the bank re
 - The content validator now rejects array-shaped translation containers, validates the shared correct-answer key at question level, and enforces exact category and difficulty distributions per region (13/12/12/13 categories; 15/20/15 difficulty levels).
 - Source-level palette contrast calculations exceeded WCAG AA normal-text thresholds for the checked foreground/background combinations. Full component/state contrast and runtime accessibility verification remain pending.
 - Validator execution, browser/runtime testing, CI, Android build and device QA remain deferred until the agreed development freeze.
+
+
+## Latest validator schema-integrity refinement — 2026-11-17
+
+- Validator now requires exact question and translation object fields and rejects empty/control-character text in prompts, explanations and answer options.
+- This is a source change only. The official validator remains unexecuted until the agreed development freeze; CI and Android validation remain deferred.
