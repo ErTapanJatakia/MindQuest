@@ -266,3 +266,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - This addresses the source-level language-identification gap for mixed-language gameplay content. WCAG 2.2 SC 3.1.2 requires the language of passages to be programmatically determinable; see https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.
 - Source change committed and re-fetched. No browser runtime, assistive-technology test, official content validator, CI, Android build or device QA was run. This does not establish WCAG conformance; runtime and screen-reader verification remain required.
 - Baseline implementation remains 330 / 2,400 minutes (13.75%); this targeted refinement does not reclassify a roadmap workstream.
+
+
+## Latest local-persistence failure handling — 2026-11-18
+
+- Changed the storage adapter to report whether a write succeeded instead of silently swallowing write failures. Settings and best-score writes remain best-effort; gameplay continues if browser storage is blocked or unavailable.
+- Added a localized, polite status message on the home screen when a settings or best-score write fails. The notice explains that settings and best scores may not be saved; it does not imply that gameplay or question content needs network access.
+- Updated the Help copy in English (India), English (US) and Russian to qualify local persistence on browser storage being available. This avoids promising persistence in restricted/private browsing contexts or when quota/access errors prevent writes.
+- Technical basis: MDN documents that localStorage availability must be tested in the active browsing context and that Storage.setItem can throw, including QuotaExceededError: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API and https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem.
+- Source changes committed and re-fetched for verification. No browser runtime, storage-denial simulation, content validator, CI, Android build or device QA was run. Runtime verification remains pending.
+- No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
