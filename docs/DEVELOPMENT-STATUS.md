@@ -508,3 +508,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Updated the static Help copy in `app/index.html` to say “the selected number” rather than “ten”, matching the existing localized Help dictionaries and configurable 5/10/15-question setting.
 - Re-fetched the HTML and both tracking documents after commits to verify the updated fallback and scope/baseline notes. This is wording alignment only.
 - No runtime, official validator, CI, Android build, emulator or physical-device validation was run. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
+
+
+## Keyboard focus visibility — 2026-11-18
+
+- Added a visible keyboard `:focus-visible` outline for the home brand anchor. The existing shared focus rule applied to buttons and selects but did not include this link, so keyboard focus on the brand navigation target could be difficult to locate.
+- Reused the existing accent token and kept the change within the planned accessibility workstream; no new product scope or baseline credit claimed.
+- Post-commit verification checks the selector and documentation record only. No browser runtime, screen-reader, parser, official validator, CI, Android build or device validation was run. Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes remaining. Actual engineering time remains untracked.
