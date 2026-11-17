@@ -374,3 +374,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - The calculation uses the already-validated per-question correctness entries; it does not affect points, accuracy, question selection or storage.
 - App commit: 2699ae0. Source/documentation re-fetch verification pending. No runtime test, CI, official validator or Android validation was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No baseline credit added; actual engineering time remains untracked.
+
+
+## MVP documentation alignment — 2026-11-18
+
+- Corrected the README MVP summary to describe the implemented 5-, 10- and 15-question round-length choices instead of the superseded fixed ten-question description.
+- This is documentation alignment only. It adds no feature, acceptance criterion, workstream or baseline allocation.
+- No application source changed; no validator, CI, Android build or device validation was run.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. Actual engineering time remains untracked.
