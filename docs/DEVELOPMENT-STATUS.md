@@ -381,3 +381,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Source change committed in `app/src/app.js`; the roadmap implementation slice was updated. The original 2,400-minute baseline and 1,265-minute earned allocation remain unchanged.
 - No browser runtime, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
 - Technical note: the existing Fisher–Yates shuffle uses `Math.random()` for ordinary game variation, not security-sensitive decisions. MDN documents `Math.random()` as approximately uniformly distributed but not cryptographically secure: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random.
+
+## Visible difficulty feedback — 2026-11-18
+
+- Added a dedicated difficulty indicator beside the question category during gameplay. It displays Easy, Medium or Hard using the active interface locale, including when the player selects Any difficulty and the round contains mixed levels.
+- The indicator is marked with the interface language because its label is UI text; the question itself continues to carry the independently selected question-language tag. MDN documents `lang` as the BCP 47 language tag for an element's text and notes its accessibility relevance for language changes: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang.
+- Updated `app/index.html`, `app/src/app.js` and `app/styles.css`; updated the roadmap implementation slice. Commits: `451e7a1`, `beecad7`, `158da1a`, `0f9093f` (roadmap).
+- Post-change verification is pending the final re-fetch. No browser runtime, automated gameplay test, official question-bank validator, CI, Android build, emulator, physical-device or screen-reader test was run.
+- No additional baseline credit claimed; earned implementation remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes remaining. Actual engineering time remains untracked.
