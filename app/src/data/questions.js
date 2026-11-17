@@ -385,9 +385,9 @@ window.MINDQUEST_QUESTIONS = [
   "ru-RU":{question:"Кто стал первым американцем, побывавшим в космосе, в 1961 году?",options:{a:"Джон Гленн",b:"Алан Шепард",c:"Нил Армстронг",d:"Гас Гриссом"},explanation:"Алан Шепард стал первым американцем в космосе 5 мая 1961 года во время суборбитального полёта корабля Freedom 7."}
  }},
  {id:"US-CUL-006",region:"US",category:"Culture",difficulty:"hard",correct:"c",translations:{
-  "en-IN":{question:"Which architect designed the Guggenheim Museum in New York City, opened in 1959?",options:{a:"Eero Saarinen",b:"Philip Johnson",c:"Frank Lloyd Wright",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed the Solomon R. Guggenheim Museum in New York City; the distinctive building opened in 1959."},
-  "en-US":{question:"Who designed New York City's Solomon R. Guggenheim Museum, which opened in 1959?",options:{a:"Eero Saarinen",b:"Philip Johnson",c:"Frank Lloyd Wright",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed the Solomon R. Guggenheim Museum in New York City; the distinctive building opened in 1959."},
-  "ru-RU":{question:"Кто спроектировал музей Соломона Гуггенхайма в Нью-Йорке, открывшийся в 1959 году?",options:{a:"Ээро Сааринен",b:"Филип Джонсон",c:"Фрэнк Ллойд Райт",d:"Ай. Эм. Пей"},explanation:"Музей Соломона Гуггенхайма в Нью-Йорке спроектировал Фрэнк Ллойд Райт. Знаменитое здание открылось в 1959 году."}
+  "en-IN":{question:"Which architect designed the Vietnam Veterans Memorial in Washington, D.C.?",options:{a:"I. M. Pei",b:"Frank Gehry",c:"Maya Lin",d:"Louis Kahn"},explanation:"Architect Maya Lin designed the Vietnam Veterans Memorial. Her winning design was selected in a national competition in 1981, and the memorial was dedicated in 1982."},
+  "en-US":{question:"Who designed the Vietnam Veterans Memorial in Washington, D.C.?",options:{a:"I. M. Pei",b:"Frank Gehry",c:"Maya Lin",d:"Louis Kahn"},explanation:"Architect Maya Lin designed the Vietnam Veterans Memorial. Her winning design was selected in a national competition in 1981, and the memorial was dedicated in 1982."},
+  "ru-RU":{question:"Кто спроектировал Мемориал ветеранов войны во Вьетнаме в Вашингтоне?",options:{a:"Ай. Эм. Пей",b:"Фрэнк Гери",c:"Майя Лин",d:"Луис Кан"},explanation:"Мемориал ветеранов войны во Вьетнаме спроектировала архитектор Майя Лин. Её проект победил в национальном конкурсе в 1981 году, а сам мемориал был открыт в 1982 году."}
  }}
 ,
  {
