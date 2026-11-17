@@ -749,3 +749,10 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 
 - Post-commit source inspection caught a malformed closing quote in the first Russian explanation edit before any validator or build was run. Corrected the record formatting in follow-up commit `b85f22e`; a fresh fetch confirms the question, option set, explanation and record boundaries are now properly quoted and closed. This correction is recorded transparently; no claim of validator or runtime success is made.
+
+
+### English question wording and answer-alignment review — 2026-11-18
+
+- Reviewed all 150 English question variants (75 `en-IN` and 75 `en-US`) against their marked correct-answer options, checking prompt scope, grammar, locale spelling and obvious question/answer mismatches.
+- No clear English prompt-to-answer mismatch or wording defect justified an edit in this pass. Existing locale differences in spelling and date formatting were retained; no question records, IDs, answer keys, options or counts changed.
+- This was a targeted source review, not an independent fact-check of every explanation or distractor, complete factual audit, or native-editorial review. The official content validator, CI, Android build and runtime tests remain deferred until the agreed development freeze. No baseline allocation or product scope changed.
