@@ -372,3 +372,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The check runs before randomization, so a duplicate stable question identity/content pair cannot be hidden by selecting a different subset for one particular round. The existing localized integrity-recovery route handles a collision.
 - This is a defensive runtime layer; the official question-bank validator remains the primary whole-bank structural gate and its execution is still deferred. This source-only batch did not run browser tests, CI, Android builds or device QA.
 - Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining; no additional allocation was claimed. Actual engineering time remains untracked.
+
+## Consecutive-round variety safeguard — 2026-11-18
+
+- Added a session-local signature for the most recently completed/selected question set. When a new shuffle would select the identical set and the eligible pool contains at least one alternative, the final selected question is replaced with the next item from that same shuffled pool.
+- The safeguard preserves the maximum ten-question round size, does not change question IDs or content, and does not block play when ten or fewer eligible questions exist. It compares sets rather than order, so merely rearranging the same questions does not count as a new round.
+- The safeguard is intentionally session-local; it does not persist player history or add storage requirements. It is a replay-variety improvement, not a security control.
+- Source change committed in `app/src/app.js`; the roadmap implementation slice was updated. The original 2,400-minute baseline and 1,265-minute earned allocation remain unchanged.
+- No browser runtime, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Technical note: the existing Fisher–Yates shuffle uses `Math.random()` for ordinary game variation, not security-sensitive decisions. MDN documents `Math.random()` as approximately uniformly distributed but not cryptographically secure: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random.
