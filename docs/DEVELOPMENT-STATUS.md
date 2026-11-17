@@ -46,7 +46,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No GitHub Actions workflows have been introduced for this development work.
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
-- The structural validator has been strengthened but has **not yet been executed**.
+- The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
 - Source consistency checks confirmed 21 question IDs, 7 questions per region, all three locales on each record, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
 - Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
 - No physical-device, offline-runtime or Android build validation is claimed.
@@ -62,13 +62,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Expanded the bank to 21 stable question IDs / 63 localized records; all four categories are now represented in each region.
 - Retained the three existing independent selectors and filter preferences.
 - Strengthened the question-bank validator to enforce the supported category list, supported difficulty values and exact answer-option key set.
-- Updated the roadmap and this status record to reflect 15 questions and the current difficulty spread.
+- Updated the roadmap and this status record to reflect 21 questions and the current difficulty spread.
 
 ## Remaining development priorities
 
 1. Continue source review of gameplay and persistence edge cases, including score history and navigation.
-2. Expand the question bank in small reviewed batches, maintaining category and difficulty coverage.
-3. Expand the question bank toward 50 per region, with balanced category/difficulty coverage and aligned translations.
+2. Expand the question bank toward 50 per region in small reviewed batches, maintaining category/difficulty coverage and aligned translations.
 4. Complete all interface translations and native-speaker/factual review.
 5. Implement help/about, richer results and accessibility improvements.
 6. Finish and review the Android wrapper, Gradle wrapper and release configuration.
