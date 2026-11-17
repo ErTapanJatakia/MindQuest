@@ -28,7 +28,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Quiz progress exposes progress-bar semantics and a localized accessible label/value; result updates use a polite live region.
 - Fair Fisher–Yates question shuffle and defensive handling of malformed persisted settings.
 - Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator. The home card displays score, accuracy percentage and the active pool scope.
-- Localised region, language, category and difficulty selector labels.
+- Localised region, language, category and difficulty selector labels.\n- Initial English (India) / English (US) copy differentiation, including regional spelling (PERSONALISE / PERSONALIZE) and independently worded settings guidance.\n- Localized accessible names for the settings control and home brand link, plus localized answer-group labels in all three interface locales.\n- Corrected the quiz eyebrow from a misleading fixed “ROUND 1” to a neutral localized “ROUND” label; the final-question action now uses a localized results label.
 - Dependency-free question-bank structural validator, including exact locale coverage, region-matching IDs, supported category/difficulty values, exact option keys, duplicate-option checks, duplicate question-text detection, strict text types and exact regional/total counts.
 - Initial Android WebView shell with restrictive navigation / network configuration.
 
@@ -39,7 +39,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
-- Complete interface localization, English (India) / English (US) copy differentiation, full accessibility review and final visual polish remain outstanding.
+- Interface localization now has initial English (India) / English (US) copy differentiation, localized settings/home accessible names, and localized answer-group labels; a complete audit of every visible and assistive-technology string, plus full accessibility review and final visual polish, remains outstanding.
 - Android Gradle wrapper has not been added; the Android shell has not been compiled or tested on physical devices.
 - No APK or AAB has been produced. This is **not a release candidate**.
 
@@ -54,6 +54,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
+
+- Improved interface localization: English (India) and English (US) now use distinct regional wording/spelling and independently phrased settings guidance; Russian remains separately localized.
+- Localized accessible names for the Settings control, home brand link and answer-option group across all three interface locales.
+- Corrected the static quiz round label so it no longer implies that every question is Round 1; localized the final-question action (“See results” / “К результатам”).
+- This was a source change only. No validator, browser test, CI, Android build or device test was run.
+
+
 
 - Reviewed the gameplay/persistence path and hardened saved best-score parsing: only integer scores from 0 through the recorded total, with a valid round total of 1–10, are accepted. Invalid or stale/corrupt records are ignored instead of being rendered or used in percentage comparisons.
 - Strengthened the question-bank validator to reject malformed question/translation/option types, duplicate normalized question text per region and locale, unexpected total counts, and regional banks that do not contain exactly 50 questions. Whitespace normalization is applied before duplicate-text and duplicate-option comparisons. The validator remains unexecuted pending the agreed QA phase.
@@ -87,7 +94,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup; the saved-score parser hardening is complete.
 2. Complete factual, cultural and native-speaker review of all 150 questions, especially Russian phrasing and translation alignment.
-3. Complete interface localization and English (India) / English (US) copy differentiation.
+3. Complete the interface localization audit; initial English (India) / English (US) wording and accessibility-label differentiation is implemented.
 4. Continue accessibility review and final visual refinement.
 5. Finish and review the Android wrapper, Gradle wrapper and release configuration.
 6. Conduct manual source, offline and Android device QA.
