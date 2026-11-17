@@ -19,8 +19,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Category filter: All categories, Geography, History, Science and Culture.
 - Difficulty filter: Any difficulty, Easy, Medium and Hard.
 - Category and difficulty preferences persist locally and are applied together with region and question-language filters when a round starts.
-- Question bank expanded to **135 question IDs**, with 45 per region and all 3 language variants (405 localized question records).
-- Current difficulty spread in each region: 13 easy, 18 medium and 14 hard questions.
+- Question bank expanded to **150 question IDs**, with 50 per region and all 3 language variants (450 localized question records).
+- Current difficulty spread in each region: 15 easy, 20 medium and 15 hard questions.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Results now display percentage accuracy and a per-question answer review with the player's answer, correct answer and explanation; the review is built with DOM text nodes rather than injecting question content as HTML.
 - A localized help guide explains round flow, scoring, filters, independent language/region settings and offline/privacy principles.
@@ -34,8 +34,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ### Current implementation limits
 
-- The question bank contains **135 of 150 target questions**: 45 India, 45 Russia and 45 United States.
-- Each question has 3 locale variants: 405 localized records out of the 450 target records.
+- The question bank contains the full **150-question target**: 50 India, 50 Russia and 50 United States.
+- Each question has 3 locale variants: all 450 localized records are present.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
 - Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
@@ -49,11 +49,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - CI and Android validation remain deliberately deferred until feature development and source review are complete.
 - No CI run has been started.
 - The structural validator now also requires all four categories to appear in each regional bank; it has **not yet been executed**.
-- The current 135-question bank has been syntax- and structure-checked for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
-- Latest question-bank expansion added fifteen questions (five per region), with all three translations. Static structural checks passed for 120 unique IDs, regional assignment, translation completeness, option integrity, category coverage and difficulty distribution. Latest navigation review confirms settings saves return to the home screen to avoid continuing a round with stale question data; the brand-home action also clears empty-selection recovery state.
+- The current 150-question bank has been syntax- and structure-checked for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection.
+- Latest question-bank expansion added fifteen questions (five per region), with all three translations. Static structural checks passed for 150 unique IDs, regional assignment, translation completeness, option integrity, category coverage and difficulty distribution. The official validator, CI, Android build and device validation remain deferred.
 - No physical-device, offline-runtime or Android build validation is claimed.
 
 ## Latest completed batch
+
+- Expanded the question bank from 135 to **150 stable IDs** (50 per region), adding fifteen questions with all three translations. New topics include the Palk Strait, Chandragupta Maurya, M. S. Swaminathan, the veena and Yakshagana (India); the Sea of Okhotsk, Battle of Borodino, Mir space station, balalaika and Anton Chekhov's plays (Russia); and the Mojave Desert, the Civil Rights Act of 1964, the James Webb Space Telescope, Grant Wood's *American Gothic* and William Faulkner's Yoknapatawpha County (United States). Each region now has 13 Geography, 12 History, 12 Science and 13 Culture questions; difficulty distribution is 15 easy, 20 medium and 15 hard per region. The bank now contains 450 localized records. Static in-memory syntax and structural checks passed for all 150 unique IDs, three locale variants per question, non-empty question/explanation text, four distinct options, valid answer keys, supported metadata, category coverage and balanced difficulty distribution. The official validator, CI, Android build and device validation remain deferred.
 
 - Expanded the question bank from 120 to **135 stable IDs** (45 per region), adding fifteen questions with all three translations. New topics include Loktak Lake, Nanda Devi, the 1857 uprising at Meerut, Mangalyaan and Bihu (India); Lake Ladoga, the Valley of Geysers, the October Manifesto, Sputnik 2 and matryoshka dolls (Russia); and the Everglades, Mount Elbert, the Emancipation Proclamation, Explorer 1 and Delta blues (United States). Each region now has 12 Geography and 11 each in History, Science and Culture. Difficulty distribution is 13 easy, 18 medium and 14 hard per region. The 135-question source passed in-memory syntax and structural checks; the official validator, CI and Android validation remain deferred. New topics include the Brahmaputra, the First Battle of Panipat, Pokhran-I, Sangam literature and Kuchipudi (India); the Yenisei, Battle of Kulikovo, Alexei Leonov, Fabergé eggs and the Tretyakov Gallery (Russia); and the Mississippi, Seneca Falls Convention, Sally Ride, the Harlem Renaissance and hip-hop (United States). Each region now has exactly ten questions in each of the four categories. Difficulty distribution is 12 easy, 16 medium and 12 hard per region. The 120-question source passed in-memory syntax and structural checks; the official validator, CI and Android validation remain deferred.
 
@@ -78,8 +80,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ## Remaining development priorities
 
 1. Continue source review of gameplay and persistence edge cases, including score history, result navigation and review-state cleanup.
-2. Expand the question bank toward 50 per region in small reviewed batches, maintaining category/difficulty coverage and aligned translations.
-3. Complete interface localization and native-speaker/factual review.
+2. Complete factual, cultural and native-speaker review of all 150 questions, especially Russian phrasing and translation alignment.
+3. Complete interface localization and English (India) / English (US) copy differentiation.
 4. Continue accessibility review and final visual refinement.
 5. Finish and review the Android wrapper, Gradle wrapper and release configuration.
 6. Conduct manual source, offline and Android device QA.
