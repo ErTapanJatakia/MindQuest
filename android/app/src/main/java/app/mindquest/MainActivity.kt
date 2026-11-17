@@ -54,7 +54,9 @@ class MainActivity : Activity() {
         if (Build.VERSION.SDK_INT >= 35) {
             gameView.setOnApplyWindowInsetsListener { view, insets ->
                 val safeInsets = insets.getInsets(
-                    WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout()
+                    WindowInsets.Type.systemBars() or
+                        WindowInsets.Type.displayCutout() or
+                        WindowInsets.Type.ime()
                 )
                 view.setPadding(
                     safeInsets.left,
