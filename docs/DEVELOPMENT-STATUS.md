@@ -469,3 +469,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - This adds an offline whole-bank check for mismatched category codes and preserves all existing stable IDs and question content.
 - Validator commit: c02d3fd. The official validator remains unexecuted until the agreed development freeze. No CI or Android validation was run.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining allocation remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
+
+
+## Validator source correction and post-commit verification — 2026-11-18
+
+- During the stable-ID validator edit, a malformed intermediate source update was detected by immediate re-fetch inspection before any validator execution. The validator was restored as a complete file and the region/category/three-digit ID check was reapplied.
+- Final re-fetch checks passed 9/9: imports and source loading, category mapping, complete ID expression and diagnostic, locale/option checks, regional distributions, and both documentation records.
+- Final validator commit: c431a20. The earlier intermediate validator commit c02d3fd is superseded by this repair.
+- This remains source inspection only. The official validator was not executed, and CI/Android validation remain deferred. Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). Actual engineering time is untracked.
