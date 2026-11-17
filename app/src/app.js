@@ -107,6 +107,16 @@
     }
   };
 
+  // Compare percentages with integer cross-multiplication to avoid floating-point ties.
+  // When accuracy is equal, prefer the result achieved across more questions.
+  const isBetterBestScore = (scoreValue, totalValue, previous) => {
+    if (!previous) return true;
+    const newWeighted = scoreValue * previous.total;
+    const previousWeighted = previous.score * totalValue;
+    return newWeighted > previousWeighted ||
+      (newWeighted === previousWeighted && totalValue > previous.total);
+  };
+
   function showView(id) {
     views.forEach((viewId) => {
       const node = $(viewId);
@@ -287,7 +297,7 @@
     $("result-message").textContent = t("roundScore").replace("{score}", score).replace("{total}", round.length) + " " + t("accuracy").replace("{percent}", percent);
     renderAnswerReview();
     const best = readBestScore();
-    if (!best || score / round.length > best.score / best.total) {
+    if (isBetterBestScore(score, round.length, best)) {
       safeStorage.set(bestScoreKey(), JSON.stringify({ score, total: round.length }));
     }
     noQuestionsForSelection = false;
