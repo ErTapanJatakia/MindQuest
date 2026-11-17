@@ -1,6 +1,6 @@
 # Development status
 
-Last updated: 2026-11-17
+Last updated: 2026-11-18
 
 ## Current phase
 
@@ -229,3 +229,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Stable question ID, category, difficulty, answer key and option identities were preserved. No new question records were added or removed.
 - This is a targeted factual correction, not a full factual or native-speaker audit. No official question-bank validator, browser runtime, CI, Android build or physical-device test was run.
 - No workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
+
+
+## Latest question-bank diversity review — 2026-11-18
+
+- Replaced the repeated U.S. Declaration of Independence date question in `US-HIS-004` with a distinct question about the Gettysburg Address, delivered by Abraham Lincoln at the dedication of the Soldiers' National Cemetery in Gettysburg on 19 November 1863.
+- Kept the stable question ID, region, category, difficulty and correct-answer key (`a`). All three locale variants now use the same answer identity, with localized wording and explanations.
+- Reference: [U.S. Library of Congress — Gettysburg Address: Primary Documents in American History](https://guides.loc.gov/gettysburg-address), which records the delivery date and dedication context.
+- This targeted correction improves topic diversity; it is not a full factual or native-speaker review. No official content validator, browser/runtime, CI, Android build or physical-device test was run.
+- No roadmap workstream was reclassified; estimate-weighted implementation remains 330 / 2,400 baseline minutes (13.75%). Actual engineering time remains untracked.
