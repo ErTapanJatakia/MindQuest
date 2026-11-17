@@ -7,6 +7,8 @@ vm.runInNewContext(source, sandbox, { timeout: 1000 });
 const questions = sandbox.window.MINDQUEST_QUESTIONS;
 const locales = ["en-IN", "en-US", "ru-RU"];
 const regions = ["IN", "RU", "US"];
+const categories = ["Geography", "History", "Science", "Culture"];
+const difficulties = ["easy", "medium", "hard"];
 const errors = [];
 const ids = new Set();
 
@@ -18,7 +20,7 @@ for (const question of questions) {
   if (!question.id || ids.has(question.id)) errors.push(`Missing or duplicate question ID: ${question.id}`);
   ids.add(question.id);
   if (!regions.includes(question.region)) errors.push(`${question.id}: invalid region ${question.region}`);
-  if (!question.category || !["easy", "medium", "hard"].includes(question.difficulty)) {
+  if (!categories.includes(question.category) || !difficulties.includes(question.difficulty)) {
     errors.push(`${question.id}: missing category or invalid difficulty`);
   }
   if (!question.translations || typeof question.translations !== "object") {
@@ -44,8 +46,9 @@ for (const question of questions) {
     }
     if (!translation.options || keys.some((key) => !translation.options[key]?.toString().trim())) {
       errors.push(`${question.id}/${locale}: all four answer options are required`);
-    }
-    else {
+    } else if (JSON.stringify(Object.keys(translation.options).sort()) !== JSON.stringify(keys)) {
+      errors.push(`${question.id}/${locale}: option keys must be exactly a, b, c and d`);
+    } else {
       const optionValues = keys.map((key) => String(translation.options[key]).trim().toLocaleLowerCase(locale));
       if (new Set(optionValues).size !== 4) {
         errors.push(`${question.id}/${locale}: answer option text must be unique`);
@@ -58,9 +61,12 @@ for (const question of questions) {
 }
 
 for (const region of regions) {
-  const count = questions.filter((question) => question.region === region).length;
-  if (count === 0) errors.push(`No questions currently exist for region ${region}`);
-  console.log(`${region}: ${count} starter questions`);
+  const regional = questions.filter((question) => question.region === region);
+  if (regional.length === 0) errors.push(`No questions currently exist for region ${region}`);
+  const byDifficulty = Object.fromEntries(difficulties.map((level) => [
+    level, regional.filter((question) => question.difficulty === level).length
+  ]));
+  console.log(`${region}: ${regional.length} questions (easy ${byDifficulty.easy}, medium ${byDifficulty.medium}, hard ${byDifficulty.hard})`);
 }
 
 if (errors.length) {
