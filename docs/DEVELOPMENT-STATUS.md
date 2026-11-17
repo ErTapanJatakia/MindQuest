@@ -23,7 +23,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Current difficulty spread in each region: 3 easy, 1 medium and 1 hard question.
 - Answer feedback, scoring, replay and local best-score persistence.
 - Fair Fisher–Yates question shuffle and defensive handling of malformed persisted settings.
-- Best-score comparison by percentage, retaining the round denominator.
+- Best scores are stored independently by question region, category and difficulty; comparisons use percentages and retain the round denominator.
 - Localised region, language, category and difficulty selector labels.
 - Dependency-free question-bank structural validator, including locale coverage, region-matching IDs, supported category/difficulty values, exact option keys and duplicate-option checks.
 - Initial Android WebView shell with restrictive navigation / network configuration.
@@ -33,6 +33,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The question bank contains **15 of 150 target questions**: 5 India, 5 Russia and 5 United States.
 - Each question has 3 locale variants: 45 localized records out of the 450 target records.
 - The content is an initial development seed. It needs factual review and native-speaker review, particularly Russian phrasing and cultural context.
+- Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
 - Complete interface localization, English (India) / English (US) copy differentiation, accessibility review, help/about, results detail and final visual polish remain outstanding.
 - Android Gradle wrapper has not been added; the Android shell has not been compiled or tested on physical devices.
@@ -50,6 +51,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ## Latest completed batch
 
 - Fixed category and difficulty translation dictionary placement so the game resolves labels from the active interface language.
+- Added a recovery path when filters produce no questions: the replay action is hidden, the settings action is offered, and saving revised filters returns to the home screen.
+- Segmented best-score persistence by region, category and difficulty, with defensive parsing of saved records.
 - Added six regional questions: one medium and one hard question for each region.
 - Retained the three existing independent selectors and filter preferences.
 - Strengthened the question-bank validator to enforce the supported category list, supported difficulty values and exact answer-option key set.
@@ -57,7 +60,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Remaining development priorities
 
-1. Continue source review of gameplay and persistence edge cases.
+1. Continue source review of gameplay and persistence edge cases, including score history and navigation.
 2. Expand the question bank toward 50 per region, with balanced category/difficulty coverage and aligned translations.
 3. Complete all interface translations and native-speaker/factual review.
 4. Implement help/about, richer results and accessibility improvements.
