@@ -40,7 +40,7 @@
       <p class="category-label" id="category-label">QUESTION</p>
       <h2 id="question-title" tabindex="-1">Question text</h2>
       <div class="answers" id="answers" role="group" aria-label="Answer options"></div>
-      <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+      <p class="feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
       <button class="primary-button" id="next-button" type="button" disabled data-i18n="next">Next question</button>
     </section>
 
@@ -48,7 +48,7 @@
       <p class="eyebrow" data-i18n="roundComplete">ROUND COMPLETE</p>
       <h1 id="result-title" data-i18n="wellPlayed">Well played!</h1>
       <div class="score-ring"><strong id="final-score">0</strong><span data-i18n="points">points</span></div>
-      <p id="result-message" role="status" aria-live="polite"></p>
+      <p id="result-message" role="status" aria-live="polite" aria-atomic="true"></p>
       <section class="answer-review" aria-labelledby="answer-review-title">
         <h2 id="answer-review-title" data-i18n="reviewTitle">Answer review</h2>
         <div id="answer-review-list"></div>
