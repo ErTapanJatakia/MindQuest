@@ -31,7 +31,7 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 
 ## WebView lifecycle and navigation boundary
 
-- The only permitted top-level document destination is the bundled `file:///android_asset/index.html` entry point. Hash-based in-app state remains supported; other top-level destinations and subframe navigations are blocked.
+- The permitted document destination is the bundled `file:///android_asset/index.html` entry point. Hash-based in-app state remains supported; other destinations are rejected. On API 24 and newer, the request callback also rejects all subframe navigations through `isForMainFrame`. API 23's legacy string callback cannot distinguish main-frame from subframe requests, so it enforces the same exact local-document URL allowlist without an explicit frame check.
 - WebView content debugging is explicitly disabled. JavaScript remains enabled only because the bundled game requires it; cross-file-origin access, universal file-origin access, content-provider access, pop-up windows and mixed content remain disabled.
 - The Activity pauses/resumes WebView timers with its lifecycle and stops/destroys the WebView when the Activity is destroyed.
 - These are source-level controls. Confirm behaviour against the built APK and supported Android versions during the deferred Android QA stage.
