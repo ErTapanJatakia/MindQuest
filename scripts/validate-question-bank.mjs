@@ -12,6 +12,9 @@ const difficulties = ["easy", "medium", "hard"];
 const errors = [];
 const ids = new Set();
 const questionTextByLocale = new Map();
+const expectedQuestionKeys = ["category", "correct", "difficulty", "id", "region", "translations"];
+const expectedTranslationKeys = ["explanation", "options", "question"];
+const hasCleanText = (value) => typeof value === "string" && value.trim().length > 0 && !/[\\u0000-\\u001F\\u007F]/u.test(value);
 
 if (!Array.isArray(questions) || questions.length === 0) {
   throw new Error("Question bank is empty or not an array.");
@@ -21,6 +24,9 @@ for (const question of questions) {
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     errors.push("Question entry must be an object.");
     continue;
+  }
+  if (JSON.stringify(Object.keys(question).sort()) !== JSON.stringify(expectedQuestionKeys)) {
+    errors.push(`${question.id || "(unknown)"}: question fields must be exactly ${expectedQuestionKeys.join(", ")}`);
   }
   if (typeof question.id !== "string" || !question.id.trim() || ids.has(question.id)) errors.push(`Missing or duplicate question ID: ${question.id}`);
   ids.add(question.id);
@@ -48,10 +54,12 @@ for (const question of questions) {
       errors.push(`${question.id}: missing or invalid ${locale} translation`);
       continue;
     }
+    if (JSON.stringify(Object.keys(translation).sort()) !== JSON.stringify(expectedTranslationKeys)) {
+      errors.push(`${question.id}/${locale}: translation fields must be exactly ${expectedTranslationKeys.join(", ")}`);
+    }
     const keys = ["a", "b", "c", "d"];
-    if (typeof translation.question !== "string" || !translation.question.trim() ||
-        typeof translation.explanation !== "string" || !translation.explanation.trim()) {
-      errors.push(`${question.id}/${locale}: question or explanation must be non-empty text`);
+    if (!hasCleanText(translation.question) || !hasCleanText(translation.explanation)) {
+      errors.push(`${question.id}/${locale}: question and explanation must be non-empty text without control characters`);
     } else {
       const normalizedQuestion = translation.question.trim().replace(/\s+/g, " ").toLocaleLowerCase(locale);
       const duplicateKey = `${question.region}/${locale}/${normalizedQuestion}`;
