@@ -54,6 +54,7 @@
   function loadSettings() {
     let saved = {};
     try { saved = JSON.parse(safeStorage.get("mindquest.settings") || "{}"); } catch (_) { saved = {}; }
+    if (!saved || typeof saved !== "object" || Array.isArray(saved)) saved = {};
     return {
       interfaceLocale: LOCALES.includes(saved.interfaceLocale) ? saved.interfaceLocale : DEFAULTS.interfaceLocale,
       questionRegion: REGIONS.includes(saved.questionRegion) ? saved.questionRegion : DEFAULTS.questionRegion,
