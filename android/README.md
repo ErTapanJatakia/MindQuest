@@ -14,7 +14,17 @@ The Android module is a minimal Kotlin Activity hosting the locally bundled game
 
 ## Build prerequisites
 
-Install JDK 17 and Android SDK Platform 35. The project pins Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21; the compatible Gradle distribution target is 8.9. The Gradle wrapper has not yet been added, so the build is not yet self-contained or reproducible from a fresh checkout. `android/gradle.properties` establishes UTF-8/heap, AndroidX and Kotlin style defaults.
+Install JDK 17 and Android SDK Platform 35. The project pins Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21; use Gradle 8.9 for this configuration. The Gradle wrapper has not yet been generated, so the build is not currently self-contained or reproducible from a fresh checkout. `android/gradle.properties` establishes UTF-8/heap, AndroidX and Kotlin style defaults.
+
+### Generate the Gradle wrapper
+
+From this `android/` directory, on a machine with Gradle 8.9 installed, generate the official wrapper files with Gradle's built-in task:
+
+```sh
+gradle :wrapper --gradle-version 8.9 --distribution-type bin
+```
+
+Commit the generated `gradlew`, `gradlew.bat`, `gradle/wrapper/gradle-wrapper.jar` and `gradle/wrapper/gradle-wrapper.properties` files together. Do not hand-create or substitute the wrapper JAR or scripts. Before using the wrapper, verify the JAR against Gradle's published wrapper checksum for the generated Gradle version; keep the distribution URL pinned to Gradle 8.9. After committing the wrapper, invoke builds from this directory with `./gradlew :app:assembleDebug` (or `gradlew.bat :app:assembleDebug` on Windows).
 
 From this directory, after Gradle is installed:
 
