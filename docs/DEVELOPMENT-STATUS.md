@@ -131,3 +131,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Ran a source-level dictionary coverage scan for every statically referenced runtime translation key and every HTML `data-i18n` / `data-i18n-aria-label` key. All scanned keys are present in all three interface dictionaries.
 - Reviewed the Android Activity's local asset loading and navigation restrictions, manifest permissions, and Gradle asset source mapping. This was source inspection only; it does not establish build success or runtime security.
 - No official content validator, JavaScript parser, browser runtime, CI, Android build or device test was run.
+
+
+## Latest selector-label consistency refinement — 2026-11-17
+
+- Standardized the Russian-language option label to “Russian” in the English (India) interface, matching the English (US) interface. Russian interface labels remain native-language labels.
+- Reviewed the settings-selector refresh sequence: interface-language changes refresh the region, question-language and interface-language option labels immediately; saving settings refreshes labels again after the application persists and applies the selected interface locale.
+- Re-reviewed gameplay state transitions for this pass: answer selection is guarded against duplicate scoring, answer history is indexed by round position, empty-filter recovery clears stale review content, replay starts a fresh round, and settings saves return to home to avoid stale question content. These are source-inspection findings, not runtime test results.
+- No JavaScript parser, browser runtime, content validator, CI, Android build or device test was run. All remain pending the agreed development freeze and QA sequence.
