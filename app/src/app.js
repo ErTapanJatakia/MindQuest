@@ -174,13 +174,29 @@
     showView("settings-view");
   }
 
-  function startRound() {
-    const pool = (window.MINDQUEST_QUESTIONS || []).filter((q) =>
-      q.region === settings.questionRegion &&
-      q.translations[settings.questionLocale] &&
-      (settings.category === "all" || q.category === settings.category) &&
-      (settings.difficulty === "all" || q.difficulty === settings.difficulty)
+  function isPlayableQuestion(question) {
+    if (!question || typeof question !== "object" || Array.isArray(question)) return false;
+    if (question.region !== settings.questionRegion ||
+        !CATEGORIES.includes(question.category) ||
+        !["easy", "medium", "hard"].includes(question.difficulty) ||
+        !["a", "b", "c", "d"].includes(question.correct)) return false;
+    const copy = question.translations && question.translations[settings.questionLocale];
+    if (!copy || typeof copy !== "object" || Array.isArray(copy)) return false;
+    if (typeof copy.question !== "string" || !copy.question.trim() ||
+        typeof copy.explanation !== "string" || !copy.explanation.trim()) return false;
+    if (!copy.options || typeof copy.options !== "object" || Array.isArray(copy.options)) return false;
+    return ["a", "b", "c", "d"].every((key) =>
+      typeof copy.options[key] === "string" && copy.options[key].trim()
     );
+  }
+
+  function startRound() {
+    const pool = (Array.isArray(window.MINDQUEST_QUESTIONS) ? window.MINDQUEST_QUESTIONS : [])
+      .filter((q) =>
+        isPlayableQuestion(q) &&
+        (settings.category === "all" || q.category === settings.category) &&
+        (settings.difficulty === "all" || q.difficulty === settings.difficulty)
+      );
     if (!pool.length) {
       answerHistory = [];
       $("answer-review-list").replaceChildren();
