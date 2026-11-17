@@ -169,7 +169,7 @@ window.MINDQUEST_QUESTIONS = [
  {id:"US-CUL-002",region:"US",category:"Culture",difficulty:"hard",correct:"a",translations:{
   "en-IN":{question:"Which American architect designed the house known as Fallingwater in Pennsylvania?",options:{a:"Frank Lloyd Wright",b:"Louis Sullivan",c:"Philip Johnson",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed Fallingwater, a house built over a waterfall in Pennsylvania and completed in the 1930s."},
   "en-US":{question:"Who designed Fallingwater, the famous house built over a waterfall in Pennsylvania?",options:{a:"Frank Lloyd Wright",b:"Louis Sullivan",c:"Philip Johnson",d:"I. M. Pei"},explanation:"Frank Lloyd Wright designed Fallingwater, a house built over a waterfall in Pennsylvania and completed in the 1930s."},
-  "ru-RU":{question:"Какой американский архитектор спроектировал дом «Дом над водопадом» (Fallingwater) в Пенсильвании?",options:{a:"Фрэнк Ллойд Райт",b:"Луис Салливан",c:"Филип Джонсон",d:"И. М. Пей"},explanation:"Фрэнк Ллойд Райт спроектировал Fallingwater — дом над водопадом в Пенсильвании, построенный в 1930-х годах."}
+  "ru-RU":{question:"Какой американский архитектор спроектировал виллу «Фоллингуотер» (Fallingwater) в Пенсильвании?",options:{a:"Фрэнк Ллойд Райт",b:"Луис Салливан",c:"Филип Джонсон",d:"И. М. Пей"},explanation:"Фрэнк Ллойд Райт спроектировал Fallingwater — дом над водопадом в Пенсильвании, построенный в 1930-х годах."}
  }}
 
 ,
