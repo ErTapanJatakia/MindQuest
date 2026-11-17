@@ -419,3 +419,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - After difficulty quotas and unseen-question fill are complete, the selected round is now shuffled with Fisher–Yates. The intended proportional difficulty mix is retained without presenting fixed Easy/Medium/Hard blocks.
 - App change committed as `7ddbfc5`; roadmap updated as `476ab0c`.
 - The source was re-fetched for review. No JavaScript parser, browser gameplay test, question-bank validator, CI, Android build, emulator, physical-device or screen-reader validation was run. The correction is not counted as additional baseline progress.
+
+## Correct-answer streak feedback — 2026-11-18
+
+- Added a live current-streak counter to the quiz view and a localized best-streak summary to the results message in English (India), English (US) and Russian.
+- A correct answer increments the current streak and updates the round's best streak; an incorrect answer resets the current streak to zero. New rounds and discarded rounds reset both values.
+- Streaks are informational only: they do not award bonus points, alter accuracy, change best-score comparisons or add persistent storage.
+- App logic committed as `523e717`; quiz markup as `643ff80`; styling as `dee866c`; roadmap as `3b0f05c`.
+- Source/documentation changes only. No JavaScript parser, browser gameplay, accessibility runtime, official question-bank validator, CI, Android build, emulator or device test was run. Baseline credit remains unchanged pending validation.
