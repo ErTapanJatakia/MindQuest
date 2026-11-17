@@ -123,3 +123,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added narrow-screen layout safeguards for very small devices: flexible footer wrapping, minimum-width protection for key containers and controls, long localized text wrapping, and a compact layout treatment at viewport widths of 340px and below.
 - Ran a source-level localization coverage scan: every HTML `data-i18n` key is present in each of the three interface dictionaries. This checks key coverage only; it does not validate translation quality or runtime behavior.
 - No JavaScript parser, browser runtime, official question-bank validator, CI, Android build or physical-device test was run. The responsive and assistive-technology changes still require runtime verification.
+
+
+## Latest source review — live-region semantics and localization coverage
+
+- Made quiz feedback and final result announcements explicitly atomic polite live regions, so assistive technology can announce each complete updated message rather than an isolated changed fragment.
+- Ran a source-level dictionary coverage scan for every statically referenced runtime translation key and every HTML `data-i18n` / `data-i18n-aria-label` key. All scanned keys are present in all three interface dictionaries.
+- Reviewed the Android Activity's local asset loading and navigation restrictions, manifest permissions, and Gradle asset source mapping. This was source inspection only; it does not establish build success or runtime security.
+- No official content validator, JavaScript parser, browser runtime, CI, Android build or device test was run.
