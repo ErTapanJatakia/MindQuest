@@ -208,3 +208,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 - Stable ID, region, category, difficulty and correct-answer key were preserved. The three translations retain the same correct option identity.
 - This is a targeted content-quality correction, not full content certification. No official validator, browser/runtime, CI, Android build or device QA was run.
 - Baseline implementation remains 330 / 2,400 minutes (13.75%); no full workstream status or estimate changed.
+
+
+## Latest U.S. history duplication and context review — 2026-11-18
+
+- Replaced duplicate Louisiana Purchase coverage in `US-HIS-006` with the Nineteenth Amendment ratification question (18 August 1920), with all three locale variants preserving correct-answer key `d`.
+- Explanations note that discriminatory laws continued to disenfranchise many women after ratification, particularly women of colour. Reference: U.S. National Archives, https://www.archives.gov/milestone-documents/19th-amendment.
+- Stable question ID and metadata were preserved. This targeted change is not full content certification; validator, browser/runtime, CI, Android and device QA remain deferred.
+- Baseline implementation remains 330 / 2,400 minutes (13.75%); no full workstream status or estimate changed.
