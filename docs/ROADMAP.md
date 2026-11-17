@@ -544,3 +544,18 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 ### Baseline ledger round-length wording correction — 2026-11-18
 - Corrected the game-modes evidence description in `docs/BASELINE-RECONCILIATION.md` from fixed ten-question rounds to the implemented configurable 5/10/15-question rounds.
 - This aligns the baseline evidence ledger with the current README, architecture and gameplay settings. No implementation, scope, earned allocation or remaining estimate changed. No validator, CI, Android build or runtime test was run.
+
+
+### Question-bank topic-overlap refinement — 2026-11-18
+
+- A targeted content review found repeated knowledge points despite distinct prompt wording: Aryabhata's first-satellite status; Mendeleev and the periodic table; authorship of *War and Peace*; Lake Baikal's depth; Luna 9's first lunar soft landing; and the Valley of Geysers' location.
+- Replaced six localized question records while preserving their stable IDs, regions, categories, difficulty assignments, four-option format and shared correct-answer identity across en-IN, en-US and ru-RU:
+  - `IN-SCI-004`: replaced the repeated Aryabhata fact with Srinivasa Ramanujan and the Hardy–Ramanujan number.
+  - `RU-SCI-001`: replaced the second Mendeleev question with Lev Landau's 1962 Nobel Prize in Physics.
+  - `RU-CUL-004`: replaced the second *War and Peace* authorship question with Ivan Turgenev's *Fathers and Sons*.
+  - `RU-GEO-006`: replaced the second Lake Baikal depth question with Sochi's Black Sea location.
+  - `RU-SCI-009`: replaced the repeated Luna 9 soft-landing question with Luna 3's first photographs of the lunar far side.
+  - `RU-GEO-012`: replaced the second Valley of Geysers location question with the Strait of Tartary separating Sakhalin from mainland Asia.
+- Factual cross-check references: Nobel Prize (Lev Landau, 1962) https://www.nobelprize.org/prizes/physics/1962/summary/ ; NASA (Luna 3 first far-side images) https://science.nasa.gov/resource/first-close-up-of-the-far-side-of-moon/ ; Penguin Random House (Ivan Turgenev, *Fathers and Sons*) https://www.penguinrandomhouse.com/books/180980/fathers-and-sons-by-ivan-turgenev/ ; FIA Sochi media guide (Black Sea coast) https://www.fia.com/sites/default/files/2019_russian_media_kit_eng_1-min.pdf ; ASPRS Sakhalin geography reference https://www.asprs.org/a/resources/grids/09-2008-sakhalin.pdf ; University of Connecticut mathematics text (1729 / Hardy–Ramanujan number) https://alozano.clas.uconn.edu/wp-content/uploads/sites/490/2022/12/amstext35.pdf .
+- Post-commit source inventory checks confirmed 150 unique IDs (50 per region), 150 translation entries per locale, unchanged category/difficulty distributions, no exact duplicate prompts within a region/locale, and all six revised records resolve their correct answer to four localized options.
+- This is targeted source review, not a complete fact audit or native-speaker translation acceptance. The official `npm run validate:content`, CI and Android validation were not run, in line with the agreed development freeze. No baseline allocation or product scope changed.
