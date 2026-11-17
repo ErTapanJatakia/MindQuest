@@ -24,7 +24,7 @@
       playAgain:"Play again",home:"Home",personalise:"MAKE IT YOURS",settings:"Settings",
       settingsIntro:"These choices are independent. Mix any interface, region and question language.",
       interfaceLanguage:"Interface language",questionLanguage:"Question language",save:"Save settings",back:"Back",
-      freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",
+      freeOffline:"Free · Offline · No account",correct:"Correct! ",incorrect:"Not quite. ",roundScore:"You scored {score} out of {total}.",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",accuracy:"Accuracy: {percent}%",reviewTitle:"Answer review",yourAnswer:"Your answer",correctAnswer:"Correct answer",unanswered:"Not answered",
       noQuestions:"There are no questions available for this selection yet.",noQuestionsHint:"Change your category or difficulty settings to find questions.",question:"QUESTION",round:"ROUND 1"
     },
     "en-US": {
@@ -155,6 +155,9 @@
       (settings.difficulty === "all" || q.difficulty === settings.difficulty)
     );
     if (!pool.length) {
+      answerHistory = [];
+      $("answer-review-list").replaceChildren();
+      $("answer-review-title").hidden = true;
       noQuestionsForSelection = true;
       $("replay-button").hidden = true;
       $("home-button").textContent = t("settings");
@@ -232,6 +235,7 @@
 
 
   function renderAnswerReview() {
+    $("answer-review-title").hidden = false;
     const host = $("answer-review-list");
     host.replaceChildren();
     answerHistory.forEach((entry, index) => {
