@@ -44,8 +44,8 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Repository and project documentation created.
 - Responsive web game shell with home, quiz, result, settings and localized help views.
 - Three independent preference values and local persistence.
-- Thirty-three starter questions (eleven per region), each with three language variants.
-- Starter difficulty spread per region: five easy, four medium and two hard questions.
+- Thirty-nine starter questions (thirteen per region), each with three language variants.
+- Starter difficulty spread per region: five easy, five medium and three hard questions.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
 - Results accuracy percentage and localized per-question answer review.
 - Help guide in all three interface locales, accessible from home and settings with return-to-origin navigation.
