@@ -49,3 +49,6 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 - For API 35 and newer, the WebView applies system-bar and display-cutout insets as content padding. This keeps the game interface inside the safe visible area while retaining the platform edge-to-edge window behaviour.
 - The inset listener is only installed on API 35+, matching the target-SDK edge-to-edge enforcement boundary. No AndroidX dependency or permission is added.
 - Rendering around gesture navigation, three-button navigation, cutouts and keyboard/IME remains subject to runtime device validation.
+
+
+- The same API 35+ safe-inset calculation includes the on-screen keyboard (IME), so the WebView's usable area can respond when Android displays the keyboard.
