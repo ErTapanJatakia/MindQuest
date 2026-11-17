@@ -148,3 +148,11 @@ The full 50-question-per-region content target is now populated, but the bank re
 
 - A shared settings normalizer now validates both loaded preferences and settings-control values before persistence, keeping locale, region, category and difficulty values within supported options.
 - Source-only hardening; no runtime or automated validation was run. Official validator, CI and Android validation remain deferred until development freeze.
+
+
+## Latest content and documentation consistency pass — 2026-11-17
+
+- Aligned the question-bank source header and README with the delivered 150 IDs / 450 localized variants; human factual, cultural and native-speaker review remains a release gate.
+- Clarified that the initial Android WebView shell is implemented, but packaging/build validation remains pending.
+- Corrected the architecture's filter description to include category, region and difficulty.
+- No runtime, official validator, CI or Android validation was run.
