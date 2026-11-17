@@ -105,7 +105,11 @@
       node.classList.toggle("active", active);
       node.hidden = !active;
     });
-    if (id === "quiz-view") $("question-title").focus();
+    const heading = $(id).querySelector("h1, h2");
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus();
+    }
   }
 
   function applyInterface() {
@@ -239,7 +243,13 @@
   $("replay-button").addEventListener("click", startRound);
   $("home-button").addEventListener("click", () => { if (noQuestionsForSelection) openSettings(); else showView("home-view"); });
   $("settings-open").addEventListener("click", openSettings);
-  $("brand-home").addEventListener("click", (event) => { event.preventDefault(); showView("home-view"); });
+  $("brand-home").addEventListener("click", (event) => {
+    event.preventDefault();
+    noQuestionsForSelection = false;
+    $("replay-button").hidden = false;
+    $("home-button").textContent = t("home");
+    showView("home-view");
+  });
   $("settings-back").addEventListener("click", () => showView(lastView));
   $("settings-save").addEventListener("click", () => {
     settings = {
@@ -251,14 +261,12 @@
     };
     safeStorage.set("mindquest.settings", JSON.stringify(settings));
     applyInterface();
-    if (noQuestionsForSelection) {
-      noQuestionsForSelection = false;
-      $("replay-button").hidden = false;
-      $("home-button").textContent = t("home");
-      showView("home-view");
-    } else {
-      showView(lastView);
-    }
+    // Settings can change the question pool or locale. Return to the home screen
+    // so an in-progress round cannot continue with stale question data.
+    noQuestionsForSelection = false;
+    $("replay-button").hidden = false;
+    $("home-button").textContent = t("home");
+    showView("home-view");
   });
   $("next-button").addEventListener("click", () => {
     if (!answered) return;
