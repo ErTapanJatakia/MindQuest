@@ -303,3 +303,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Gameplay continues with normalized defaults or without a displayed best score when storage cannot be read. This complements the existing write-failure warning.
 - Source change committed and re-fetched. No browser runtime, denied-storage simulation, official content validator, CI, Android build or device QA was run. Runtime verification remains pending.
 - No roadmap estimate or earned implementation allocation changed; baseline remains 1,265 / 2,400 minutes (52.71%). Actual engineering time remains untracked.
+
+
+## Latest gameplay navigation and round teardown refinement — 2026-11-18
+
+- Added a shared round-discard routine that clears active questions, score, answer history, feedback, progress state, answer controls and prior answer-review content.
+- Empty-pool recovery, deliberate Home navigation, the brand-home link and saving changed settings now use the shared teardown. Help navigation and returning from Settings without saving continue to preserve the in-progress round.
+- Added stale-answer protection: a callback must still refer to the active question and active question-language translation. Advancing requires a non-empty round, a completed current answer and a recorded answer-history entry for that index.
+- Post-commit source re-fetch confirmed all seven targeted source checks: shared teardown exists; empty-pool branch uses it; Home navigation clears the round; settings save clears before returning home; stale item/translation callbacks are rejected; Next requires a recorded answer; and review content is cleared.
+- This is source inspection, not runtime verification. No browser test, automated test, official content validator, CI, Android build, emulator, physical-device or screen-reader test was run. CI and Android validation remain deferred until the agreed development freeze.
+- No roadmap estimate or earned allocation changed. Baseline implementation remains 1,265 / 2,400 minutes (52.71%); remaining baseline scope remains 1,135 minutes (47.29%). Actual engineering time remains untracked.
