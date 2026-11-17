@@ -477,3 +477,11 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Updated the manifest to reference the version-qualified `@mipmap/ic_launcher` resource for both launcher icon attributes. Existing splash artwork is retained.
 - This is source-level resource integration only; AAPT resource compilation, APK inspection, launcher masking and device rendering remain unverified. CI and Android validation remain deferred until the agreed development freeze.
 - Baseline remains 1,265 / 2,400 minutes (52.71%); remaining scope remains 1,135 minutes (47.29%). No additional baseline credit claimed pending build and runtime acceptance. Actual engineering time remains untracked.
+
+
+## Android keyboard resize dispatch alignment — 2026-11-18
+
+- Added `android:windowSoftInputMode="adjustResize"` to the launcher Activity so the target-SDK 35 edge-to-edge window can receive IME inset updates, matching the existing API 35+ `WindowInsets.Type.ime()` handling in `MainActivity`.
+- Updated Android build notes to document the manifest/window relationship. No dependency, permission, service or product scope was added.
+- Source and post-commit fetch verification only; no Gradle build, emulator, keyboard animation, viewport or physical-device test was run. CI and Android validation remain deferred until the agreed development freeze.
+- Baseline remains 1,265 / 2,400 minutes (52.71%), with 1,135 minutes (47.29%) remaining. No additional baseline credit claimed; actual engineering time remains untracked.
