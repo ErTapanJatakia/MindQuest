@@ -89,6 +89,8 @@
   const localeName = (locale) => locale === "ru-RU" ? "Русский" : locale === "en-US" ? "English (US)" : "English (India)";
   const regionName = (region) => REGION_NAMES[settings.interfaceLocale][region];
   const categoryName = (category) => t("category" + category);
+  const selectedCategoryName = () => settings.category === "all" ? t("allCategories") : categoryName(settings.category);
+  const selectedDifficultyName = () => settings.difficulty === "all" ? t("anyDifficulty") : t(settings.difficulty);
   const bestScoreKey = () => "mindquest.best." + settings.questionRegion + "." + settings.category + "." + settings.difficulty;
   const readBestScore = () => {
     try {
@@ -127,7 +129,9 @@
     $("question-difficulty").value = settings.difficulty;
     $("home-region").textContent = regionName(settings.questionRegion);
     const best = readBestScore();
-    $("best-score").textContent = best ? best.score + " / " + best.total : "—";
+    const bestPercent = best ? Math.round((best.score / best.total) * 100) : null;
+    $("best-score").textContent = best ? best.score + " / " + best.total + " · " + bestPercent + "%" : "—";
+    $("best-score-scope").textContent = [regionName(settings.questionRegion), selectedCategoryName(), selectedDifficultyName()].join(" · ");
     $("answers").setAttribute("aria-label", settings.interfaceLocale === "ru-RU" ? "Варианты ответа" : "Answer options");
     [...$("question-category").options].forEach((option) => {
       if (option.value === "all") option.textContent = t("allCategories");
