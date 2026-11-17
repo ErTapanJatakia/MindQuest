@@ -44,14 +44,15 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Repository and project documentation created.
 - Responsive web game shell with home, quiz, result and settings views.
 - Three independent preference values and local persistence.
-- Fifteen starter questions (five per region), each with three language variants.
-- Starter difficulty spread per region: three easy, one medium and one hard question.
+- Twenty-one starter questions (seven per region), each with three language variants.
+- Starter difficulty spread per region: four easy, two medium and one hard question.
 - Basic quiz flow, answer feedback, score, replay and best-score persistence.
 - View navigation moves focus to the active heading; quiz progress and results expose accessible announcements.
 - Empty-filter recovery routes players back to settings instead of presenting a dead-end replay action.
 - Best scores are scoped to region, category and difficulty and compared by percentage.
 - Persisted category and difficulty filters (All categories / Any difficulty), applied to question selection.
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
+- All four question categories now have at least one question in each regional bank.
 - Dependency-free question-bank structural validator.
 - Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
 
