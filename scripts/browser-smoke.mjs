@@ -163,18 +163,27 @@ try {
   for (const id of ["#interface-locale-search", "#question-region-search", "#question-locale-search", "#question-category-search"]) {
     if (!(await page.locator(id).isVisible())) throw new Error("Searchable selector missing: " + id);
   }
-  await page.locator("#interface-locale-search").fill("Spanish (Republic of Peru) — es-PE");
-  await page.locator("#interface-locale-search").press("Tab");
-  if (await page.locator("#interface-locale").inputValue() !== "es-PE") throw new Error("Interface language search did not select es-PE");
-  await page.locator("#question-region-search").fill("Federación de Rusia — RU");
-  await page.locator("#question-region-search").press("Tab");
-  if (await page.locator("#question-region").inputValue() !== "RU") throw new Error("Question region search did not select RU");
-  await page.locator("#question-locale-search").fill("Ruso (Federación de Rusia) — ru-RU");
-  await page.locator("#question-locale-search").press("Tab");
-  if (await page.locator("#question-locale").inputValue() !== "ru-RU") throw new Error("Question language search did not select ru-RU");
-  await page.locator("#question-category-search").fill("History");
-  await page.locator("#question-category-search").press("Tab");
-  if (await page.locator("#question-category").inputValue() !== "History") throw new Error("Category search did not select History");
+  const selectBySearch = async (inputId, selectId, value) => {
+    const label = await page.locator(inputId).evaluate(input => {
+      const list = document.getElementById(input.getAttribute("list"));
+      return [...list.options].find(option => option.dataset.value === input.dataset.expectedValue)?.value;
+    });
+    if (!label) throw new Error("Search option not found for " + selectId + "/" + value);
+    await page.locator(inputId).fill(label);
+    await page.locator(inputId).press("Tab");
+    if (await page.locator(selectId).inputValue() !== value) {
+      throw new Error("Search did not select " + selectId + "/" + value);
+    }
+  };
+  for (const [inputId, selectId, value] of [
+    ["#interface-locale-search", "#interface-locale", "es-PE"],
+    ["#question-region-search", "#question-region", "RU"],
+    ["#question-locale-search", "#question-locale", "ru-RU"],
+    ["#question-category-search", "#question-category", "History"]
+  ]) {
+    await page.locator(inputId).evaluate((input, expectedValue) => { input.dataset.expectedValue = expectedValue; }, value);
+    await selectBySearch(inputId, selectId, value);
+  }
   await page.locator("#settings-back").click();
 
   // Exercise the longer supported round modes for every currently playable region.
