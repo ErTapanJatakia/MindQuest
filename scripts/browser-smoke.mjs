@@ -251,6 +251,10 @@ try {
   if (await page.evaluate(() => document.activeElement?.id) !== "question-title") {
     throw new Error("Question progression did not move keyboard focus to the new heading");
   }
+  for (let index = 1; index < 5; index += 1) {
+    await page.locator("#answers button.answer-option").first().click();
+    await page.locator("#next-button").click();
+  }
   await page.locator("#home-button").click();
 
   // Check narrow and standard viewport layouts for horizontal overflow.
