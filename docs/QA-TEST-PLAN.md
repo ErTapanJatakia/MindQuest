@@ -8,7 +8,7 @@ This plan separates repeatable automated browser checks from manual acceptance a
 
 ## Automated browser regression
 
-The GitHub Actions browser suite is being expanded to cover the following acceptance areas:
+The GitHub Actions browser suite covers the following automated acceptance areas:
 
 | Area | Automated coverage | Acceptance |
 |---|---|---|
@@ -17,7 +17,7 @@ The GitHub Actions browser suite is being expanded to cover the following accept
 | Independent selectors | Five interface locales × three regions × three available question locales | All 45 supported combinations remain independently selectable |
 | Round modes | 5-, 10- and 15-question rounds across India, Russia and the United States | Selected round length is honoured when the filtered pool is large enough |
 | Content filters | Every category × difficulty pairing in each of the three playable regions | Rendered question category and difficulty match the selected filters |
-| Keyboard continuity | Answer selection and progression | Focus moves to the enabled Next/See results action, then to the next question heading |
+| Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-pressed=true`; other answers remain unpressed; focus moves to Next/See results and then the next question heading |
 | Responsive layout | 320, 360, 390, 768 and 1024 CSS-pixel widths across Home, Settings and Quiz | No document-level horizontal overflow |
 | Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload | Saved values are restored independently |
 | Offline boundary | Runtime request observation and restrictive Content Security Policy (`connect-src 'none'`, local bundled assets only) | No external network request is made by the application |
@@ -55,5 +55,5 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 
 - Spain and Peru are not playable question regions.
 - Spanish question translations are not available.
-- The automated browser additions are pending successful CI execution.
+- The expanded browser regression suite passed in [workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) and was merged in [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2).
 - Physical-device, TalkBack, offline runtime, APK inspection, signing and RuStore submission remain unverified.
