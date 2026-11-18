@@ -278,6 +278,11 @@ try {
       if (await quotaPage.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
         throw new Error(`Round length was not applied for ${region}/${roundLength}`);
       }
+      const initialAllocation = await quotaPage.locator("#question-title").getAttribute("data-round-diagnostics");
+      const initialPoolSize = JSON.parse(initialAllocation || "{}").poolSize;
+      if (initialPoolSize !== 50) {
+        throw new Error(`Playable pool unexpectedly excluded canonical questions for ${region}/${roundLength}: ${initialAllocation}`);
+      }
       const questionIds = new Set();
       const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
       const selectedDiagnostics = [];
