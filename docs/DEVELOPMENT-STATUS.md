@@ -49,13 +49,17 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Validation status
 
-- Latest successful consolidated validation: [MindQuest Validation #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081), run 40, head `3cbc4c417ab4fd6cd85b8c7556c90cf3febb7a58`. Both workflow jobs passed.
-- [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2) was merged into `main` by squash commit `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
-- The successful browser regression covers 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus continuity, 320/360/390/768/1024-pixel layouts, all ten theme text-contrast pairs, persistence across reload, malformed-storage recovery, storage-denial fallback and no external runtime requests.
+- Latest successful validation: [MindQuest Validation #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667), head `f03525a1a2f826d58bce27e38ed461fc33413b22`. Both Android debug assembly and browser/content/static jobs passed.
+- [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2) merged as `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
+- [PR #3](https://github.com/ErTapanJatakia/MindQuest/pull/3) merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`; [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) passed both jobs.
+- [PR #4](https://github.com/ErTapanJatakia/MindQuest/pull/4) merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`; [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) passed both jobs.
+- The accepted browser regression covers 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus continuity, eight portrait/landscape viewport profiles across Home/Settings/Quiz/Results, all ten theme text and focus-indicator contrast pairs, preference and best-score scope persistence, malformed-storage recovery, storage-denial fallback, ARIA ID-reference integrity and no external runtime requests.
 - Launch splash behavior is verified as a keyboard-modal experience: the application is inert and hidden from assistive technology while open, Escape dismisses the dialog, and focus returns to Home.
 - Searchable selectors now synchronize exact matches immediately and expose invalid input state; regression checks use canonical option values rather than localized hardcoded labels.
 - Restrictive CSP is included in the bundled web entry point and browser checks confirm external connections are blocked.
 - Android debug APK assembly passed in the same workflow. The PR #2 artifact is 908,736 bytes; extracted APK SHA-256: `5917e02d35b6725c1b3a0484f94f6fa7a2a4c2ac930432358f3849577043dd4d`. It is a debug APK, not a production-signed release candidate.
+- PR #3 added a semantic four-option radio group, arrow-key selection and checked-state exposure; visible controls are audited for accessible names, image alternatives and unique DOM IDs.
+- PR #4 added Home/End keyboard shortcuts, focus-indicator contrast checks and best-score isolation by region/category/difficulty/round length.
 - Automated browser checks do not replace physical-device, TalkBack, manual offline-runtime, native-speaker, legal or release acceptance.
 - Spain and Peru remain unavailable as question regions; Spanish question-language support is still pending.
 
@@ -1069,8 +1073,34 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ## Current accessibility hardening batch — PR #3
 
 - Open pull request: [Expose answer selection state to assistive technology](https://github.com/ErTapanJatakia/MindQuest/pull/3).
-- Answer options now use a four-option `radiogroup` / `radio` pattern with `aria-checked` state, roving tab focus and arrow-key selection. After a choice, the selected radio remains checked and all options retain native disabled behavior.
-- Browser regression now checks that exactly one answer is checked and disabled, the remaining three are unchecked, arrow-key selection works, and visible controls across Home, Settings, Quiz and Results have accessible names. It also checks image alt attributes and unique DOM IDs.
-- PR #3 validation is pending. No baseline credit is assigned to this in-progress batch.
+- Answer options use a four-option `radiogroup` / `radio` pattern with `aria-checked` state, roving tab focus, arrow-key selection and Home/End shortcuts. After a choice, the selected radio remains checked and all options retain native disabled behavior.
+- Browser regression checks exactly one checked/disabled answer, three unchecked answers, keyboard selection, visible control names, image alt attributes, unique DOM IDs, valid ARIA ID references and theme focus-indicator contrast.
+- PR #3 validation passed and the change is merged. Its accepted accessibility work is included in the reconciled baseline.
 - Physical Android, TalkBack and keyboard-only hosted-Web acceptance remain separate manual gates.
 
+
+
+## Consolidated acceptance update — 2026-11-18
+
+### Accepted PR #3
+- Semantic four-option radio group, checked-state semantics, roving tab focus and arrow-key selection.
+- Automated accessible-name, image-alt and duplicate-ID checks across Home, Settings, Quiz and Results.
+- CI passed: [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742).
+
+### Accepted PR #4
+- Home/End answer selection shortcuts and vertical radio-group orientation.
+- Valid ARIA ID-reference assertions and focus-indicator contrast checks across all ten themes.
+- Responsive checks at eight portrait/landscape viewport profiles across Home, Settings, Quiz and Results.
+- Best-score scope isolation by region, category, difficulty and round length, including malformed-record rejection.
+- CI passed: [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667).
+
+### Active PR #5 — gameplay progression
+- Stable question IDs are exposed on the active question heading for deterministic regression diagnostics.
+- Automated tests now assert exact difficulty quotas for 5/10/15-question rounds, result focus, review completeness and full 50-question cycle exhaustion in all three current regions.
+- PR #5 CI acceptance is pending. No baseline credit is assigned to this active batch.
+
+### Baseline reconciliation
+- Accepted earned implementation: **1,635 / 2,400 minutes (68.13%)**.
+- Remaining original baseline: **765 minutes**.
+- Actual engineering hours remain untracked.
+- Physical-device testing, TalkBack, offline runtime verification, native-speaker review, production signing and RuStore submission remain separate gates.
