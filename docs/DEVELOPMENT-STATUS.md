@@ -1064,3 +1064,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Workflow #44307367081 passed both Android debug assembly and content/static/browser regression jobs.
 - The APK artifact is available as GitHub Actions artifact ID `14428532664` until 2026-12-02; the extracted APK SHA-256 is recorded above.
 - New baseline credit is reconciled in [BASELINE-RECONCILIATION.md](BASELINE-RECONCILIATION.md). Actual engineering hours remain untracked.
+
+
+## Current accessibility hardening batch — PR #3
+
+- Open pull request: [Expose answer selection state to assistive technology](https://github.com/ErTapanJatakia/MindQuest/pull/3).
+- Answer options now expose an explicit pressed state: all options begin with `aria-pressed=false`; the chosen option becomes `aria-pressed=true` while all options retain native disabled behavior after selection.
+- Browser regression now checks that exactly one answer is pressed and disabled, the remaining three are unpressed, and visible controls across Home, Settings, Quiz and Results have accessible names. It also checks image alt attributes and unique DOM IDs.
+- PR #3 validation is pending. No baseline credit is assigned to this in-progress batch.
+- Physical Android, TalkBack and keyboard-only hosted-Web acceptance remain separate manual gates.
+
