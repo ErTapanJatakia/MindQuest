@@ -127,6 +127,127 @@
         options: { a: "6", b: "7", c: "8", d: "9" },
         explanation: "Atraviesa ocho estados, desde Guyarat, en el oeste, hasta Mizoram, en el este."
       }
+    },
+
+    "IN-HIS-002": {
+      "es-ES": {
+        question: "¿En qué fecha adoptó la Asamblea Constituyente la Constitución de la India?",
+        options: { a: "15 de agosto de 1947", b: "26 de noviembre de 1949", c: "26 de enero de 1950", d: "2 de octubre de 1950" },
+        explanation: "La Asamblea Constituyente adoptó la Constitución el 26 de noviembre de 1949; entró en vigor el 26 de enero de 1950."
+      },
+      "es-PE": {
+        question: "¿Qué día aprobó la Asamblea Constituyente la Constitución de la India?",
+        options: { a: "15 de agosto de 1947", b: "26 de noviembre de 1949", c: "26 de enero de 1950", d: "2 de octubre de 1950" },
+        explanation: "La Asamblea Constituyente aprobó la Constitución el 26 de noviembre de 1949 y esta empezó a regir el 26 de enero de 1950."
+      }
+    },
+    "IN-CUL-002": {
+      "es-ES": {
+        question: "¿Qué fiesta de la cosecha, celebrada en abril, está especialmente vinculada al Punyab?",
+        options: { a: "Onam", b: "Bihu", c: "Vaisakhi", d: "Pongal" },
+        explanation: "Vaisakhi es una importante fiesta primaveral de la cosecha en el Punyab y conmemora también la fundación de la Khalsa por el gurú Gobind Singh en 1699."
+      },
+      "es-PE": {
+        question: "¿Qué festividad de la cosecha se celebra en abril y está muy relacionada con el estado indio de Punyab?",
+        options: { a: "Onam", b: "Bihu", c: "Vaisakhi", d: "Pongal" },
+        explanation: "Vaisakhi es una celebración importante de la cosecha de primavera en Punyab. Para la comunidad sij, también recuerda la creación de la Khalsa por el gurú Gobind Singh en 1699."
+      }
+    },
+    "RU-GEO-003": {
+      "es-ES": {
+        question: "¿Qué río se considera generalmente el más largo de Europa?",
+        options: { a: "Volga", b: "Danubio", c: "Rin", d: "Don" },
+        explanation: "El Volga, que atraviesa la Rusia occidental, suele considerarse el río más largo de Europa."
+      },
+      "es-PE": {
+        question: "¿Cuál es el río que, por lo general, se reconoce como el más largo de Europa?",
+        options: { a: "Volga", b: "Danubio", c: "Rin", d: "Don" },
+        explanation: "El Volga recorre la parte occidental de Rusia y es considerado, por lo general, el río más largo de Europa."
+      }
+    },
+    "RU-SCI-002": {
+      "es-ES": {
+        question: "¿Cómo se llamó el primer satélite artificial, lanzado por la Unión Soviética en 1957?",
+        options: { a: "Luna 2", b: "Vostok 1", c: "Explorer 1", d: "Sputnik 1" },
+        explanation: "El Sputnik 1 se convirtió en el primer satélite artificial de la Tierra cuando la Unión Soviética lo lanzó el 4 de octubre de 1957."
+      },
+      "es-PE": {
+        question: "¿Cuál fue el nombre del primer satélite artificial, puesto en órbita por la Unión Soviética en 1957?",
+        options: { a: "Luna 2", b: "Vostok 1", c: "Explorer 1", d: "Sputnik 1" },
+        explanation: "El Sputnik 1 fue el primer satélite artificial de la Tierra; la Unión Soviética lo lanzó el 4 de octubre de 1957."
+      }
+    },
+    "US-GEO-003": {
+      "es-ES": {
+        question: "¿Qué estado de Estados Unidos tiene la mayor superficie terrestre?",
+        options: { a: "Texas", b: "Alaska", c: "California", d: "Montana" },
+        explanation: "Alaska es el estado estadounidense de mayor superficie y supera en extensión a Texas, California y Montana."
+      },
+      "es-PE": {
+        question: "¿Cuál es el estado más grande de Estados Unidos si se considera su superficie?",
+        options: { a: "Texas", b: "Alaska", c: "California", d: "Montana" },
+        explanation: "Alaska es el estado de mayor extensión de Estados Unidos; su superficie supera la de Texas, California y Montana."
+      }
+    },
+    "IN-GEO-004": {
+      "es-ES": {
+        question: "¿En qué estado de la India se encuentra el lago Chilika, una de las mayores lagunas de agua salobre de Asia?",
+        options: { a: "Bengala Occidental", b: "Andhra Pradesh", c: "Odisha", d: "Kerala" },
+        explanation: "El lago Chilika es una laguna de agua salobre situada en la costa de Odisha y conectada con el golfo de Bengala."
+      },
+      "es-PE": {
+        question: "¿En qué estado indio está ubicado el lago Chilika, una de las lagunas de agua salobre más extensas de Asia?",
+        options: { a: "Bengala Occidental", b: "Andhra Pradesh", c: "Odisha", d: "Kerala" },
+        explanation: "El lago Chilika se ubica en la costa de Odisha. Es una laguna de agua salobre que está conectada con el golfo de Bengala."
+      }
+    },
+    "IN-HIS-003": {
+      "es-ES": {
+        question: "¿En qué sesión del Congreso Nacional Indio se aprobó en 1929 la resolución de Purna Swaraj?",
+        options: { a: "Lahore", b: "Karachi", c: "Lucknow", d: "Surat" },
+        explanation: "La sesión del Congreso Nacional Indio celebrada en Lahore en diciembre de 1929 aprobó la resolución de Purna Swaraj, que reclamaba la independencia completa."
+      },
+      "es-PE": {
+        question: "¿En qué sesión del Congreso Nacional de la India se aprobó la resolución de Purna Swaraj en 1929?",
+        options: { a: "Lahore", b: "Karachi", c: "Lucknow", d: "Surat" },
+        explanation: "En diciembre de 1929, la sesión del Congreso Nacional de la India realizada en Lahore aprobó la resolución de Purna Swaraj, que exigía la independencia total."
+      }
+    },
+    "RU-GEO-004": {
+      "es-ES": {
+        question: "¿Qué cordillera se utiliza habitualmente como parte de la frontera entre Europa y Asia en Rusia?",
+        options: { a: "Montes Altái", b: "Montes Urales", c: "Montes del Cáucaso", d: "Montes Sayanes" },
+        explanation: "Los montes Urales constituyen la frontera geográfica convencional entre Europa y Asia en buena parte de Rusia."
+      },
+      "es-PE": {
+        question: "¿Qué cadena montañosa se considera parte del límite entre Europa y Asia en territorio ruso?",
+        options: { a: "Montes Altái", b: "Montes Urales", c: "Montes del Cáucaso", d: "Montes Sayanes" },
+        explanation: "Los montes Urales son la división geográfica convencional entre Europa y Asia en gran parte de Rusia."
+      }
+    },
+    "RU-CUL-003": {
+      "es-ES": {
+        question: "¿Qué escritor ruso creó al personaje ficticio de Woland en la novela «El maestro y Margarita»?",
+        options: { a: "Borís Pasternak", b: "Maksim Gorki", c: "Mijaíl Shólojov", d: "Mijaíl Bulgákov" },
+        explanation: "Mijaíl Bulgákov escribió «El maestro y Margarita», novela en la que Woland es uno de los personajes sobrenaturales centrales."
+      },
+      "es-PE": {
+        question: "¿Quién creó al personaje de Woland en la novela rusa «El maestro y Margarita»?",
+        options: { a: "Borís Pasternak", b: "Máximo Gorki", c: "Mijaíl Shólojov", d: "Mijaíl Bulgákov" },
+        explanation: "Mijaíl Bulgákov es el autor de «El maestro y Margarita», donde Woland aparece como un personaje sobrenatural central."
+      }
+    },
+    "US-GEO-004": {
+      "es-ES": {
+        question: "¿Cuál de los cinco Grandes Lagos se encuentra íntegramente dentro de Estados Unidos?",
+        options: { a: "Lago Superior", b: "Lago Erie", c: "Lago Michigan", d: "Lago Ontario" },
+        explanation: "El lago Michigan es el único de los Grandes Lagos situado por completo en Estados Unidos; los otros cuatro se comparten con Canadá."
+      },
+      "es-PE": {
+        question: "¿Qué lago de los cinco Grandes Lagos está totalmente dentro de Estados Unidos?",
+        options: { a: "Lago Superior", b: "Lago Erie", c: "Lago Michigan", d: "Lago Ontario" },
+        explanation: "El lago Michigan es el único de los Grandes Lagos que se encuentra por completo en Estados Unidos. Los otros cuatro son compartidos con Canadá."
+      }
     }
   };
 
