@@ -277,6 +277,13 @@ try {
   await page.locator("#play-button").click();
   await page.locator("#answers button.answer-option").first().focus();
   await page.keyboard.press("Enter");
+  const selectedAnswer = page.locator('#answers button[aria-pressed="true"]');
+  if (await selectedAnswer.count() !== 1 || !(await selectedAnswer.isDisabled())) {
+    throw new Error("Selected answer state was not exposed as one pressed, disabled control");
+  }
+  if (await page.locator('#answers button[aria-pressed="false"]').count() !== 3) {
+    throw new Error("Unselected answer controls did not retain their unpressed state");
+  }
   if (await page.evaluate(() => document.activeElement?.id) !== "next-button") {
     throw new Error("Answer selection did not move keyboard focus to Next");
   }
