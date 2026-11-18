@@ -92,3 +92,11 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
 .progress-track{background:var(--panel2)}
 .progress-track div{background:var(--accent)}
 .brand-mark{background:var(--panel2)}
+
+
+/* Search controls remain visibly keyboard-focusable and usable in forced-colors mode. */
+.searchable-select:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+@media(forced-colors:active){
+  .searchable-select{background:Canvas;color:CanvasText;border:1px solid CanvasText}
+  .searchable-select:focus-visible{outline:3px solid Highlight;outline-offset:3px}
+}
