@@ -53,6 +53,29 @@ try {
   if (await page.locator("#theme-select option").count() < 10) throw new Error("Expected at least ten themes");
   await page.locator("#theme-select").selectOption("aurora");
   if (await page.locator("html").getAttribute("data-theme") !== "aurora") throw new Error("Theme was not applied");
+  const themeNames = ["obsidian", "midnight", "aurora", "ocean", "forest", "ember", "royal", "rose", "sand", "paper"];
+  const contrast = (foreground, background) => {
+    const luminance = hex => {
+      const channels = hex.match(/[a-f0-9]{2}/gi).map(value => parseInt(value, 16) / 255)
+        .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+      return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+    };
+    const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+    return (values[0] + 0.05) / (values[1] + 0.05);
+  };
+  for (const theme of themeNames) {
+    await page.locator("#theme-select").selectOption(theme);
+    const palette = await page.evaluate(() => {
+      const styles = getComputedStyle(document.documentElement);
+      return Object.fromEntries(["--bg", "--panel", "--text", "--muted"].map(key =>
+        [key, styles.getPropertyValue(key).trim()]));
+    });
+    for (const surface of [palette["--bg"], palette["--panel"]]) {
+      if (contrast(palette["--text"], surface) < 4.5 || contrast(palette["--muted"], surface) < 4.5) {
+        throw new Error(`Theme contrast below WCAG AA text threshold: ${theme}`);
+      }
+    }
+  }
   await page.locator("#settings-open").click();
   for (const id of ["#setting-large-text", "#setting-reduced-motion", "#setting-high-contrast"]) {
     await page.locator(id).check();
@@ -185,11 +208,15 @@ try {
   // Check narrow and standard viewport layouts for horizontal overflow.
   for (const width of [320, 360, 390, 768, 1024]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const openSettings of [false, true]) {
-      if (openSettings) await page.locator("#settings-open").click();
+    for (const view of ["home", "settings", "quiz"]) {
+      if (view === "settings") await page.locator("#settings-open").click();
+      if (view === "quiz") {
+        await page.locator("#play-button").click();
+      }
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-      if (overflow) throw new Error(`Horizontal overflow detected at ${width}px (${openSettings ? "settings" : "home"})`);
-      if (openSettings) await page.locator("#settings-back").click();
+      if (overflow) throw new Error(`Horizontal overflow detected at ${width}px (${view})`);
+      if (view === "settings") await page.locator("#settings-back").click();
+      if (view === "quiz") await page.locator("#home-button").click();
     }
   }
   await page.setViewportSize({ width: 1280, height: 900 });
