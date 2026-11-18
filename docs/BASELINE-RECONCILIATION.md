@@ -99,7 +99,7 @@ This was a repository/documentation reconciliation, not a new execution of the a
 - PR #4 added Home/End keyboard selection, valid ARIA ID-reference checks, focus-indicator contrast checks for all ten themes, eight viewport profiles across Home/Settings/Quiz/Results, and scoped best-score persistence checks.
 - Evidence-based allocation after accepted PR #3/#4: +20 accessibility minutes, +20 device-compatibility minutes, +15 local-persistence minutes, +25 functional-testing minutes and +10 documentation minutes (70 total).
 - Updated baseline: 1,635 / 2,400 minutes = **68.13%**; remaining baseline 765 minutes. Actual engineering hours remain untracked.
-- PR #5 gameplay progression work is active and not yet credited.
+- PR #5 gameplay progression work is accepted and reconciled in the latest section below; current baseline is 1,745 / 2,400 minutes (72.71%), with 655 minutes remaining.
 
 
 ## Gameplay progression acceptance — 2026-11-18
