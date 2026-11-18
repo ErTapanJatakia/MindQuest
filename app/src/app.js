@@ -424,6 +424,7 @@
       const available = unseen.filter((question) => question.difficulty === item.difficulty);
       selectedRound.push(...available.slice(0, item.quota));
     }
+    const quotaSelectedCount = selectedRound.length;
     // If a difficulty has too few unseen questions left, fill from other unseen
     // questions first so the session cycle still avoids repeats whenever possible.
     const selectedIdSet = new Set(selectedRound.map((question) => question.id));
@@ -454,6 +455,26 @@
       showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
     }
+    // Keep machine-readable allocation evidence on the question heading so CI can
+    // distinguish quota calculation defects from cycle-state/fallback effects.
+    const countByDifficulty = (questions) => Object.fromEntries(
+      difficultyOrder.map((difficulty) => [
+        difficulty,
+        questions.filter((question) => question.difficulty === difficulty).length
+      ])
+    );
+    $("question-title").dataset.roundDiagnostics = JSON.stringify({
+      region: settings.questionRegion,
+      roundLength: targetRoundLength,
+      poolSize: pool.length,
+      seenBefore: seenQuestionIds.size,
+      unseenSize: unseen.length,
+      unseenByDifficulty: countByDifficulty(unseen),
+      quotas: Object.fromEntries(difficultyQuotas.map((item) => [item.difficulty, item.quota])),
+      quotaSelectedCount,
+      selectedByDifficulty: countByDifficulty(selectedRound),
+      fallbackAdded: selectedRound.length - quotaSelectedCount
+    });
     // Randomize the final sequence after difficulty quotas are met so difficulty
     // is balanced without appearing in predictable consecutive blocks.
     for (let i = selectedRound.length - 1; i > 0; i -= 1) {
