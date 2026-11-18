@@ -939,3 +939,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Confirmed the Android project includes only `:app`, has no declared external app dependencies, targets Java/Kotlin 17, and uses the documented Gradle 8.9 wrapper target. The AndroidX flag is enabled, but no AndroidX library is declared in the app module.
 - Confirmed local Gradle/build output, machine-local Android SDK properties and release signing material are covered by ignore rules. No credentials or dependency declarations were found in the inspected build files.
 - No source/configuration change was justified by this review. The wrapper is still absent, so a fresh checkout is not yet self-contained. No Gradle configuration, dependency resolution, Kotlin compilation, resource processing, APK build, CI or device test was run. These remain deferred until the development batch is complete.
+
+
+## Immediate Android build reproducibility blocker — 2026-11-18
+
+- Rechecked the repository's `android/` directory through the GitHub contents API. It contains the Android module and Gradle Kotlin configuration, but no `gradle/wrapper/` directory, wrapper scripts or wrapper JAR. The expected `.github/workflows/` directory is also absent; no workflow was added because CI remains intentionally deferred.
+- The next Android build-reproducibility prerequisite is to generate the official Gradle 8.9 wrapper on a Gradle-equipped machine using `gradle :wrapper --gradle-version 8.9 --distribution-type bin` from `android/`, then commit `gradlew`, `gradlew.bat`, `gradle/wrapper/gradle-wrapper.jar` and `gradle/wrapper/gradle-wrapper.properties` together. Verify the generated wrapper JAR against the published checksum before use.
+- This repository editing interface can safely update UTF-8 text files but cannot generate or verify the official wrapper binary. No substitute script/JAR will be fabricated. This is an environment/tooling prerequisite, not a confirmed defect in the Android source.
+- Other release gates remain: finish feature/source review, run the official question-bank validator, perform browser and Android build/runtime regression, inspect the resulting APK/AAB, complete native-speaker/editorial acceptance, and prepare release signing/RuStore metadata. CI and Android validation remain deferred until the development batch is complete.
