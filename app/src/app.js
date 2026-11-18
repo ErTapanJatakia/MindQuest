@@ -2,6 +2,7 @@
   "use strict";
 
   const LOCALES = ["en-IN", "en-US", "ru-RU"];
+  const INTERFACE_LOCALES = ["en-IN", "en-US", "ru-RU", "es-PE", "es-ES"];
   const REGIONS = ["IN", "RU", "US"];
   const CATEGORIES = ["Geography", "History", "Science", "Culture"];
   const REGION_NAMES = {
@@ -13,7 +14,9 @@
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
     "ru-RU": {
       categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
-      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Республика Индия", RU: "Российская Федерация", US: "Соединённые Штаты Америки" }
+      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Республика Индия", RU: "Российская Федерация", US: "Соединённые Штаты Америки" },
+    "es-PE": { categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Intermedia",hard:"Difícil",IN:"República de la India",RU:"Federación de Rusia",US:"Estados Unidos de América" },
+    "es-ES": { categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Media",hard:"Difícil",IN:"República de la India",RU:"Federación de Rusia",US:"Estados Unidos de América" }
   };
   const UI = {
     "en-IN": {
@@ -52,11 +55,47 @@
       freeOffline:"Бесплатно · Офлайн · Без аккаунта",correct:"Верно! ",incorrect:"Не совсем. ",roundScore:"Ваш результат: {score} из {total}.",accuracy:"Точность: {percent}%",reviewTitle:"Разбор ответов",yourAnswer:"Ваш ответ",correctAnswer:"Правильный ответ",unanswered:"Нет ответа",
       streakLabel:"Текущая серия",bestStreak:"Лучшая серия за раунд: {streak}",roundLength:"Вопросов в раунде",roundLengthScope:"{count} вопросов в раунде",
       help:"Как играть",helpEyebrow:"КРАТКОЕ РУКОВОДСТВО",helpTitle:"Как играть",helpStartTitle:"Начало раунда",helpStartBody:"В настройках выберите регион, язык вопросов, категорию и сложность, затем начните раунд. В раунде будет не больше выбранного числа вопросов с вариантами ответа.",helpScoringTitle:"Очки и результаты",helpScoringBody:"Выберите один ответ на каждый вопрос. За каждый правильный ответ начисляется одно очко. В результатах показаны счёт, точность, правильные ответы и пояснения.",helpDifficultyTitle:"Категории и сложность",helpDifficultyBody:"Изучайте географию, историю, науку и культуру. Выберите лёгкий, средний или сложный уровень либо оставьте фильтры без ограничений.",helpLanguageTitle:"Три независимых параметра",helpLanguageBody:"Язык интерфейса определяет язык меню, регион вопросов — набор знаний, а язык вопросов — формулировки. Доступны любые сочетания поддерживаемых параметров.",helpPrivacyTitle:"Бесплатно, конфиденциально, офлайн",helpPrivacyBody:"MindQuest бесплатен, работает без интернета и не требует аккаунта. Настройки и лучшие результаты сохраняются на устройстве, если доступно хранилище браузера. Рекламы и платных сервисов нет.",noQuestions:"Для выбранных параметров пока нет вопросов.",noQuestionsHint:"Попробуйте изменить категорию или сложность в настройках.",storageUnavailable:"Хранилище недоступно: настройки и лучшие результаты могут не сохраниться.",roundIntegrityError:"Не удалось проверить завершённый раунд.",roundIntegrityHint:"Результат не был сохранён. Откройте настройки и начните новый раунд.",question:"ВОПРОС",answerOptions:"Варианты ответа"
+    },
+    "es-PE": {
+      categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Intermedia",hard:"Difícil",categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",
+      eyebrow:"Un reto para tu mente",welcome:"Stay Curious. Outsmart the Ordinary.",intro:"Descubre el mundo, pregunta a pregunta.",
+      play:"¡A jugar!",bestScore:"Mejor puntaje",questionRegion:"Región de preguntas",offline:"Listo para jugar sin conexión.",progress:"Progreso de preguntas",
+      next:"Siguiente pregunta",seeResults:"Ver resultados",round:"RONDA",roundComplete:"RONDA COMPLETADA",wellPlayed:"¡Muy bien!",points:"puntos",
+      playAgain:"Jugar otra vez",home:"Inicio",personalise:"PERSONALIZA TU JUEGO",settings:"Ajustes",
+      settingsIntro:"Elige por separado el idioma de la interfaz, la región y el idioma de las preguntas.",
+      interfaceLanguage:"Idioma de la interfaz",questionLanguage:"Idioma de las preguntas",save:"Guardar ajustes",back:"Volver",settingsButtonLabel:"Abrir ajustes",homeLinkLabel:"Inicio de MindQuest",
+      freeOffline:"Gratis · Sin conexión · Sin cuenta",correct:"¡Correcto! ",incorrect:"No es esa. ",roundScore:"Obtuviste {score} de {total} puntos.",accuracy:"Precisión: {percent}%",reviewTitle:"Revisión de respuestas",yourAnswer:"Tu respuesta",correctAnswer:"Respuesta correcta",unanswered:"Sin responder",
+      streakLabel:"Racha actual",bestStreak:"Mejor racha de esta ronda: {streak}",roundLength:"Preguntas por ronda",roundLengthScope:"{count} preguntas por ronda",
+      help:"Cómo jugar",helpEyebrow:"GUÍA RÁPIDA",helpTitle:"Cómo jugar",helpStartTitle:"Juega una ronda",helpStartBody:"En Ajustes, elige una región, el idioma de las preguntas, una categoría y una dificultad. Después, inicia una ronda con preguntas de opción múltiple.",
+      helpScoringTitle:"Puntaje y resultados",helpScoringBody:"Elige una respuesta por pregunta. Cada respuesta correcta suma un punto. Al final verás tu puntaje, precisión, respuestas correctas y explicaciones.",
+      helpDifficultyTitle:"Categorías y dificultad",helpDifficultyBody:"Explora Geografía, Historia, Ciencia o Cultura. Elige Fácil, Intermedia o Difícil, o combina todas las preguntas disponibles.",
+      helpLanguageTitle:"Tres opciones independientes",helpLanguageBody:"El idioma de la interfaz controla los menús; la región define el banco de preguntas; el idioma de las preguntas controla su redacción. Puedes combinar las opciones disponibles.",
+      helpPrivacyTitle:"Gratis, privado y sin conexión",helpPrivacyBody:"MindQuest es gratis, funciona sin conexión y no requiere una cuenta. Los ajustes y mejores puntajes se guardan en este dispositivo cuando el almacenamiento está disponible. No hay anuncios ni servicios de pago.",
+      noQuestions:"Aún no hay preguntas disponibles para esta selección.",noQuestionsHint:"Prueba otra categoría o dificultad en Ajustes.",storageUnavailable:"El almacenamiento del dispositivo no está disponible; es posible que no se guarden los ajustes ni los puntajes.",roundIntegrityError:"No se pudo verificar esta ronda.",roundIntegrityHint:"Tus respuestas no se guardaron como resultado. Vuelve a Ajustes e inicia una ronda nueva.",question:"PREGUNTA",answerOptions:"Opciones de respuesta"
+    },
+    "es-ES": {
+      categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Media",hard:"Difícil",categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",
+      eyebrow:"Un desafío para tu mente",welcome:"Stay Curious. Outsmart the Ordinary.",intro:"Explora el mundo, pregunta a pregunta.",
+      play:"¡A jugar!",bestScore:"Mejor puntuación",questionRegion:"Región de las preguntas",offline:"Listo para jugar sin conexión.",progress:"Progreso de las preguntas",
+      next:"Siguiente pregunta",seeResults:"Ver resultados",round:"RONDA",roundComplete:"RONDA COMPLETADA",wellPlayed:"¡Bien hecho!",points:"puntos",
+      playAgain:"Volver a jugar",home:"Inicio",personalise:"PERSONALIZA TU JUEGO",settings:"Ajustes",
+      settingsIntro:"Elige por separado el idioma de la interfaz, la región y el idioma de las preguntas.",
+      interfaceLanguage:"Idioma de la interfaz",questionLanguage:"Idioma de las preguntas",save:"Guardar ajustes",back:"Volver",settingsButtonLabel:"Abrir ajustes",homeLinkLabel:"Inicio de MindQuest",
+      freeOffline:"Gratis · Sin conexión · Sin cuenta",correct:"¡Correcto! ",incorrect:"No es correcto. ",roundScore:"Has conseguido {score} de {total} puntos.",accuracy:"Precisión: {percent}%",reviewTitle:"Revisión de respuestas",yourAnswer:"Tu respuesta",correctAnswer:"Respuesta correcta",unanswered:"Sin responder",
+      streakLabel:"Racha actual",bestStreak:"Mejor racha de esta ronda: {streak}",roundLength:"Preguntas por ronda",roundLengthScope:"{count} preguntas por ronda",
+      help:"Cómo jugar",helpEyebrow:"GUÍA RÁPIDA",helpTitle:"Cómo jugar",helpStartTitle:"Juega una ronda",helpStartBody:"En Ajustes, elige una región, el idioma de las preguntas, una categoría y una dificultad. Después, inicia una ronda con preguntas de opción múltiple.",
+      helpScoringTitle:"Puntuación y resultados",helpScoringBody:"Elige una respuesta por pregunta. Cada respuesta correcta suma un punto. Al final verás tu puntuación, precisión, respuestas correctas y explicaciones.",
+      helpDifficultyTitle:"Categorías y dificultad",helpDifficultyBody:"Explora Geografía, Historia, Ciencia o Cultura. Elige Fácil, Media o Difícil, o combina todas las preguntas disponibles.",
+      helpLanguageTitle:"Tres opciones independientes",helpLanguageBody:"El idioma de la interfaz controla los menús; la región define el banco de preguntas; el idioma de las preguntas controla su redacción. Puedes combinar las opciones disponibles.",
+      helpPrivacyTitle:"Gratis, privado y sin conexión",helpPrivacyBody:"MindQuest es gratis, funciona sin conexión y no requiere una cuenta. Los ajustes y mejores puntuaciones se guardan en este dispositivo cuando el almacenamiento está disponible. No hay anuncios ni servicios de pago.",
+      noQuestions:"Aún no hay preguntas disponibles para esta selección.",noQuestionsHint:"Prueba otra categoría o dificultad en Ajustes.",storageUnavailable:"El almacenamiento del dispositivo no está disponible; es posible que no se guarden los ajustes ni las puntuaciones.",roundIntegrityError:"No se pudo verificar esta ronda.",roundIntegrityHint:"Tus respuestas no se guardaron como resultado. Vuelve a Ajustes e inicia una ronda nueva.",question:"PREGUNTA",answerOptions:"Opciones de respuesta"
     }
   };
   function suggestedInterfaceLocale() {
     const deviceLocale = String(navigator.language || "").toLowerCase();
     if (deviceLocale === "ru" || deviceLocale.startsWith("ru-")) return "ru-RU";
+    if (deviceLocale === "es-pe" || deviceLocale.startsWith("es-pe-")) return "es-PE";
+    if (deviceLocale === "es-es" || deviceLocale.startsWith("es-es-")) return "es-ES";
     if (deviceLocale === "en-us" || deviceLocale.startsWith("en-us-")) return "en-US";
     return "en-IN";
   }
@@ -81,7 +120,7 @@
   function normalizeSettings(candidate) {
     const saved = candidate && typeof candidate === "object" && !Array.isArray(candidate) ? candidate : {};
     return {
-      interfaceLocale: LOCALES.includes(saved.interfaceLocale) ? saved.interfaceLocale : DEFAULTS.interfaceLocale,
+      interfaceLocale: INTERFACE_LOCALES.includes(saved.interfaceLocale) ? saved.interfaceLocale : DEFAULTS.interfaceLocale,
       questionRegion: REGIONS.includes(saved.questionRegion) ? saved.questionRegion : DEFAULTS.questionRegion,
       questionLocale: LOCALES.includes(saved.questionLocale) ? saved.questionLocale : DEFAULTS.questionLocale,
       category: CATEGORIES.includes(saved.category) ? saved.category : "all",
