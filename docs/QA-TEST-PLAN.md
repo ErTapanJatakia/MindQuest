@@ -20,7 +20,7 @@ The GitHub Actions browser suite is being expanded to cover the following accept
 | Keyboard continuity | Answer selection and progression | Focus moves to the enabled Next/See results action, then to the next question heading |
 | Responsive layout | 320, 360, 390, 768 and 1024 CSS-pixel widths across Home, Settings and Quiz | No document-level horizontal overflow |
 | Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload | Saved values are restored independently |
-| Offline boundary | Runtime request observation during tested flows | No external network request is made by the application |
+| Offline boundary | Runtime request observation and restrictive Content Security Policy (`connect-src 'none'`, local bundled assets only) | No external network request is made by the application |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
 
