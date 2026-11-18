@@ -856,7 +856,7 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Ten selectable colour themes persist locally and apply app-wide CSS tokens. The global header exposes the theme selector from every application view.
 - Accessibility settings now include larger text, reduced motion and high contrast, persisted locally. Privacy and Accessibility Statement views and persistent footer navigation have been added.
 - Searchable datalist-backed inputs are present for the four currently supported selector types (interface language, question region, question language, category); the native controls remain canonical for settings and test compatibility. Country names and current locale codes are displayed in selector options.
-- **Not yet implemented:** Spanish UI translations and Spanish question content, Spain/Peru region banks, full five-locale/five-region data validator and 125-combination test matrix. Current gameplay remains restricted to the existing three locales and three regions; the UI must not expose unsupported Spanish/Spain/Peru choices.
+- **Not yet implemented:** Spanish question-language translations and Spain/Peru region banks, full five-locale/five-region data validator and 125-combination test matrix. Spanish interface locales es-PE and es-ES are now implemented; the question-language selector remains limited to locales with complete bank translations, and Spain/Peru remain unavailable as playable regions.
 - **Accessibility logo:** the W3C WCAG 2.2 AA conformance badge is withheld pending a valid evaluation because W3C states that the logo expresses a conformance claim. The in-app statement explains the WCAG 2.2 AA target and current verification limitations.
 - New browser smoke coverage now exercises launch dismissal, ten themes, policy navigation, accessibility preferences and searchable controls in addition to the prior gameplay matrix. This change branch still requires the workflow run before merge.
 - The original baseline remains 2,400 minutes, 1,345 minutes earned (56.04%) and 1,055 minutes remaining. Additional change-request scope is tracked separately to avoid inflating the original baseline.
@@ -873,3 +873,10 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 | Documentation legal/editorial review and final alignment | 120 min |
 | Expanded browser/Android/offline/security regression | 240 min |
 | **Total remaining** | **3,075 min (51h 15m)** |
+
+
+## Spanish interface localization milestone — 2026-11-18
+
+- Added Peruvian Spanish (`es-PE`) and Spain Spanish (`es-ES`) as complete interface-language dictionaries, including navigation, settings, categories, difficulty, gameplay feedback, help, and accessible labels.
+- Added locale-aware device suggestions for Spanish variants and full country/locale labels in interface and question-language menus. The question-language selector continues to offer only languages for which every existing question has a complete translation.
+- Browser smoke matrix expanded from 27 to 45 interface/region/question-language combinations. Spanish question translations and Spain/Peru content remain deferred; no unsupported content is silently substituted.
