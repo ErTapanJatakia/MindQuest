@@ -926,18 +926,9 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Spanish interface support is live for `es-PE` and `es-ES`. Spanish question content and the Spain/Peru question regions remain unavailable until the full 250-ID / 1,250-localized-record bank is complete and validated.
 - The W3C WCAG 2.2 AA conformance logo remains withheld pending an evaluation that can support a valid conformance claim. Accessibility statement records WCAG 2.2 AA as the target, not an achieved status.
 
-### Revised execution timeline — after merged foundation
+### Historical timeline — superseded by the current revised execution timeline above
 
-| Remaining work package | Remaining effort |
-|---|---:|
-| Original baseline remaining | 1,055 min |
-| Spanish question-language translations and Spain/Peru question banks | 1,200 min |
-| Theme/search responsive and physical-device polish | 120 min |
-| Store artwork and final branding pack | 60 min |
-| Accessibility audit readiness and WCAG verification | 120 min |
-| Legal/editorial review of published policy documents | 60 min |
-| Expanded manual, offline, Android and device regression | 180 min |
-| **Total remaining** | **2,795 min (46h 35m)** |
+The earlier 2,795-minute estimate predates the accepted PR #3, PR #4 and PR #5 engineering increments. The current remaining estimate is **2,395 minutes (39h 55m)**.
 
 
 ## Accepted accessibility and responsive batches — 2026-11-18
@@ -946,8 +937,8 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - PR #4 merged: `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`; workflow #44336160667 passed both jobs.
 - PR #3 introduced semantic answer radio controls, arrow-key selection, checked state and accessible control structure assertions.
 - PR #4 added Home/End shortcuts, ARIA ID-reference validation, focus-indicator contrast, eight responsive viewport profiles across all primary views and best-score scope isolation.
-- Current accepted baseline: 1,635 / 2,400 minutes = **68.13%**; remaining baseline 765 minutes. Actual engineering time remains untracked.
-- PR #5 is active and uncredited pending complete CI acceptance.
+- At the PR #4 checkpoint, accepted baseline was 1,635 / 2,400 minutes = **68.13%**; remaining baseline 765 minutes.
+- PR #5 subsequently passed full CI and merged; current accepted baseline is **1,745 / 2,400 minutes (72.71%)**, with 655 minutes remaining. Actual engineering time remains untracked.
 
 
 ## Gameplay progression acceptance — 2026-11-18
