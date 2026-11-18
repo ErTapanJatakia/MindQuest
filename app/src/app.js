@@ -511,8 +511,21 @@
       button.type = "button";
       button.className = "answer-option";
       button.dataset.answer = key;
-      // Expose the selected answer as a toggle state for assistive technology.
-      button.setAttribute("aria-pressed", "false");
+      button.setAttribute("role", "radio");
+      button.setAttribute("aria-checked", "false");
+      button.tabIndex = optionOrder[0] === key ? 0 : -1;
+      button.addEventListener("keydown", event => {
+        const directions = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+        const direction = directions[event.key];
+        if (!direction) return;
+        const available = [...host.querySelectorAll('button[role="radio"]:not(:disabled)')];
+        const index = available.indexOf(button);
+        if (index < 0 || available.length < 2) return;
+        event.preventDefault();
+        const target = available[(index + direction + available.length) % available.length];
+        target.focus();
+        target.click();
+      });
       const marker = document.createElement("span");
       marker.className = "letter";
       marker.textContent = letter;
@@ -539,9 +552,10 @@
     }
     $("streak-value").textContent = String(currentStreak);
     answerHistory[current] = { choice, correct: item.correct, options: { ...copy.options }, explanation: copy.explanation, isCorrect: correct };
-    $("answers").querySelectorAll("button").forEach((button) => {
+    $("answers").querySelectorAll('button[role="radio"]').forEach((button) => {
       const selected = button.dataset.answer === choice;
-      button.setAttribute("aria-pressed", String(selected));
+      button.setAttribute("aria-checked", String(selected));
+      button.tabIndex = selected ? 0 : -1;
       button.disabled = true;
       if (button.dataset.answer === item.correct) button.classList.add("correct");
       else if (selected) button.classList.add("incorrect");
