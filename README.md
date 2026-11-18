@@ -66,4 +66,4 @@ The release candidate must have a correctly signed Android package, verified off
 
 ## Status
 
-See [the implementation tracker](docs/ROADMAP.md), [architecture decisions](docs/ARCHITECTURE.md), and [expanded product requirements](docs/PRODUCT-AND-RELEASE-REQUIREMENTS.md). Review the [Privacy Policy](PRIVACY-POLICY.md), [Accessibility Statement](ACCESSIBILITY.md), [Security Policy](SECURITY.md), [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing Guide](CONTRIBUTING.md), and [Proprietary Licence](LICENSE).
+See [the implementation tracker](docs/ROADMAP.md), [development status](docs/DEVELOPMENT-STATUS.md), [QA test plan](docs/QA-TEST-PLAN.md), [architecture decisions](docs/ARCHITECTURE.md), and [expanded product requirements](docs/PRODUCT-AND-RELEASE-REQUIREMENTS.md). Review the [Privacy Policy](PRIVACY-POLICY.md), [Accessibility Statement](ACCESSIBILITY.md), [Security Policy](SECURITY.md), [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing Guide](CONTRIBUTING.md), and [Proprietary Licence](LICENSE).

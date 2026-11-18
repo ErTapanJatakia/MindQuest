@@ -161,16 +161,28 @@
         input.value = current ? current.textContent.trim() : "";
         input.setAttribute("aria-invalid", "false");
       };
-      input.addEventListener("change", () => {
-        const match = [...list.options].find(option => option.value.toLocaleLowerCase() === input.value.trim().toLocaleLowerCase());
-        if (!match) {
-          input.setAttribute("aria-invalid", "true");
-          input.value = [...nativeSelect.options].find(option => option.value === nativeSelect.value)?.textContent.trim() || "";
-          return;
+      const commitSearch = () => {
+        const match = [...list.options].find(option =>
+          option.value.toLocaleLowerCase() === input.value.trim().toLocaleLowerCase());
+        if (!match) return false;
+        if (nativeSelect.value !== match.dataset.value) {
+          nativeSelect.value = match.dataset.value;
+          nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
         }
-        nativeSelect.value = match.dataset.value;
-        nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
         input.setAttribute("aria-invalid", "false");
+        return true;
+      };
+      // Commit an exact datalist match as soon as the user finishes typing it.
+      // This avoids depending on browser-specific blur/change timing and keeps
+      // the canonical native select synchronized for keyboard and touch users.
+      input.addEventListener("input", () => {
+        if (commitSearch()) return;
+        input.setAttribute("aria-invalid", "false");
+      });
+      input.addEventListener("change", () => {
+        if (commitSearch()) return;
+        input.setAttribute("aria-invalid", "true");
+        input.value = [...nativeSelect.options].find(option => option.value === nativeSelect.value)?.textContent.trim() || "";
       });
       nativeSelect.addEventListener("change", refresh);
       document.getElementById("settings-open").addEventListener("click", refresh);
@@ -185,15 +197,40 @@
   applyAccessibility();
 
   const splash = document.getElementById("launch-splash");
+  const splashButton = document.getElementById("splash-dismiss");
+  const appShell = document.querySelector(".app-shell");
   let dismissed = false;
+
+  // Keep the launch dialog genuinely modal for keyboard and assistive-technology users.
+  // The application is unavailable until the splash is dismissed.
+  appShell.inert = true;
+  appShell.setAttribute("aria-hidden", "true");
+
   const dismiss = () => {
     if (dismissed) return;
     dismissed = true;
+    appShell.inert = false;
+    appShell.removeAttribute("aria-hidden");
     splash.classList.add("splash-dismissed");
-    window.setTimeout(() => { splash.remove(); document.getElementById("home-title")?.focus(); }, 240);
+    window.setTimeout(() => {
+      splash.remove();
+      document.getElementById("home-title")?.focus();
+    }, 240);
   };
-  document.getElementById("splash-dismiss").addEventListener("click", dismiss);
+  splashButton.addEventListener("click", dismiss);
   splash.addEventListener("click", dismiss);
-  document.getElementById("splash-dismiss").focus();
+  splash.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      dismiss();
+      return;
+    }
+    if (event.key === "Tab") {
+      // The branded splash contains one interactive control; keep focus inside it.
+      event.preventDefault();
+      splashButton.focus();
+    }
+  });
+  splashButton.focus();
   window.setTimeout(dismiss, 5000);
 })();

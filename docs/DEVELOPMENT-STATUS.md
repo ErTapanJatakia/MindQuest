@@ -49,13 +49,14 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Validation status
 
-- No GitHub Actions workflows have been introduced for this development work.
-- CI and Android validation remain deliberately deferred until feature development and source review are complete.
-- No CI run has been started.
-- The structural validator now requires all four categories in each regional bank, exactly 50 questions per region / 150 total, strict non-empty text values, exact option keys, unique options and no duplicate question text within a region/locale; the official validator has **not yet been executed**.
-- Previous static review checked the current 150-question bank for unique IDs, regional assignment, all three locales, option keys and category coverage, all referenced JavaScript element IDs present in the HTML, and category/difficulty filters connected to question selection. The strengthened validator is a separate executable check and has not been run.
-- Latest question-bank expansion added fifteen questions (five per region), with all three translations. Static structural checks passed for 150 unique IDs, regional assignment, translation completeness, option integrity, category coverage and difficulty distribution. The official validator, CI, Android build and device validation remain deferred.
-- No physical-device, offline-runtime or Android build validation is claimed.
+- Latest previously successful consolidated validation: [MindQuest Validation #44233183223](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44233183223). It passed the then-merged baseline and produced a debug APK.
+- Current expanded regression work is under [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2); it is open and not yet validated or merged.
+- PR #2 adds checks for 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus continuity, 320/360/390/768/1024-pixel layouts, all ten theme text contrast pairs, persistence across reload, and absence of external runtime requests.
+- The launch splash now makes the underlying application inert and hidden from assistive technology while open, traps keyboard focus in its single action, supports Escape dismissal, and restores the application before moving focus to Home.
+- A dedicated [QA Test Plan](QA-TEST-PLAN.md) separates automated browser acceptance from physical Android, TalkBack, offline runtime, APK inspection and release gates.
+- No CI result is claimed for PR #2 yet. No baseline progress credit is added for these pending changes.
+- The earlier debug APK is not a signed release candidate. The splash change requires a new build and physical-device validation.
+- Spain and Peru remain unavailable as question regions; Spanish question-language support is still pending.
 
 ## Latest completed batch
 
