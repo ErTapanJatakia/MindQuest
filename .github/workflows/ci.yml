@@ -32,8 +32,11 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Validate question bank
+      - name: Validate enabled question bank
         run: npm run validate:content
+
+      - name: Audit five-region expansion readiness
+        run: npm run audit:expansion
 
       - name: Run JavaScript syntax checks
         run: |
@@ -42,6 +45,7 @@ jobs:
           node --check app/src/ui-polish.js
           node --check app/src/experience.js
           node --check scripts/validate-question-bank.mjs
+          node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/browser-smoke.mjs
 
       - name: Install pinned browser test dependency
