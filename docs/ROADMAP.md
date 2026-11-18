@@ -880,3 +880,25 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 - Added Peruvian Spanish (`es-PE`) and Spain Spanish (`es-ES`) as complete interface-language dictionaries, including navigation, settings, categories, difficulty, gameplay feedback, help, and accessible labels.
 - Added locale-aware device suggestions for Spanish variants and full country/locale labels in interface and question-language menus. The question-language selector continues to offer only languages for which every existing question has a complete translation.
 - Browser smoke matrix expanded from 27 to 45 interface/region/question-language combinations. Spanish question translations and Spain/Peru content remain deferred; no unsupported content is silently substituted.
+
+
+## Expansion foundation merged and validated — 2026-11-18
+
+- Pull request [#1](https://github.com/ErTapanJatakia/MindQuest/pull/1) merged to `main` as squash commit `0ef925c289054a56abef1d3bc1e88d9abf1d4e83`.
+- Successful validation run: [44233183223](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44233183223), head `dfac8a47660a87d7c79905ce8beb21fbb4e1d36e`. Question-bank validator and JavaScript syntax checks passed; browser smoke passed launch dismissal, ten themes, accessibility preferences, policy navigation, all 45 interface/region/question-language combinations, nine five-question rounds, and searchable controls. Android debug APK assembly and artifact upload passed.
+- Artifact `mindquest-debug-apk` (ID `14396550575`) contains a 908,135-byte `app-debug.apk`; SHA-256 `ef162109cedbb9abae3391435735f9f288907288a8ced16a9dcfa67f5eca3178`. It is a debug build, not a production-signed release.
+- Spanish interface support is live for `es-PE` and `es-ES`. Spanish question content and the Spain/Peru question regions remain unavailable until the full 250-ID / 1,250-localized-record bank is complete and validated.
+- The W3C WCAG 2.2 AA conformance logo remains withheld pending an evaluation that can support a valid conformance claim. Accessibility statement records WCAG 2.2 AA as the target, not an achieved status.
+
+### Revised execution timeline — after merged foundation
+
+| Remaining work package | Remaining effort |
+|---|---:|
+| Original baseline remaining | 1,055 min |
+| Spanish question-language translations and Spain/Peru question banks | 1,200 min |
+| Theme/search responsive and physical-device polish | 120 min |
+| Store artwork and final branding pack | 60 min |
+| Accessibility audit readiness and WCAG verification | 120 min |
+| Legal/editorial review of published policy documents | 60 min |
+| Expanded manual, offline, Android and device regression | 180 min |
+| **Total remaining** | **2,795 min (46h 35m)** |
