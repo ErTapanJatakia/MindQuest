@@ -62,7 +62,7 @@ try {
   if (!(await page.locator("#accessibility-view").isVisible())) throw new Error("Accessibility statement did not open");
   await page.locator("#accessibility-back").click();
 
-  const interfaces = ["en-IN", "en-US", "ru-RU"];
+  const interfaces = ["en-IN", "en-US", "ru-RU", "es-PE", "es-ES"];
   const regions = ["IN", "RU", "US"];
   const questionLocales = ["en-IN", "en-US", "ru-RU"];
 
@@ -119,7 +119,7 @@ try {
     if (!(await page.locator(id).isVisible())) throw new Error("Searchable selector missing: " + id);
   }
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser smoke passed: launch dismissal, ten themes, accessibility preferences, policy navigation, all 27 selector combinations, nine five-question rounds and searchable controls.");
+  console.log("Browser smoke passed: launch dismissal, ten themes, accessibility preferences, policy navigation, all 45 selector combinations, nine five-question rounds and searchable controls.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
