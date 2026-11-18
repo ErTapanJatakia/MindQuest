@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
-const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, batch06Source, batch07Source, html] = await Promise.all([
+const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, batch06Source, batch07Source, batch08Source, batch09Source, html] = await Promise.all([
   readFile(new URL("app/src/data/questions.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-03.js", root), "utf8"),
@@ -10,6 +10,8 @@ const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, b
   readFile(new URL("app/src/data/spanish-question-translations-batch-05.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-06.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-07.js", root), "utf8"),
+  readFile(new URL("app/src/data/spanish-question-translations-batch-08.js", root), "utf8"),
+  readFile(new URL("app/src/data/spanish-question-translations-batch-09.js", root), "utf8"),
   readFile(new URL("app/index.html", root), "utf8")
 ]);
 const sandbox = { window: {} };
@@ -20,6 +22,8 @@ vm.runInNewContext(batch04Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch05Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch06Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch07Source, sandbox, { timeout: 1000 });
+vm.runInNewContext(batch08Source, sandbox, { timeout: 1000 });
+vm.runInNewContext(batch09Source, sandbox, { timeout: 1000 });
 
 const expected = {
   "IN-GEO-001": { key: "b", answer: "Jaipur" },
@@ -92,6 +96,27 @@ const expected = {
   "RU-CUL-008": { key: "a", answer: "San Petersburgo" },
   "US-GEO-008": { key: "b", answer: "Apalaches" },
   "US-HIS-008": { key: "d", answer: "1865" }
+
+  "US-CUL-001": { key: "d", answer: "Nueva Orleans" },
+  "US-SCI-002": { key: "b", answer: "Marte" },
+  "US-SCI-003": { key: "c", answer: "1969" },
+  "IN-CUL-003": { key: "d", answer: "Surya" },
+  "IN-SCI-003": { key: "b", answer: "Física" },
+  "RU-HIS-003": { key: "a", answer: "1703" },
+  "RU-SCI-003": { key: "c", answer: "digestión" },
+  "US-HIS-003": { key: "d", answer: "1872" },
+  "US-SCI-004": { key: "a", answer: "Wright" },
+  "IN-GEO-005": { key: "a", answer: "Assam" },
+  "IN-HIS-004": { key: "c", answer: "Bonnerjee" },
+  "RU-GEO-005": { key: "d", answer: "Kamchatka" },
+  "RU-HIS-004": { key: "b", answer: "Alejandro II" },
+  "US-GEO-005": { key: "b", answer: "Alaska" },
+  "US-CUL-003": { key: "c", answer: "Whitman" },
+  "IN-HIS-007": { key: "b", answer: "1942" },
+  "IN-SCI-007": { key: "d", answer: "Bose" },
+  "IN-CUL-007": { key: "c", answer: "Assam" },
+  "RU-HIS-007": { key: "d", answer: "1917" },
+  "RU-SCI-007": { key: "a", answer: "Tsiolkovski" },
 };
 const locales = ["es-ES", "es-PE"];
 const questions = new Map(sandbox.window.MINDQUEST_QUESTIONS.map((question) => [question.id, question]));
@@ -141,13 +166,15 @@ if (!html.includes('./src/data/spanish-question-translations.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-04.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-05.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-06.js') ||
-    !html.includes('./src/data/spanish-question-translations-batch-07.js')) {
+    !html.includes('./src/data/spanish-question-translations-batch-07.js') ||
+    !html.includes('./src/data/spanish-question-translations-batch-08.js') ||
+    !html.includes('./src/data/spanish-question-translations-batch-09.js')) {
   errors.push("Spanish translation overlays are not both loaded by the application.");
 }
 
-console.log("MindQuest Spanish localization batches 01–07");
+console.log("MindQuest Spanish localization batches 01–09");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
-console.log(`Validated: ${errors.length ? "with errors" : "120 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
+console.log(`Validated: ${errors.length ? "with errors" : "180 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
 console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
