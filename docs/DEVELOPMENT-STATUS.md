@@ -1000,3 +1000,25 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Artifact `mindquest-debug-apk` uploaded successfully (888,611 bytes; expiry 2026-12-02). Download it from the workflow run's Artifacts section.
 - Progress reconciliation: +20 minutes independent localization, +25 minutes core gameplay and +35 minutes Android application shell. New earned total **1,345 / 2,400 min (56.04%)**; remaining **1,055 min (17h 35m)**. Actual engineering time remains untracked. No manual QA, device, screen-reader, security-runtime, signing or release credit has been claimed.
 - The question-bank architecture and content workstreams remain accepted as Complete following the user's manual-review confirmation. No PRs were open; all changes are committed directly to `main`.
+
+
+## Expanded product change request — 2026-11-18
+
+- Proprietary / All Rights Reserved licence selected and added. Added Privacy Policy, Accessibility Statement, Security Policy, Code of Conduct, Contributing guide, and product/release requirements.
+- Added original MindQuest owl/question-mark SVG artwork, refreshed the app tagline, and implemented a tap-to-dismiss five-second splash.
+- Implemented ten persistent colour themes and app-wide theme tokens, a top-right theme selector, searchable datalist inputs for the four existing selector controls, accessibility preference controls (larger text, reduced motion, high contrast), and in-app privacy/accessibility views with persistent footer navigation.
+- Updated selector option labels to show full country names and locale codes for currently supported locales. Current game data remains 3 locales × 3 regions. Spanish, Spain and Peru remain explicitly deferred until their full UI translations, 100 new stable question IDs, 1,250 localized records and expanded validators are ready.
+- W3C WCAG 2.2 AA logo is not displayed as a conformance badge until evaluation can support a valid claim; the Accessibility Statement currently discloses the target and remaining manual verification.
+- Updated browser smoke coverage for the new experience features. Validation is pending for this branch; do not claim these changes are tested or production-ready until the workflow passes.
+
+### Baseline and change-request accounting
+
+| Metric | Value |
+|---|---:|
+| Original baseline | 2,400 min / 40 h |
+| Earned original-baseline progress | 1,345 min |
+| Original baseline remaining | 1,055 min |
+| Original baseline completion | 56.04% |
+| Additional change-request remaining estimate | 2,020 min |
+| Combined remaining estimate | 3,075 min / 51 h 15 min |
+| Actual engineering time | Not tracked |
