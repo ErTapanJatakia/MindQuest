@@ -68,4 +68,14 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Adds stable active-question IDs for deterministic regression diagnostics.
 - Adds exact 5/10/15 difficulty quota assertions, result-heading focus and review completeness checks.
 - Adds four-round 50-question cycle-exhaustion tests for each of the three current regions.
-- CI acceptance is pending; no baseline credit is assigned to this active batch.
+- Full CI passed in [workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918); PR #5 was merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
+
+
+## Accepted gameplay progression regression — 2026-11-18
+
+- [PR #5](https://github.com/ErTapanJatakia/MindQuest/pull/5) merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
+- [Workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918) passed both Android debug APK assembly and browser/content/static checks.
+- The active question heading exposes the stable question-bank ID for deterministic regression diagnostics.
+- Exact difficulty quotas passed for 5/10/15-question rounds in all three regions: 5 = 2/2/1, 10 = 3/4/3, 15 = 5/6/4 (easy/medium/hard).
+- Four consecutive 15-question rounds per region cover all 50 unique questions without duplicates inside a round.
+- Results heading focus, polite announcement, complete four-part answer review and theme-selector keyboard focus/Escape restoration passed.
