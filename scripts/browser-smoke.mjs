@@ -170,9 +170,15 @@ try {
     });
     if (!label) throw new Error("Search option not found for " + selectId + "/" + value);
     await page.locator(inputId).fill(label);
+    if (await page.locator(selectId).inputValue() !== value) {
+      throw new Error("Exact search match did not synchronize immediately: " + selectId + "/" + value);
+    }
     await page.locator(inputId).press("Tab");
     if (await page.locator(selectId).inputValue() !== value) {
-      throw new Error("Search did not select " + selectId + "/" + value);
+      throw new Error("Search selection changed after keyboard focus moved: " + selectId + "/" + value);
+    }
+    if (await page.locator(inputId).getAttribute("aria-invalid") !== "false") {
+      throw new Error("Valid search match was marked invalid: " + inputId);
     }
   };
   for (const [inputId, selectId, value] of [
