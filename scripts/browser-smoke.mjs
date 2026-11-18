@@ -68,7 +68,7 @@ try {
         const rect = element.getBoundingClientRect();
         return style.display !== "none" && style.visibility !== "hidden" && rect.width > 1 && rect.height > 1;
       };
-      const controls = [...document.querySelectorAll("button, a[href], input, select, textarea")].filter(visible);
+      const controls = [...document.querySelectorAll("button, a[href], input, select, textarea, [role=radio]")].filter(visible);
       const unnamed = controls.filter(element => {
         const explicit = element.getAttribute("aria-label") || element.getAttribute("aria-labelledby") ||
           element.getAttribute("title");
@@ -79,9 +79,14 @@ try {
       const missingAlt = [...document.querySelectorAll("img:not([alt])")].map(image => image.getAttribute("src") || "image");
       const ids = [...document.querySelectorAll("[id]")].map(element => element.id);
       const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
-      return { unnamed, missingAlt, duplicates };
+      const brokenReferences = [...document.querySelectorAll("[aria-labelledby], [aria-describedby]")]
+        .filter(visible)
+        .flatMap(element => ["aria-labelledby", "aria-describedby"].flatMap(attribute =>
+          (element.getAttribute(attribute) || "").split(/\s+/).filter(Boolean)
+            .filter(id => !document.getElementById(id)).map(id => attribute + ":" + id)));
+      return { unnamed, missingAlt, duplicates, brokenReferences };
     });
-    if (problems.unnamed.length || problems.missingAlt.length || problems.duplicates.length) {
+    if (problems.unnamed.length || problems.missingAlt.length || problems.duplicates.length || problems.brokenReferences.length) {
       throw new Error("Accessibility structure audit failed (" + context + "): " + JSON.stringify(problems));
     }
   };
@@ -115,12 +120,15 @@ try {
     await page.locator("#theme-select").selectOption(theme);
     const palette = await page.evaluate(() => {
       const styles = getComputedStyle(document.documentElement);
-      return Object.fromEntries(["--bg", "--panel", "--text", "--muted"].map(key =>
+      return Object.fromEntries(["--bg", "--panel", "--text", "--muted", "--accent2"].map(key =>
         [key, styles.getPropertyValue(key).trim()]));
     });
     for (const surface of [palette["--bg"], palette["--panel"]]) {
       if (contrast(palette["--text"], surface) < 4.5 || contrast(palette["--muted"], surface) < 4.5) {
         throw new Error(`Theme contrast below WCAG AA text threshold: ${theme}`);
+      }
+      if (contrast(palette["--accent2"], surface) < 3) {
+        throw new Error(`Theme focus-indicator contrast below the 3:1 non-text threshold: ${theme}`);
       }
     }
   }
@@ -305,8 +313,13 @@ try {
   await page.locator("#settings-save").click();
   await page.locator("#play-button").click();
   if (await page.locator("#answers").getAttribute("role") !== "radiogroup" ||
+      await page.locator("#answers").getAttribute("aria-orientation") !== "vertical" ||
       await page.locator("#answers button[role=radio]").count() !== 4) {
-    throw new Error("Single-choice answers were not exposed as a four-option radio group");
+    throw new Error("Single-choice answers were not exposed as a four-option vertical radio group");
+  }
+  if (await page.locator('#answers button[role=radio][tabindex="0"]').count() !== 1 ||
+      await page.locator("#answers button[role=radio][tabindex='-1']").count() !== 3) {
+    throw new Error("Radio group did not initialize a single roving tab stop");
   }
   await page.locator("#answers button.answer-option").first().focus();
   await page.keyboard.press("ArrowRight");
@@ -327,16 +340,44 @@ try {
   if (await page.evaluate(() => document.activeElement?.id) !== "question-title") {
     throw new Error("Question progression did not move keyboard focus to the new heading");
   }
+  const edgeKeyPage = await browser.newPage();
+  await edgeKeyPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await edgeKeyPage.locator("#splash-dismiss").click();
+  await edgeKeyPage.locator("#play-button").click();
+  await edgeKeyPage.locator("#answers button[role=radio]").first().focus();
+  await edgeKeyPage.keyboard.press("End");
+  if (await edgeKeyPage.locator('#answers button[aria-checked="true"]').count() !== 1 ||
+      await edgeKeyPage.locator("#answers button[role=radio]").last().getAttribute("aria-checked") !== "true") {
+    throw new Error("End key did not select the final answer in the radio group");
+  }
+  await edgeKeyPage.close();
+  const homeKeyPage = await browser.newPage();
+  await homeKeyPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await homeKeyPage.locator("#splash-dismiss").click();
+  await homeKeyPage.locator("#play-button").click();
+  await homeKeyPage.locator("#answers button[role=radio]").last().focus();
+  await homeKeyPage.keyboard.press("Home");
+  if (await homeKeyPage.locator('#answers button[aria-checked="true"]').count() !== 1 ||
+      await homeKeyPage.locator("#answers button[role=radio]").first().getAttribute("aria-checked") !== "true") {
+    throw new Error("Home key did not select the first answer in the radio group");
+  }
+  await homeKeyPage.close();
   for (let index = 1; index < 5; index += 1) {
     await page.locator("#answers button.answer-option").first().click();
     await page.locator("#next-button").click();
   }
   await page.locator("#home-button").click();
 
-  // Check narrow and standard viewport layouts for horizontal overflow.
-  for (const width of [320, 360, 390, 768, 1024]) {
-    await page.setViewportSize({ width, height: 900 });
-    for (const view of ["home", "settings", "quiz"]) {
+  // Check portrait, compact-height and landscape viewport layouts for horizontal overflow.
+  for (const viewport of [
+    { width: 320, height: 568 }, { width: 360, height: 640 },
+    { width: 390, height: 844 }, { width: 768, height: 1024 },
+    { width: 1024, height: 768 }, { width: 844, height: 390 },
+    { width: 915, height: 412 }, { width: 1024, height: 600 }
+  ]) {
+    const { width, height } = viewport;
+    await page.setViewportSize(viewport);
+    for (const view of ["home", "settings", "quiz", "results"]) {
       if (view === "settings") await page.locator("#settings-open").click();
       if (view === "quiz") {
         await page.locator("#play-button").click();
@@ -347,12 +388,28 @@ try {
       if (view === "quiz") {
         const total = Number((await page.locator("#progress-label").textContent()).split("/")[1].trim());
         if (!Number.isInteger(total) || total < 1 || total > 5) {
-          throw new Error(`Responsive quiz round length invalid at ${width}px: ${total}`);
+          throw new Error(`Responsive quiz round length invalid at ${width}x${height}: ${total}`);
         }
         for (let index = 0; index < total; index += 1) {
           await page.locator("#answers button.answer-option").first().click();
           await page.locator("#next-button").click();
         }
+        if (!(await page.locator("#result-view").isVisible())) {
+          throw new Error(`Responsive results view did not open at ${width}x${height}`);
+        }
+        const resultOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+        if (resultOverflow) throw new Error(`Horizontal overflow detected at ${width}x${height} (results)`);
+        await page.locator("#home-button").click();
+      }
+      if (view === "results") {
+        await page.locator("#play-button").click();
+        const total = Number((await page.locator("#progress-label").textContent()).split("/")[1].trim());
+        for (let index = 0; index < total; index += 1) {
+          await page.locator("#answers button.answer-option").first().click();
+          await page.locator("#next-button").click();
+        }
+        const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+        if (overflow) throw new Error(`Horizontal overflow detected at ${width}x${height} (results)`);
         await page.locator("#home-button").click();
       }
     }
@@ -399,6 +456,8 @@ try {
     localStorage.setItem("mindquest.access.reducedMotion", "not-boolean");
     localStorage.setItem("mindquest.access.highContrast", "not-boolean");
     localStorage.setItem("mindquest.best.IN.all.all.10", JSON.stringify({ score: 999, total: 10, extra: true }));
+    localStorage.setItem("mindquest.best.IN.all.all.5", JSON.stringify({ score: 4, total: 5 }));
+    localStorage.setItem("mindquest.best.IN.History.hard.10", JSON.stringify({ score: 9, total: 10 }));
   });
   await recoveryPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
   await recoveryPage.locator("#splash-dismiss").click();
@@ -418,6 +477,25 @@ try {
     if (await recoveryPage.locator(id).inputValue() !== expected) {
       throw new Error("Malformed settings did not normalize safely: " + id);
     }
+  }
+  await recoveryPage.locator("#round-length").selectOption("5");
+  await recoveryPage.locator("#settings-save").click();
+  if (await recoveryPage.locator("#best-score").textContent() !== "4 / 5 · 80%") {
+    throw new Error("Best score was not restored for its exact five-question scope");
+  }
+  await recoveryPage.locator("#settings-open").click();
+  await recoveryPage.locator("#round-length").selectOption("10");
+  await recoveryPage.locator("#question-category").selectOption("History");
+  await recoveryPage.locator("#question-difficulty").selectOption("hard");
+  await recoveryPage.locator("#settings-save").click();
+  if (await recoveryPage.locator("#best-score").textContent() !== "9 / 10 · 90%") {
+    throw new Error("Best score was not isolated to the selected region/category/difficulty/round length");
+  }
+  await recoveryPage.locator("#settings-open").click();
+  await recoveryPage.locator("#question-category").selectOption("Geography");
+  await recoveryPage.locator("#settings-save").click();
+  if (await recoveryPage.locator("#best-score").textContent() !== "—") {
+    throw new Error("Best score leaked across category scopes or malformed data was accepted");
   }
   if (recoveryErrors.length) throw new Error("Malformed-storage runtime errors: " + recoveryErrors.join(" | "));
   await recoveryPage.close();

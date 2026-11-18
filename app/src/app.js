@@ -515,14 +515,18 @@
       button.setAttribute("aria-checked", "false");
       button.tabIndex = optionOrder[0] === key ? 0 : -1;
       button.addEventListener("keydown", event => {
-        const directions = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-        const direction = directions[event.key];
-        if (!direction) return;
         const available = [...host.querySelectorAll('button[role="radio"]:not(:disabled)')];
         const index = available.indexOf(button);
         if (index < 0 || available.length < 2) return;
+        const directions = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+        let targetIndex;
+        if (event.key === "Home") targetIndex = 0;
+        else if (event.key === "End") targetIndex = available.length - 1;
+        else if (Object.hasOwn(directions, event.key)) {
+          targetIndex = (index + directions[event.key] + available.length) % available.length;
+        } else return;
         event.preventDefault();
-        const target = available[(index + direction + available.length) % available.length];
+        const target = available[targetIndex];
         target.focus();
         target.click();
       });
