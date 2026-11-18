@@ -64,6 +64,11 @@ try {
   for (const directive of ["default-src 'self'", "script-src 'self'", "connect-src 'none'", "object-src 'none'"]) {
     if (!contentPolicy?.includes(directive)) throw new Error("Missing restrictive CSP directive: " + directive);
   }
+  const externalConnectionBlocked = await page.evaluate(async () => {
+    try { await fetch("https://example.com/"); return false; }
+    catch (_) { return true; }
+  });
+  if (!externalConnectionBlocked) throw new Error("CSP did not block an external connection attempt");
 
   // Theme palette, persistence, policy surfaces and accessibility preferences.
   await page.locator("#theme-open").click();
@@ -189,6 +194,15 @@ try {
   ]) {
     await page.locator(inputId).evaluate((input, expectedValue) => { input.dataset.expectedValue = expectedValue; }, value);
     await selectBySearch(inputId, selectId, value);
+  }
+  const regionBeforeInvalidSearch = await page.locator("#question-region").inputValue();
+  await page.locator("#question-region-search").fill("not a real region");
+  await page.locator("#question-region-search").press("Tab");
+  if (await page.locator("#question-region-search").getAttribute("aria-invalid") !== "true") {
+    throw new Error("Invalid search text was not exposed to assistive technology");
+  }
+  if (await page.locator("#question-region").inputValue() !== regionBeforeInvalidSearch) {
+    throw new Error("Invalid search text changed the canonical region selection");
   }
   await page.locator("#settings-back").click();
 
@@ -364,6 +378,24 @@ try {
   }
   if (recoveryErrors.length) throw new Error("Malformed-storage runtime errors: " + recoveryErrors.join(" | "));
   await recoveryPage.close();
+
+  // Storage denial must degrade gracefully without preventing a playable Home view.
+  const deniedStoragePage = await browser.newPage();
+  await deniedStoragePage.addInitScript(() => {
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      get() { throw new DOMException("Storage access denied", "SecurityError"); }
+    });
+  });
+  await deniedStoragePage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await deniedStoragePage.locator("#splash-dismiss").click();
+  if (!(await deniedStoragePage.locator("#home-view").isVisible())) {
+    throw new Error("Storage denial prevented the Home view from loading");
+  }
+  if (!(await deniedStoragePage.locator("#storage-status").isVisible())) {
+    throw new Error("Storage denial was not communicated to the user");
+  }
+  await deniedStoragePage.close();
 
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
   console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus, five viewport widths, persisted preferences/accessibility, malformed-storage recovery and zero external runtime requests.");
