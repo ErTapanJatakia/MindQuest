@@ -47,7 +47,7 @@ This follows established project-controls practice: use quantifiable work-packag
 | Implementation progress | **72.71%** |
 | Remaining baseline scope | **655 min / 10 h 55 min equivalent** |
 | Actual engineering time logged | Not tracked |
-| Workstreams with no baseline minutes remaining | 10 |
+| Workstreams with no baseline minutes remaining | 9 |
 
 **Important:** earned minutes are weighted baseline allocations for evidenced deliverables, not actual labour time. PR #3, #4 and #5 are accepted and reconciled. Manual device, TalkBack and store acceptance are not implied by automated browser coverage.
 
