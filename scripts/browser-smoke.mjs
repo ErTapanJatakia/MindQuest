@@ -328,7 +328,9 @@ try {
   await recoveryPage.addInitScript(() => {
     localStorage.setItem("mindquest.settings", "{malformed-json");
     localStorage.setItem("mindquest.theme", "not-a-real-theme");
-    localStorage.setItem("mindquest.accessibility", "{malformed-json");
+    localStorage.setItem("mindquest.access.largeText", "not-boolean");
+    localStorage.setItem("mindquest.access.reducedMotion", "not-boolean");
+    localStorage.setItem("mindquest.access.highContrast", "not-boolean");
     localStorage.setItem("mindquest.best.IN.all.all.10", JSON.stringify({ score: 999, total: 10, extra: true }));
   });
   await recoveryPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
@@ -338,6 +340,10 @@ try {
   }
   if (await recoveryPage.locator("html").getAttribute("data-theme") !== "obsidian") {
     throw new Error("Invalid stored theme did not fall back to the default");
+  }
+  if (await recoveryPage.locator("html").evaluate(node => node.classList.contains("large-text") ||
+      node.classList.contains("user-reduced-motion") || node.classList.contains("user-high-contrast"))) {
+    throw new Error("Invalid accessibility preference values were not safely rejected");
   }
   await recoveryPage.locator("#settings-open").click();
   for (const [id, expected] of [["#question-region", "IN"], ["#question-locale", "en-IN"],
