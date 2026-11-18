@@ -83,7 +83,7 @@ for (const [id, expectedAnswer] of Object.entries(expected)) {
   }
 }
 
-const selectorMatch = html.match(/<select id="question-locale">([\\s\\S]*?)<\\/select>/);
+const selectorMatch = html.match(/<select id="question-locale">([\s\S]*?)<\/select>/);
 const selectorValues = selectorMatch ? [...selectorMatch[1].matchAll(/value="([^"]+)"/g)].map((match) => match[1]) : [];
 if (selectorValues.sort().join(",") !== ["en-IN", "en-US", "ru-RU"].sort().join(",")) {
   errors.push("Spanish question locales must remain hidden until the full editorial release gate passes.");
