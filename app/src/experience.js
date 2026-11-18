@@ -24,6 +24,7 @@
     const selected = themes[name] ? name : "obsidian";
     const palette = themes[selected];
     root.dataset.theme = selected;
+    root.style.colorScheme = selected === "paper" ? "light" : "dark";
     Object.entries(palette).forEach(([key, value]) => {
       if (key !== "label") root.style.setProperty("--" + key, value);
     });
@@ -117,6 +118,70 @@
   document.getElementById("accessibility-back").addEventListener("click", () => showDocumentView("home-view"));
 
   applyTheme(read("mindquest.theme", "obsidian"));
+
+  // Searchable, native datalist-backed selector controls. The underlying select
+  // remains the canonical value source for the gameplay and existing test API.
+  const searchable = [
+    ["interface-locale", "Search interface languages"],
+    ["question-region", "Search question regions"],
+    ["question-locale", "Search question languages"],
+    ["question-category", "Search categories"]
+  ];
+  function setupSearchableSelectors() {
+    searchable.forEach(([selectId, placeholder]) => {
+      const nativeSelect = document.getElementById(selectId);
+      if (nativeSelect.dataset.searchReady) return;
+      const input = document.createElement("input");
+      const list = document.createElement("datalist");
+      const inputId = selectId + "-search";
+      const listId = selectId + "-options";
+      input.type = "search";
+      input.id = inputId;
+      input.setAttribute("list", listId);
+      input.setAttribute("autocomplete", "off");
+      input.setAttribute("aria-label", placeholder);
+      input.placeholder = placeholder;
+      input.className = "searchable-select";
+      list.id = listId;
+      nativeSelect.classList.add("search-backed-select");
+      nativeSelect.before(input);
+      input.after(list);
+      const fieldLabel = document.querySelector('label[for="' + selectId + '"]');
+      if (fieldLabel) fieldLabel.htmlFor = inputId;
+
+      const refresh = () => {
+        list.replaceChildren();
+        [...nativeSelect.options].forEach(option => {
+          const entry = document.createElement("option");
+          entry.value = option.textContent.trim();
+          entry.dataset.value = option.value;
+          list.append(entry);
+        });
+        const current = [...nativeSelect.options].find(option => option.value === nativeSelect.value);
+        input.value = current ? current.textContent.trim() : "";
+        input.setAttribute("aria-invalid", "false");
+      };
+      input.addEventListener("change", () => {
+        const match = [...list.options].find(option => option.value.toLocaleLowerCase() === input.value.trim().toLocaleLowerCase());
+        if (!match) {
+          input.setAttribute("aria-invalid", "true");
+          input.value = [...nativeSelect.options].find(option => option.value === nativeSelect.value)?.textContent.trim() || "";
+          return;
+        }
+        nativeSelect.value = match.dataset.value;
+        nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
+        input.setAttribute("aria-invalid", "false");
+      });
+      nativeSelect.addEventListener("change", refresh);
+      document.getElementById("settings-open").addEventListener("click", refresh);
+      document.getElementById("settings-save").addEventListener("click", refresh);
+      document.getElementById("interface-locale").addEventListener("change", () => window.setTimeout(refresh, 0));
+      nativeSelect.dataset.searchReady = "true";
+      refresh();
+    });
+  }
+  setupSearchableSelectors();
+
   applyAccessibility();
 
   const splash = document.getElementById("launch-splash");
