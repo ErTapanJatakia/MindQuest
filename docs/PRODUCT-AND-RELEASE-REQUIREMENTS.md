@@ -12,15 +12,15 @@
 
 Interface language, question-bank region, and question language are independent preferences. Device locale may suggest only the initial interface language.
 
-Planned interface and question languages:
+Interface languages implemented or planned; question-language availability is gated on complete translation coverage:
 
 | Display name | Locale |
 |---|---|
 | English (Republic of India) | `en-IN` |
 | English (United States of America) | `en-US` |
 | Russian (Russian Federation) | `ru-RU` |
-| Spanish (Republic of Peru) | `es-PE` |
-| Spanish (Kingdom of Spain) | `es-ES` |
+| Spanish (Republic of Peru) | `es-PE` | Interface implemented; question translations pending |
+| Spanish (Kingdom of Spain) | `es-ES` | Interface implemented; question translations pending |
 
 Planned question regions:
 
