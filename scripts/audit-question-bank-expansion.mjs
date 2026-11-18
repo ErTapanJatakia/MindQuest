@@ -58,7 +58,7 @@ for (const item of questions) {
     if (!cleanText(translation.question) || !cleanText(translation.explanation)) {
       errors.push(`${item.id}/${locale}: question and explanation must be non-empty clean text`);
     } else {
-      const normalized = translation.question.normalize("NFC").trim().replace(/\\s+/gu, " ").toLocaleLowerCase(locale);
+      const normalized = translation.question.normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(locale);
       const key = `${item.region}/${locale}/${normalized}`;
       if (questionText.has(key)) errors.push(`${item.id}/${locale}: duplicate question text also used by ${questionText.get(key)}`);
       else questionText.set(key, item.id);
@@ -68,7 +68,7 @@ for (const item of questions) {
         !optionKeys.every((key) => cleanText(translation.options?.[key]))) {
       errors.push(`${item.id}/${locale}: exactly four non-empty options a, b, c and d are required`);
     } else {
-      const values = optionKeys.map((key) => translation.options[key].normalize("NFC").trim().replace(/\\s+/gu, " ").toLocaleLowerCase(locale));
+      const values = optionKeys.map((key) => translation.options[key].normalize("NFC").trim().replace(/\s+/gu, " ").toLocaleLowerCase(locale));
       if (new Set(values).size !== optionKeys.length) errors.push(`${item.id}/${locale}: answer options must be unique`);
     }
   }
@@ -112,9 +112,9 @@ console.log(`Expansion gap: ${totalMissingIds} stable IDs and ${totalMissingTran
 console.log("Editorial gate: native-speaker review, factual source review and answer-key verification remain mandatory; this audit does not certify translation quality.");
 
 if (errors.length) {
-  console.error("\\nExpansion audit found structural errors:");
+  console.error("\nExpansion audit found structural errors:");
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log("\\nExpansion audit: current records are structurally compatible with the target schema.");
+  console.log("\nExpansion audit: current records are structurally compatible with the target schema.");
 }
