@@ -16,7 +16,7 @@ MindQuest is a free, offline-first puzzle and trivia game designed for Android, 
 
 | Setting | Supported values |
 |---|---|
-| Interface language | Indian English (`en-IN`), American English (`en-US`), Russian (`ru-RU`) (Spanish `es-PE` and `es-ES` are planned) |
+| Interface language | Indian English (`en-IN`), American English (`en-US`), Russian (`ru-RU`), Peruvian Spanish (`es-PE`) and Spain Spanish (`es-ES`) for the interface; Spanish question content is pending |
 | Question-bank region | Republic of India, Russian Federation, United States of America (Spain and Peru planned) |
 | Question language | Indian English (`en-IN`), American English (`en-US`), Russian (`ru-RU`) |
 
