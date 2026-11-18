@@ -49,13 +49,14 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Validation status
 
-- Latest previously successful consolidated validation: [MindQuest Validation #44233183223](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44233183223). It passed the then-merged baseline and produced a debug APK.
-- Current expanded regression work is under [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2); it is open and not yet validated or merged.
-- PR #2 adds checks for 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus continuity, 320/360/390/768/1024-pixel layouts, all ten theme text contrast pairs, persistence across reload, and absence of external runtime requests.
-- The launch splash now makes the underlying application inert and hidden from assistive technology while open, traps keyboard focus in its single action, supports Escape dismissal, and restores the application before moving focus to Home.
-- A dedicated [QA Test Plan](QA-TEST-PLAN.md) separates automated browser acceptance from physical Android, TalkBack, offline runtime, APK inspection and release gates.
-- No CI result is claimed for PR #2 yet. No baseline progress credit is added for these pending changes.
-- The earlier debug APK is not a signed release candidate. The splash change requires a new build and physical-device validation.
+- Latest successful consolidated validation: [MindQuest Validation #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081), run 40, head `3cbc4c417ab4fd6cd85b8c7556c90cf3febb7a58`. Both workflow jobs passed.
+- [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2) was merged into `main` by squash commit `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
+- The successful browser regression covers 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus continuity, 320/360/390/768/1024-pixel layouts, all ten theme text-contrast pairs, persistence across reload, malformed-storage recovery, storage-denial fallback and no external runtime requests.
+- Launch splash behavior is verified as a keyboard-modal experience: the application is inert and hidden from assistive technology while open, Escape dismisses the dialog, and focus returns to Home.
+- Searchable selectors now synchronize exact matches immediately and expose invalid input state; regression checks use canonical option values rather than localized hardcoded labels.
+- Restrictive CSP is included in the bundled web entry point and browser checks confirm external connections are blocked.
+- Android debug APK assembly passed in the same workflow. The PR #2 artifact is 908,736 bytes; extracted APK SHA-256: `5917e02d35b6725c1b3a0484f94f6fa7a2a4c2ac930432358f3849577043dd4d`. It is a debug APK, not a production-signed release candidate.
+- Automated browser checks do not replace physical-device, TalkBack, manual offline-runtime, native-speaker, legal or release acceptance.
 - Spain and Peru remain unavailable as question regions; Spanish question-language support is still pending.
 
 ## Latest completed batch
@@ -1055,3 +1056,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 | Additional expansion work remaining (estimate) | 1,740 min |
 | Combined remaining estimate | 2,795 min / 46 h 35 min |
 | Actual engineering time | Not tracked |
+
+
+## Expanded regression accepted — 2026-11-18
+
+- PR #2 merged: `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
+- Workflow #44307367081 passed both Android debug assembly and content/static/browser regression jobs.
+- The APK artifact is available as GitHub Actions artifact ID `14428532664` until 2026-12-02; the extracted APK SHA-256 is recorded above.
+- New baseline credit is reconciled in [BASELINE-RECONCILIATION.md](BASELINE-RECONCILIATION.md). Actual engineering hours remain untracked.
