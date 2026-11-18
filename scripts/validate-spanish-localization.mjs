@@ -95,8 +95,7 @@ const expected = {
   "RU-SCI-008": { key: "b", answer: "Lomonósov" },
   "RU-CUL-008": { key: "a", answer: "San Petersburgo" },
   "US-GEO-008": { key: "b", answer: "Apalaches" },
-  "US-HIS-008": { key: "d", answer: "1865" }
-
+  "US-HIS-008": { key: "d", answer: "1865" },
   "US-CUL-001": { key: "d", answer: "Nueva Orleans" },
   "US-SCI-002": { key: "b", answer: "Marte" },
   "US-SCI-003": { key: "c", answer: "1969" },
