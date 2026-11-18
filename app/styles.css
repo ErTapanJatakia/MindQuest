@@ -85,3 +85,10 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
 .searchable-select::placeholder{color:var(--muted);opacity:1}
 .searchable-select[aria-invalid="true"]{border-color:var(--danger)}
 .search-backed-select{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+.hero-orbit,.hero-orbit:before,.hero-orbit:after{border-color:color-mix(in srgb,var(--accent) 62%,var(--line))}
+.hero-orbit:after{border-color:color-mix(in srgb,var(--accent2) 55%,var(--line))}
+.streak-indicator strong{border-color:var(--line);background:var(--panel2);color:var(--accent)}
+.progress-track{background:var(--panel2)}
+.progress-track div{background:var(--accent)}
+.brand-mark{background:var(--panel2)}
