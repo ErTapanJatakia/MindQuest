@@ -57,5 +57,15 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Spain and Peru are not playable question regions.
 - Spanish question translations are not available.
 - The expanded browser regression suite passed in [workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) and was merged in [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2).
-- A follow-up accessibility hardening change in [PR #3](https://github.com/ErTapanJatakia/MindQuest/pull/3) adds selected-answer state and a visible-control structure audit; its CI acceptance is pending.
+- [PR #3](https://github.com/ErTapanJatakia/MindQuest/pull/3) passed [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) and was merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`.
+- [PR #4](https://github.com/ErTapanJatakia/MindQuest/pull/4) passed [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) and was merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`.
 - Physical-device, TalkBack, offline runtime, APK inspection, signing and RuStore submission remain unverified.
+
+
+## Gameplay progression acceptance — PR #5
+
+- Active pull request: [PR #5 — gameplay progression and results acceptance](https://github.com/ErTapanJatakia/MindQuest/pull/5).
+- Adds stable active-question IDs for deterministic regression diagnostics.
+- Adds exact 5/10/15 difficulty quota assertions, result-heading focus and review completeness checks.
+- Adds four-round 50-question cycle-exhaustion tests for each of the three current regions.
+- CI acceptance is pending; no baseline credit is assigned to this active batch.
