@@ -3,6 +3,5 @@
     <style name="LaunchTheme" parent="AppTheme">
         <item name="android:windowSplashScreenBackground">@color/mindquest_splash_background</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
-        <item name="android:postSplashScreenTheme">@style/AppTheme</item>
     </style>
 </resources>
