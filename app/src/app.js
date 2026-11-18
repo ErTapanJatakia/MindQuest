@@ -405,16 +405,19 @@
     // Largest-remainder apportionment keeps quotas whole and totals exact.
     const difficultyQuotas = difficultyOrder.map((difficulty, order) => {
       const count = pool.filter((question) => question.difficulty === difficulty).length;
-      const exactQuota = targetRoundLength * count / pool.length;
-      const quota = Math.floor(exactQuota);
-      return { difficulty, order, quota, remainder: exactQuota - quota };
+      // Integer numerators avoid floating-point tie drift in largest-remainder allocation.
+      const numerator = targetRoundLength * count;
+      const quota = Math.floor(numerator / pool.length);
+      return { difficulty, order, quota, remainder: numerator % pool.length };
     });
-    let unallocated = targetRoundLength -
+    const unallocated = targetRoundLength -
       difficultyQuotas.reduce((total, item) => total + item.quota, 0);
-    [...difficultyQuotas]
-      .sort((a, b) => b.remainder - a.remainder || a.order - b.order)
-      .slice(0, unallocated)
-      .forEach((item) => { item.quota += 1; });
+    const remainderRanking = [...difficultyQuotas].sort(
+      (a, b) => b.remainder - a.remainder || a.order - b.order
+    );
+    for (const item of remainderRanking.slice(0, unallocated)) {
+      item.quota += 1;
+    }
 
     const selectedRound = [];
     for (const item of difficultyQuotas) {
