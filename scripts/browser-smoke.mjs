@@ -114,10 +114,24 @@ try {
     }
   }
 
-  // Searchable controls must be present alongside the canonical native selectors.
+  // Searchable controls are part of Settings, so enter that view before asserting visibility.
+  await page.locator("#settings-open").click();
   for (const id of ["#interface-locale-search", "#question-region-search", "#question-locale-search", "#question-category-search"]) {
     if (!(await page.locator(id).isVisible())) throw new Error("Searchable selector missing: " + id);
   }
+  await page.locator("#interface-locale-search").fill("Spanish (Republic of Peru) — es-PE");
+  await page.locator("#interface-locale-search").press("Tab");
+  if (await page.locator("#interface-locale").inputValue() !== "es-PE") throw new Error("Interface language search did not select es-PE");
+  await page.locator("#question-region-search").fill("Federación de Rusia — RU");
+  await page.locator("#question-region-search").press("Tab");
+  if (await page.locator("#question-region").inputValue() !== "RU") throw new Error("Question region search did not select RU");
+  await page.locator("#question-locale-search").fill("Ruso (Federación de Rusia) — ru-RU");
+  await page.locator("#question-locale-search").press("Tab");
+  if (await page.locator("#question-locale").inputValue() !== "ru-RU") throw new Error("Question language search did not select ru-RU");
+  await page.locator("#question-category-search").fill("History");
+  await page.locator("#question-category-search").press("Tab");
+  if (await page.locator("#question-category").inputValue() !== "History") throw new Error("Category search did not select History");
+  await page.locator("#settings-back").click();
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
   console.log("Browser smoke passed: launch dismissal, ten themes, accessibility preferences, policy navigation, all 45 selector combinations, nine five-question rounds and searchable controls.");
 } finally {
