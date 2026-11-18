@@ -35,7 +35,7 @@ for (const item of questions) {
   if (!categoryCodes[item.category]) errors.push(`${item.id}: unsupported category ${item.category}`);
   if (!Object.hasOwn(target.difficulties, item.difficulty)) errors.push(`${item.id}: unsupported difficulty ${item.difficulty}`);
   const sequence = item.id.split("-").at(-1);
-  if (!/^\\d{3}$/u.test(sequence) ||
+  if (sequence.length !== 3 || [...sequence].some((character) => character < "0" || character > "9") ||
       item.id !== `${item.region}-${categoryCodes[item.category]}-${sequence}`) {
     errors.push(`${item.id}: ID must match REGION-CATEGORY-NNN convention`);
   }
