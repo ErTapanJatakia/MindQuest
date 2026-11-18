@@ -1,11 +1,10 @@
-name: MindQuest Validation
+name: MindQuest Web Validation
 
 on:
   push:
     branches: [main]
     paths:
       - "app/**"
-      - "android/**"
       - "scripts/**"
       - "package.json"
       - ".github/workflows/ci.yml"
@@ -17,7 +16,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: mindquest-validation-${{ github.ref }}
+  group: mindquest-web-validation-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -53,44 +52,3 @@ jobs:
 
       - name: Run browser and gameplay smoke tests
         run: npm run test:browser
-
-  android-build:
-    name: Android debug APK build
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Check out source
-        uses: actions/checkout@v4
-
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "17"
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools'
-
-      - name: Install Android 35 SDK packages
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/actions/wrapper-validation@v4
-
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: wrapper
-
-      - name: Assemble debug APK
-        working-directory: android
-        run: ./gradlew --no-daemon --stacktrace assembleDebug
-
-      - name: Upload debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: mindquest-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
-          retention-days: 14
