@@ -73,3 +73,13 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - PR #5 passed [workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918) and was merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
 - The latest post-merge validation [workflow #44338675579](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338675579) also passed both jobs.
 - Physical-device, TalkBack, manual offline runtime, native-speaker review, signing and RuStore submission remain separate acceptance gates.
+
+
+## Android build policy — feature-complete gate
+
+- Routine feature-development CI must not assemble, package or upload Android APKs.
+- Pull-request and push validation during implementation is limited to content integrity, static/syntax checks, browser regression, accessibility, localization, security and responsive behavior.
+- Android build validation is isolated in `.github/workflows/android-release-validation.yml` and is manually dispatched only after the complete agreed feature scope has been implemented and reviewed.
+- The workflow requires an explicit `feature_scope_complete=true` confirmation; otherwise it skips the Android build.
+- No production signing or RuStore submission is authorized by this gate. Those require separate release approval.
+- Existing debug APK artifacts are historical development builds and must not be treated as evidence that the final feature-complete Android build has passed.
