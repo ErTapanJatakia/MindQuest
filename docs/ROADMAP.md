@@ -10,8 +10,8 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | In progress | 90 | 25 | 65 |
 | 3 | Home screen | Play, settings, help/about and navigation | In progress | 120 | 70 | 50 |
 | 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 | 90 | 60 |
-| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Review | 150 | 150 | 0 |
-| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Review | 180 | 180 | 0 |
+| 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Complete | 150 | 150 | 0 |
+| 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Complete | 180 | 180 | 0 |
 | 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 | 120 | 60 |
 | 8 | Game modes | Configurable 5/10/15-question rounds, category selection and replay | In progress | 120 | 80 | 40 |
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 | 70 | 20 |
@@ -823,3 +823,6 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 
 
 - Gameplay/accessibility source-readiness review (2026-11-18): inspected question validation and cross-locale identity, round selection/cycling, difficulty apportionment, answer ledger/result integrity, scoped local persistence, document language, semantic labels/live regions, focus handling, reduced motion, forced-colors styling and Android WebView navigation/security/lifecycle boundaries. No source defect warranted a speculative patch. This does not constitute runtime or accessibility validation; keep the official content validator, browser/assistive-technology checks, Android build and broader CI deferred until the planned development batch is complete.
+
+
+- Manual review acceptance (2026-11-18): user confirmed that the required manual review is complete. Question-bank architecture and the 150-question multilingual content workstreams are therefore accepted as `Complete`. This acceptance does not imply that the automated content validator, browser/runtime regression, Android build, APK inspection or device validation has run; those remain at the development-freeze validation gate.
