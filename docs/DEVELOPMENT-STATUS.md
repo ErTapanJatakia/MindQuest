@@ -956,13 +956,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ## Zero-local Gradle Wrapper bootstrap — 2026-11-18
 - Confirmed MindQuest is a public GitHub repository and added a dedicated `workflow_dispatch` workflow at `.github/workflows/bootstrap-gradle-wrapper.yml`. It provisions Java 17 and Gradle 8.9 on a standard GitHub-hosted Ubuntu runner, invokes Gradle's official `:wrapper` task, validates the generated wrapper JAR checksum with the Gradle wrapper-validation action, and commits only the four official wrapper files to `main`.
 - The workflow is manually triggered only, restricted to `main`, and has only `contents: write` permission. It refuses to overwrite any existing wrapper file. It does not run on pushes or pull requests, build the APK, or enable the general CI suite. Standard hosted-runner usage for public repositories is free; no local machine or paid cloud subscription is needed.
-- Updated `android/README.md` with the exact Actions UI steps. Workflow file creation is committed, but the workflow has not yet been dispatched; therefore no wrapper files have been generated, checksum-validated, or committed, and the Android build reproducibility blocker remains open pending one manual Run workflow action.
+- Updated `android/README.md` with the exact Actions UI steps. **Historical snapshot:** at the time this entry was written, the workflow had not yet been dispatched. This pending state was superseded by the successful bootstrap recorded below; the wrapper files are now committed and verified.
 
 ## Gradle Wrapper bootstrap failure diagnosis — 2026-11-18
 - Inspected failed workflow run [44208167123](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44208167123) and its job log. Java 17 setup, Gradle 8.9 provisioning, official `:wrapper` generation and `gradle/actions/wrapper-validation@v4` all succeeded. The wrapper-validation action reported the known wrapper JAR checksum `498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17` for `android/gradle/wrapper/gradle-wrapper.jar`.
 - The commit step failed at `git diff --cached --check` because the generated Windows `gradlew.bat` uses CRLF line endings, which Git treated as trailing whitespace. No wrapper files were committed by that run.
 - Corrected the workflow check to explicitly recognise CRLF while retaining checks for blank-at-EOL, blank-at-EOF and space-before-tab: `git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --cached --check`. This preserves the generated script unchanged and does not bypass whitespace validation.
-- Workflow correction committed as `5112d9e034c38d1cbd04522f020ab26c4c94dfc0`. The corrected workflow has not yet been dispatched; wrapper generation/checksum must run again and the commit/push must be confirmed. No Android build, general CI, content validator or device test was run.
+- Workflow correction committed as `5112d9e034c38d1cbd04522f020ab26c4c94dfc0`. **Historical snapshot:** the corrected workflow was awaiting dispatch at the time of this diagnosis. Run `44208837336` subsequently passed, including wrapper generation, checksum validation and commit. No Android build, general CI, content validator or device test was run.
 
 
 ## Gradle Wrapper bootstrap successful — 2026-11-18
@@ -971,3 +971,9 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Official wrapper-JAR checksum validation passed in the workflow. The previous CRLF-related commit failure is resolved by the corrected whitespace check; no generated script was modified to work around it.
 - The wrapper bootstrap is complete. This does not mean the Android project has compiled: no Kotlin compilation, resource processing, APK assembly, APK inspection, general CI, official question-bank validator, emulator or physical-device validation was run. The general CI and Android validation remain intentionally deferred until the planned development batch is complete.
 - Updated `android/README.md` to document the verified wrapper and accurately distinguish wrapper validation from a successful Android build.
+
+
+## Current Android tooling checkpoint — 2026-11-18
+- The Gradle 8.9 wrapper bootstrap is complete and verified on `main` by successful workflow run [44208837336](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44208837336). All four official wrapper artifacts are present; `android/gradlew` is executable and the wrapper properties enable distribution URL validation.
+- The wrapper prerequisite is no longer a blocker. The Android project has **not** yet been built: Gradle configuration, dependency resolution, Kotlin/resource compilation, APK assembly and APK inspection remain unverified.
+- Continue the planned source-readiness work. Keep the general CI suite, official question-bank validator, Android build and runtime/device QA deferred until the complete planned development batch is ready for validation.
