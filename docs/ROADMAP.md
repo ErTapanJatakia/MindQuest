@@ -820,3 +820,6 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 
 
 - Current tooling checkpoint (2026-11-18): the official Gradle 8.9 wrapper is now present and validated on `main`; the generated shell script retains executable mode. This removes wrapper generation as a blocker, but no Android project build or APK assembly has yet been run. Preserve the agreed validation gate: complete the planned implementation batch first, then enable/run the general CI, official content validator and Android build/runtime validation together as appropriate.
+
+
+- Gameplay/accessibility source-readiness review (2026-11-18): inspected question validation and cross-locale identity, round selection/cycling, difficulty apportionment, answer ledger/result integrity, scoped local persistence, document language, semantic labels/live regions, focus handling, reduced motion, forced-colors styling and Android WebView navigation/security/lifecycle boundaries. No source defect warranted a speculative patch. This does not constitute runtime or accessibility validation; keep the official content validator, browser/assistive-technology checks, Android build and broader CI deferred until the planned development batch is complete.
