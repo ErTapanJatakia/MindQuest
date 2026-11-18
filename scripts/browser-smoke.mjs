@@ -60,6 +60,10 @@ try {
   }
   if (!(await page.locator("#home-view").isVisible())) throw new Error("Home view did not load");
   if ((await page.title()).length === 0) throw new Error("Document title is missing");
+  const contentPolicy = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content");
+  for (const directive of ["default-src 'self'", "script-src 'self'", "connect-src 'none'", "object-src 'none'"]) {
+    if (!contentPolicy?.includes(directive)) throw new Error("Missing restrictive CSP directive: " + directive);
+  }
 
   // Theme palette, persistence, policy surfaces and accessibility preferences.
   await page.locator("#theme-open").click();
