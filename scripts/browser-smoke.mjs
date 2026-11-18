@@ -103,7 +103,17 @@ try {
 
   // Theme palette, persistence, policy surfaces and accessibility preferences.
   await page.locator("#theme-open").click();
+  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "true" ||
+      await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
+    throw new Error("Theme selector did not expose expanded state and receive keyboard focus");
+  }
   if (await page.locator("#theme-select option").count() < 10) throw new Error("Expected at least ten themes");
+  await page.keyboard.press("Escape");
+  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "false" ||
+      await page.evaluate(() => document.activeElement?.id) !== "theme-open") {
+    throw new Error("Escape did not close the theme selector and restore focus");
+  }
+  await page.locator("#theme-open").click();
   await page.locator("#theme-select").selectOption("aurora");
   if (await page.locator("html").getAttribute("data-theme") !== "aurora") throw new Error("Theme was not applied");
   const themeNames = ["obsidian", "midnight", "aurora", "ocean", "forest", "ember", "royal", "rose", "sand", "paper"];
@@ -243,9 +253,14 @@ try {
   }
   await page.locator("#settings-back").click();
 
-  // Exercise the longer supported round modes for every currently playable region.
+  // Verify 5/10/15 modes, stable question IDs, exact difficulty apportionment and results focus.
+  const expectedDifficultyMix = {
+    "5": { EASY: 2, MEDIUM: 2, HARD: 1 },
+    "10": { EASY: 3, MEDIUM: 4, HARD: 3 },
+    "15": { EASY: 5, MEDIUM: 6, HARD: 4 }
+  };
   for (const region of regions) {
-    for (const roundLength of ["10", "15"]) {
+    for (const roundLength of ["5", "10", "15"]) {
       await page.locator("#settings-open").click();
       await page.locator("#interface-locale").selectOption("en-IN");
       await page.locator("#question-region").selectOption(region);
@@ -258,12 +273,34 @@ try {
       if (await page.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
         throw new Error(`Round length was not applied for ${region}/${roundLength}`);
       }
+      const questionIds = new Set();
+      const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
       for (let index = 0; index < Number(roundLength); index += 1) {
+        const questionId = await page.locator("#question-title").getAttribute("data-question-id");
+        if (!questionId || questionIds.has(questionId)) {
+          throw new Error(`Missing or duplicate stable question ID in ${region}/${roundLength}`);
+        }
+        questionIds.add(questionId);
+        const difficulty = (await page.locator("#difficulty-label").textContent()).trim();
+        if (!Object.hasOwn(difficultyCounts, difficulty)) {
+          throw new Error(`Unexpected difficulty label in ${region}/${roundLength}: ${difficulty}`);
+        }
+        difficultyCounts[difficulty] += 1;
         await page.locator("#answers button.answer-option").first().click();
         await page.locator("#next-button").click();
       }
       if (await page.locator("#answer-review-list article").count() !== Number(roundLength)) {
         throw new Error(`Answer review count mismatch for ${region}/${roundLength}`);
+      }
+      if (JSON.stringify(difficultyCounts) !== JSON.stringify(expectedDifficultyMix[roundLength])) {
+        throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: ${JSON.stringify(difficultyCounts)}`);
+      }
+      if (await page.evaluate(() => document.activeElement?.id) !== "result-title") {
+        throw new Error(`Results heading did not receive focus for ${region}/${roundLength}`);
+      }
+      if (await page.locator("#result-message").getAttribute("aria-live") !== "polite" ||
+          await page.locator("#answer-review-list article p").count() < Number(roundLength) * 4) {
+        throw new Error(`Results summary or answer review accessibility incomplete for ${region}/${roundLength}`);
       }
       await page.locator("#home-button").click();
     }
