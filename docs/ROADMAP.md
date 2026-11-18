@@ -805,3 +805,6 @@ The original 2,400-minute estimate has been decomposed into measurable implement
 
 
 - Android build-configuration review (2026-11-18): verified pinned AGP/Kotlin plugin versions, centralized plugin/dependency repositories, single `:app` module, Java/Kotlin 17 targets, no declared external app dependencies, and ignore coverage for local build/SDK/signing files. No source/configuration change was warranted. The wrapper remains absent; no Gradle configuration, dependency resolution, compile, APK, CI or device test was run. Android validation remains deferred.
+
+
+- Android reproducibility blocker (2026-11-18): repository directory inspection confirms that `android/gradle/wrapper/` and its official wrapper files are absent. The `.github/workflows/` directory is also absent; CI remains intentionally deferred. The next prerequisite is official Gradle 8.9 wrapper generation on a Gradle-equipped machine, followed by checksum verification and committing the scripts, JAR and properties together. The text-only repository editing path cannot safely generate the wrapper binary; no substitute will be fabricated. This is a tooling/environment prerequisite, not a confirmed Android source defect. Remaining release gates include executable content validation, browser/Android runtime QA, APK/AAB inspection, native-speaker acceptance and release signing/store preparation.
