@@ -304,14 +304,21 @@ try {
   await page.locator("#round-length").selectOption("5");
   await page.locator("#settings-save").click();
   await page.locator("#play-button").click();
-  await page.locator("#answers button.answer-option").first().focus();
-  await page.keyboard.press("Enter");
-  const selectedAnswer = page.locator('#answers button[aria-pressed="true"]');
-  if (await selectedAnswer.count() !== 1 || !(await selectedAnswer.isDisabled())) {
-    throw new Error("Selected answer state was not exposed as one pressed, disabled control");
+  if (await page.locator("#answers").getAttribute("role") !== "radiogroup" ||
+      await page.locator("#answers button[role=radio]").count() !== 4) {
+    throw new Error("Single-choice answers were not exposed as a four-option radio group");
   }
-  if (await page.locator('#answers button[aria-pressed="false"]').count() !== 3) {
-    throw new Error("Unselected answer controls did not retain their unpressed state");
+  await page.locator("#answers button.answer-option").first().focus();
+  await page.keyboard.press("ArrowRight");
+  const selectedAnswer = page.locator('#answers button[aria-checked="true"]');
+  if (await page.locator("#answers button.answer-option").nth(1).getAttribute("aria-checked") !== "true") {
+    throw new Error("Arrow-key navigation did not select the next answer radio");
+  }
+  if (await selectedAnswer.count() !== 1 || !(await selectedAnswer.isDisabled())) {
+    throw new Error("Selected answer state was not exposed as one checked, disabled radio");
+  }
+  if (await page.locator('#answers button[aria-checked="false"]').count() !== 3) {
+    throw new Error("Unselected answer controls did not retain their unchecked state");
   }
   if (await page.evaluate(() => document.activeElement?.id) !== "next-button") {
     throw new Error("Answer selection did not move keyboard focus to Next");
