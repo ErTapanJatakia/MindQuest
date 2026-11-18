@@ -199,6 +199,41 @@ try {
     }
   }
 
+  // Exercise every category/difficulty filter pairing in each playable region.
+  for (const region of regions) {
+    for (const category of ["Geography", "History", "Science", "Culture"]) {
+      for (const difficulty of ["easy", "medium", "hard"]) {
+        await page.locator("#settings-open").click();
+        await page.locator("#interface-locale").selectOption("en-IN");
+        await page.locator("#question-region").selectOption(region);
+        await page.locator("#question-locale").selectOption("en-IN");
+        await page.locator("#question-category").selectOption(category);
+        await page.locator("#question-difficulty").selectOption(difficulty);
+        await page.locator("#round-length").selectOption("5");
+        await page.locator("#settings-save").click();
+        await page.locator("#play-button").click();
+        if (!(await page.locator("#quiz-view").isVisible())) {
+          throw new Error(`Filtered round did not start: ${region}/${category}/${difficulty}`);
+        }
+        if ((await page.locator("#category-label").textContent()).trim() !== category.toUpperCase()) {
+          throw new Error(`Category filter mismatch: ${region}/${category}/${difficulty}`);
+        }
+        if ((await page.locator("#difficulty-label").textContent()).trim() !== difficulty.toUpperCase()) {
+          throw new Error(`Difficulty filter mismatch: ${region}/${category}/${difficulty}`);
+        }
+        const total = Number((await page.locator("#progress-label").textContent()).split("/")[1].trim());
+        if (!Number.isInteger(total) || total < 1 || total > 5) {
+          throw new Error(`Filtered round length invalid: ${region}/${category}/${difficulty}`);
+        }
+        for (let index = 0; index < total; index += 1) {
+          await page.locator("#answers button.answer-option").first().click();
+          await page.locator("#next-button").click();
+        }
+        await page.locator("#home-button").click();
+      }
+    }
+  }
+
   // Verify keyboard focus continuity through answer selection and progression.
   await page.locator("#settings-open").click();
   await page.locator("#interface-locale").selectOption("en-IN");
@@ -264,7 +299,7 @@ try {
   if (externalRequests.length) throw new Error("Unexpected external runtime requests: " + externalRequests.join(", "));
 
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds across regions, keyboard focus, five viewport widths, persisted preferences/accessibility and zero external runtime requests.");
+  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus, five viewport widths, persisted preferences/accessibility and zero external runtime requests.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
