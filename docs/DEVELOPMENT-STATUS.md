@@ -1022,3 +1022,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 | Additional change-request remaining estimate | 2,020 min |
 | Combined remaining estimate | 3,075 min / 51 h 15 min |
 | Actual engineering time | Not tracked |
+
+
+## Spanish interface localization milestone — 2026-11-18
+
+- Implemented complete Peruvian Spanish (`es-PE`) and Spain Spanish (`es-ES`) interface dictionaries. The language choices are independent of question region and question language, and device locale can suggest the matching interface variant only.
+- Added full country names and locale codes in the language selectors. Searchable inputs now cover interface language, question region, question language and category.
+- Question language remains limited to the three fully translated locales in the current 150-question bank. Spanish question translations and the Spain/Peru question regions are not yet exposed; the content expansion must reach 250 stable question IDs and 1,250 localized records before those selectors can be enabled.
+- The browser smoke matrix is now intended to cover 45 combinations (5 interface locales × 3 existing regions × 3 existing question locales). The current branch still requires its final workflow run.
