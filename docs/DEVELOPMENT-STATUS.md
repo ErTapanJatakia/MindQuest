@@ -930,3 +930,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Confirmed `supportsRtl` is enabled, application and launch themes are explicitly referenced, backup is disabled, cleartext traffic is disabled, and the manifest declares no runtime or network permissions.
 - The manifest's API 33+ back-invoked callback setting matches the existing Activity implementation. No manifest or Gradle source change was justified by this review.
 - This was a source/resource-reference inspection only. No resource compilation, merged-manifest inspection, APK build, store-policy validation, emulator test or physical-device test was run. Gradle wrapper generation and Android validation remain deferred until the development batch is complete.
+
+
+## Android Gradle configuration and dependency-boundary review — 2026-11-18
+
+- Rechecked `settings.gradle.kts`, root `build.gradle.kts`, `gradle.properties`, app `build.gradle.kts`, `.gitignore` and `MainActivity.kt` as one build-configuration slice.
+- Confirmed Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21 are pinned; plugin resolution uses Google, Maven Central and the Gradle Plugin Portal; project dependency resolution is centrally restricted with `FAIL_ON_PROJECT_REPOS` and Google/Maven Central repositories.
+- Confirmed the Android project includes only `:app`, has no declared external app dependencies, targets Java/Kotlin 17, and uses the documented Gradle 8.9 wrapper target. The AndroidX flag is enabled, but no AndroidX library is declared in the app module.
+- Confirmed local Gradle/build output, machine-local Android SDK properties and release signing material are covered by ignore rules. No credentials or dependency declarations were found in the inspected build files.
+- No source/configuration change was justified by this review. The wrapper is still absent, so a fresh checkout is not yet self-contained. No Gradle configuration, dependency resolution, Kotlin compilation, resource processing, APK build, CI or device test was run. These remain deferred until the development batch is complete.
