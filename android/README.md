@@ -34,6 +34,13 @@ gradle :app:assembleDebug
 
 The debug APK is a development artifact only. A production RuStore package must be built as a signed release APK or AAB in accordance with RuStore's current requirements. Signing keys and passwords must never be committed to this repository.
 
+### Release signing hygiene
+
+Release signing is intentionally not configured in the checked-in Gradle file. Before a release build is enabled, select the exact RuStore artifact format and signing requirements for the target submission, then provide the signing configuration through CI-protected secrets or an untracked local properties file. Never put keystore passwords, private keys or signing properties in source control, command-line arguments, build logs or screenshots. The repository ignore rules cover `*.jks`, `*.keystore`, `*.p12`, `*.pfx` and `android/keystore.properties`; verify `git status --ignored` and the staged file list before any signing-related commit. Keep a secure, access-controlled backup of the release keystore and document its owner and recovery process outside this repository.
+
+The current `versionCode` (`1`) and `versionName` (`0.1.0`) are initial development values. Increment the version code for every published Android update and confirm the store's versioning rules before the first submission. Do not treat the current release build type as store-ready: it is not signed by a configured release key and has not been built or inspected.
+
+
 ## Security note
 
 The WebView needs local file access to load `file:///android_asset/index.html`. Content access, cross-file-origin access, universal file-origin access, mixed content and external navigation are restricted. Reassess this boundary during the Android source review and device QA.
