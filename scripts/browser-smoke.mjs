@@ -261,48 +261,54 @@ try {
   };
   for (const region of regions) {
     for (const roundLength of ["5", "10", "15"]) {
-      await page.locator("#settings-open").click();
-      await page.locator("#interface-locale").selectOption("en-IN");
-      await page.locator("#question-region").selectOption(region);
-      await page.locator("#question-locale").selectOption("en-IN");
-      await page.locator("#question-category").selectOption("all");
-      await page.locator("#question-difficulty").selectOption("all");
-      await page.locator("#round-length").selectOption(roundLength);
-      await page.locator("#settings-save").click();
-      await page.locator("#play-button").click();
-      if (await page.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
+      // Each quota assertion starts with a clean session-local question cycle.
+      // Cycle exhaustion is covered independently by the dedicated test below.
+      const quotaPage = await browser.newPage();
+      await quotaPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+      await quotaPage.locator("#splash-dismiss").click();
+      await quotaPage.locator("#settings-open").click();
+      await quotaPage.locator("#interface-locale").selectOption("en-IN");
+      await quotaPage.locator("#question-region").selectOption(region);
+      await quotaPage.locator("#question-locale").selectOption("en-IN");
+      await quotaPage.locator("#question-category").selectOption("all");
+      await quotaPage.locator("#question-difficulty").selectOption("all");
+      await quotaPage.locator("#round-length").selectOption(roundLength);
+      await quotaPage.locator("#settings-save").click();
+      await quotaPage.locator("#play-button").click();
+      if (await quotaPage.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
         throw new Error(`Round length was not applied for ${region}/${roundLength}`);
       }
       const questionIds = new Set();
       const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
       for (let index = 0; index < Number(roundLength); index += 1) {
-        const questionId = await page.locator("#question-title").getAttribute("data-question-id");
+        const questionId = await quotaPage.locator("#question-title").getAttribute("data-question-id");
         if (!questionId || questionIds.has(questionId)) {
           throw new Error(`Missing or duplicate stable question ID in ${region}/${roundLength}`);
         }
         questionIds.add(questionId);
-        const difficulty = (await page.locator("#difficulty-label").textContent()).trim();
+        const difficulty = (await quotaPage.locator("#difficulty-label").textContent()).trim();
         if (!Object.hasOwn(difficultyCounts, difficulty)) {
           throw new Error(`Unexpected difficulty label in ${region}/${roundLength}: ${difficulty}`);
         }
         difficultyCounts[difficulty] += 1;
-        await page.locator("#answers button.answer-option").first().click();
-        await page.locator("#next-button").click();
+        await quotaPage.locator("#answers button.answer-option").first().click();
+        await quotaPage.locator("#next-button").click();
       }
-      if (await page.locator("#answer-review-list article").count() !== Number(roundLength)) {
+      if (await quotaPage.locator("#answer-review-list article").count() !== Number(roundLength)) {
         throw new Error(`Answer review count mismatch for ${region}/${roundLength}`);
       }
       if (JSON.stringify(difficultyCounts) !== JSON.stringify(expectedDifficultyMix[roundLength])) {
         throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: ${JSON.stringify(difficultyCounts)}`);
       }
-      if (await page.evaluate(() => document.activeElement?.id) !== "result-title") {
+      if (await quotaPage.evaluate(() => document.activeElement?.id) !== "result-title") {
         throw new Error(`Results heading did not receive focus for ${region}/${roundLength}`);
       }
-      if (await page.locator("#result-message").getAttribute("aria-live") !== "polite" ||
-          await page.locator("#answer-review-list article p").count() < Number(roundLength) * 4) {
+      if (await quotaPage.locator("#result-message").getAttribute("aria-live") !== "polite" ||
+          await quotaPage.locator("#answer-review-list article p").count() < Number(roundLength) * 4) {
         throw new Error(`Results summary or answer review accessibility incomplete for ${region}/${roundLength}`);
       }
-      await page.locator("#home-button").click();
+      await quotaPage.locator("#home-button").click();
+      await quotaPage.close();
     }
   }
 
