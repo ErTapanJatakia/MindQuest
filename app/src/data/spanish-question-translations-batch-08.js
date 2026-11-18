@@ -29,7 +29,7 @@
     },
     "RU-SCI-003": {
       "es-ES": { question:"¿Por qué ámbito de investigación recibió Iván Pávlov el Premio Nobel de 1904?", options:{a:"Radiactividad",b:"Grupos sanguíneos",c:"Fisiología de la digestión",d:"Penicilina"}, explanation:"Iván Pávlov recibió el Nobel de Fisiología o Medicina de 1904 por sus investigaciones sobre la fisiología de la digestión." },
-      "es-PE": { question:"¿En qué área de estudio fue reconocido Iván Pávlov con el Premio Nobel de 1904?", options:{a:"Radiactividad",b:"Grupos sanguíneos",c:"Fisiología digestiva",d:"Penicilina"}, explanation:"Pávlov obtuvo el Nobel de Fisiología o Medicina en 1904 por sus investigaciones acerca de la fisiología de la digestión." }
+      "es-PE": { question:"¿En qué área de estudio fue reconocido Iván Pávlov con el Premio Nobel de 1904?", options:{a:"Radiactividad",b:"Grupos sanguíneos",c:"Fisiología de la digestión",d:"Penicilina"}, explanation:"Pávlov obtuvo el Nobel de Fisiología o Medicina en 1904 por sus investigaciones acerca de la fisiología de la digestión." }
     },
     "US-HIS-003": {
       "es-ES": { question:"¿En qué año se convirtió Yellowstone en el primer parque nacional del mundo?", options:{a:"1861",b:"1865",c:"1885",d:"1872"}, explanation:"Yellowstone fue establecido como el primer parque nacional del mundo en 1872." },
