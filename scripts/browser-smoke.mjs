@@ -40,8 +40,27 @@ try {
   const pageErrors = [];
   page.on("pageerror", error => pageErrors.push(error.message));
   await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await page.locator("#splash-dismiss").click();
   if (!(await page.locator("#home-view").isVisible())) throw new Error("Home view did not load");
   if ((await page.title()).length === 0) throw new Error("Document title is missing");
+
+  // Theme palette, persistence, policy surfaces and accessibility preferences.
+  await page.locator("#theme-open").click();
+  if (await page.locator("#theme-select option").count() < 10) throw new Error("Expected at least ten themes");
+  await page.locator("#theme-select").selectOption("aurora");
+  if (await page.locator("html").getAttribute("data-theme") !== "aurora") throw new Error("Theme was not applied");
+  await page.locator("#settings-open").click();
+  for (const id of ["#setting-large-text", "#setting-reduced-motion", "#setting-high-contrast"]) {
+    await page.locator(id).check();
+    await page.locator(id).uncheck();
+  }
+  await page.locator("#settings-back").click();
+  await page.locator("#privacy-link").click();
+  if (!(await page.locator("#privacy-view").isVisible())) throw new Error("Privacy view did not open");
+  await page.locator("#privacy-back").click();
+  await page.locator("#accessibility-link").click();
+  if (!(await page.locator("#accessibility-view").isVisible())) throw new Error("Accessibility statement did not open");
+  await page.locator("#accessibility-back").click();
 
   const interfaces = ["en-IN", "en-US", "ru-RU"];
   const regions = ["IN", "RU", "US"];
@@ -95,8 +114,12 @@ try {
     }
   }
 
+  // Searchable controls must be present alongside the canonical native selectors.
+  for (const id of ["#interface-locale-search", "#question-region-search", "#question-locale-search", "#question-category-search"]) {
+    if (!(await page.locator(id).isVisible())) throw new Error("Searchable selector missing: " + id);
+  }
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser smoke passed: home/settings, all 27 independent selector combinations, nine five-question rounds, localized questions/options and answer review.");
+  console.log("Browser smoke passed: launch dismissal, ten themes, accessibility preferences, policy navigation, all 27 selector combinations, nine five-question rounds and searchable controls.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
