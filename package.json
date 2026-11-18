@@ -5,7 +5,8 @@
   "description": "Free offline-first multilingual puzzle and trivia game",
   "type": "module",
   "scripts": {
-    "validate:content": "node scripts/validate-question-bank.mjs"
+    "validate:content": "node scripts/validate-question-bank.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
