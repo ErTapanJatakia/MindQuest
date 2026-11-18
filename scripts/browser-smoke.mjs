@@ -451,6 +451,8 @@ try {
     localStorage.setItem("mindquest.access.reducedMotion", "not-boolean");
     localStorage.setItem("mindquest.access.highContrast", "not-boolean");
     localStorage.setItem("mindquest.best.IN.all.all.10", JSON.stringify({ score: 999, total: 10, extra: true }));
+    localStorage.setItem("mindquest.best.IN.all.all.5", JSON.stringify({ score: 4, total: 5 }));
+    localStorage.setItem("mindquest.best.IN.History.hard.10", JSON.stringify({ score: 9, total: 10 }));
   });
   await recoveryPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
   await recoveryPage.locator("#splash-dismiss").click();
@@ -470,6 +472,25 @@ try {
     if (await recoveryPage.locator(id).inputValue() !== expected) {
       throw new Error("Malformed settings did not normalize safely: " + id);
     }
+  }
+  await recoveryPage.locator("#round-length").selectOption("5");
+  await recoveryPage.locator("#settings-save").click();
+  if (await recoveryPage.locator("#best-score").textContent() !== "4 / 5 · 80%") {
+    throw new Error("Best score was not restored for its exact five-question scope");
+  }
+  await recoveryPage.locator("#settings-open").click();
+  await recoveryPage.locator("#round-length").selectOption("10");
+  await recoveryPage.locator("#question-category").selectOption("History");
+  await recoveryPage.locator("#question-difficulty").selectOption("hard");
+  await recoveryPage.locator("#settings-save").click();
+  if (await recoveryPage.locator("#best-score").textContent() !== "9 / 10 · 90%") {
+    throw new Error("Best score was not isolated to the selected region/category/difficulty/round length");
+  }
+  await recoveryPage.locator("#settings-open").click();
+  await recoveryPage.locator("#question-category").selectOption("Geography");
+  await recoveryPage.locator("#settings-save").click();
+  if (await recoveryPage.locator("#best-score").textContent() !== "—") {
+    throw new Error("Best score leaked across category scopes or malformed data was accepted");
   }
   if (recoveryErrors.length) throw new Error("Malformed-storage runtime errors: " + recoveryErrors.join(" | "));
   await recoveryPage.close();
