@@ -286,17 +286,24 @@
         !question.id.startsWith(question.region + "-")) return false;
 
     const translations = question.translations;
+    const stagedLocales = ["es-ES", "es-PE"];
+    const allowedLocales = [...LOCALES, ...stagedLocales];
+    const translationLocales = translations && typeof translations === "object" && !Array.isArray(translations)
+      ? Object.keys(translations)
+      : [];
     if (!translations || typeof translations !== "object" || Array.isArray(translations) ||
-        Object.keys(translations).sort().join("|") !== [...LOCALES].sort().join("|")) return false;
+        !LOCALES.every((locale) => Object.hasOwn(translations, locale)) ||
+        translationLocales.some((locale) => !allowedLocales.includes(locale))) return false;
 
     const expectedTranslationKeys = ["explanation", "options", "question"];
     const answerKeys = ["a", "b", "c", "d"];
     const hasCleanText = (value) =>
       typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
 
-    // Validate every locale before admitting the shared question ID to a round.
+    // Validate every present locale before admitting the shared question ID to a round.
+    // Staged Spanish records are validated but remain unavailable in the question selector.
     // The question-level correct key is the canonical answer identity for all translations.
-    for (const locale of LOCALES) {
+    for (const locale of translationLocales) {
       const copy = translations[locale];
       if (!copy || typeof copy !== "object" || Array.isArray(copy) ||
           Object.keys(copy).sort().join("|") !== expectedTranslationKeys.join("|") ||
