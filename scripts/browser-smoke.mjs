@@ -82,7 +82,7 @@ try {
       const brokenReferences = [...document.querySelectorAll("[aria-labelledby], [aria-describedby]")]
         .filter(visible)
         .flatMap(element => ["aria-labelledby", "aria-describedby"].flatMap(attribute =>
-          (element.getAttribute(attribute) || "").split(/\\s+/).filter(Boolean)
+          (element.getAttribute(attribute) || "").split(/\s+/).filter(Boolean)
             .filter(id => !document.getElementById(id)).map(id => attribute + ":" + id)));
       return { unnamed, missingAlt, duplicates, brokenReferences };
     });
