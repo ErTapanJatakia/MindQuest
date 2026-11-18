@@ -20,7 +20,7 @@ const errors = [];
 const ids = new Set();
 const questionText = new Map();
 const cleanText = (value) => typeof value === "string" && value.trim().length > 0 &&
-  !/[\\u0000-\\u001F\\u007F]/u.test(value);
+  !/[\x00-\x1F\x7F]/u.test(value);
 
 if (!Array.isArray(questions)) throw new Error("Question bank is not an array.");
 
