@@ -9,22 +9,43 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 1 | Project foundation | Standalone repository structure, documentation, metadata and clean baseline | In progress | 60 | 40 | 20 |
 | 2 | Visual identity | Branding, icon, splash, typography and responsive game interface | In progress | 90 | 25 | 65 |
 | 3 | Home screen | Play, settings, help/about and navigation | In progress | 120 | 70 | 50 |
-| 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 | 90 | 60 |
+| 4 | Independent localization | Three independent selectors; all combinations work; preferences persist separately | In progress | 150 | 110 | 40 |
 | 5 | Question-bank architecture | Offline data, stable IDs, region/category metadata and translation mapping | Complete | 150 | 150 | 0 |
 | 6 | Question content | 150 original questions: 50 per region, each in all three supported languages | Complete | 180 | 180 | 0 |
-| 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 | 120 | 60 |
+| 7 | Core gameplay | Multiple-choice flow, validation, feedback, scoring and progression | In progress | 180 | 145 | 35 |
 | 8 | Game modes | Configurable 5/10/15-question rounds, category selection and replay | In progress | 120 | 80 | 40 |
 | 9 | Difficulty progression | Easy/medium/hard classifications and balanced selection | In progress | 90 | 70 | 20 |
 | 10 | Results screen | Score, accuracy, per-question answers, explanations and replay | In progress | 90 | 70 | 20 |
 | 11 | Local persistence | Settings and best score persist locally without an account | In progress | 120 | 75 | 45 |
 | 12 | Accessibility | Scalable text, contrast, keyboard and assistive-technology support | In progress | 120 | 65 | 55 |
-| 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 | 65 | 115 |
+| 13 | Android application shell | Lightweight native Android wrapper, bundled assets, minimal permissions | In progress | 180 | 100 | 80 |
 | 14 | Offline/security hardening | Airplane-mode operation, safe WebView configuration and no remote runtime dependencies | In progress | 120 | 85 | 35 |
 | 15 | Device compatibility | Small/standard/large screen and density checks | Planned | 180 | 25 | 155 |
 | 16 | Manual functional testing | Gameplay, all language combinations, data integrity, persistence and regression | Planned | 180 | 0 | 180 |
 | 17 | RuStore release readiness | Package, signing, metadata, Russian listing, screenshots, disclosures and rating preparation | Planned | 180 | 0 | 180 |
 | 18 | Documentation/release | Installation, changelog, versioning and release checklist | In progress | 90 | 55 | 35 |
-|  | **Total** |  |  | **2,400** | **1,265** | **1,135** |
+|  | **Total** |  |  | **2,400** | **1,345** | **1,055** |
+
+## Revised execution timeline — 2026-11-18
+
+| Remaining work package | Remaining effort |
+|---|---:|
+| Stage 1 — Foundation and product/interface refinement | 195 min |
+| Stage 2 — Gameplay and game-mode completion | 115 min |
+| Stage 3 — Localization, persistence and accessibility | 80 min |
+| Stage 4 — Android integration, security and device compatibility | 270 min |
+| Stage 5 — Functional QA, RuStore readiness and release documentation | 395 min |
+| **Total remaining** | **1,055 min (17h 35m)** |
+
+## Consolidated validation status — 2026-11-18
+
+- Successful consolidated workflow: [MindQuest Validation #44212850901](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44212850901).
+- Official question-bank validator and JavaScript syntax checks passed.
+- Browser smoke passed across all 27 independent interface/region/question-language combinations and nine five-question rounds across all region/question-language pairs; localized question/answer tags and answer review passed.
+- Android Gradle wrapper checksum validation and debug APK assembly passed. Artifact `mindquest-debug-apk` was uploaded (888,611 bytes; expires 2026-12-02).
+- A real Android resource-linking defect was corrected by removing the invalid platform attribute `android:postSplashScreenTheme` from `values-v31/styles.xml`; the subsequent build passed.
+- Remaining: broader manual regression, Android device/runtime validation, screen-reader verification, APK inspection, offline/security runtime checks, release signing and RuStore preparation. The generated debug APK is not a release candidate.
+- Evidence-based progress: 1,345 / 2,400 minutes = **56.04%**; remaining baseline 1,055 minutes. Actual engineering time is not tracked.
 
 ## Delivery milestones
 
@@ -62,10 +83,10 @@ Milestone allocations are planning buckets and will be reconciled against the de
 - Category and difficulty filter labels localised for English (India), English (US) and Russian.
 - Initial English (India) / English (US) UI copy differentiation, localized accessible names for navigation controls and answer group, and localized final-question results action.
 - All four question categories are represented in each regional bank, with thirteen Geography, twelve History, twelve Science and thirteen Culture questions.
-- Dependency-free question-bank structural validator, strengthened with strict schema/type checks, duplicate normalized question-text detection and exact 50-per-region / 150-total assertions (execution deferred).
-- Initial Kotlin/Gradle Android WebView shell; not yet built or device-validated.
+- Dependency-free question-bank structural validator, strengthened with strict schema/type checks, duplicate normalized question-text detection and exact 50-per-region / 150-total assertions; passed in consolidated CI run 44212850901.
+- Kotlin/Gradle Android WebView shell; official Gradle 8.9 wrapper validated and debug APK successfully assembled in CI; device validation remains outstanding.
 
-The full 50-question-per-region content target is populated. A bounded cross-locale factual review of all 150 IDs / 450 localized records is complete; exhaustive independent verification of every explanation/distractor and professional native-speaker/cultural editorial acceptance remain outstanding. Gameplay source review has hardened persisted best-score parsing against malformed or out-of-range values. Initial interface copy and accessible navigation labels are localized for the three interface locales; runtime localization acceptance remains open. The Android shell is not yet a release-ready signed package.
+The full 50-question-per-region content target is populated. The user has confirmed required manual review is complete and accepted the question-bank architecture/content workstreams. Automated structural validation passed. No independent certification of translation quality is implied. Browser runtime verification now covers all 27 selector combinations and nine five-question region/language rounds. The Android debug APK has been assembled successfully; it is not a signed release candidate. Gameplay source review has hardened persisted best-score parsing against malformed or out-of-range values. Initial interface copy and accessible navigation labels are localized for the three interface locales; runtime localization acceptance remains open. The Android shell is not yet a release-ready signed package.
 
 ## Latest development review
 
