@@ -490,6 +490,8 @@
     $("difficulty-label").lang = settings.interfaceLocale;
     $("question-title").textContent = copy.question;
     $("question-title").lang = settings.questionLocale;
+    // Keep the stable content ID available for deterministic QA and support diagnostics.
+    $("question-title").dataset.questionId = item.id;
     // Keep keyboard and screen-reader users oriented as each new question loads.
     $("question-title").focus();
     $("feedback").textContent = "";

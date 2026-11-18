@@ -103,7 +103,17 @@ try {
 
   // Theme palette, persistence, policy surfaces and accessibility preferences.
   await page.locator("#theme-open").click();
+  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "true" ||
+      await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
+    throw new Error("Theme selector did not expose expanded state and receive keyboard focus");
+  }
   if (await page.locator("#theme-select option").count() < 10) throw new Error("Expected at least ten themes");
+  await page.keyboard.press("Escape");
+  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "false" ||
+      await page.evaluate(() => document.activeElement?.id) !== "theme-open") {
+    throw new Error("Escape did not close the theme selector and restore focus");
+  }
+  await page.locator("#theme-open").click();
   await page.locator("#theme-select").selectOption("aurora");
   if (await page.locator("html").getAttribute("data-theme") !== "aurora") throw new Error("Theme was not applied");
   const themeNames = ["obsidian", "midnight", "aurora", "ocean", "forest", "ember", "royal", "rose", "sand", "paper"];
@@ -243,9 +253,14 @@ try {
   }
   await page.locator("#settings-back").click();
 
-  // Exercise the longer supported round modes for every currently playable region.
+  // Verify 5/10/15 modes, stable question IDs, exact difficulty apportionment and results focus.
+  const expectedDifficultyMix = {
+    "5": { EASY: 2, MEDIUM: 2, HARD: 1 },
+    "10": { EASY: 3, MEDIUM: 4, HARD: 3 },
+    "15": { EASY: 5, MEDIUM: 6, HARD: 4 }
+  };
   for (const region of regions) {
-    for (const roundLength of ["10", "15"]) {
+    for (const roundLength of ["5", "10", "15"]) {
       await page.locator("#settings-open").click();
       await page.locator("#interface-locale").selectOption("en-IN");
       await page.locator("#question-region").selectOption(region);
@@ -258,15 +273,79 @@ try {
       if (await page.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
         throw new Error(`Round length was not applied for ${region}/${roundLength}`);
       }
+      const questionIds = new Set();
+      const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
       for (let index = 0; index < Number(roundLength); index += 1) {
+        const questionId = await page.locator("#question-title").getAttribute("data-question-id");
+        if (!questionId || questionIds.has(questionId)) {
+          throw new Error(`Missing or duplicate stable question ID in ${region}/${roundLength}`);
+        }
+        questionIds.add(questionId);
+        const difficulty = (await page.locator("#difficulty-label").textContent()).trim();
+        if (!Object.hasOwn(difficultyCounts, difficulty)) {
+          throw new Error(`Unexpected difficulty label in ${region}/${roundLength}: ${difficulty}`);
+        }
+        difficultyCounts[difficulty] += 1;
         await page.locator("#answers button.answer-option").first().click();
         await page.locator("#next-button").click();
       }
       if (await page.locator("#answer-review-list article").count() !== Number(roundLength)) {
         throw new Error(`Answer review count mismatch for ${region}/${roundLength}`);
       }
+      if (JSON.stringify(difficultyCounts) !== JSON.stringify(expectedDifficultyMix[roundLength])) {
+        throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: ${JSON.stringify(difficultyCounts)}`);
+      }
+      if (await page.evaluate(() => document.activeElement?.id) !== "result-title") {
+        throw new Error(`Results heading did not receive focus for ${region}/${roundLength}`);
+      }
+      if (await page.locator("#result-message").getAttribute("aria-live") !== "polite" ||
+          await page.locator("#answer-review-list article p").count() < Number(roundLength) * 4) {
+        throw new Error(`Results summary or answer review accessibility incomplete for ${region}/${roundLength}`);
+      }
       await page.locator("#home-button").click();
     }
+  }
+
+  // A fresh app session must exhaust all 50 region questions before starting a new cycle.
+  for (const region of regions) {
+    const cyclePage = await browser.newPage();
+    await cyclePage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+    await cyclePage.locator("#splash-dismiss").click();
+    await cyclePage.locator("#settings-open").click();
+    await cyclePage.locator("#interface-locale").selectOption("en-IN");
+    await cyclePage.locator("#question-region").selectOption(region);
+    await cyclePage.locator("#question-locale").selectOption("en-IN");
+    await cyclePage.locator("#question-category").selectOption("all");
+    await cyclePage.locator("#question-difficulty").selectOption("all");
+    await cyclePage.locator("#round-length").selectOption("15");
+    await cyclePage.locator("#settings-save").click();
+    const cycleSeen = new Set();
+    for (let roundIndex = 0; roundIndex < 4; roundIndex += 1) {
+      await cyclePage.locator("#play-button").click();
+      const currentRound = new Set();
+      for (let questionIndex = 0; questionIndex < 15; questionIndex += 1) {
+        const questionId = await cyclePage.locator("#question-title").getAttribute("data-question-id");
+        if (!questionId || currentRound.has(questionId)) {
+          throw new Error(`Question repeated within a 15-question round: ${region}/${roundIndex}/${questionId}`);
+        }
+        if (roundIndex < 3 && cycleSeen.has(questionId)) {
+          throw new Error(`Question repeated before the 50-question region cycle was exhausted: ${region}/${questionId}`);
+        }
+        currentRound.add(questionId);
+        cycleSeen.add(questionId);
+        await cyclePage.locator("#answers button.answer-option").first().click();
+        await cyclePage.locator("#next-button").click();
+      }
+      if (currentRound.size !== 15) throw new Error(`Incorrect round size in cycle test: ${region}/${roundIndex}`);
+      if (roundIndex === 2 && cycleSeen.size !== 45) {
+        throw new Error(`The first three rounds did not cover 45 distinct questions in ${region}`);
+      }
+      await cyclePage.locator("#home-button").click();
+    }
+    if (cycleSeen.size !== 50) {
+      throw new Error(`The four-round cycle did not cover all 50 unique questions in ${region}: ${cycleSeen.size}`);
+    }
+    await cyclePage.close();
   }
 
   // Exercise every category/difficulty filter pairing in each playable region.
@@ -519,7 +598,7 @@ try {
   await deniedStoragePage.close();
 
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus, five viewport widths, persisted preferences/accessibility, malformed-storage recovery and zero external runtime requests.");
+  console.log("Browser regression passed: modal launch keyboard isolation, theme keyboard flow, ten themes and focus contrast, 45 selector combinations, 5/10/15 difficulty-balanced rounds, stable question IDs, 50-question cycle exhaustion, all 36 region/category/difficulty filters, accessible results focus/review, eight portrait/landscape profiles, scoped best scores, malformed-storage recovery and zero external runtime requests.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));

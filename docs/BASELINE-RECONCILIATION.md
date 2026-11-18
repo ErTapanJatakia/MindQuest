@@ -14,22 +14,43 @@ This follows established project-controls practice: use quantifiable work-packag
 
 ## Reconciled baseline ledger
 
-| # | Workstream | Baseline (min) | Earned implementation (min) | Remaining (min) | Evidence-based allocation |\n|---:|---|---:|---:|---:|---|\n| 1 | Project foundation | 60 | 50 | 10 | Repository structure, metadata and QA planning; final housekeeping remains |\n| 2 | Visual identity | 90 | 30 | 60 | Brand system, logo, ten themes and launch screen; store artwork remains |\n| 3 | Home screen | 120 | 75 | 45 | Home, play, settings/help navigation and best-score surface; final polish remains |\n| 4 | Independent localization | 150 | 115 | 35 | 45 independent interface/region/question-language combinations passed; Spanish question translations remain |\n| 5 | Question-bank architecture | 150 | 150 | 0 | Offline schema, stable IDs, region/category metadata and translation mapping implemented |\n| 6 | Question content | 180 | 180 | 0 | 150 IDs / 450 localized records populated; Spain/Peru and Spanish translations remain expansion scope |\n| 7 | Core gameplay | 180 | 160 | 20 | Answer flow, scoring, review and expanded browser gameplay regression passed; final manual acceptance remains |\n| 8 | Game modes | 120 | 95 | 25 | 5/10/15-question rounds and replay regression passed; complete progression acceptance remains |\n| 9 | Difficulty progression | 90 | 75 | 15 | Difficulty metadata, balanced distribution and all 36 filter combinations passed; balance review remains |\n| 10 | Results screen | 90 | 75 | 15 | Score, accuracy and answer review implemented; final result accessibility acceptance remains |\n| 11 | Local persistence | 120 | 85 | 35 | Local settings, scoped scores, malformed-data recovery and storage-denial fallback tested; device restart remains |\n| 12 | Accessibility | 120 | 100 | 20 | Focus management, live regions, contrast checks, modal splash and selected-answer pressed state implemented; TalkBack audit remains |\n| 13 | Android application shell | 180 | 100 | 80 | Gradle wrapper, debug assembly and APK artifact validated; physical-device retest, signing and release packaging remain |\n| 14 | Offline/security hardening | 120 | 120 | 0 | Bundled assets, CSP, no external requests and restricted WebView configuration; physical offline/security verification remains |\n| 15 | Device compatibility | 180 | 45 | 135 | Responsive browser checks passed at five widths; actual device/density matrix remains |\n| 16 | Functional testing | 180 | 20 | 160 | Automated browser regression passed; manual Android and assistive-technology acceptance remains |\n| 17 | RuStore release readiness | 180 | 0 | 180 | Signing, store metadata, listing assets, disclosures and submission preparation not completed |\n| 18 | Documentation/release | 90 | 70 | 20 | README, architecture, roadmap, QA plan and development status; final legal/editorial review remains |\n|  | **Total** | **2,400** | **1,545** | **855** | |\n
+| # | Workstream | Baseline (min) | Earned implementation (min) | Remaining (min) | Evidence-based allocation |
+|---:|---|---:|---:|---:|---|
+| 1 | Project foundation | 60 | 50 | 10 | Repository structure, metadata, release principles and QA planning; final housekeeping remains |
+| 2 | Visual identity | 90 | 30 | 60 | Logo, ten themes, launch screen and brand system; store artwork remains |
+| 3 | Home screen | 120 | 75 | 45 | Home, play, settings/help navigation and best-score surface; final polish remains |
+| 4 | Independent localization | 150 | 115 | 35 | 45 independent interface/region/question-language combinations passed; Spanish question translations remain |
+| 5 | Question-bank architecture | 150 | 150 | 0 | Offline schema, stable IDs, region/category metadata and translation mapping implemented |
+| 6 | Question content | 180 | 180 | 0 | 150 IDs / 450 localized records populated; Spain/Peru and Spanish translations remain expansion scope |
+| 7 | Core gameplay | 180 | 160 | 20 | Answer flow, scoring, review and expanded gameplay regression passed; progression/cycle acceptance remains |
+| 8 | Game modes | 120 | 95 | 25 | 5/10/15-question rounds and replay regression passed; full progression acceptance remains |
+| 9 | Difficulty progression | 90 | 75 | 15 | Difficulty metadata, balanced distribution and all 36 filter combinations passed; quota acceptance remains |
+| 10 | Results screen | 90 | 75 | 15 | Score, accuracy and answer review implemented; full result accessibility acceptance remains |
+| 11 | Local persistence | 120 | 100 | 20 | Preferences, scoped scores, malformed-data recovery, storage-denial fallback and best-score scope regression tested; device restart remains |
+| 12 | Accessibility | 120 | 120 | 0 | Focus management, live regions, modal splash, semantic answer radio group, arrow/Home/End keyboard behavior, accessible-name and ARIA-reference audits, theme text/focus contrast checks implemented; manual TalkBack acceptance remains separate |
+| 13 | Android application shell | 180 | 100 | 80 | Gradle wrapper, debug assembly and APK artifact validated; physical-device retest, signing and release packaging remain |
+| 14 | Offline/security hardening | 120 | 120 | 0 | Bundled assets, CSP, no external requests and restricted WebView configuration; physical offline/security verification remains separate |
+| 15 | Device compatibility | 180 | 65 | 115 | Responsive browser checks cover eight portrait/landscape profiles across Home, Settings, Quiz and Results; physical device/density matrix remains |
+| 16 | Functional testing | 180 | 45 | 135 | Automated gameplay, filter, keyboard, responsive and persistence regression passed; manual Android and assistive-technology acceptance remains |
+| 17 | RuStore release readiness | 180 | 0 | 180 | Signing, store metadata, listing assets, disclosures and submission preparation not completed |
+| 18 | Documentation/release | 90 | 80 | 10 | README, architecture, roadmap, QA plan and development status; final legal/editorial review remains |
+|  | **Total** | **2,400** | **1,635** | **765** | |
+
 ## Progress calculation
 
-1,545 / 2,400 × 100 = 64.375% (displayed as **64.38%**).
+1,635 / 2,400 × 100 = 68.125% (displayed as **68.13%**).
 
 | Measure | Reconciled value |
 |---|---:|
 | Original baseline | 2,400 min / 40 h |
-| Earned implementation scope | 1,545 min / 25 h 45 min equivalent |
-| Implementation progress | **64.38%** |
-| Remaining baseline scope | **855 min / 14 h 15 min equivalent** |
+| Earned implementation scope | 1,635 min / 27 h 15 min equivalent |
+| Implementation progress | **68.13%** |
+| Remaining baseline scope | **765 min / 12 h 45 min equivalent** |
 | Actual engineering time logged | Not tracked |
-| Workstreams marked Complete | 2 |
-| Workstreams in Review | 0 |
+| Workstreams with no baseline minutes remaining | 7 |
 
-**Important:** earned minutes are weighted baseline allocations for evidenced deliverables, not actual labour time. Browser automation is counted as functional testing; physical-device and TalkBack testing remain uncredited.
+**Important:** earned minutes are weighted baseline allocations for evidenced deliverables, not actual labour time. PR #3 and PR #4 are accepted and reconciled; PR #5 remains in progress and receives no credit until its complete workflow passes. Manual device, TalkBack and store acceptance are not implied by automated browser coverage.
+
 
 ## Credit rules going forward
 
@@ -68,3 +89,14 @@ This was a repository/documentation reconciliation, not a new execution of the a
 - Evidence-based credit reconciled: 200 minutes across foundation (10), visual identity (5), home (5), localization (5), core gameplay (15), game modes (15), difficulty (5), results (5), local persistence (10), accessibility (35), offline/security (35), device compatibility (20), automated functional testing (20), and documentation (15).
 - No manual device, TalkBack, native-speaker, security runtime, signing or RuStore release credit is claimed.
 - Updated baseline: 1,545 / 2,400 minutes = **64.38%**; remaining baseline 855 minutes. Actual engineering hours remain untracked.
+
+
+## Accessibility and responsive acceptance — 2026-11-18
+
+- PR #3 merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`; [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) passed both Android debug assembly and browser/content/static checks.
+- PR #4 merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`; [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) passed both jobs.
+- PR #3 introduced semantic single-choice radio controls, arrow-key selection, checked state, and visible-control accessible-name/DOM structure assertions.
+- PR #4 added Home/End keyboard selection, valid ARIA ID-reference checks, focus-indicator contrast checks for all ten themes, eight viewport profiles across Home/Settings/Quiz/Results, and scoped best-score persistence checks.
+- Evidence-based allocation after accepted PR #3/#4: +20 accessibility minutes, +20 device-compatibility minutes, +15 local-persistence minutes, +25 functional-testing minutes and +10 documentation minutes (70 total).
+- Updated baseline: 1,635 / 2,400 minutes = **68.13%**; remaining baseline 765 minutes. Actual engineering hours remain untracked.
+- PR #5 gameplay progression work is active and not yet credited.
