@@ -306,6 +306,48 @@ try {
     }
   }
 
+  // A fresh app session must exhaust all 50 region questions before starting a new cycle.
+  for (const region of regions) {
+    const cyclePage = await browser.newPage();
+    await cyclePage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+    await cyclePage.locator("#splash-dismiss").click();
+    await cyclePage.locator("#settings-open").click();
+    await cyclePage.locator("#interface-locale").selectOption("en-IN");
+    await cyclePage.locator("#question-region").selectOption(region);
+    await cyclePage.locator("#question-locale").selectOption("en-IN");
+    await cyclePage.locator("#question-category").selectOption("all");
+    await cyclePage.locator("#question-difficulty").selectOption("all");
+    await cyclePage.locator("#round-length").selectOption("15");
+    await cyclePage.locator("#settings-save").click();
+    const cycleSeen = new Set();
+    for (let roundIndex = 0; roundIndex < 4; roundIndex += 1) {
+      await cyclePage.locator("#play-button").click();
+      const currentRound = new Set();
+      for (let questionIndex = 0; questionIndex < 15; questionIndex += 1) {
+        const questionId = await cyclePage.locator("#question-title").getAttribute("data-question-id");
+        if (!questionId || currentRound.has(questionId)) {
+          throw new Error(`Question repeated within a 15-question round: ${region}/${roundIndex}/${questionId}`);
+        }
+        if (roundIndex < 3 && cycleSeen.has(questionId)) {
+          throw new Error(`Question repeated before the 50-question region cycle was exhausted: ${region}/${questionId}`);
+        }
+        currentRound.add(questionId);
+        cycleSeen.add(questionId);
+        await cyclePage.locator("#answers button.answer-option").first().click();
+        await cyclePage.locator("#next-button").click();
+      }
+      if (currentRound.size !== 15) throw new Error(`Incorrect round size in cycle test: ${region}/${roundIndex}`);
+      if (roundIndex === 2 && cycleSeen.size !== 45) {
+        throw new Error(`The first three rounds did not cover 45 distinct questions in ${region}`);
+      }
+      await cyclePage.locator("#home-button").click();
+    }
+    if (cycleSeen.size !== 50) {
+      throw new Error(`The four-round cycle did not cover all 50 unique questions in ${region}: ${cycleSeen.size}`);
+    }
+    await cyclePage.close();
+  }
+
   // Exercise every category/difficulty filter pairing in each playable region.
   for (const region of regions) {
     for (const category of ["Geography", "History", "Science", "Culture"]) {
