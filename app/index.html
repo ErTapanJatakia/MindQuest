@@ -4,24 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101827">
-  <meta name="description" content="MindQuest — a free offline puzzle and trivia game.">
+  <meta name="description" content="MindQuest — Stay Curious. Outsmart the Ordinary. A free offline puzzle and trivia game.">
   <title>MindQuest — Мозговой вызов</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <div class="launch-splash" id="launch-splash" role="dialog" aria-modal="true" aria-label="MindQuest launch screen"><button type="button" class="splash-dismiss" id="splash-dismiss" aria-label="Tap anywhere to continue"><img class="splash-logo" src="./assets/mindquest-mark.svg" alt=""><strong>MindQuest</strong><span>Stay Curious. Outsmart the Ordinary.</span><small>Tap anywhere to continue</small></button></div>
   <main class="app-shell">
     <header class="topbar">
       <a class="brand" href="#" aria-label="MindQuest home" data-i18n-aria-label="homeLinkLabel" id="brand-home">
-        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-mark" aria-hidden="true"><img src="./assets/mindquest-mark.svg" alt=""></span>
         <span><strong>MindQuest</strong><small>Мозговой вызов</small></span>
       </a>
-      <button class="icon-button" id="settings-open" type="button" aria-label="Open settings" data-i18n-aria-label="settingsButtonLabel">⚙</button>
+      <div class="topbar-actions"><button class="icon-button" id="theme-open" type="button" aria-label="Choose colour theme" aria-expanded="false" aria-controls="theme-panel">◐</button><button class="icon-button" id="settings-open" type="button" aria-label="Open settings" data-i18n-aria-label="settingsButtonLabel">⚙</button></div>
     </header>
 
     <section class="view active" id="home-view" aria-labelledby="home-title">
       <div class="hero">
         <p class="eyebrow" data-i18n="eyebrow">A little challenge for your mind</p>
-        <h1 id="home-title" data-i18n="welcome">Ready to think?</h1>
+        <h1 id="home-title" data-i18n="welcome">Stay Curious. Outsmart the Ordinary.</h1>
         <p class="hero-copy" data-i18n="intro">Explore the world, one question at a time.</p>
         <div class="hero-orbit" aria-hidden="true"><span>?</span><i></i><b></b></div>
         <button class="primary-button" id="play-button" type="button" data-i18n="play">Start a round</button>
@@ -69,7 +70,9 @@
       <select id="interface-locale">
         <option value="en-IN">English (India)</option>
         <option value="en-US">English (United States)</option>
-        <option value="ru-RU">Русский</option>
+        <option value="ru-RU">Russian (Russian Federation) — ru-RU</option>
+        <option value="es-PE">Spanish (Republic of Peru) — es-PE</option>
+        <option value="es-ES">Spanish (Kingdom of Spain) — es-ES</option>
       </select>
       <label class="field-label" for="question-region" data-i18n="questionRegion">Question-bank region</label>
       <select id="question-region">
@@ -96,6 +99,7 @@
         <option value="medium" data-i18n="medium">Medium</option>
         <option value="hard" data-i18n="hard">Hard</option>
       </select>
+      <fieldset class="accessibility-settings"><legend>Accessibility</legend><label><input id="setting-large-text" type="checkbox"> Larger text</label><label><input id="setting-reduced-motion" type="checkbox"> Reduce motion</label><label><input id="setting-high-contrast" type="checkbox"> High contrast</label></fieldset>
       <label class="field-label" for="round-length" data-i18n="roundLength">Questions per round</label>
       <select id="round-length">
         <option value="5">5</option>
@@ -107,6 +111,8 @@
       <button class="text-button" id="settings-back" type="button" data-i18n="back">Back</button>
     </section>
 
+    <section class="view" id="privacy-view" aria-labelledby="privacy-title" hidden><p class="eyebrow">YOUR DATA, YOUR DEVICE</p><h1 id="privacy-title">How MindQuest handles your data?</h1><p>MindQuest is designed to work offline without an account, advertising, analytics SDK, or gameplay backend. Your language choices, preferences and best scores are stored locally on this device when storage is available.</p><p>The app does not ask for personal profile details and is not designed to transmit gameplay preferences or scores to the developer. Distribution platforms may process information under their own privacy terms.</p><p>Clear app storage or uninstall the app to remove locally stored preferences and scores, subject to operating-system behaviour.</p><p>For the complete policy, see <a href="https://github.com/ErTapanJatakia/MindQuest/blob/main/PRIVACY-POLICY.md">Privacy Policy in the repository</a>.</p><h2>App Developer and Support Team</h2><p>Er. Tapan Jatakia (C. Eng.)<br>Email: <a href="mailto:ertapanjatakia@yandex.com">ertapanjatakia@yandex.com</a> (Russia); <a href="mailto:tapan_ditu_17.20@outlook.com">tapan_ditu_17.20@outlook.com</a> (other regions)<br>Phone: +91 9664332984<br>Website: <a href="https://linktr.ee/ertapanjatakia">linktr.ee/ertapanjatakia</a></p><h2>Data Protection Officer</h2><p>Er. Tapan Jatakia (C. Eng.)<br>Email: <a href="mailto:cyber.litigation.advisor@gmail.com">cyber.litigation.advisor@gmail.com</a><br>Phone: +91 9664332984<br>Website: <a href="https://linktr.ee/ertapanjatakia">linktr.ee/ertapanjatakia</a></p><button class="secondary-button" id="privacy-back" type="button">Back</button></section>
+    <section class="view" id="accessibility-view" aria-labelledby="accessibility-title" hidden><p class="eyebrow">ACCESS FOR EVERY MIND</p><h1 id="accessibility-title">Accessibility Statement</h1><p>MindQuest aims to provide an inclusive experience. The development target is WCAG 2.2 Level AA where applicable to the bundled web interface. This is a target, not a verified conformance claim or independent certification.</p><p>Current practices include semantic controls, keyboard focus management, live status announcements, language metadata, responsive layouts, reduced-motion styling and forced-colors support. Further manual testing with TalkBack, screen readers, keyboard-only navigation, text scaling and contrast checks remains necessary.</p><p>W3C conformance logos are intentionally withheld until the applicable pages have been evaluated and a valid conformance claim can be supported. See <a href="https://www.w3.org/WAI/standards-guidelines/wcag/conformance-logos/">W3C logo usage guidance</a>.</p><p>For the complete statement, see <a href="https://github.com/ErTapanJatakia/MindQuest/blob/main/ACCESSIBILITY.md">Accessibility Statement in the repository</a>.</p><h2>Contact Information of the WCAG Auditor</h2><p>Name: Er. Tapan Jatakia (C. Eng.)<br>Email: <a href="mailto:cyber.litigation.advisor@gmail.com">cyber.litigation.advisor@gmail.com</a><br>Phone Number: +91 9664332984<br>Website: <a href="https://linktr.ee/ertapanjatakia">https://linktr.ee/ertapanjatakia</a></p><button class="secondary-button" id="accessibility-back" type="button">Back</button></section>
     <section class="view" id="help-view" aria-labelledby="help-title" hidden>
       <p class="eyebrow" data-i18n="helpEyebrow">THE QUICK GUIDE</p>
       <h1 id="help-title" data-i18n="helpTitle">How to play</h1>
@@ -117,10 +123,11 @@
       <article class="help-card"><h2 data-i18n="helpPrivacyTitle">Free, private and offline</h2><p data-i18n="helpPrivacyBody">MindQuest is free to play, works offline and needs no account. Settings and best scores are stored on this device when browser storage is available; no ads or paid services are used.</p></article>
       <button class="primary-button" id="help-back" type="button" data-i18n="back">Back</button>
     </section>
-    <footer><span>MindQuest</span><span data-i18n="freeOffline">Free · Offline · No account</span></footer>
+    <footer class="app-footer"><a id="privacy-link" href="#privacy">How MindQuest handles your data?</a><div class="footer-center"><button class="footer-link" id="accessibility-link" type="button">Accessibility Statement</button><span class="wcag-placeholder" aria-label="WCAG 2.2 AA claim pending independent verification">WCAG 2.2 AA target</span></div><span data-i18n="freeOffline">Free · Offline · No account</span></footer>
   </main>
   <script src="./src/data/questions.js"></script>
   <script src="./src/app.js"></script>
   <script src="./src/ui-polish.js"></script>
+  <script src="./src/experience.js"></script>
 </body>
 </html>
