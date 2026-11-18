@@ -4,7 +4,7 @@ Last updated: 2026-11-18
 
 ## Current phase
 
-**Phase 1 — foundation and playable web vertical slice; the 150-record bounded factual review is complete, and implementation/source-readiness refinement continues.**
+**Phase 2 — consolidated web validation and first Android debug build completed; implementation, device validation and release preparation continue.**
 
 Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQuest), default branch `main`.
 
@@ -44,8 +44,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Existing best-score records from the earlier global-score format are not migrated; current best scores are keyed independently by region, category, difficulty and round length. Compatible legacy 10-question scoped records are lazily migrated; this avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
 - Interface localization now has initial English (India) / English (US) copy differentiation, localized settings/home accessible names, and localized answer-group labels. A targeted pass corrected a malformed JavaScript newline sequence and improved static quiz/progress accessibility defaults; a complete audit of every visible and assistive-technology string, plus full accessibility review and final visual polish, remains outstanding.
-- Android Gradle wrapper has not been added; the Android shell has not been compiled or tested on physical devices.
-- No APK or AAB has been produced. This is **not a release candidate**.
+- The official Gradle 8.9 wrapper is present and checksum-validated. The Android shell now compiles and assembles a debug APK; physical-device validation, APK inspection and signing remain outstanding.
+- A debug APK has been assembled successfully by GitHub Actions and uploaded as a temporary workflow artifact. It has not been signed or release-inspected and is **not a release candidate**.
 
 ## Validation status
 
@@ -989,3 +989,14 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - User confirmed that all required manual review for the current question-bank and architecture scope is complete. The question-bank architecture and 150-question multilingual content workstreams are now accepted as `Complete` in the roadmap.
 - This is an explicit manual acceptance checkpoint, not a test result. The automated question-bank validator, browser/runtime regression, Android Gradle build, APK inspection, general CI and device/accessibility validation have not yet been run; they remain deferred until the planned implementation batch reaches its validation gate.
 - No pull requests were open at the time of this checkpoint, so there was no pending feature PR to merge. Existing accepted work is already committed directly to `main`.
+
+
+## Consolidated validation and Android build — 2026-11-18
+
+- Completed all four requested checks in one consolidated workflow run: official question-bank validator, browser/runtime checks, general GitHub Actions CI, and Android debug APK assembly.
+- Workflow run [44212850901](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44212850901) completed with overall conclusion **success**. Both jobs passed.
+- Browser coverage exercised all 27 combinations of interface locale, question region and question locale; it also completed nine five-question rounds across all region/question-language pairs and verified answer review.
+- Android build uncovered and resolved the invalid `android:postSplashScreenTheme` resource reference. The corrected build passed `assembleDebug`.
+- Artifact `mindquest-debug-apk` uploaded successfully (888,611 bytes; expiry 2026-12-02). Download it from the workflow run's Artifacts section.
+- Progress reconciliation: +20 minutes independent localization, +25 minutes core gameplay and +35 minutes Android application shell. New earned total **1,345 / 2,400 min (56.04%)**; remaining **1,055 min (17h 35m)**. Actual engineering time remains untracked. No manual QA, device, screen-reader, security-runtime, signing or release credit has been claimed.
+- The question-bank architecture and content workstreams remain accepted as Complete following the user's manual-review confirmation. No PRs were open; all changes are committed directly to `main`.
