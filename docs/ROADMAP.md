@@ -26,26 +26,63 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 18 | Documentation/release | Installation, changelog, versioning and release checklist | In progress | 90 | 55 | 35 |
 |  | **Total** |  |  | **2,400** | **1,345** | **1,055** |
 
-## Revised execution timeline — 2026-11-18
+## Revised execution timeline — updated 2026-11-18
+
+The original engineering baseline remains 2,400 minutes. Expansion work is tracked separately and does not inflate baseline completion.
 
 | Remaining work package | Remaining effort |
 |---|---:|
-| Stage 1 — Foundation and product/interface refinement | 195 min |
-| Stage 2 — Gameplay and game-mode completion | 115 min |
-| Stage 3 — Localization, persistence and accessibility | 80 min |
-| Stage 4 — Android integration, security and device compatibility | 270 min |
-| Stage 5 — Functional QA, RuStore readiness and release documentation | 395 min |
-| **Total remaining** | **1,055 min (17h 35m)** |
+| Original baseline engineering scope | 1,055 min |
+| Spanish question translations and Spain/Peru question banks | 1,200 min |
+| Theme/search responsive and device polish | 120 min |
+| Store artwork and final branding | 60 min |
+| Accessibility audit readiness and WCAG verification | 120 min |
+| Legal/editorial documentation review | 60 min |
+| Expanded manual, offline, Android and device regression | 180 min |
+| **Total remaining** | **2,795 min (46h 35m)** |
+
+### Baseline engineering progress
+
+| Measure | Value |
+|---|---:|
+| Original baseline | 2,400 min / 40h |
+| Earned implementation | 1,345 min |
+| Remaining baseline | 1,055 min |
+| Completion | **56.04%** |
+| Actual engineering hours logged | Not tracked |
+
+No baseline credit is added for the new QA automation until its workflow execution passes. Implementation progress, estimated work-package effort and actual labour time remain separate measures.
+
+### Current development status
+
+| Workstream | Status | Next milestone |
+|---|---|---|
+| Project foundation | In progress | Final housekeeping |
+| Visual identity | In progress | Store artwork pack |
+| Home screen | In progress | Visual acceptance |
+| Independent localization | In progress | Spanish question-language support |
+| Question-bank architecture | Complete for current schema | Expand to five locales |
+| Question content | Complete for current 150 questions | Spain/Peru content |
+| Core gameplay | In progress | Expanded content regression |
+| Game modes | In progress | 10/15-question acceptance |
+| Difficulty progression | In progress | Filter and balance acceptance |
+| Results screen | In progress | Expanded regression |
+| Local persistence | In progress | Reload/restart acceptance |
+| Accessibility | In progress | Modal launch and TalkBack checks |
+| Android application shell | Debug build previously validated | Test current APK on device |
+| Offline/security hardening | In progress | Runtime network verification |
+| Device compatibility | Planned | Device matrix |
+| Manual functional testing | Planned | Full regression |
+| RuStore release readiness | Planned | Signing and store preparation |
+| Documentation/release | In progress | QA and release checklist |
 
 ## Consolidated validation status — 2026-11-18
 
-- Successful consolidated workflow: [MindQuest Validation #44212850901](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44212850901).
-- Official question-bank validator and JavaScript syntax checks passed.
-- Browser smoke passed across all 27 independent interface/region/question-language combinations and nine five-question rounds across all region/question-language pairs; localized question/answer tags and answer review passed.
-- Android Gradle wrapper checksum validation and debug APK assembly passed. Artifact `mindquest-debug-apk` was uploaded (888,611 bytes; expires 2026-12-02).
-- A real Android resource-linking defect was corrected by removing the invalid platform attribute `android:postSplashScreenTheme` from `values-v31/styles.xml`; the subsequent build passed.
-- Remaining: broader manual regression, Android device/runtime validation, screen-reader verification, APK inspection, offline/security runtime checks, release signing and RuStore preparation. The generated debug APK is not a release candidate.
-- Evidence-based progress: 1,345 / 2,400 minutes = **56.04%**; remaining baseline 1,055 minutes. Actual engineering time is not tracked.
+- Previous successful validation: [MindQuest Validation #44233183223](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44233183223). This run validated the then-merged application baseline and produced a debug APK.
+- The newly opened [PR #2 — Expanded browser regression coverage](https://github.com/ErTapanJatakia/MindQuest/pull/2) adds long-round, filter, keyboard, responsive, persistence, theme contrast and offline-request assertions, plus a keyboard-modal launch-splash fix and a QA plan.
+- PR #2 has **not yet been validated or merged**. Do not credit its scope as accepted baseline progress until CI passes.
+- The earlier debug APK is not a production-signed release candidate. The new splash change also requires a newly built APK and physical-device validation.
+- Remaining: expanded browser CI, physical-device testing, TalkBack, offline/runtime security verification, APK inspection, signing and RuStore preparation.
 
 ## Delivery milestones
 
