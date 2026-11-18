@@ -16,15 +16,19 @@ The Android module is a minimal Kotlin Activity hosting the locally bundled game
 
 Install JDK 17 and Android SDK Platform 35. The project pins Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21; use Gradle 8.9 for this configuration. The Gradle wrapper has not yet been generated, so the build is not currently self-contained or reproducible from a fresh checkout. `android/gradle.properties` establishes UTF-8/heap, AndroidX and Kotlin style defaults.
 
-### Generate the Gradle wrapper
+### Generate the Gradle wrapper without a local machine
 
-From this `android/` directory, on a machine with Gradle 8.9 installed, generate the official wrapper files with Gradle's built-in task:
+MindQuest uses the one-time, manually triggered GitHub Actions workflow at `.github/workflows/bootstrap-gradle-wrapper.yml`. Because this repository is public, the workflow uses a standard GitHub-hosted runner; standard hosted-runner usage for public repositories is free. No local Gradle installation, local build, paid cloud subscription or general push/PR CI pipeline is required.
 
-```sh
-gradle :wrapper --gradle-version 8.9 --distribution-type bin
-```
+To generate the official wrapper:
 
-Commit the generated `gradlew`, `gradlew.bat`, `gradle/wrapper/gradle-wrapper.jar` and `gradle/wrapper/gradle-wrapper.properties` files together. Do not hand-create or substitute the wrapper JAR or scripts. Before using the wrapper, verify the JAR against Gradle's published wrapper checksum for the generated Gradle version; keep the distribution URL pinned to Gradle 8.9. After committing the wrapper, invoke builds from this directory with `./gradlew :app:assembleDebug` (or `gradlew.bat :app:assembleDebug` on Windows).
+1. Open the repository's **Actions** tab.
+2. Select **Bootstrap Gradle Wrapper**.
+3. Select **Run workflow** on the `main` branch.
+4. Wait for the job to provision Java 17 and Gradle 8.9, run Gradle's built-in `:wrapper` task, and validate the generated wrapper JAR checksum.
+5. On success, the workflow commits the four generated files to `main`: `android/gradlew`, `android/gradlew.bat`, `android/gradle/wrapper/gradle-wrapper.jar` and `android/gradle/wrapper/gradle-wrapper.properties`.
+
+The workflow is restricted to manual dispatch on `main`, grants only repository-content write permission, refuses to overwrite any existing wrapper file, and commits only those four generated files. It does not build the APK or run the general CI suite. Do not hand-create or substitute the wrapper JAR or scripts. Keep the distribution URL pinned to Gradle 8.9.
 
 From this directory, after Gradle is installed:
 
