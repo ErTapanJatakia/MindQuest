@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "validate:content": "node scripts/validate-question-bank.mjs",
+    "audit:expansion": "node scripts/audit-question-bank-expansion.mjs",
     "test:browser": "node scripts/browser-smoke.mjs"
   },
   "engines": {
