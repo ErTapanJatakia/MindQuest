@@ -18,6 +18,7 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Round modes | 5-, 10- and 15-question rounds across India, Russia and the United States | Selected round length is honoured when the filtered pool is large enough |
 | Content filters | Every category × difficulty pairing in each of the three playable regions | Rendered question category and difficulty match the selected filters |
 | Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-pressed=true`; other answers remain unpressed; focus moves to Next/See results and then the next question heading |
+| Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique |
 | Responsive layout | 320, 360, 390, 768 and 1024 CSS-pixel widths across Home, Settings and Quiz | No document-level horizontal overflow |
 | Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload | Saved values are restored independently |
 | Offline boundary | Runtime request observation and restrictive Content Security Policy (`connect-src 'none'`, local bundled assets only) | No external network request is made by the application |
@@ -56,4 +57,5 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Spain and Peru are not playable question regions.
 - Spanish question translations are not available.
 - The expanded browser regression suite passed in [workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) and was merged in [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2).
+- A follow-up accessibility hardening change in [PR #3](https://github.com/ErTapanJatakia/MindQuest/pull/3) adds selected-answer state and a visible-control structure audit; its CI acceptance is pending.
 - Physical-device, TalkBack, offline runtime, APK inspection, signing and RuStore submission remain unverified.
