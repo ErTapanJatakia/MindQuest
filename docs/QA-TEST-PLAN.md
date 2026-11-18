@@ -17,7 +17,7 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Independent selectors | Five interface locales × three regions × three available question locales | All 45 supported combinations remain independently selectable |
 | Round modes | 5-, 10- and 15-question rounds across India, Russia and the United States | Selected round length is honoured when the filtered pool is large enough |
 | Content filters | Every category × difficulty pairing in each of the three playable regions | Rendered question category and difficulty match the selected filters |
-| Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-pressed=true`; other answers remain unpressed; focus moves to Next/See results and then the next question heading |
+| Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-checked=true`; arrow keys move through the four-option radio group and select the focused answer; focus then moves to Next/See results and the next question heading |
 | Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique |
 | Responsive layout | 320, 360, 390, 768 and 1024 CSS-pixel widths across Home, Settings and Quiz | No document-level horizontal overflow |
 | Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload | Saved values are restored independently |
