@@ -272,7 +272,13 @@ try {
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
       if (overflow) throw new Error(`Horizontal overflow detected at ${width}px (${view})`);
       if (view === "settings") await page.locator("#settings-back").click();
-      if (view === "quiz") await page.locator("#home-button").click();
+      if (view === "quiz") {
+        for (let index = 0; index < 5; index += 1) {
+          await page.locator("#answers button.answer-option").first().click();
+          await page.locator("#next-button").click();
+        }
+        await page.locator("#home-button").click();
+      }
     }
   }
   await page.setViewportSize({ width: 1280, height: 900 });
