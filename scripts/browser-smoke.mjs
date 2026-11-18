@@ -38,7 +38,11 @@ try {
   browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   const pageErrors = [];
+  const externalRequests = [];
   page.on("pageerror", error => pageErrors.push(error.message));
+  page.on("request", request => {
+    if (new URL(request.url()).origin !== "http://127.0.0.1:4173") externalRequests.push(request.url());
+  });
   await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
   await page.locator("#splash-dismiss").click();
   if (!(await page.locator("#home-view").isVisible())) throw new Error("Home view did not load");
@@ -132,8 +136,95 @@ try {
   await page.locator("#question-category-search").press("Tab");
   if (await page.locator("#question-category").inputValue() !== "History") throw new Error("Category search did not select History");
   await page.locator("#settings-back").click();
+
+  // Exercise the longer supported round modes for every currently playable region.
+  for (const region of regions) {
+    for (const roundLength of ["10", "15"]) {
+      await page.locator("#settings-open").click();
+      await page.locator("#interface-locale").selectOption("en-IN");
+      await page.locator("#question-region").selectOption(region);
+      await page.locator("#question-locale").selectOption("en-IN");
+      await page.locator("#question-category").selectOption("all");
+      await page.locator("#question-difficulty").selectOption("all");
+      await page.locator("#round-length").selectOption(roundLength);
+      await page.locator("#settings-save").click();
+      await page.locator("#play-button").click();
+      if (await page.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
+        throw new Error(`Round length was not applied for ${region}/${roundLength}`);
+      }
+      for (let index = 0; index < Number(roundLength); index += 1) {
+        await page.locator("#answers button.answer-option").first().click();
+        await page.locator("#next-button").click();
+      }
+      if (await page.locator("#answer-review-list article").count() !== Number(roundLength)) {
+        throw new Error(`Answer review count mismatch for ${region}/${roundLength}`);
+      }
+      await page.locator("#home-button").click();
+    }
+  }
+
+  // Verify keyboard focus continuity through answer selection and progression.
+  await page.locator("#settings-open").click();
+  await page.locator("#interface-locale").selectOption("en-IN");
+  await page.locator("#question-region").selectOption("IN");
+  await page.locator("#question-locale").selectOption("en-IN");
+  await page.locator("#round-length").selectOption("5");
+  await page.locator("#settings-save").click();
+  await page.locator("#play-button").click();
+  await page.locator("#answers button.answer-option").first().focus();
+  await page.keyboard.press("Enter");
+  if (await page.evaluate(() => document.activeElement?.id) !== "next-button") {
+    throw new Error("Answer selection did not move keyboard focus to Next");
+  }
+  await page.keyboard.press("Enter");
+  if (await page.evaluate(() => document.activeElement?.id) !== "question-title") {
+    throw new Error("Question progression did not move keyboard focus to the new heading");
+  }
+  await page.locator("#home-button").click();
+
+  // Check narrow and standard viewport layouts for horizontal overflow.
+  for (const width of [320, 360, 390, 768, 1024]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const openSettings of [false, true]) {
+      if (openSettings) await page.locator("#settings-open").click();
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+      if (overflow) throw new Error(`Horizontal overflow detected at ${width}px (${openSettings ? "settings" : "home"})`);
+      if (openSettings) await page.locator("#settings-back").click();
+    }
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
+
+  // Persist independent preferences, theme and accessibility choices across reload.
+  await page.locator("#settings-open").click();
+  await page.locator("#interface-locale").selectOption("es-ES");
+  await page.locator("#question-region").selectOption("US");
+  await page.locator("#question-locale").selectOption("ru-RU");
+  await page.locator("#round-length").selectOption("15");
+  await page.locator("#settings-save").click();
+  await page.locator("#theme-open").click();
+  await page.locator("#theme-select").selectOption("forest");
+  await page.locator("#settings-open").click();
+  await page.locator("#setting-large-text").check();
+  await page.locator("#setting-reduced-motion").check();
+  await page.locator("#setting-high-contrast").check();
+  await page.reload({ waitUntil: "networkidle" });
+  await page.locator("#splash-dismiss").click();
+  if (await page.locator("html").getAttribute("data-theme") !== "forest") {
+    throw new Error("Theme preference did not survive reload");
+  }
+  if (!(await page.locator("html").evaluate(node => node.classList.contains("large-text") &&
+      node.classList.contains("user-reduced-motion") && node.classList.contains("user-high-contrast")))) {
+    throw new Error("Accessibility preferences did not survive reload");
+  }
+  await page.locator("#settings-open").click();
+  for (const [id, expected] of [["#interface-locale", "es-ES"], ["#question-region", "US"],
+    ["#question-locale", "ru-RU"], ["#round-length", "15"]]) {
+    if (await page.locator(id).inputValue() !== expected) throw new Error(`Preference did not persist: ${id}`);
+  }
+  if (externalRequests.length) throw new Error("Unexpected external runtime requests: " + externalRequests.join(", "));
+
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser smoke passed: launch dismissal, ten themes, accessibility preferences, policy navigation, all 45 selector combinations, nine five-question rounds and searchable controls.");
+  console.log("Browser regression passed: launch, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds across regions, keyboard focus, five viewport widths, persisted preferences/accessibility and zero external runtime requests.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
