@@ -598,7 +598,7 @@ try {
   await deniedStoragePage.close();
 
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus, five viewport widths, persisted preferences/accessibility, malformed-storage recovery and zero external runtime requests.");
+  console.log("Browser regression passed: modal launch keyboard isolation, theme keyboard flow, ten themes and focus contrast, 45 selector combinations, 5/10/15 difficulty-balanced rounds, stable question IDs, 50-question cycle exhaustion, all 36 region/category/difficulty filters, accessible results focus/review, eight portrait/landscape profiles, scoped best scores, malformed-storage recovery and zero external runtime requests.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
