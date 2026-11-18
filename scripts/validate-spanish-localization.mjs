@@ -2,16 +2,18 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
-const [bankSource, overlaySource, batch03Source, html] = await Promise.all([
+const [bankSource, overlaySource, batch03Source, batch04Source, html] = await Promise.all([
   readFile(new URL("app/src/data/questions.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-03.js", root), "utf8"),
+  readFile(new URL("app/src/data/spanish-question-translations-batch-04.js", root), "utf8"),
   readFile(new URL("app/index.html", root), "utf8")
 ]);
 const sandbox = { window: {} };
 vm.runInNewContext(bankSource, sandbox, { timeout: 1000 });
 vm.runInNewContext(overlaySource, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch03Source, sandbox, { timeout: 1000 });
+vm.runInNewContext(batch04Source, sandbox, { timeout: 1000 });
 
 const expected = {
   "IN-GEO-001": { key: "b", answer: "Jaipur" },
@@ -43,7 +45,17 @@ const expected = {
   "IN-GEO-003": { key: "d", answer: "Rajastán" },
   "RU-HIS-002": { key: "a", answer: "Gagarin" },
   "RU-CUL-002": { key: "c", answer: "Chaikovski" },
-  "US-CUL-002": { key: "a", answer: "Frank Lloyd Wright" }
+  "US-CUL-002": { key: "a", answer: "Frank Lloyd Wright" },
+  "IN-HIS-005": { key: "b", answer: "Sabarmati" },
+  "IN-SCI-004": { key: "b", answer: "Ramanujan" },
+  "IN-SCI-005": { key: "a", answer: "Chandrayaan-3" },
+  "IN-CUL-004": { key: "c", answer: "Kerala" },
+  "IN-CUL-005": { key: "b", answer: "Natya Shastra" },
+  "RU-HIS-005": { key: "c", answer: "Tereshkova" },
+  "RU-SCI-004": { key: "a", answer: "Mendel" },
+  "RU-SCI-005": { key: "d", answer: "Luna 9" },
+  "RU-CUL-004": { key: "c", answer: "Turguénev" },
+  "RU-CUL-005": { key: "c", answer: "Stravinski" }
 };
 const locales = ["es-ES", "es-PE"];
 const questions = new Map(sandbox.window.MINDQUEST_QUESTIONS.map((question) => [question.id, question]));
@@ -89,13 +101,14 @@ if (selectorValues.sort().join(",") !== ["en-IN", "en-US", "ru-RU"].sort().join(
   errors.push("Spanish question locales must remain hidden until the full editorial release gate passes.");
 }
 if (!html.includes('./src/data/spanish-question-translations.js') ||
-    !html.includes('./src/data/spanish-question-translations-batch-03.js')) {
+    !html.includes('./src/data/spanish-question-translations-batch-03.js') ||
+    !html.includes('./src/data/spanish-question-translations-batch-04.js')) {
   errors.push("Spanish translation overlays are not both loaded by the application.");
 }
 
-console.log("MindQuest Spanish localization batches 01–03");
+console.log("MindQuest Spanish localization batches 01–04");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
-console.log(`Validated: ${errors.length ? "with errors" : "60 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
+console.log(`Validated: ${errors.length ? "with errors" : "80 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
 console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
