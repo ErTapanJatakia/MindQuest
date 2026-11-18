@@ -59,7 +59,7 @@ const expected = {
   "RU-CUL-004": { key: "c", answer: "Turguénev" },
   "RU-CUL-005": { key: "c", answer: "Stravinski" },
   "US-HIS-004": { key: "a", answer: "Gettysburg" },
-  "US-HIS-005": { key: "d", answer: "13" },
+  "US-HIS-005": { key: "d", answer: "Decimotercera" },
   "US-SCI-005": { key: "b", answer: "Hubble" },
   "US-CUL-004": { key: "c", answer: "Broadway" },
   "US-CUL-005": { key: "a", answer: "Saarinen" },
