@@ -190,9 +190,10 @@
     if (dismissed) return;
     dismissed = true;
     splash.classList.add("splash-dismissed");
-    window.setTimeout(() => splash.remove(), 240);
+    window.setTimeout(() => { splash.remove(); document.getElementById("home-title")?.focus(); }, 240);
   };
   document.getElementById("splash-dismiss").addEventListener("click", dismiss);
   splash.addEventListener("click", dismiss);
+  document.getElementById("splash-dismiss").focus();
   window.setTimeout(dismiss, 5000);
 })();
