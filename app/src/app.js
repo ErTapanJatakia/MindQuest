@@ -7,13 +7,13 @@
   const REGION_NAMES = {
     "en-IN": {
       categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
-      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
+      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "Republic of India", RU: "Russian Federation", US: "United States of America" },
     "en-US": {
       categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
       categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
     "ru-RU": {
       categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
-      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Индия", RU: "Россия", US: "США" }
+      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Республика Индия", RU: "Российская Федерация", US: "Соединённые Штаты Америки" }
   };
   const UI = {
     "en-IN": {
@@ -43,7 +43,7 @@
     },
     "ru-RU": {
       categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная",categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
-      eyebrow:"Небольшая тренировка для ума",welcome:"Готовы подумать?",intro:"Открывайте мир — вопрос за вопросом.",
+      eyebrow:"Небольшая тренировка для ума",welcome:"Stay Curious. Outsmart the Ordinary.",intro:"Открывайте мир — вопрос за вопросом.",
       play:"Начать раунд",bestScore:"Лучший результат",questionRegion:"Регион вопросов",offline:"Можно играть офлайн",progress:"Ход игры",
       next:"Следующий вопрос",seeResults:"К результатам",round:"РАУНД",roundComplete:"РАУНД ЗАВЕРШЁН",wellPlayed:"Отличная игра!",points:"баллов",
       playAgain:"Сыграть ещё раз",home:"На главную",personalise:"ВАШИ НАСТРОЙКИ",settings:"Настройки",
@@ -113,7 +113,7 @@
   const $ = (id) => document.getElementById(id);
   const views = ["home-view", "quiz-view", "result-view", "settings-view", "help-view", "privacy-view", "accessibility-view"];
   const t = (key) => (UI[settings.interfaceLocale] || UI["en-IN"])[key] || key;
-  const localeName = (locale) => locale === "ru-RU" ? "Русский" : locale === "en-US" ? "English (US)" : "English (India)";
+  const localeName = (locale) => locale === "ru-RU" ? "Russian (Russian Federation) — ru-RU" : locale === "en-US" ? "English (United States of America) — en-US" : "English (Republic of India) — en-IN";
   const regionName = (region) => REGION_NAMES[settings.interfaceLocale][region];
   const categoryName = (category) => t("category" + category);
   const selectedCategoryName = () => settings.category === "all" ? t("allCategories") : categoryName(settings.category);
