@@ -282,7 +282,11 @@ try {
       if (overflow) throw new Error(`Horizontal overflow detected at ${width}px (${view})`);
       if (view === "settings") await page.locator("#settings-back").click();
       if (view === "quiz") {
-        for (let index = 0; index < 5; index += 1) {
+        const total = Number((await page.locator("#progress-label").textContent()).split("/")[1].trim());
+        if (!Number.isInteger(total) || total < 1 || total > 5) {
+          throw new Error(`Responsive quiz round length invalid at ${width}px: ${total}`);
+        }
+        for (let index = 0; index < total; index += 1) {
           await page.locator("#answers button.answer-option").first().click();
           await page.locator("#next-button").click();
         }
