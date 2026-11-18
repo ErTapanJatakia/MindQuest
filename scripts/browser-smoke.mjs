@@ -321,8 +321,36 @@ try {
   }
   if (externalRequests.length) throw new Error("Unexpected external runtime requests: " + externalRequests.join(", "));
 
+  // Malformed local data must fall back safely without breaking the offline app.
+  const recoveryPage = await browser.newPage();
+  const recoveryErrors = [];
+  recoveryPage.on("pageerror", error => recoveryErrors.push(error.message));
+  await recoveryPage.addInitScript(() => {
+    localStorage.setItem("mindquest.settings", "{malformed-json");
+    localStorage.setItem("mindquest.theme", "not-a-real-theme");
+    localStorage.setItem("mindquest.accessibility", "{malformed-json");
+    localStorage.setItem("mindquest.best.IN.all.all.10", JSON.stringify({ score: 999, total: 10, extra: true }));
+  });
+  await recoveryPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await recoveryPage.locator("#splash-dismiss").click();
+  if (!(await recoveryPage.locator("#home-view").isVisible())) {
+    throw new Error("Malformed local data prevented Home from loading");
+  }
+  if (await recoveryPage.locator("html").getAttribute("data-theme") !== "obsidian") {
+    throw new Error("Invalid stored theme did not fall back to the default");
+  }
+  await recoveryPage.locator("#settings-open").click();
+  for (const [id, expected] of [["#question-region", "IN"], ["#question-locale", "en-IN"],
+    ["#question-category", "all"], ["#question-difficulty", "all"], ["#round-length", "10"]]) {
+    if (await recoveryPage.locator(id).inputValue() !== expected) {
+      throw new Error("Malformed settings did not normalize safely: " + id);
+    }
+  }
+  if (recoveryErrors.length) throw new Error("Malformed-storage runtime errors: " + recoveryErrors.join(" | "));
+  await recoveryPage.close();
+
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus, five viewport widths, persisted preferences/accessibility and zero external runtime requests.");
+  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus, five viewport widths, persisted preferences/accessibility, malformed-storage recovery and zero external runtime requests.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
