@@ -921,3 +921,12 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Confirmed the Android README now accurately distinguishes the installed-Gradle build path from the future wrapper-based path and explicitly states that no signed APK/AAB or release candidate exists. The release signing instructions do not ask for credentials in chat or commit secrets. Root ignore rules cover the documented local keystore/property file formats.
 - Corrected one stale development-status sentence: best-score records are keyed by region, category, difficulty and round length; compatible legacy 10-question scoped records are lazily migrated, while the earlier global-score format is not migrated. This now matches the implemented persistence key and migration behaviour.
 - No Android source/configuration change was justified by this pass. No Gradle wrapper, package build, signing configuration, CI, content validator or runtime test was generated or run. No baseline allocation or product scope changed.
+
+
+## Android application identity and manifest review — 2026-11-18
+
+- Rechecked `android/app/src/main/AndroidManifest.xml` against the Android application module configuration and launcher resource tree.
+- Confirmed the application label is `MindQuest`; standard and round launcher icon attributes both resolve to `@mipmap/ic_launcher`; the launcher Activity is explicitly exported and has the `MAIN` / `LAUNCHER` intent filter required for launcher discovery.
+- Confirmed `supportsRtl` is enabled, application and launch themes are explicitly referenced, backup is disabled, cleartext traffic is disabled, and the manifest declares no runtime or network permissions.
+- The manifest's API 33+ back-invoked callback setting matches the existing Activity implementation. No manifest or Gradle source change was justified by this review.
+- This was a source/resource-reference inspection only. No resource compilation, merged-manifest inspection, APK build, store-policy validation, emulator test or physical-device test was run. Gradle wrapper generation and Android validation remain deferred until the development batch is complete.
