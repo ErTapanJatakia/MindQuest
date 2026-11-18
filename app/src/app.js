@@ -511,6 +511,8 @@
       button.type = "button";
       button.className = "answer-option";
       button.dataset.answer = key;
+      // Expose the selected answer as a toggle state for assistive technology.
+      button.setAttribute("aria-pressed", "false");
       const marker = document.createElement("span");
       marker.className = "letter";
       marker.textContent = letter;
@@ -538,9 +540,11 @@
     $("streak-value").textContent = String(currentStreak);
     answerHistory[current] = { choice, correct: item.correct, options: { ...copy.options }, explanation: copy.explanation, isCorrect: correct };
     $("answers").querySelectorAll("button").forEach((button) => {
+      const selected = button.dataset.answer === choice;
+      button.setAttribute("aria-pressed", String(selected));
       button.disabled = true;
       if (button.dataset.answer === item.correct) button.classList.add("correct");
-      else if (button.dataset.answer === choice) button.classList.add("incorrect");
+      else if (selected) button.classList.add("incorrect");
     });
     const feedback = $("feedback");
     feedback.replaceChildren();
