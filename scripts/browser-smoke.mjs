@@ -351,6 +351,17 @@ try {
     throw new Error("End key did not select the final answer in the radio group");
   }
   await edgeKeyPage.close();
+  const homeKeyPage = await browser.newPage();
+  await homeKeyPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await homeKeyPage.locator("#splash-dismiss").click();
+  await homeKeyPage.locator("#play-button").click();
+  await homeKeyPage.locator("#answers button[role=radio]").last().focus();
+  await homeKeyPage.keyboard.press("Home");
+  if (await homeKeyPage.locator('#answers button[aria-checked="true"]').count() !== 1 ||
+      await homeKeyPage.locator("#answers button[role=radio]").first().getAttribute("aria-checked") !== "true") {
+    throw new Error("Home key did not select the first answer in the radio group");
+  }
+  await homeKeyPage.close();
   for (let index = 1; index < 5; index += 1) {
     await page.locator("#answers button.answer-option").first().click();
     await page.locator("#next-button").click();
