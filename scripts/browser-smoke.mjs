@@ -60,6 +60,32 @@ try {
   }
   if (!(await page.locator("#home-view").isVisible())) throw new Error("Home view did not load");
   if ((await page.title()).length === 0) throw new Error("Document title is missing");
+  const auditAccessibleControls = async context => {
+    const problems = await page.evaluate(() => {
+      const visible = element => {
+        if (element.closest("[hidden]")) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== "none" && style.visibility !== "hidden" && rect.width > 1 && rect.height > 1;
+      };
+      const controls = [...document.querySelectorAll("button, a[href], input, select, textarea")].filter(visible);
+      const unnamed = controls.filter(element => {
+        const explicit = element.getAttribute("aria-label") || element.getAttribute("aria-labelledby") ||
+          element.getAttribute("title");
+        const labelText = element.labels ? [...element.labels].map(label => label.textContent).join(" ").trim() : "";
+        const content = (element.innerText || element.textContent || "").trim();
+        return !explicit && !labelText && !content;
+      }).map(element => element.id || element.tagName.toLowerCase());
+      const missingAlt = [...document.querySelectorAll("img:not([alt])")].map(image => image.getAttribute("src") || "image");
+      const ids = [...document.querySelectorAll("[id]")].map(element => element.id);
+      const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+      return { unnamed, missingAlt, duplicates };
+    });
+    if (problems.unnamed.length || problems.missingAlt.length || problems.duplicates.length) {
+      throw new Error("Accessibility structure audit failed (" + context + "): " + JSON.stringify(problems));
+    }
+  };
+  await auditAccessibleControls("Home");
   const contentPolicy = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content");
   for (const directive of ["default-src 'self'", "script-src 'self'", "connect-src 'none'", "object-src 'none'"]) {
     if (!contentPolicy?.includes(directive)) throw new Error("Missing restrictive CSP directive: " + directive);
@@ -142,6 +168,7 @@ try {
       await page.locator("#round-length").selectOption("5");
       await page.locator("#settings-save").click();
       await page.locator("#play-button").click();
+      await auditAccessibleControls("Quiz");
       if (!(await page.locator("#quiz-view").isVisible())) throw new Error(`Quiz failed to start for ${region}/${questionLocale}`);
       if (await page.locator("#question-title").getAttribute("lang") !== questionLocale) {
         throw new Error(`Question language mismatch for ${region}/${questionLocale}`);
@@ -157,6 +184,7 @@ try {
         await page.locator("#next-button").click();
       }
       if (!(await page.locator("#result-view").isVisible())) throw new Error(`Results view failed for ${region}/${questionLocale}`);
+      await auditAccessibleControls("Results");
       if (await page.locator("#answer-review-list article").count() !== 5) {
         throw new Error("Answer review did not contain all five questions");
       }
@@ -165,6 +193,7 @@ try {
 
   // Searchable controls are part of Settings, so enter that view before asserting visibility.
   await page.locator("#settings-open").click();
+  await auditAccessibleControls("Settings");
   for (const id of ["#interface-locale-search", "#question-region-search", "#question-locale-search", "#question-category-search"]) {
     if (!(await page.locator(id).isVisible())) throw new Error("Searchable selector missing: " + id);
   }
