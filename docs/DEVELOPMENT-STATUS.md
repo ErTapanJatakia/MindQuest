@@ -41,7 +41,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - The question bank contains the full **150-question target**: 50 India, 50 Russia and 50 United States.
 - Each question has 3 locale variants: all 450 localized records are present.
 - The content has completed bounded factual review across all 150 IDs and three locales. Professional native-speaker review, cultural/editorial acceptance and executable structural validation remain release gates.
-- Existing best-score records from the earlier global-score format are not migrated; new scores are tracked by region/category/difficulty. This avoids mixing unlike question pools.
+- Existing best-score records from the earlier global-score format are not migrated; current best scores are keyed independently by region, category, difficulty and round length. Compatible legacy 10-question scoped records are lazily migrated; this avoids mixing unlike question pools.
 - Difficulty balance is only a starter distribution; the full bank needs a deliberate progression and quality review.
 - Interface localization now has initial English (India) / English (US) copy differentiation, localized settings/home accessible names, and localized answer-group labels. A targeted pass corrected a malformed JavaScript newline sequence and improved static quiz/progress accessibility defaults; a complete audit of every visible and assistive-technology string, plus full accessibility review and final visual polish, remains outstanding.
 - Android Gradle wrapper has not been added; the Android shell has not been compiled or tested on physical devices.
