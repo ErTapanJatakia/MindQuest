@@ -27,7 +27,7 @@
       },
       "es-PE": {
         question: "¿Cuál fue la enmienda constitucional que puso fin legalmente a la esclavitud en todo Estados Unidos?",
-        options: { a: "Enmienda 12", b: "Enmienda 14", c: "Enmienda 15", d: "Enmienda 13" },
+        options: { a: "Enmienda 12", b: "Enmienda 14", c: "Enmienda 15", d: "Decimotercera Enmienda" },
         explanation: "Ratificada en 1865, la Decimotercera Enmienda prohibió la esclavitud y la servidumbre involuntaria, excepto como pena por un delito después de una condena."
       }
     },
