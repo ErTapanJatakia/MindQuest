@@ -161,16 +161,28 @@
         input.value = current ? current.textContent.trim() : "";
         input.setAttribute("aria-invalid", "false");
       };
-      input.addEventListener("change", () => {
-        const match = [...list.options].find(option => option.value.toLocaleLowerCase() === input.value.trim().toLocaleLowerCase());
-        if (!match) {
-          input.setAttribute("aria-invalid", "true");
-          input.value = [...nativeSelect.options].find(option => option.value === nativeSelect.value)?.textContent.trim() || "";
-          return;
+      const commitSearch = () => {
+        const match = [...list.options].find(option =>
+          option.value.toLocaleLowerCase() === input.value.trim().toLocaleLowerCase());
+        if (!match) return false;
+        if (nativeSelect.value !== match.dataset.value) {
+          nativeSelect.value = match.dataset.value;
+          nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
         }
-        nativeSelect.value = match.dataset.value;
-        nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
         input.setAttribute("aria-invalid", "false");
+        return true;
+      };
+      // Commit an exact datalist match as soon as the user finishes typing it.
+      // This avoids depending on browser-specific blur/change timing and keeps
+      // the canonical native select synchronized for keyboard and touch users.
+      input.addEventListener("input", () => {
+        if (commitSearch()) return;
+        input.setAttribute("aria-invalid", "false");
+      });
+      input.addEventListener("change", () => {
+        if (commitSearch()) return;
+        input.setAttribute("aria-invalid", "true");
+        input.value = [...nativeSelect.options].find(option => option.value === nativeSelect.value)?.textContent.trim() || "";
       });
       nativeSelect.addEventListener("change", refresh);
       document.getElementById("settings-open").addEventListener("click", refresh);
