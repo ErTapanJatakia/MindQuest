@@ -7,6 +7,7 @@
   "scripts": {
     "validate:content": "node scripts/validate-question-bank.mjs",
     "audit:expansion": "node scripts/audit-question-bank-expansion.mjs",
+    "validate:spanish": "node scripts/validate-spanish-localization.mjs",
     "test:browser": "node scripts/browser-smoke.mjs"
   },
   "engines": {

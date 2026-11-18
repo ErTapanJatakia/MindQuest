@@ -38,14 +38,19 @@ jobs:
       - name: Audit five-region expansion readiness
         run: npm run audit:expansion
 
+      - name: Validate Spanish localization batch
+        run: npm run validate:spanish
+
       - name: Run JavaScript syntax checks
         run: |
           node --check app/src/data/questions.js
+          node --check app/src/data/spanish-question-translations.js
           node --check app/src/app.js
           node --check app/src/ui-polish.js
           node --check app/src/experience.js
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
+          node --check scripts/validate-spanish-localization.mjs
           node --check scripts/browser-smoke.mjs
 
       - name: Install pinned browser test dependency

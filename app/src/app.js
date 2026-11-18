@@ -286,17 +286,24 @@
         !question.id.startsWith(question.region + "-")) return false;
 
     const translations = question.translations;
+    const stagedLocales = ["es-ES", "es-PE"];
+    const allowedLocales = [...LOCALES, ...stagedLocales];
+    const translationLocales = translations && typeof translations === "object" && !Array.isArray(translations)
+      ? Object.keys(translations)
+      : [];
     if (!translations || typeof translations !== "object" || Array.isArray(translations) ||
-        Object.keys(translations).sort().join("|") !== [...LOCALES].sort().join("|")) return false;
+        !LOCALES.every((locale) => Object.hasOwn(translations, locale)) ||
+        translationLocales.some((locale) => !allowedLocales.includes(locale))) return false;
 
     const expectedTranslationKeys = ["explanation", "options", "question"];
     const answerKeys = ["a", "b", "c", "d"];
     const hasCleanText = (value) =>
       typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
 
-    // Validate every locale before admitting the shared question ID to a round.
+    // Validate every present locale before admitting the shared question ID to a round.
+    // Staged Spanish records are validated but remain unavailable in the question selector.
     // The question-level correct key is the canonical answer identity for all translations.
-    for (const locale of LOCALES) {
+    for (const locale of translationLocales) {
       const copy = translations[locale];
       if (!copy || typeof copy !== "object" || Array.isArray(copy) ||
           Object.keys(copy).sort().join("|") !== expectedTranslationKeys.join("|") ||
@@ -405,22 +412,26 @@
     // Largest-remainder apportionment keeps quotas whole and totals exact.
     const difficultyQuotas = difficultyOrder.map((difficulty, order) => {
       const count = pool.filter((question) => question.difficulty === difficulty).length;
-      const exactQuota = targetRoundLength * count / pool.length;
-      const quota = Math.floor(exactQuota);
-      return { difficulty, order, quota, remainder: exactQuota - quota };
+      // Integer numerators avoid floating-point tie drift in largest-remainder allocation.
+      const numerator = targetRoundLength * count;
+      const quota = Math.floor(numerator / pool.length);
+      return { difficulty, order, quota, remainder: numerator % pool.length };
     });
-    let unallocated = targetRoundLength -
+    const unallocated = targetRoundLength -
       difficultyQuotas.reduce((total, item) => total + item.quota, 0);
-    [...difficultyQuotas]
-      .sort((a, b) => b.remainder - a.remainder || a.order - b.order)
-      .slice(0, unallocated)
-      .forEach((item) => { item.quota += 1; });
+    const remainderRanking = [...difficultyQuotas].sort(
+      (a, b) => b.remainder - a.remainder || a.order - b.order
+    );
+    for (const item of remainderRanking.slice(0, unallocated)) {
+      item.quota += 1;
+    }
 
     const selectedRound = [];
     for (const item of difficultyQuotas) {
       const available = unseen.filter((question) => question.difficulty === item.difficulty);
       selectedRound.push(...available.slice(0, item.quota));
     }
+    const quotaSelectedCount = selectedRound.length;
     // If a difficulty has too few unseen questions left, fill from other unseen
     // questions first so the session cycle still avoids repeats whenever possible.
     const selectedIdSet = new Set(selectedRound.map((question) => question.id));
@@ -451,6 +462,26 @@
       showRecovery("roundIntegrityError", "roundIntegrityHint");
       return;
     }
+    // Keep machine-readable allocation evidence on the question heading so CI can
+    // distinguish quota calculation defects from cycle-state/fallback effects.
+    const countByDifficulty = (questions) => Object.fromEntries(
+      difficultyOrder.map((difficulty) => [
+        difficulty,
+        questions.filter((question) => question.difficulty === difficulty).length
+      ])
+    );
+    $("question-title").dataset.roundDiagnostics = JSON.stringify({
+      region: settings.questionRegion,
+      roundLength: targetRoundLength,
+      poolSize: pool.length,
+      seenBefore: seenQuestionIds.size,
+      unseenSize: unseen.length,
+      unseenByDifficulty: countByDifficulty(unseen),
+      quotas: Object.fromEntries(difficultyQuotas.map((item) => [item.difficulty, item.quota])),
+      quotaSelectedCount,
+      selectedByDifficulty: countByDifficulty(selectedRound),
+      fallbackAdded: selectedRound.length - quotaSelectedCount
+    });
     // Randomize the final sequence after difficulty quotas are met so difficulty
     // is balanced without appearing in predictable consecutive blocks.
     for (let i = selectedRound.length - 1; i > 0; i -= 1) {

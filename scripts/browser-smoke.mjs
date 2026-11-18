@@ -261,48 +261,94 @@ try {
   };
   for (const region of regions) {
     for (const roundLength of ["5", "10", "15"]) {
-      await page.locator("#settings-open").click();
-      await page.locator("#interface-locale").selectOption("en-IN");
-      await page.locator("#question-region").selectOption(region);
-      await page.locator("#question-locale").selectOption("en-IN");
-      await page.locator("#question-category").selectOption("all");
-      await page.locator("#question-difficulty").selectOption("all");
-      await page.locator("#round-length").selectOption(roundLength);
-      await page.locator("#settings-save").click();
-      await page.locator("#play-button").click();
-      if (await page.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
+      // Each quota assertion starts with a clean session-local question cycle.
+      // Cycle exhaustion is covered independently by the dedicated test below.
+      const quotaPage = await browser.newPage();
+      await quotaPage.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+      await quotaPage.locator("#splash-dismiss").click();
+      await quotaPage.locator("#settings-open").click();
+      await quotaPage.locator("#interface-locale").selectOption("en-IN");
+      await quotaPage.locator("#question-region").selectOption(region);
+      await quotaPage.locator("#question-locale").selectOption("en-IN");
+      await quotaPage.locator("#question-category").selectOption("all");
+      await quotaPage.locator("#question-difficulty").selectOption("all");
+      await quotaPage.locator("#round-length").selectOption(roundLength);
+      await quotaPage.locator("#settings-save").click();
+      await quotaPage.locator("#play-button").click();
+      if (await quotaPage.locator("#progress-label").textContent() !== `1 / ${roundLength}`) {
         throw new Error(`Round length was not applied for ${region}/${roundLength}`);
+      }
+      const initialAllocation = await quotaPage.locator("#question-title").getAttribute("data-round-diagnostics");
+      const initialPoolSize = JSON.parse(initialAllocation || "{}").poolSize;
+      if (initialPoolSize !== 50) {
+        throw new Error(`Playable pool unexpectedly excluded canonical questions for ${region}/${roundLength}: ${initialAllocation}`);
       }
       const questionIds = new Set();
       const difficultyCounts = { EASY: 0, MEDIUM: 0, HARD: 0 };
+      const selectedDiagnostics = [];
       for (let index = 0; index < Number(roundLength); index += 1) {
-        const questionId = await page.locator("#question-title").getAttribute("data-question-id");
+        const questionId = await quotaPage.locator("#question-title").getAttribute("data-question-id");
         if (!questionId || questionIds.has(questionId)) {
           throw new Error(`Missing or duplicate stable question ID in ${region}/${roundLength}`);
         }
         questionIds.add(questionId);
-        const difficulty = (await page.locator("#difficulty-label").textContent()).trim();
-        if (!Object.hasOwn(difficultyCounts, difficulty)) {
-          throw new Error(`Unexpected difficulty label in ${region}/${roundLength}: ${difficulty}`);
+        const displayedDifficulty = (await quotaPage.locator("#difficulty-label").textContent()).trim();
+        const sourceDifficulty = await quotaPage.evaluate((id) =>
+          window.MINDQUEST_QUESTIONS.find((question) => question.id === id)?.difficulty ?? null, questionId);
+        selectedDiagnostics.push({ id: questionId, sourceDifficulty, displayedDifficulty });
+        if (!Object.hasOwn(difficultyCounts, displayedDifficulty)) {
+          throw new Error(`Unexpected difficulty label in ${region}/${roundLength}: ${displayedDifficulty}`);
         }
-        difficultyCounts[difficulty] += 1;
-        await page.locator("#answers button.answer-option").first().click();
-        await page.locator("#next-button").click();
+        const expectedLabel = await quotaPage.evaluate((difficulty) => {
+          const locale = document.querySelector("#interface-locale")?.value || "en-IN";
+          const labels = {
+            "en-IN": { easy: "EASY", medium: "MEDIUM", hard: "HARD" },
+            "en-US": { easy: "EASY", medium: "MEDIUM", hard: "HARD" },
+            "ru-RU": { easy: "ЛЁГКАЯ", medium: "СРЕДНЯЯ", hard: "СЛОЖНАЯ" },
+            "es-PE": { easy: "FÁCIL", medium: "INTERMEDIA", hard: "DIFÍCIL" },
+            "es-ES": { easy: "FÁCIL", medium: "MEDIA", hard: "DIFÍCIL" }
+          };
+          return labels[locale]?.[difficulty] ?? null;
+        }, sourceDifficulty);
+        if (sourceDifficulty !== displayedDifficulty.toLowerCase() ||
+            (expectedLabel && displayedDifficulty !== expectedLabel)) {
+          throw new Error(`Difficulty display/source mismatch in ${region}/${roundLength}: ${JSON.stringify(selectedDiagnostics)}`);
+        }
+        difficultyCounts[displayedDifficulty] += 1;
+        await quotaPage.locator("#answers button.answer-option").first().click();
+        await quotaPage.locator("#next-button").click();
       }
-      if (await page.locator("#answer-review-list article").count() !== Number(roundLength)) {
+      if (await quotaPage.locator("#answer-review-list article").count() !== Number(roundLength)) {
         throw new Error(`Answer review count mismatch for ${region}/${roundLength}`);
       }
       if (JSON.stringify(difficultyCounts) !== JSON.stringify(expectedDifficultyMix[roundLength])) {
-        throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: ${JSON.stringify(difficultyCounts)}`);
+        const poolDiagnostics = await quotaPage.evaluate((selectedRegion) => {
+          const eligible = window.MINDQUEST_QUESTIONS.filter((question) =>
+            question.region === selectedRegion &&
+            ["easy", "medium", "hard"].includes(question.difficulty) &&
+            ["en-IN", "en-US", "ru-RU"].every((locale) => question.translations?.[locale])
+          );
+          return {
+            total: eligible.length,
+            counts: Object.fromEntries(["easy", "medium", "hard"].map((difficulty) =>
+              [difficulty, eligible.filter((question) => question.difficulty === difficulty).length])),
+            selected: eligible.filter((question) =>
+              document.querySelector("#question-title")?.dataset.questionId === question.id
+            ).map((question) => ({ id: question.id, difficulty: question.difficulty }))
+          };
+        }, region);
+        const runtimeAllocation = await quotaPage.locator("#question-title").getAttribute("data-round-diagnostics");
+        throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: displayed=${JSON.stringify(difficultyCounts)}; selected=${JSON.stringify(selectedDiagnostics)}; runtimeAllocation=${runtimeAllocation}; eligiblePool=${JSON.stringify(poolDiagnostics)}`);
       }
-      if (await page.evaluate(() => document.activeElement?.id) !== "result-title") {
+      if (await quotaPage.evaluate(() => document.activeElement?.id) !== "result-title") {
         throw new Error(`Results heading did not receive focus for ${region}/${roundLength}`);
       }
-      if (await page.locator("#result-message").getAttribute("aria-live") !== "polite" ||
-          await page.locator("#answer-review-list article p").count() < Number(roundLength) * 4) {
+      if (await quotaPage.locator("#result-message").getAttribute("aria-live") !== "polite" ||
+          await quotaPage.locator("#answer-review-list article p").count() < Number(roundLength) * 4) {
         throw new Error(`Results summary or answer review accessibility incomplete for ${region}/${roundLength}`);
       }
-      await page.locator("#home-button").click();
+      await quotaPage.locator("#home-button").click();
+      await quotaPage.close();
     }
   }
 
