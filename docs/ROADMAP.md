@@ -45,7 +45,7 @@ The original engineering baseline remains 2,400 minutes. Accepted PR #2 work is 
 | Difficulty progression | In progress | Balance review |
 | Results screen | In progress | Result accessibility acceptance |
 | Local persistence | In progress | Device restart acceptance |
-| Accessibility | In progress | TalkBack and manual audit |
+| Accessibility | In progress | PR #3 selected-answer state and visible-control audit; then TalkBack |
 | Android application shell | Debug build validated | Physical-device retest |
 | Offline/security hardening | In progress | Physical offline/runtime verification |
 | Device compatibility | In progress | Device and density matrix |
@@ -59,7 +59,7 @@ The original engineering baseline remains 2,400 minutes. Accepted PR #2 work is 
 - [Workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) passed both Android debug APK assembly and browser/content/static regression jobs.
 - The expanded browser suite passed 5/10/15-question rounds, all 36 region/category/difficulty combinations, five viewport widths, ten theme contrast checks, selector synchronization, keyboard focus, preference persistence, malformed-storage recovery, storage-denial fallback and offline request restrictions.
 - The debug APK was extracted and inspected (908,736 bytes; SHA-256 `5917e02d35b6725c1b3a0484f94f6fa7a2a4c2ac930432358f3849577043dd4d`). It is not a signed release candidate.
-- Remaining gates include physical-device testing, TalkBack, manual offline/runtime security checks, native-speaker review, store artwork, signing and RuStore preparation.
+- Remaining gates include PR #3 CI acceptance, physical-device testing, TalkBack, manual offline/runtime security checks, native-speaker review, store artwork, signing and RuStore preparation.
 
 ## Delivery milestones
 
