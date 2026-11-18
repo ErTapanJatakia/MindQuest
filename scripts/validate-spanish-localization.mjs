@@ -21,7 +21,18 @@ const expected = {
   "US-GEO-001": { key: "c", answer: "Washington D. C." },
   "US-HIS-001": { key: "a", answer: "1776" },
   "US-SCI-001": { key: "d", answer: "NASA" },
-  "IN-GEO-002": { key: "c", answer: "8" }
+  "IN-GEO-002": { key: "c", answer: "8" },
+
+  "IN-HIS-002": { key: "b", answer: "26 de noviembre de 1949" },
+  "IN-CUL-002": { key: "c", answer: "Vaisakhi" },
+  "RU-GEO-003": { key: "a", answer: "Volga" },
+  "RU-SCI-002": { key: "d", answer: "Sputnik 1" },
+  "US-GEO-003": { key: "b", answer: "Alaska" },
+  "IN-GEO-004": { key: "c", answer: "Odisha" },
+  "IN-HIS-003": { key: "a", answer: "Lahore" },
+  "RU-GEO-004": { key: "b", answer: "Urales" },
+  "RU-CUL-003": { key: "d", answer: "Bulgákov" },
+  "US-GEO-004": { key: "c", answer: "Michigan" }
 };
 const locales = ["es-ES", "es-PE"];
 const questions = new Map(sandbox.window.MINDQUEST_QUESTIONS.map((question) => [question.id, question]));
@@ -70,9 +81,9 @@ if (!html.includes('./src/data/spanish-question-translations.js')) {
   errors.push("Spanish translation overlay is not loaded by the application.");
 }
 
-console.log("MindQuest Spanish localization batch 01");
+console.log("MindQuest Spanish localization batches 01–02");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
-console.log(`Validated: ${errors.length ? "with errors" : "20 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
+console.log(`Validated: ${errors.length ? "with errors" : "40 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
 console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
