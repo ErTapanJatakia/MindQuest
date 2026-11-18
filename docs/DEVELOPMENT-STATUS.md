@@ -1058,7 +1058,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 | Original baseline remaining | 1,055 min |
 | Original baseline completion | 56.04% |
 | Additional expansion work remaining (estimate) | 1,740 min |
-| Combined remaining estimate | 2,795 min / 46 h 35 min |
+| Combined remaining estimate | 2,395 min / 39 h 55 min |
 | Actual engineering time | Not tracked |
 
 
@@ -1097,7 +1097,7 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ### Active PR #5 — gameplay progression
 - Stable question IDs are exposed on the active question heading for deterministic regression diagnostics.
 - Automated tests now assert exact difficulty quotas for 5/10/15-question rounds, result focus, review completeness and full 50-question cycle exhaustion in all three current regions.
-- PR #5 CI acceptance is pending. No baseline credit is assigned to this active batch.
+- PR #5 CI passed in [workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918); PR #5 merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c` and its baseline credit is reconciled below.
 
 ### Baseline reconciliation
 - Accepted earned implementation: **1,635 / 2,400 minutes (68.13%)**.
