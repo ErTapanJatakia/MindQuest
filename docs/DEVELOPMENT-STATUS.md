@@ -4,7 +4,7 @@ Last updated: 2026-11-18
 
 ## Current phase
 
-**Phase 2 — consolidated web validation and first Android debug build completed; implementation, device validation and release preparation continue.**
+**Phase 3 — expanded experience foundation merged and validated; Spanish question content, accessibility verification and release preparation continue.**
 
 Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQuest), default branch `main`.
 
@@ -1030,3 +1030,27 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Added full country names and locale codes in the language selectors. Searchable inputs now cover interface language, question region, question language and category.
 - Question language remains limited to the three fully translated locales in the current 150-question bank. Spanish question translations and the Spain/Peru question regions are not yet exposed; the content expansion must reach 250 stable question IDs and 1,250 localized records before those selectors can be enabled.
 - The browser smoke matrix is now intended to cover 45 combinations (5 interface locales × 3 existing regions × 3 existing question locales). The current branch still requires its final workflow run.
+
+
+## Expanded experience foundation merged — 2026-11-18
+
+- Merged PR [#1](https://github.com/ErTapanJatakia/MindQuest/pull/1) to `main` (squash commit `0ef925c289054a56abef1d3bc1e88d9abf1d4e83`).
+- Added ten persistent themes, a global theme picker, a five-second dismissible branded launch screen, larger-text/reduced-motion/high-contrast preferences, searchable datalist-backed selector inputs, full current country names and locale codes, and the original MindQuest owl/question-mark SVG logo. Android launcher vector artwork is also refreshed.
+- Added complete interface dictionaries for Peruvian Spanish (`es-PE`) and Spain Spanish (`es-ES`). The question-language menu still exposes only the three languages for which the existing 150 questions have full translations. Spain and Peru remain non-playable until their question banks are authored.
+- Added in-app privacy and accessibility views and persistent footer navigation. Added proprietary LICENSE, Privacy Policy, Accessibility Statement, Security Policy, Code of Conduct, Contributing guide, and product/release requirements.
+- Automated validation run [44233183223](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44233183223) passed: official question-bank validation (150 questions, 3 locales), JavaScript syntax checks, browser smoke (45 selector combinations, nine five-question rounds, ten themes, launch, policy and accessibility controls, searchable selectors), Android debug APK build and artifact upload.
+- Debug artifact ID `14396550575`, name `mindquest-debug-apk`, size 908,135 bytes, expires 2026-12-02. APK SHA-256: `ef162109cedbb9abae3391435735f9f288907288a8ced16a9dcfa67f5eca3178`. This is not a production-signed release.
+- W3C WCAG 2.2 AA conformance logo is not displayed pending a valid evaluation. The Accessibility Statement states the WCAG 2.2 AA target and remaining verification work; no conformance claim is made.
+- User-reported physical-device testing applied to the previous version only. The newly built APK still requires installation and physical-device verification, including TalkBack, splash dismissal, theme contrast, offline operation and responsive layout.
+
+### Current baseline and expanded-scope accounting
+
+| Metric | Value |
+|---|---:|
+| Original baseline | 2,400 min / 40 h |
+| Earned original-baseline progress | 1,345 min |
+| Original baseline remaining | 1,055 min |
+| Original baseline completion | 56.04% |
+| Additional expansion work remaining (estimate) | 1,740 min |
+| Combined remaining estimate | 2,795 min / 46 h 35 min |
+| Actual engineering time | Not tracked |
