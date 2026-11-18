@@ -44,7 +44,20 @@ try {
     if (new URL(request.url()).origin !== "http://127.0.0.1:4173") externalRequests.push(request.url());
   });
   await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
-  await page.locator("#splash-dismiss").click();
+  if (!(await page.locator(".app-shell").evaluate(node => node.inert &&
+      node.getAttribute("aria-hidden") === "true"))) {
+    throw new Error("Launch splash did not isolate the application from assistive technology");
+  }
+  await page.keyboard.press("Tab");
+  if (await page.evaluate(() => document.activeElement?.id) !== "splash-dismiss") {
+    throw new Error("Launch splash did not retain keyboard focus");
+  }
+  await page.keyboard.press("Escape");
+  await page.locator("#launch-splash").waitFor({ state: "detached" });
+  if (await page.locator(".app-shell").evaluate(node => node.inert ||
+      node.hasAttribute("aria-hidden"))) {
+    throw new Error("Application remained inert after splash dismissal");
+  }
   if (!(await page.locator("#home-view").isVisible())) throw new Error("Home view did not load");
   if ((await page.title()).length === 0) throw new Error("Document title is missing");
 
@@ -251,7 +264,7 @@ try {
   if (externalRequests.length) throw new Error("Unexpected external runtime requests: " + externalRequests.join(", "));
 
   if (pageErrors.length) throw new Error("Browser runtime errors: " + pageErrors.join(" | "));
-  console.log("Browser regression passed: launch, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds across regions, keyboard focus, five viewport widths, persisted preferences/accessibility and zero external runtime requests.");
+  console.log("Browser regression passed: modal launch keyboard isolation, ten themes, policy surfaces, 45 selector combinations, 5/10/15-question rounds across regions, keyboard focus, five viewport widths, persisted preferences/accessibility and zero external runtime requests.");
 } finally {
   if (browser) await browser.close();
   await new Promise(resolveClose => server.close(resolveClose));
