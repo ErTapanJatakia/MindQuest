@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">MindQuest owl and question mark</title><desc id="desc">A curious owl with bright eyes, a golden question mark and an open book.</desc>
+<defs><linearGradient id="feather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#53e8ff"/><stop offset=".48" stop-color="#087ac4"/><stop offset="1" stop-color="#101b48"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff2a8"/><stop offset=".48" stop-color="#ffb72c"/><stop offset="1" stop-color="#e66b12"/></linearGradient></defs>
+<path d="M15 47 23 12l25 19q16-10 32 0l25-19 8 35q7 29-9 48-15 18-40 18T24 95Q8 76 15 47Z" fill="url(#feather)" stroke="#07162e" stroke-width="5"/>
+<path d="m24 31 20 11-8 13Zm80 0L84 42l8 13Z" fill="#ffd45c" stroke="#09244a" stroke-width="3"/>
+<path d="M28 62q0-24 23-24 15 0 20 16-5 28-21 31-22-2-22-23Zm72 0q0-24-23-24-15 0-20 16 5 28 21 31 22-2 22-23Z" fill="#f7fbff" stroke="#08214a" stroke-width="4"/>
+<circle cx="49" cy="61" r="13" fill="#07172f"/><circle cx="79" cy="61" r="13" fill="#07172f"/><circle cx="49" cy="61" r="7" fill="#ffbf3f"/><circle cx="79" cy="61" r="7" fill="#ffbf3f"/><circle cx="46" cy="57" r="3" fill="#fff"/><circle cx="76" cy="57" r="3" fill="#fff"/>
+<path d="M64 69q-13 0-13 10 0 7 8 9v8h10v-8q9-4 9-12 0-7-14-7Zm0 32v3" fill="none" stroke="url(#gold)" stroke-width="8" stroke-linecap="round"/>
+<path d="M15 102q25-9 49 5 24-14 49-5l-7 14q-23-8-42 6-19-14-42-6Z" fill="#0c2b50" stroke="#ffc65b" stroke-width="4"/><path d="M64 107v19" stroke="#ffc65b" stroke-width="3"/><path d="M21 110q20-4 38 5m48-5q-20-4-38 5" fill="none" stroke="#69eaff" stroke-width="2"/>
+</svg>
