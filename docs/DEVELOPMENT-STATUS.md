@@ -49,11 +49,11 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 
 ## Validation status
 
-- Latest successful validation: [MindQuest Validation #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667), head `f03525a1a2f826d58bce27e38ed461fc33413b22`. Both Android debug assembly and browser/content/static jobs passed.
+- Latest successful validation: [MindQuest Validation #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918), head `d61f8ede6cbe4b9864d0f6eae79825142240c143`. Both Android debug assembly and browser/content/static jobs passed.
 - [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2) merged as `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
 - [PR #3](https://github.com/ErTapanJatakia/MindQuest/pull/3) merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`; [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) passed both jobs.
 - [PR #4](https://github.com/ErTapanJatakia/MindQuest/pull/4) merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`; [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) passed both jobs.
-- The accepted browser regression covers 5/10/15-question rounds, all 36 region/category/difficulty filter combinations, keyboard focus continuity, eight portrait/landscape viewport profiles across Home/Settings/Quiz/Results, all ten theme text and focus-indicator contrast pairs, preference and best-score scope persistence, malformed-storage recovery, storage-denial fallback, ARIA ID-reference integrity and no external runtime requests.
+- The accepted browser regression covers 5/10/15-question rounds with exact difficulty quotas, all 36 region/category/difficulty filter combinations, stable question IDs and 50-question cycle exhaustion in all three regions, keyboard focus continuity, eight portrait/landscape viewport profiles across Home/Settings/Quiz/Results, all ten theme text and focus-indicator contrast pairs, preference and best-score scope persistence, malformed-storage recovery, storage-denial fallback, ARIA ID-reference integrity and no external runtime requests.
 - Launch splash behavior is verified as a keyboard-modal experience: the application is inert and hidden from assistive technology while open, Escape dismisses the dialog, and focus returns to Home.
 - Searchable selectors now synchronize exact matches immediately and expose invalid input state; regression checks use canonical option values rather than localized hardcoded labels.
 - Restrictive CSP is included in the bundled web entry point and browser checks confirm external connections are blocked.
@@ -1104,3 +1104,21 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Remaining original baseline: **765 minutes**.
 - Actual engineering hours remain untracked.
 - Physical-device testing, TalkBack, offline runtime verification, native-speaker review, production signing and RuStore submission remain separate gates.
+
+
+## Gameplay progression accepted — PR #5
+
+- [PR #5](https://github.com/ErTapanJatakia/MindQuest/pull/5) merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
+- [Workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918) passed both Android debug APK assembly and browser/content/static regression jobs.
+- Stable question IDs are exposed on the active question heading for deterministic regression diagnostics.
+- Exact difficulty quotas passed for 5/10/15-question rounds in India, Russia and the United States: 5 = 2 easy / 2 medium / 1 hard; 10 = 3 / 4 / 3; 15 = 5 / 6 / 4.
+- Four consecutive 15-question rounds per region verified full 50-question pool exhaustion without duplicate IDs inside any round.
+- Result-heading focus, polite result announcement, complete answer-review content and theme-picker keyboard focus/Escape restoration passed.
+
+## Updated baseline — accepted work through PR #5
+
+- Earned implementation: **1,745 / 2,400 minutes (72.71%)**.
+- Remaining original baseline: **655 minutes**.
+- Since the previous recorded baseline of 1,545 minutes, accepted PR #3/#4/#5 work adds exactly **200 baseline-equivalent minutes** (20 + 70 + 110).
+- Actual engineering hours remain untracked; weighted baseline allocations are not elapsed labour time.
+- Physical-device testing, TalkBack, manual offline/runtime verification, native-speaker review, production signing and RuStore submission remain separate gates.
