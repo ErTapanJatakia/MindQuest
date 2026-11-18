@@ -1122,3 +1122,13 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - Since the previous recorded baseline of 1,545 minutes, accepted PR #3/#4/#5 work adds exactly **200 baseline-equivalent minutes** (20 + 70 + 110).
 - Actual engineering hours remain untracked; weighted baseline allocations are not elapsed labour time.
 - Physical-device testing, TalkBack, manual offline/runtime verification, native-speaker review, production signing and RuStore submission remain separate gates.
+
+
+## Latest post-merge build and QA handoff — 2026-11-18
+
+- Rechecked repository state: PRs #1–#5 are merged; there are no open pull requests.
+- PR #5 is merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`. The post-merge workflow [#44338675579](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338675579) completed successfully; content/static/browser regression and Android debug APK build both passed.
+- Latest debug artifact: `mindquest-debug-apk`, ID `14443565362`; extracted APK size 909,184 bytes; SHA-256 `65cce0987d06987a01b3e3fcac300566bd52b55df8a4341a78703201d9adcd54`.
+- APK package inspection confirmed the web entry point, gameplay JavaScript, MindQuest SVG logo, Android manifest and launcher foreground resource are present.
+- This build is debug-signed only and has not been physically device-tested. TalkBack, device restart, airplane-mode runtime, manual Android regression, production signing and RuStore preparation remain unaccepted.
+- No baseline credit was added for artifact retrieval or package inspection. The evidence-based baseline remains 1,745 / 2,400 minutes (72.71%); actual engineering time remains untracked.
