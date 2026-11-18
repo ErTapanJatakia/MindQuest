@@ -19,11 +19,22 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Content filters | Every category × difficulty pairing in each of the three playable regions | Rendered question category and difficulty match the selected filters |
 | Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-checked=true`; arrow keys move through the four-option radio group and select the focused answer; focus then moves to Next/See results and the next question heading |
 | Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique |
-| Responsive layout | 320, 360, 390, 768 and 1024 CSS-pixel widths across Home, Settings and Quiz | No document-level horizontal overflow |
-| Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload | Saved values are restored independently |
+| Responsive layout | Eight portrait/landscape viewport profiles across Home, Settings, Quiz and Results | No document-level horizontal overflow |
+| Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload; scoped best-score isolation and malformed-data recovery | Saved values are restored independently and invalid records do not corrupt the app |
 | Offline boundary | Runtime request observation and restrictive Content Security Policy (`connect-src 'none'`, local bundled assets only) | No external network request is made by the application |
+| Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each current region | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
+
+## Latest validated debug build
+
+- Source commit: `4efab1a65c91adc6160e6b15ecda25c7495b129c` (PR #5 merged).
+- Full validation: [workflow #44338675579](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338675579) completed successfully; both content/static/browser regression and Android debug APK build jobs passed.
+- GitHub Actions artifact: `mindquest-debug-apk`, artifact ID `14443565362`, available until 2026-12-02.
+- Extracted APK: 909,184 bytes.
+- APK SHA-256: `65cce0987d06987a01b3e3fcac300566bd52b55df8a4341a78703201d9adcd54`.
+- Package inspection confirmed the bundled HTML entry point, gameplay JavaScript, original MindQuest SVG logo, Android manifest and launcher foreground resource are present.
+- This is a **debug APK**, not a production-signed release or store-ready candidate. The latest APK has not yet been physically device-tested.
 
 ## Manual acceptance still required
 
@@ -52,30 +63,23 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Do not claim WCAG 2.2 AA conformance or display a conformance logo without a valid evaluation.
 - Do not treat a debug APK as a release candidate.
 
-## Current limitations
+## Current limitations and accepted batches
 
 - Spain and Peru are not playable question regions.
-- Spanish question translations are not available.
-- The expanded browser regression suite passed in [workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) and was merged in [PR #2](https://github.com/ErTapanJatakia/MindQuest/pull/2).
-- [PR #3](https://github.com/ErTapanJatakia/MindQuest/pull/3) passed [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) and was merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`.
-- [PR #4](https://github.com/ErTapanJatakia/MindQuest/pull/4) passed [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) and was merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`.
-- Physical-device, TalkBack, offline runtime, APK inspection, signing and RuStore submission remain unverified.
+- Spanish question translations are not available; the question-language selector remains limited to the three fully populated locales.
+- PR #2 passed [workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) and was merged as `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
+- PR #3 passed [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) and was merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`.
+- PR #4 passed [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) and was merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`.
+- PR #5 passed [workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918) and was merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
+- The latest post-merge validation [workflow #44338675579](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338675579) also passed both jobs.
+- Physical-device, TalkBack, manual offline runtime, native-speaker review, signing and RuStore submission remain separate acceptance gates.
 
 
-## Gameplay progression acceptance — PR #5
+## Android build policy — feature-complete gate
 
-- Active pull request: [PR #5 — gameplay progression and results acceptance](https://github.com/ErTapanJatakia/MindQuest/pull/5).
-- Adds stable active-question IDs for deterministic regression diagnostics.
-- Adds exact 5/10/15 difficulty quota assertions, result-heading focus and review completeness checks.
-- Adds four-round 50-question cycle-exhaustion tests for each of the three current regions.
-- Full CI passed in [workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918); PR #5 was merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
-
-
-## Accepted gameplay progression regression — 2026-11-18
-
-- [PR #5](https://github.com/ErTapanJatakia/MindQuest/pull/5) merged as `4efab1a65c91adc6160e6b15ecda25c7495b129c`.
-- [Workflow #44338004918](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338004918) passed both Android debug APK assembly and browser/content/static checks.
-- The active question heading exposes the stable question-bank ID for deterministic regression diagnostics.
-- Exact difficulty quotas passed for 5/10/15-question rounds in all three regions: 5 = 2/2/1, 10 = 3/4/3, 15 = 5/6/4 (easy/medium/hard).
-- Four consecutive 15-question rounds per region cover all 50 unique questions without duplicates inside a round.
-- Results heading focus, polite announcement, complete four-part answer review and theme-selector keyboard focus/Escape restoration passed.
+- Routine feature-development CI must not assemble, package or upload Android APKs.
+- Pull-request and push validation during implementation is limited to content integrity, static/syntax checks, browser regression, accessibility, localization, security and responsive behavior.
+- Android build validation is isolated in `.github/workflows/android-release-validation.yml` and is manually dispatched only after the complete agreed feature scope has been implemented and reviewed.
+- The workflow requires an explicit `feature_scope_complete=true` confirmation; otherwise it skips the Android build.
+- No production signing or RuStore submission is authorized by this gate. Those require separate release approval.
+- Existing debug APK artifacts are historical development builds and must not be treated as evidence that the final feature-complete Android build has passed.
