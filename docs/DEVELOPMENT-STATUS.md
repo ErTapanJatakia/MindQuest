@@ -1069,8 +1069,8 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 ## Current accessibility hardening batch — PR #3
 
 - Open pull request: [Expose answer selection state to assistive technology](https://github.com/ErTapanJatakia/MindQuest/pull/3).
-- Answer options now expose an explicit pressed state: all options begin with `aria-pressed=false`; the chosen option becomes `aria-pressed=true` while all options retain native disabled behavior after selection.
-- Browser regression now checks that exactly one answer is pressed and disabled, the remaining three are unpressed, and visible controls across Home, Settings, Quiz and Results have accessible names. It also checks image alt attributes and unique DOM IDs.
+- Answer options now use a four-option `radiogroup` / `radio` pattern with `aria-checked` state, roving tab focus and arrow-key selection. After a choice, the selected radio remains checked and all options retain native disabled behavior.
+- Browser regression now checks that exactly one answer is checked and disabled, the remaining three are unchecked, arrow-key selection works, and visible controls across Home, Settings, Quiz and Results have accessible names. It also checks image alt attributes and unique DOM IDs.
 - PR #3 validation is pending. No baseline credit is assigned to this in-progress batch.
 - Physical Android, TalkBack and keyboard-only hosted-Web acceptance remain separate manual gates.
 
