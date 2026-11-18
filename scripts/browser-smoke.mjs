@@ -390,8 +390,10 @@ try {
         if (!Number.isInteger(total) || total < 1 || total > 5) {
           throw new Error(`Responsive quiz round length invalid at ${width}x${height}: ${total}`);
         }
-        await page.locator("#answers button.answer-option").first().click();
-        await page.locator("#next-button").click();
+        for (let index = 0; index < total; index += 1) {
+          await page.locator("#answers button.answer-option").first().click();
+          await page.locator("#next-button").click();
+        }
         if (!(await page.locator("#result-view").isVisible())) {
           throw new Error(`Responsive results view did not open at ${width}x${height}`);
         }
@@ -401,8 +403,11 @@ try {
       }
       if (view === "results") {
         await page.locator("#play-button").click();
-        await page.locator("#answers button.answer-option").first().click();
-        await page.locator("#next-button").click();
+        const total = Number((await page.locator("#progress-label").textContent()).split("/")[1].trim());
+        for (let index = 0; index < total; index += 1) {
+          await page.locator("#answers button.answer-option").first().click();
+          await page.locator("#next-button").click();
+        }
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
         if (overflow) throw new Error(`Horizontal overflow detected at ${width}x${height} (results)`);
         await page.locator("#home-button").click();
