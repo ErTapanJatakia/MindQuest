@@ -332,7 +332,8 @@ try {
             ).map((question) => ({ id: question.id, difficulty: question.difficulty }))
           };
         }, region);
-        throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: displayed=${JSON.stringify(difficultyCounts)}; selected=${JSON.stringify(selectedDiagnostics)}; eligiblePool=${JSON.stringify(poolDiagnostics)}`);
+        const runtimeAllocation = await quotaPage.locator("#question-title").getAttribute("data-round-diagnostics");
+        throw new Error(`Difficulty mix mismatch for ${region}/${roundLength}: displayed=${JSON.stringify(difficultyCounts)}; selected=${JSON.stringify(selectedDiagnostics)}; runtimeAllocation=${runtimeAllocation}; eligiblePool=${JSON.stringify(poolDiagnostics)}`);
       }
       if (await quotaPage.evaluate(() => document.activeElement?.id) !== "result-title") {
         throw new Error(`Results heading did not receive focus for ${region}/${roundLength}`);
