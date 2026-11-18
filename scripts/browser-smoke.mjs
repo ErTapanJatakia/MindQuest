@@ -317,7 +317,7 @@ try {
       await page.locator("#answers button[role=radio]").count() !== 4) {
     throw new Error("Single-choice answers were not exposed as a four-option vertical radio group");
   }
-  if (await page.locator("#answers button[role=radio][tabindex=0]").count() !== 1 ||
+  if (await page.locator("#answers button[role=radio][tabindex="0"]").count() !== 1 ||
       await page.locator("#answers button[role=radio][tabindex='-1']").count() !== 3) {
     throw new Error("Radio group did not initialize a single roving tab stop");
   }
