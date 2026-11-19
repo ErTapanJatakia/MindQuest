@@ -129,5 +129,8 @@ jobs:
       - name: Verify persistence, interrupted-round recovery and site-data reset
         run: npm run test:lifecycle
 
+      - name: Verify keyboard focus order and inactive-view isolation
+        run: npm run test:focus-order
+
       - name: Audit Android manifest security defaults
         run: npm run audit:android-manifest
