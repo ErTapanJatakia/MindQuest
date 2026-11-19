@@ -221,7 +221,7 @@ for (const [id, expectedAnswer] of Object.entries(expected)) {
 
 const expectedIds = new Set(Object.keys(expected));
 for (const locale of locales) {
-  const localizedIds = questions.filter((question) => Object.hasOwn(question.translations || {}, locale)).map((question) => question.id);
+  const localizedIds = [...questions.values()].filter((question) => Object.hasOwn(question.translations || {}, locale)).map((question) => question.id);
   if (localizedIds.length !== expectedIds.size) {
     errors.push(`${locale}: expected exactly ${expectedIds.size} Spanish records, found ${localizedIds.length}`);
   }
