@@ -8,6 +8,8 @@ This plan separates repeatable automated browser checks from manual acceptance a
 
 ## Automated browser regression
 
+The static offline/security boundary audit (`npm run audit:security`) independently verifies the runtime CSP, local-only script and stylesheet references, absence of inline script handlers and dynamic code evaluation, absence of network APIs in app runtime modules, and exclusion of staged regional content from the live HTML entry point. This is a targeted source/configuration audit, not a penetration test or a complete security certification.
+
 The GitHub Actions browser suite covers the following automated acceptance areas:
 
 | Area | Automated coverage | Acceptance |
@@ -21,7 +23,8 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique |
 | Responsive layout | Eight portrait/landscape viewport profiles across Home, Settings, Quiz and Results | No document-level horizontal overflow |
 | Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload; scoped best-score isolation and malformed-data recovery | Saved values are restored independently and invalid records do not corrupt the app |
-| Offline boundary | Runtime request observation and restrictive Content Security Policy (`connect-src 'none'`, local bundled assets only) | No external network request is made by the application |
+| Offline boundary | Runtime request observation, restrictive Content Security Policy, static runtime API scan and local bundled assets only | No external network request is made by the application |
+| Runtime security boundary | CSP directives, no remote scripts/styles, no inline event handlers, no dynamic code evaluation, no network APIs in app runtime, staged content excluded | Security boundary regressions fail CI before merge |
 | Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each current region | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
