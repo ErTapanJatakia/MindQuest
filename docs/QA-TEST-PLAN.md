@@ -1,6 +1,6 @@
 # MindQuest QA Test Plan
 
-Last updated: 2026-11-18
+Last updated: 2026-11-19
 
 ## Purpose
 
@@ -16,16 +16,19 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 |---|---|---|
 | Launch experience | Dialog semantics, inert/hidden application shell, keyboard focus containment, Escape dismissal and focus hand-off | Background is unavailable while launch dialog is open; focus returns to Home after dismissal |
 | Themes | All ten themes and foreground/muted text contrast against both app and panel surfaces | Text contrast is at least 4.5:1 for tested text/surface pairs |
-| Independent selectors | Five interface locales × three regions × three available question locales | All 45 supported combinations remain independently selectable |
+| Independent selectors | Five interface locales × five regions × five question locales | All 125 supported combinations remain independently selectable |
 | Round modes | 5-, 10- and 15-question rounds across India, Russia and the United States | Selected round length is honoured when the filtered pool is large enough |
 | Content filters | Every category × difficulty pairing in each of the three playable regions | Rendered question category and difficulty match the selected filters |
 | Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-checked=true`; arrow keys move through the four-option radio group and select the focused answer; focus then moves to Next/See results and the next question heading |
-| Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique |
-| Responsive layout | Eight portrait/landscape viewport profiles across Home, Settings, Quiz and Results | No document-level horizontal overflow |
-| Persistence | Interface locale, region, question locale, round length, theme and accessibility preferences across reload; scoped best-score isolation and malformed-data recovery | Saved values are restored independently and invalid records do not corrupt the app |
+| Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique; inactive views expose no tab-reachable controls |
+| Responsive layout | Twelve portrait/landscape viewport profiles across Home, Settings, Quiz and Results | No document-level horizontal overflow |
+| Persistence and score ledger | 125 locale/region/question-language combinations; settings and accessibility preferences; strict score-record schema, malformed shapes/ranges, valid-record recovery, legacy ten-question migration and migration-write failure | Saved values restore independently; invalid scores are ignored; a readable legacy score survives a failed migration write |
 | Offline boundary | Runtime request observation, restrictive Content Security Policy, static runtime API scan and local bundled assets only | No external network request is made by the application |
 | Runtime security boundary | CSP directives, no remote scripts/styles, no inline event handlers, no dynamic code evaluation, no network APIs in app runtime, staged content excluded | Security boundary regressions fail CI before merge |
 | Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each current region | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
+| View focus and inactive-view isolation | Home, Settings, Help, Privacy, Accessibility, Quiz and Results navigation, heading focus, completed-round transitions and replay | Exactly one view is active; inactive views expose no visible tab-reachable controls; destination context receives focus |
+| Android WebView source boundary | Static checks for local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Source/configuration regressions fail CI; this is not Kotlin compilation, APK inspection or device validation |
+| Android WebView source boundary | `npm run audit:android-webview` | Static local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Kotlin compilation, APK inspection or device validation |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
 
@@ -127,10 +130,3 @@ Use [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md) to rec
 ## Keyboard focus order and inactive-view isolation
 
 The `test:focus-order` browser gate verifies that exactly one application view is active during navigation through Home, Settings, Help, Privacy, Accessibility, Quiz and Results. It checks that inactive views are hidden and expose no visible tab-reachable controls, that each destination view has a programmatically focusable heading, and that focus is moved to that heading after navigation. It also completes a configured round, checks focus restoration between questions, validates Results and answer review, and verifies replay navigation. This is DOM/browser regression coverage; it does not replace keyboard-only testing on target devices, screen-reader/TalkBack testing, switch-access testing or a WCAG conformance evaluation.
-
-
-## Android WebView and Activity lifecycle source audit
-
-The `audit:android-webview` CI gate statically verifies the native source/configuration boundary: local-only WebView entry point, restrictive WebView settings, no JavaScript bridge, API 23 and API 24+ navigation callback coverage, subframe rejection on modern APIs, pause/resume timer pairing, WebView destruction, API 33+ back callback registration/unregistration, legacy back fallback, API 35+ system-bar/cutout/IME insets, application ID, SDK levels, pinned Android/Kotlin plugins, Gradle wrapper distribution and canonical bundled asset path.
-
-This gate does not execute Kotlin compilation or Gradle, assemble or inspect an APK, exercise Android lifecycle callbacks, or validate real gesture navigation, IME, cutouts, process death, OEM behaviour or physical devices. Those checks remain in the final manually gated Android validation phase. Android source changes trigger the regular web/content CI workflow; no Android build job is added to feature-development CI.
