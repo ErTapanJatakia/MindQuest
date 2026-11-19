@@ -1017,7 +1017,7 @@ The 120-minute theme/device work and 120-minute accessibility work are separate 
 | Gameplay and question cycles | Automated acceptance complete | Four 15-question rounds per region; no within-round duplicate IDs |
 | Runtime security / offline | Automated gates merged | Targeted source/configuration checks; manual device verification remains |
 | Accessibility | Automated browser gates merged | TalkBack, physical keyboard/switch and device checks remain |
-| Storage / lifecycle | PR #36 validation in progress at this snapshot | Merge only after all required checks pass |
+| Storage / lifecycle | PR #36 merged | All 25 substantive CI stages passed |
 | Theme and device polish | In progress | 120-minute planning allocation; physical matrix remains |
 | Legal/editorial documentation | In progress | Release readiness and manual QA protocol added in documentation batch |
 | Android final validation | Not started | Only after full feature scope completion; manually triggered |
@@ -1027,7 +1027,7 @@ The 120-minute theme/device work and 120-minute accessibility work are separate 
 
 - PR #34 enabled all five regions and five question locales; workflow #44465413062 passed 21 substantive stages.
 - PR #35 added runtime-bank integrity, offline network isolation and question-cycle regression; corrected CI #44544484158 passed 24 substantive checks. Post-merge workflow #44545667785 also passed.
-- PR #36 adds browser lifecycle/storage recovery and stronger Android manifest checks. Corrected run #44547308686 is in progress at this snapshot; do not infer a pass or merge until the run concludes successfully.
+- PR #36 merged as `5df0e37f9dca5b850a848dfaf4982537eeab228f`; corrected workflow #44547308686 passed all 25 substantive stages, including lifecycle recovery and Android manifest checks.
 
 ### Release constraints
 
