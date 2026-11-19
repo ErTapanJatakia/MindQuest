@@ -29,12 +29,12 @@ Use `{REGION}-{CATEGORY}-{NNN}`, where category codes are GEO, HIS, SCI and CUL.
 
 ## Current baseline and gap
 
-The canonical bank remains unchanged at 150 IDs (50 each for IN, RU and US). Its five-locale coverage is complete: 750 localized records across en-IN, en-US, ru-RU, es-ES and es-PE. Spain and Peru now have 40 staged original IDs with five locale records each, adding 200 staged records.
+The canonical bank remains unchanged at 150 IDs (50 each for IN, RU and US). Its five-locale coverage is complete: 750 localized records across en-IN, en-US, ru-RU, es-ES and es-PE. Spain and Peru are targeted to complete their final staged batch of 10 original IDs each, with five locale records per ID, adding 100 staged records.
 
-- Current structural total: **190 / 250 stable IDs and 950 / 1,250 localized records**.
-- Spain: 20 / 50 staged IDs; 100 / 250 localized records.
-- Peru: 20 / 50 staged IDs; 100 / 250 localized records.
-- Remaining: **60 new IDs and 300 localized records**.
+- Current structural total: **230 / 250 stable IDs and 1,150 / 1,250 localized records**.
+- Spain: 40 / 50 staged IDs; 200 / 250 localized records.
+- Peru: 40 / 50 staged IDs; 200 / 250 localized records.
+- Remaining: **20 new IDs and 100 localized records**.
 - Spanish question selectors and the Spain/Peru region selectors remain hidden; staged records are not loaded into gameplay.
 
 Run `npm run audit:expansion` to see the live structural gap. The audit deliberately reports incomplete target coverage without failing routine CI; it fails only on malformed records, unsupported regions/locales or duplicate IDs. The existing strict question-bank validator remains the release gate for the currently enabled 150-ID bank.

@@ -15,7 +15,7 @@ for (const filename of translationFiles) {
   vm.runInNewContext(overlay, sandbox, { timeout: 1000 });
 }
 const stagedFiles = dataFiles
-  .filter((name) => /^staged-region-questions-batch-\d+\.js$/u.test(name))
+  .filter((name) => /^staged-region-questions-batch-\d+(?:-\d+)?\.js$/u.test(name))
   .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
 for (const filename of stagedFiles) {
   const staged = await readFile(new URL(filename, dataDirectory), "utf8");
