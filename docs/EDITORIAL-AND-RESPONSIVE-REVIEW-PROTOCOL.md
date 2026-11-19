@@ -53,3 +53,14 @@ Before release, record separate results for keyboard-only operation, visible foc
 ## Release boundary
 
 All Spain/Peru questions remain staged and excluded from runtime selectors and gameplay. No Android build, APK, signing, store submission, production deployment, or paid service is part of these checks.
+
+
+## Theme and accessibility responsive matrix
+
+The theme/accessibility regression cycles through all ten shipped themes (Obsidian, Midnight, Aurora, Deep Ocean, Forest, Ember, Royal, Rose Quartz, Desert Sand and Paper) at four Chromium viewport profiles: 320 × 720, 390 × 844, 768 × 1024 and 1366 × 768. It checks theme application, non-empty palette tokens, persisted theme selection, Home header geometry, accessibility-mode application, Quiz content bounds and preference persistence after reload. This is automated browser regression, not a colour-contrast measurement, native-device certification or WCAG conformance assessment.
+
+Large text, reduced motion and high contrast are enabled together during the responsive Quiz check. The test does not assert that every possible combination of accessibility settings and all ten themes has passed independent human review.
+
+## Best-score scope integrity
+
+The score-scope regression seeds independent records and checks that best scores remain isolated by question region, category, difficulty and round length. It also verifies that question language remains independent of the score key and that the combined selected preferences survive reload. The automated test checks the current browser persistence implementation; it does not validate recovery from physical storage failure or establish native Android data migration.
