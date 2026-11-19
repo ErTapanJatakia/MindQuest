@@ -41,7 +41,7 @@ try {
         .filter(element => visible(element) && !element.classList.contains("search-backed-select"))
         .map(element => {
           const labelledby = element.getAttribute("aria-labelledby");
-          const labelledText = labelledby ? labelledby.split(/\\s+/).map(id => document.getElementById(id)?.textContent || "").join(" ").trim() : "";
+          const labelledText = labelledby ? labelledby.split(/\s+/).map(id => document.getElementById(id)?.textContent || "").join(" ").trim() : "";
           const labelText = element.labels ? [...element.labels].map(label => label.textContent || "").join(" ").trim() : "";
           const name = element.getAttribute("aria-label") || labelledText || labelText ||
             element.innerText?.trim() || element.value?.trim() || element.getAttribute("title") || "";
@@ -49,14 +49,14 @@ try {
             tag:element.tagName.toLowerCase(),
             role:element.getAttribute("role") || "",
             id:element.id || "",
-            name:name.replace(/\\s+/g," ").trim(),
+            name:name.replace(/\s+/g," ").trim(),
             checked:element.getAttribute("aria-checked"),
             disabled:element.disabled === true
           };
         });
       const brokenRefs = [...document.querySelectorAll("[aria-labelledby],[aria-describedby]")]
         .flatMap(element => ["aria-labelledby","aria-describedby"].flatMap(attribute =>
-          (element.getAttribute(attribute) || "").split(/\\s+/).filter(Boolean)
+          (element.getAttribute(attribute) || "").split(/\s+/).filter(Boolean)
             .filter(id => !document.getElementById(id)).map(id => ({element:element.id || element.tagName,attribute,id}))));
       const duplicateIds = [...document.querySelectorAll("[id]")].map(element => element.id)
         .filter((id,index,all) => all.indexOf(id)!==index);
@@ -100,7 +100,7 @@ try {
   await page.locator("#result-view.active").waitFor({state:"visible"});
   await auditView("Results and answer review");
 
-  if (failures.length) throw new Error(failures.join("\\n"));
+  if (failures.length) throw new Error(failures.join("\n"));
   console.log("Accessible-name regression passed across Home, Settings, Help, Privacy, Accessibility, Quiz and Results; no unnamed visible controls, broken ARIA ID references or duplicate IDs.");
 } finally {
   await browser?.close();
