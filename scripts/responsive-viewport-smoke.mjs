@@ -30,7 +30,12 @@ try {
     { width:414, height:896, name:"large phone" },
     { width:768, height:1024, name:"tablet portrait" },
     { width:1024, height:768, name:"tablet landscape" },
-    { width:1366, height:768, name:"desktop" }
+    { width:1366, height:768, name:"desktop" },
+    { width:720, height:320, name:"compact phone landscape" },
+    { width:800, height:360, name:"small phone landscape" },
+    { width:844, height:390, name:"modern phone landscape" },
+    { width:896, height:414, name:"large phone landscape" },
+    { width:1280, height:720, name:"wide desktop" }
   ];
   for (const device of cases) {
     const page = await browser.newPage({ viewport: { width:device.width, height:device.height } });
@@ -74,8 +79,49 @@ try {
     if (quiz.document > quiz.viewport || quiz.question.right > quiz.viewport + 1 || quiz.answers.right > quiz.viewport + 1) {
       throw new Error(device.name + ": quiz content overflows viewport " + JSON.stringify(quiz));
     }
+
+    // Complete a full round so Results and the per-question review are included in the same viewport profile.
+    const roundLength = Number(await page.locator("#round-length").inputValue().catch(() => "5"));
+    const expectedQuestions = Number.isFinite(roundLength) && roundLength > 0 ? roundLength : 5;
+    for (let index = 0; index < expectedQuestions; index += 1) {
+      const answers = page.locator("#answers button[role=radio]");
+      if (!(await answers.count())) throw new Error(device.name + ": answer controls missing at question " + (index + 1));
+      await answers.first().click();
+      const next = page.locator("#next-button");
+      await next.waitFor({ state:"visible" });
+      if (await next.isDisabled()) throw new Error(device.name + ": Next action stayed disabled after an answer");
+      await next.click();
+    }
+    await page.locator("#result-view.active").waitFor({ state:"visible" });
+    const results = await page.evaluate(() => {
+      const rect = selector => {
+        const node = document.querySelector(selector);
+        if (!node) return null;
+        const value = node.getBoundingClientRect();
+        return { left:value.left, right:value.right, top:value.top, bottom:value.bottom, width:value.width, height:value.height };
+      };
+      return {
+        viewport:document.documentElement.clientWidth,
+        document:document.documentElement.scrollWidth,
+        body:document.body.scrollWidth,
+        title:rect("#result-title"),
+        score:rect(".score-ring"),
+        review:rect("#answer-review-list"),
+        actions:rect(".result-actions"),
+        cards:[...document.querySelectorAll(".review-card")].map(node => {
+          const value=node.getBoundingClientRect();
+          return { left:value.left, right:value.right, width:value.width };
+        })
+      };
+    });
+    if (results.document > results.viewport || results.body > results.viewport ||
+        [results.title,results.score,results.review,results.actions].some(rect => !rect || rect.left < -1 || rect.right > results.viewport + 1) ||
+        results.cards.length !== expectedQuestions ||
+        results.cards.some(rect => rect.left < -1 || rect.right > results.viewport + 1)) {
+      throw new Error(device.name + ": Results/review layout failed " + JSON.stringify(results));
+    }
     if (errors.length) throw new Error(device.name + ": browser errors: " + errors.join("; "));
-    console.log("PASS " + device.name + " — " + device.width + "×" + device.height);
+    console.log("PASS " + device.name + " — " + device.width + "×" + device.height + "; Home, Settings, Quiz and Results
     await page.close();
   }
   console.log("Responsive viewport regression passed for " + cases.length + " device profiles.");
