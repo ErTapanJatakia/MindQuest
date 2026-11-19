@@ -1,5 +1,3 @@
-| PE-CUL-006 | Peruvian cajón is a box-shaped percussion instrument associated with Afro-Peruvian music | [Peru Ministry of Culture — Cajón Peruano](https://www.gob.pe/institucion/cultura/noticias/181020-conozca-mas-del-cajon-peruano-y-aprenda-a-tocarlo-con-nuestro-programa-virtual) |
-
 ## Scope and controls
 
 - 20 new stable IDs: 10 Spain and 10 Peru.
