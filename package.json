@@ -26,7 +26,8 @@
     "test:question-cycle": "node scripts/question-cycle-regression-smoke.mjs",
     "test:lifecycle": "node scripts/application-lifecycle-smoke.mjs",
     "test:accessible-names": "node scripts/accessible-name-regression-smoke.mjs",
-    "test:focus-order": "node scripts/focus-order-hidden-view-smoke.mjs"
+    "test:focus-order": "node scripts/focus-order-hidden-view-smoke.mjs",
+    "audit:feature-ci-boundary": "node scripts/audit-feature-ci-boundary.mjs"
   },
   "engines": {
     "node": ">=20"
