@@ -86,3 +86,39 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - The workflow requires an explicit `feature_scope_complete=true` confirmation; otherwise it skips the Android build.
 - No production signing or RuStore submission is authorized by this gate. Those require separate release approval.
 - Existing debug APK artifacts are historical development builds and must not be treated as evidence that the final feature-complete Android build has passed.
+
+
+---
+
+## Current five-region release validation addendum — 2026-11-19
+
+This addendum supersedes earlier matrix sizes and regional availability statements in the historical plan above.
+
+### Current automated coverage
+
+| Area | Current coverage |
+|---|---|
+| Independent locale settings | 5 interface locales × 5 regions × 5 question locales = 125 combinations |
+| Runtime content | 250 unique IDs; 50 per region; 1,250 localized records |
+| Regional category distribution | Geography 13, History 12, Science 12, Culture 13 per region |
+| Regional difficulty distribution | Easy 15, Medium 20, Hard 15 per region |
+| Themes and responsive coverage | Ten themes across the defined responsive viewport matrix |
+| Gameplay cycle | Four 15-question rounds per region; all 50 IDs covered without within-round duplicates |
+| Offline browser behaviour | Cross-origin requests are blocked/recorded during tested startup, settings and regional gameplay |
+| Storage and lifecycle | Malformed/blocked/quota-limited storage, reload recovery, incomplete-round discard and site-data reset |
+| Android manifest | Backup/cleartext protections, launcher/component structure and permission policy |
+
+The current workflow also runs the targeted runtime-security audit, staged-bank and editorial-evidence audits, JavaScript syntax checks, browser gameplay, score-scope, keyboard/accessibility and theme regressions.
+
+### Interpretation limits
+
+- Content validators check structure, uniqueness, locale coverage and quotas. They do not prove every claim or explanation is factually correct.
+- Editorial evidence audit checks that claim-level evidence records exist and are well-formed. It does not independently verify the source's authority or truth.
+- Browser offline isolation does not prove device-level radio isolation or absence of all OS traffic.
+- Lifecycle browser checks do not prove native Android process death, WebView storage semantics or OS backup/restore behaviour.
+- Static manifest checks do not replace runtime Android security testing.
+- Automated accessibility checks do not establish TalkBack usability or WCAG 2.2 AA conformance.
+
+### Manual acceptance remains mandatory
+
+Use [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md) to record physical device models, Android versions, TalkBack results, orientation/display scaling, offline behaviour, persistence/recovery, exact candidate package hashes and release evidence. Do not mark these checks complete until performed on actual devices.
