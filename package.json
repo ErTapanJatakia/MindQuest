@@ -13,7 +13,9 @@
     "audit:security": "node scripts/audit-runtime-security.mjs",
     "audit:editorial": "node scripts/audit-editorial-evidence.mjs",
     "test:responsive": "node scripts/responsive-viewport-smoke.mjs",
-    "test:locale-persistence": "node scripts/locale-persistence-smoke.mjs"
+    "test:locale-persistence": "node scripts/locale-persistence-smoke.mjs",
+    "test:gameplay-integrity": "node scripts/gameplay-integrity-smoke.mjs",
+    "test:accessibility": "node scripts/accessibility-regression-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
