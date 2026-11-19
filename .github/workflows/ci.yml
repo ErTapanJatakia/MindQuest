@@ -78,7 +78,8 @@ jobs:
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
-          node --check scripts/question-cycle-regression-smoke.mjs\n          node --check scripts/application-lifecycle-smoke.mjs
+          node --check scripts/question-cycle-regression-smoke.mjs
+          node --check scripts/application-lifecycle-smoke.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
@@ -123,6 +124,9 @@ jobs:
 
       - name: Verify question exhaustion, cycle restart and replay across all regions
         run: npm run test:question-cycle
+
+      - name: Verify persistence, interrupted-round recovery and site-data reset
+        run: npm run test:lifecycle
 
       - name: Audit Android manifest security defaults
         run: npm run audit:android-manifest
