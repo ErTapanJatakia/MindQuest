@@ -1,4 +1,4 @@
-| PE-CUL-006 | Peruvian cajón is a box-shaped percussion instrument associated with Afro-Peruvian music | [Peru Ministry of Culture — research register pending direct heritage page] |
+| PE-CUL-006 | Peruvian cajón is a box-shaped percussion instrument associated with Afro-Peruvian music | [Peru Ministry of Culture — Cajón Peruano](https://www.gob.pe/institucion/cultura/noticias/181020-conozca-mas-del-cajon-peruano-y-aprenda-a-tocarlo-con-nuestro-programa-virtual) |
 
 ## Scope and controls
 
@@ -23,9 +23,9 @@
 | ES-CUL-006 | Routes of Santiago de Compostela are pilgrimage routes | [UNESCO — Routes of Santiago de Compostela](https://whc.unesco.org/en/list/669/) |
 | ES-CUL-007 | Pablo Picasso was born in Málaga | [Museo Picasso Málaga](https://www.museopicassomalaga.org/) |
 | PE-GEO-007 | Major Amazon headwaters rise in the Peruvian Andes | [Peruvian National Water Authority](https://www.gob.pe/ana) |
-| PE-GEO-008 | Huascarán is Peru's highest peak at 6,768 m | [UNESCO — Huascarán National Park](https://whc.unesco.org/en/list/333/) |
+| PE-GEO-008 | Lake Junín is also known as Chinchaycocha | [SERNANP — Junín National Reserve](https://www.gob.pe/institucion/sernanp/informes-publicaciones/1718889-reserva-nacional-de-junin) |
 | PE-HIS-006 | San Martín proclaimed Peru's independence in 1821 | [Peru Travel — History](https://www.peru.travel/yourperfectperu/about-peru/History) |
-| PE-HIS-007 | Caral-Supe is an exceptionally early centre of civilisation in the Americas | [UNESCO — Sacred City of Caral-Supe](https://whc.unesco.org/en/list/1269/) |
+| PE-HIS-007 | Wari culture's capital city was at Huari in Ayacucho | [MINCETUR — Wari Archaeological Complex](https://consultasenlinea.mincetur.gob.pe/fichaInventario/index.aspx?cod_Ficha=1125) |
 | PE-HIS-008 | Moche culture flourished on Peru's northern coast | [Peru Ministry of Culture](https://www.gob.pe/cultura) |
 | PE-SCI-006 | INAIGEM monitors snow and glacier conditions in Huaytapallana, Junín | [INAIGEM — Huaytapallana monitoring](https://www.gob.pe/institucion/inaigem/noticias/932534-inaigem-realiza-investigacion-sobre-nivel-de-nieve-en-la-cordillera-huaytapallana-en-junin) |
 | PE-SCI-007 | Coastal upwelling supplies cold, nutrient-rich water to Peru's marine ecosystem | [Convention on Biological Diversity — Humboldt Current](https://www.cbd.int/decision/cop/default.shtml?id=13385) |
