@@ -68,7 +68,7 @@
     "correct": "b",
     "translations": {
       "en-IN": {
-        "question": "Which sea lies along much of Spain's northern coast?",
+        "question": "What is the name of the sea bordering Spain's northern shoreline?",
         "options": {
           "a": "Mediterranean Sea",
           "b": "Cantabrian Sea",
@@ -78,7 +78,7 @@
         "explanation": "The Cantabrian Sea borders Spain's northern coastline, adjoining the Bay of Biscay."
       },
       "en-US": {
-        "question": "Which sea lies along much of Spain's northern coast?",
+        "question": "What is the name of the sea bordering Spain's northern shoreline?",
         "options": {
           "a": "Mediterranean Sea",
           "b": "Cantabrian Sea",
@@ -88,7 +88,7 @@
         "explanation": "The Cantabrian Sea borders Spain's northern coastline, adjoining the Bay of Biscay."
       },
       "ru-RU": {
-        "question": "Какое море омывает значительную часть северного побережья Испании?",
+        "question": "Как называется море у северного побережья Испании?",
         "options": {
           "a": "Средиземное море",
           "b": "Кантабрийское море",
@@ -98,7 +98,7 @@
         "explanation": "Кантабрийское море омывает северное побережье Испании и является частью Бискайского залива."
       },
       "es-ES": {
-        "question": "¿Qué mar baña gran parte de la costa norte de España?",
+        "question": "¿Qué mar se extiende frente al litoral septentrional de España?",
         "options": {
           "a": "Mar Mediterráneo",
           "b": "Mar Cantábrico",
@@ -108,7 +108,7 @@
         "explanation": "El mar Cantábrico baña la costa norte española y forma parte del golfo de Vizcaya."
       },
       "es-PE": {
-        "question": "¿Qué mar baña gran parte de la costa norte de España?",
+        "question": "¿Qué mar se encuentra frente a la costa norte de España?",
         "options": {
           "a": "Mar Mediterráneo",
           "b": "Mar Cantábrico",
@@ -595,7 +595,7 @@
     "id": "PE-GEO-012",
     "region": "PE",
     "category": "Geography",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "correct": "c",
     "translations": {
       "en-IN": {
