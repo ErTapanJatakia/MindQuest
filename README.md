@@ -89,6 +89,9 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:runtime-bank`
 - `npm run test:offline-isolation`
 - `npm run test:question-cycle`
+- `npm run test:lifecycle`
+- `npm run test:accessible-names`
+- `npm run test:focus-order`
 
 Never delete or weaken a test to obtain a passing result. After three consecutive failures with the same strategy, change the approach rather than repeating it.
 

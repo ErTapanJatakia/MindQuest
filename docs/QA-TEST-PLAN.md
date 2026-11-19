@@ -122,3 +122,8 @@ The current workflow also runs the targeted runtime-security audit, staged-bank 
 ### Manual acceptance remains mandatory
 
 Use [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md) to record physical device models, Android versions, TalkBack results, orientation/display scaling, offline behaviour, persistence/recovery, exact candidate package hashes and release evidence. Do not mark these checks complete until performed on actual devices.
+
+
+## Keyboard focus order and inactive-view isolation
+
+The `test:focus-order` browser gate verifies that exactly one application view is active during navigation through Home, Settings, Help, Privacy, Accessibility, Quiz and Results. It checks that inactive views are hidden and expose no visible tab-reachable controls, that each destination view has a programmatically focusable heading, and that focus is moved to that heading after navigation. It also completes a configured round, checks focus restoration between questions, validates Results and answer review, and verifies replay navigation. This is DOM/browser regression coverage; it does not replace keyboard-only testing on target devices, screen-reader/TalkBack testing, switch-access testing or a WCAG conformance evaluation.
