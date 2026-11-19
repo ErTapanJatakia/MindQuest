@@ -17,7 +17,9 @@
     "test:gameplay-integrity": "node scripts/gameplay-integrity-smoke.mjs",
     "test:accessibility": "node scripts/accessibility-regression-smoke.mjs",
     "test:storage-resilience": "node scripts/storage-resilience-smoke.mjs",
-    "audit:android-manifest": "node scripts/audit-android-manifest.mjs"
+    "audit:android-manifest": "node scripts/audit-android-manifest.mjs",
+    "test:theme-accessibility": "node scripts/theme-accessibility-matrix-smoke.mjs",
+    "test:score-scope": "node scripts/score-scope-regression-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
