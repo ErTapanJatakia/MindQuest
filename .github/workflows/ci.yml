@@ -143,7 +143,7 @@ jobs:
       - name: Audit feature-development Android build boundary
         run: npm run audit:feature-ci-boundary
 
-      - name: Audit current project documentation consistency
+      - name: Audit current project documentation consistency and command catalogue
         run: npm run audit:project-docs
 
       - name: Audit Android WebView navigation and lifecycle source boundaries
