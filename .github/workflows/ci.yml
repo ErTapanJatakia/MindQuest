@@ -78,7 +78,7 @@ jobs:
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
-          node --check scripts/question-cycle-regression-smoke.mjs
+          node --check scripts/question-cycle-regression-smoke.mjs\n          node --check scripts/application-lifecycle-smoke.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
