@@ -34,8 +34,8 @@ for (const [path, marker] of requiredEvidence) {
 if (!readme.includes("250 stable question IDs") || !readme.includes("1,250 localized records")) {
   failures.push("README product baseline must state the current 250-ID / 1,250-record question bank");
 }
-if (!readme.includes("feature_scope_complete=true")) {
-  failures.push("README release policy must retain the explicit final Android validation gate");
+if (!readme.includes("manually triggered workflow") || !readme.includes("only after the agreed feature scope is complete")) {
+  failures.push("README release policy must retain the manual, feature-complete Android validation gate");
 }
 
 if (failures.length) {
