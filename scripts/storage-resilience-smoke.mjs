@@ -111,7 +111,71 @@ try {
   if (await scopePage.locator("#best-score").textContent() !== "2 / 5 · 40%") throw new Error("Region-specific best score isolation failed");
   await scopeContext.close();
 
-  console.log("Storage resilience regression passed: malformed settings fallback, blocked reads, quota/write failures, invalid score rejection, legacy score migration and region/round-length score isolation.");
+  // Strict score-record schema must reject malformed shapes and impossible values without crashing Home.
+  const corruptionContext = await browser.newContext();
+  const corruptionPage = await corruptionContext.newPage();
+  await corruptionPage.goto("http://127.0.0.1:4177/", { waitUntil:"networkidle" });
+  await corruptionPage.keyboard.press("Escape");
+  await corruptionPage.locator("#launch-splash").waitFor({ state:"detached" });
+  const malformedScores = [
+    ["array", "[]"],
+    ["string", JSON.stringify("8/10")],
+    ["missing-total", JSON.stringify({ score:8 })],
+    ["extra-field", JSON.stringify({ score:8, total:10, region:"IN" })],
+    ["fractional-score", JSON.stringify({ score:8.5, total:10 })],
+    ["fractional-total", JSON.stringify({ score:8, total:10.5 })],
+    ["negative-score", JSON.stringify({ score:-1, total:10 })],
+    ["score-over-total", JSON.stringify({ score:11, total:10 })],
+    ["zero-total", JSON.stringify({ score:0, total:0 })],
+    ["total-over-round", JSON.stringify({ score:8, total:11 })]
+  ];
+  for (const [label, serialized] of malformedScores) {
+    await corruptionPage.evaluate(value => localStorage.setItem("mindquest.best.IN.all.all.10", value), serialized);
+    await corruptionPage.reload({ waitUntil:"networkidle" });
+    await corruptionPage.keyboard.press("Escape");
+    await corruptionPage.locator("#launch-splash").waitFor({ state:"detached" });
+    if (await corruptionPage.locator("#best-score").textContent() !== "—") {
+      throw new Error("Malformed best-score record was accepted: " + label);
+    }
+  }
+  await corruptionPage.evaluate(() => localStorage.setItem("mindquest.best.IN.all.all.10", JSON.stringify({ score:7, total:10 })));
+  await corruptionPage.reload({ waitUntil:"networkidle" });
+  await corruptionPage.keyboard.press("Escape");
+  await corruptionPage.locator("#launch-splash").waitFor({ state:"detached" });
+  if (await corruptionPage.locator("#best-score").textContent() !== "7 / 10 · 70%") {
+    throw new Error("A valid score record was rejected after malformed-record recovery");
+  }
+  await corruptionContext.close();
+
+  // A failed legacy-key migration must preserve the readable legacy score and disclose the write failure.
+  const migrationFailureContext = await browser.newContext();
+  await migrationFailureContext.addInitScript(() => {
+    localStorage.setItem("mindquest.best.IN.all.all", JSON.stringify({ score:8, total:10 }));
+    const originalSetItem = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === "mindquest.best.IN.all.all.10") {
+        throw new DOMException("Migration write blocked", "QuotaExceededError");
+      }
+      return originalSetItem.call(this, key, value);
+    };
+  });
+  const migrationFailurePage = await migrationFailureContext.newPage();
+  await migrationFailurePage.goto("http://127.0.0.1:4177/", { waitUntil:"networkidle" });
+  await migrationFailurePage.keyboard.press("Escape");
+  await migrationFailurePage.locator("#launch-splash").waitFor({ state:"detached" });
+  if (await migrationFailurePage.locator("#best-score").textContent() !== "8 / 10 · 80%") {
+    throw new Error("Legacy score was lost when its migration write failed");
+  }
+  if (!(await migrationFailurePage.locator("#storage-status").isVisible())) {
+    throw new Error("Failed legacy score migration was not disclosed");
+  }
+  const legacyPreserved = await migrationFailurePage.evaluate(() => localStorage.getItem("mindquest.best.IN.all.all"));
+  if (legacyPreserved !== JSON.stringify({ score:8, total:10 })) {
+    throw new Error("Legacy score source record was modified or removed after migration failure");
+  }
+  await migrationFailureContext.close();
+
+  console.log("Storage resilience regression passed: malformed settings, blocked reads/writes, strict score schema and range rejection, valid-record recovery, legacy migration success/failure, and score-scope isolation.");
 } finally {
   await browser?.close();
   await new Promise(resolveClose => server.close(resolveClose));
