@@ -1,10 +1,28 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import vm from "node:vm";
 
+const dataDirectory = new URL("../app/src/data/", import.meta.url);
 const source = await readFile(new URL("../app/src/data/questions.js", import.meta.url), "utf8");
 const sandbox = { window: {} };
 vm.runInNewContext(source, sandbox, { timeout: 1000 });
-const questions = sandbox.window.MINDQUEST_QUESTIONS;
+const canonicalQuestions = sandbox.window.MINDQUEST_QUESTIONS;
+const dataFiles = await readdir(dataDirectory);
+const translationFiles = dataFiles
+  .filter((name) => /^spanish-question-translations(?:-batch-\d+)?\.js$/u.test(name))
+  .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+for (const filename of translationFiles) {
+  const overlay = await readFile(new URL(filename, dataDirectory), "utf8");
+  vm.runInNewContext(overlay, sandbox, { timeout: 1000 });
+}
+const stagedFiles = dataFiles
+  .filter((name) => /^staged-region-questions-batch-\d+\.js$/u.test(name))
+  .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
+for (const filename of stagedFiles) {
+  const staged = await readFile(new URL(filename, dataDirectory), "utf8");
+  vm.runInNewContext(staged, sandbox, { timeout: 1000 });
+}
+const stagedQuestions = stagedFiles.length ? (sandbox.window.MINDQUEST_STAGED_QUESTIONS || []) : [];
+const questions = [...canonicalQuestions, ...stagedQuestions];
 
 const target = {
   regions: ["IN", "RU", "US", "ES", "PE"],
@@ -44,6 +62,9 @@ for (const item of questions) {
     errors.push(`${item.id}: translations are missing or invalid`);
     continue;
   }
+  for (const locale of target.locales) {
+    if (!Object.hasOwn(item.translations, locale)) errors.push(`${item.id}/${locale}: required locale is missing`);
+  }
   for (const locale of Object.keys(item.translations)) {
     const translation = item.translations[locale];
     if (!target.locales.includes(locale)) errors.push(`${item.id}: unsupported locale ${locale}`);
@@ -76,13 +97,15 @@ for (const item of questions) {
 
 console.log("MindQuest five-region / five-locale expansion audit");
 console.log(`Target: ${target.regions.length * target.perRegion} stable IDs × ${target.locales.length} locales = ${target.regions.length * target.perRegion * target.locales.length} localized records.`);
-console.log(`Current: ${questions.length} stable IDs; ${questions.reduce((sum, item) => sum + Object.keys(item.translations || {}).length, 0)} localized records.`);
+console.log(`Current: ${questions.length} stable IDs (including ${stagedQuestions.length} staged); ${questions.reduce((sum, item) => sum + Object.keys(item.translations || {}).length, 0)} localized records.`);
+console.log(`Loaded ${translationFiles.length} Spanish overlays and ${stagedFiles.length} staged regional content batches.`);
 
 let totalMissingIds = 0;
 let totalMissingTranslations = 0;
 for (const region of target.regions) {
   const regional = questions.filter((item) => item.region === region);
   const missingIds = Math.max(0, target.perRegion - regional.length);
+  if (regional.length > target.perRegion) errors.push(`${region}: target is 50 questions, found ${regional.length}`);
   totalMissingIds += missingIds;
   const missingTranslations = regional.reduce((sum, item) =>
     sum + target.locales.filter((locale) => !item.translations?.[locale]).length, 0);
