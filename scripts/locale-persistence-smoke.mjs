@@ -98,7 +98,7 @@ try {
         seenQuestionIds.add(id);
         if (language !== questionLocale) throw new Error("Question language metadata mismatch: " + questionLocale + " -> " + language);
 
-        const answerLanguages = await page.locator("#answers button.answer-option span").evaluateAll(nodes => nodes.map(node => node.getAttribute("lang")));
+        const answerLanguages = await page.locator("#answers button.answer-option > span:not(.letter)").evaluateAll(nodes => nodes.map(node => node.getAttribute("lang")));
         if (answerLanguages.length !== 4 || answerLanguages.some(value => value !== questionLocale)) {
           throw new Error("Answer option language metadata mismatch: " + questionLocale + " -> " + JSON.stringify(answerLanguages));
         }
