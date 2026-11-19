@@ -32,6 +32,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Audit offline runtime security boundaries
+        run: npm run audit:security
+
       - name: Validate enabled question bank
         run: npm run validate:content
 
@@ -55,6 +58,7 @@ jobs:
           node --check app/src/app.js
           node --check app/src/ui-polish.js
           node --check app/src/experience.js
+          node --check scripts/audit-runtime-security.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
