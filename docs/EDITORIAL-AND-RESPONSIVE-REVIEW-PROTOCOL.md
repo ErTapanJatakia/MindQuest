@@ -1,4 +1,4 @@
-# MindQuest editorial evidence and responsive regression protocol
+# MindQuest editorial evidence, locale persistence and responsive regression protocol
 
 ## Editorial evidence register
 
@@ -14,9 +14,15 @@ The audit does **not** fetch or assess source pages. It does not establish that 
 - Independent answer-key and distractor review.
 - Native-speaker review for es-ES and es-PE.
 - Editorial approval of terminology, spelling, locale conventions and explanation quality.
-- Completion of the 25 interface/region/question-language combinations after the relevant selectors become eligible for release.
+- Completion of the full 125-combination matrix (5 interface locales × 5 question-bank regions × 5 question locales) only after every region and question locale is eligible for release. The current runtime intentionally exposes only 3 regions and 3 question locales, yielding 45 supported combinations.
 
 Automated structural checks must never be treated as substitutes for these approvals.
+
+## Automated locale and preference regression
+
+The locale-persistence browser gate exercises all 45 currently supported combinations of five interface locales, three playable regions and three playable question locales. It checks that the three choices remain independent, that the document language follows the interface locale, and that all three persisted values survive a full reload at each interface-locale checkpoint.
+
+It additionally starts a live round for each of the nine currently playable region/question-language pairs and checks that the stable question ID belongs to the selected region and that question and answer text carry the selected question-language metadata. This is browser regression coverage, not native-speaker acceptance or factual verification.
 
 ## Responsive viewport regression
 
@@ -33,6 +39,10 @@ The browser regression matrix checks Home, Settings and Quiz at seven viewport p
 | Desktop | 1366 × 768 |
 
 It checks horizontal document overflow, header brand/action overlap, Settings control bounds, Quiz content bounds and browser page errors. These Chromium viewport simulations are regression coverage, not physical-device certification. Android device validation and assistive-technology checks remain separate manual activities.
+
+## Manual accessibility and device acceptance
+
+Before release, record separate results for keyboard-only operation, visible focus, screen-reader/TalkBack announcements, text scaling, high-contrast mode, reduced motion, portrait/landscape layout, airplane-mode gameplay, app restart and local-data recovery. Automated checks and viewport simulation do not establish WCAG conformance or physical-device acceptance.
 
 ## Release boundary
 
