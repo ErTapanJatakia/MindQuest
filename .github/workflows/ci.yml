@@ -78,6 +78,7 @@ jobs:
           node --check scripts/audit-android-manifest.mjs
           node --check scripts/audit-android-webview-lifecycle.mjs
           node --check scripts/audit-feature-ci-boundary.mjs
+          node --check scripts/audit-project-docs.mjs
           node --check scripts/theme-accessibility-matrix-smoke.mjs
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
@@ -141,6 +142,9 @@ jobs:
 
       - name: Audit feature-development Android build boundary
         run: npm run audit:feature-ci-boundary
+
+      - name: Audit current project documentation consistency and command catalogue
+        run: npm run audit:project-docs
 
       - name: Audit Android WebView navigation and lifecycle source boundaries
         run: npm run audit:android-webview
