@@ -948,3 +948,87 @@ The earlier 2,795-minute estimate predates the accepted PR #3, PR #4 and PR #5 e
 - Verified stable question IDs, exact difficulty quotas for 5/10/15 rounds, result focus and review completeness, theme keyboard flow and 50-question cycle exhaustion in all three regions.
 - Four consecutive 15-question rounds per region cover all 50 unique questions before a new cycle begins; no round contains duplicate question IDs.
 - Baseline progress is **1,745 / 2,400 minutes (72.71%)**; remaining baseline 655 minutes. Actual engineering hours remain untracked.
+
+
+---
+
+## Authoritative project snapshot — 2026-11-19 (supersedes earlier dated snapshots)
+
+This section is the current source of truth. Earlier dated sections above are retained as historical records and must not be used as current feature or release status.
+
+### Current product scope
+
+- Runtime bank: 250 stable question IDs, 50 per region (India, Russia, United States, Spain, Peru).
+- Localized records: 1,250 (five locales per ID: `en-IN`, `en-US`, `ru-RU`, `es-ES`, `es-PE`).
+- Five interface locales, five regions and five question locales are independently selectable.
+- Automated locale persistence covers 125 combinations (5 × 5 × 5).
+- Per-region category quota: Geography 13, History 12, Science 12, Culture 13.
+- Per-region difficulty quota: Easy 15, Medium 20, Hard 15.
+- Human factual/answer-key and native-speaker review are marked complete based on project-owner confirmation; this is not independent certification.
+
+### Revised execution timeline — updated
+
+| Remaining work package | Remaining effort |
+|---|---:|
+| Human factual and answer-key review | 0 min — complete per project-owner confirmation |
+| Native-speaker review | 0 min — complete per project-owner confirmation |
+| 125-combination locale matrix | 0 min — complete |
+| Theme and device polish | 120 min |
+| Accessibility verification | 120 min — automated gates merged; manual checks pending |
+| Legal/editorial documentation | 60 min |
+| Expanded manual, offline and Android regression | 180 min |
+| Original baseline engineering scope | 655 min |
+| **Total planned remaining** | **1,135 min (18h 55m)** |
+
+The 120-minute theme/device work and 120-minute accessibility work are separate work packages. Expansion, audits and CI policy do not inflate the original baseline.
+
+### Baseline engineering progress
+
+| # | Workstream | Baseline | Earned | Remaining |
+|---:|---|---:|---:|---:|
+| 1 | Project foundation | 60 | 50 | 10 |
+| 2 | Visual identity | 90 | 30 | 60 |
+| 3 | Home screen | 120 | 85 | 35 |
+| 4 | Independent localization | 150 | 115 | 35 |
+| 5 | Question-bank architecture | 150 | 150 | 0 |
+| 6 | Question content | 180 | 180 | 0 |
+| 7 | Core gameplay | 180 | 180 | 0 |
+| 8 | Game modes | 120 | 120 | 0 |
+| 9 | Difficulty progression | 90 | 90 | 0 |
+| 10 | Results screen | 90 | 90 | 0 |
+| 11 | Local persistence | 120 | 100 | 20 |
+| 12 | Accessibility | 120 | 120 | 0 |
+| 13 | Android application shell | 180 | 100 | 80 |
+| 14 | Offline/security hardening | 120 | 120 | 0 |
+| 15 | Device compatibility | 180 | 65 | 115 |
+| 16 | Manual functional testing | 180 | 60 | 120 |
+| 17 | RuStore release readiness | 180 | 0 | 180 |
+| 18 | Documentation/release | 90 | 90 | 0 |
+| | **Total** | **2,400** | **1,745** | **655** |
+
+**Baseline completion: 72.71%.** Actual engineering hours are not tracked.
+
+### Current development status
+
+| Workstream | Status | Evidence / next action |
+|---|---|---|
+| Question bank and five locales | Complete for current target | 250 IDs / 1,250 localized records; guarded runtime activation |
+| Locale independence | Complete for automated matrix | 125 combinations passed in latest merged suite |
+| Gameplay and question cycles | Automated acceptance complete | Four 15-question rounds per region; no within-round duplicate IDs |
+| Runtime security / offline | Automated gates merged | Targeted source/configuration checks; manual device verification remains |
+| Accessibility | Automated browser gates merged | TalkBack, physical keyboard/switch and device checks remain |
+| Storage / lifecycle | PR #36 validation in progress at this snapshot | Merge only after all required checks pass |
+| Theme and device polish | In progress | 120-minute planning allocation; physical matrix remains |
+| Legal/editorial documentation | In progress | Release readiness and manual QA protocol added in documentation batch |
+| Android final validation | Not started | Only after full feature scope completion; manually triggered |
+| Signing / RuStore submission | Not authorized | Requires separate explicit authorization |
+
+### Validation history
+
+- PR #34 enabled all five regions and five question locales; workflow #44465413062 passed 21 substantive stages.
+- PR #35 added runtime-bank integrity, offline network isolation and question-cycle regression; corrected CI #44544484158 passed 24 substantive checks. Post-merge workflow #44545667785 also passed.
+- PR #36 adds browser lifecycle/storage recovery and stronger Android manifest checks. Corrected run #44547308686 is in progress at this snapshot; do not infer a pass or merge until the run concludes successfully.
+
+### Release constraints
+
+No intermediate APK/Gradle build or artifact upload during feature implementation. Do not claim WCAG 2.2 AA conformance, independent security certification or native Android acceptance based on browser/static tests. Physical-device, TalkBack, final candidate inspection, store artwork/disclosures and manual release checks remain open. See [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md).
