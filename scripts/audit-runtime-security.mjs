@@ -58,7 +58,7 @@ const requiredRegionalScripts = [
   "staged-region-questions-batch-05.js",
   "activate-reviewed-region-bank.js"
 ];
-const scriptSources = scriptTags.map(attributes => attributes.match(/\\bsrc=["']([^"']+)["']/i)?.[1] || "");
+const scriptSources = scriptTags.map(attributes => attributes.match(/\bsrc=["']([^"']+)["']/i)?.[1] || "");
 for (const filename of requiredRegionalScripts) {
   check(scriptSources.includes("./src/data/" + filename), "Reviewed regional runtime bundle is missing: " + filename);
 }
