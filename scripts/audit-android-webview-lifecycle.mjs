@@ -44,7 +44,7 @@ requirePattern("activity", /override fun onPause\(\)[\s\S]*?gameView\.onPause\(\
 requirePattern("activity", /override fun onDestroy\(\)[\s\S]*?gameView\.stopLoading\(\)[\s\S]*?gameView\.onPause\(\)[\s\S]*?gameView\.removeAllViews\(\)[\s\S]*?gameView\.destroy\(\)/u, "Activity destruction must stop, detach and destroy WebView");
 requirePattern("activity", /SDK_INT\s*>=\s*Build\.VERSION_CODES\.TIRAMISU[\s\S]*?registerOnBackInvokedCallback/u, "Predictive-back callback registration must be API 33+ guarded");
 requirePattern("activity", /unregisterOnBackInvokedCallback\(callback\)/u, "Predictive-back callback must be unregistered on destruction");
-requirePattern("activity", /SDK_INT\s*<\s*Build\.VERSION_CODES\.TIRAMISU[\s\S]*?override fun onBackPressed/u, "Legacy back handling must be retained below API 33");
+requirePattern("activity", /override fun onBackPressed\\(\\)[\\s\\S]*?SDK_INT\\s*<\\s*Build\\.VERSION_CODES\\.TIRAMISU/u, "Legacy back handling must be retained below API 33");
 requirePattern("activity", /SDK_INT\s*>=\s*35[\s\S]*?WindowInsets\.Type\.systemBars\(\)[\s\S]*?WindowInsets\.Type\.displayCutout\(\)[\s\S]*?WindowInsets\.Type\.ime\(\)/u, "API 35+ safe-area handling must include system bars, cutouts and IME");
 
 // Build metadata and bundled asset path must match the documented Android support boundary.
