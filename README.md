@@ -92,7 +92,6 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:lifecycle`
 - `npm run test:accessible-names`
 - `npm run test:focus-order`
-- `npm run test:accessible-names`
 - `npm run audit:android-manifest`
 - `npm run audit:android-webview`
 - `npm run audit:feature-ci-boundary`
