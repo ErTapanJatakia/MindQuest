@@ -100,3 +100,7 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
   .searchable-select{background:Canvas;color:CanvasText;border:1px solid CanvasText}
   .searchable-select:focus-visible{outline:3px solid Highlight;outline-offset:3px}
 }
+
+
+/* The Paper palette uses a dark accent surface; use the light panel as its primary-button foreground. */
+[data-theme="paper"] .primary-button{color:var(--panel)}
