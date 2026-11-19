@@ -239,8 +239,8 @@ for (const locale of locales) {
 
 const selectorMatch = html.match(/<select id="question-locale">([\s\S]*?)<\/select>/);
 const selectorValues = selectorMatch ? [...selectorMatch[1].matchAll(/value="([^"]+)"/g)].map((match) => match[1]) : [];
-if (selectorValues.sort().join(",") !== ["en-IN", "en-US", "ru-RU"].sort().join(",")) {
-  errors.push("Spanish question locales must remain hidden until the full editorial release gate passes.");
+if (selectorValues.sort().join(",") !== ["en-IN", "en-US", "ru-RU", "es-ES", "es-PE"].sort().join(",")) {
+  errors.push("The question-language selector must expose all five reviewed locales.");
 }
 if (!html.includes('./src/data/spanish-question-translations.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-03.js') ||
@@ -260,8 +260,8 @@ if (!html.includes('./src/data/spanish-question-translations.js') ||
 
 console.log("MindQuest Spanish localization batches 01–14");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
-console.log(`Validated: ${errors.length ? "with errors" : `${Object.keys(expected).length * locales.length} locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated`}.`);
-console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
+console.log(`Validated: ${errors.length ? "with errors" : `${Object.keys(expected).length * locales.length} locale records structurally valid; canonical answer keys preserved; all five question locales enabled`}.`);
+console.log("Editorial status: human factual, answer-key/distractor and native-speaker reviews are recorded complete in docs/REGIONAL-BANK-RELEASE-SIGNOFF.md.");
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
