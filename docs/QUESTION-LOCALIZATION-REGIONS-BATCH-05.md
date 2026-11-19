@@ -48,6 +48,7 @@ Final batch: 10 new IDs for Spain and 10 for Peru, each with five explicit local
 ## Editorial gates
 
 - Five locale variants and one shared answer key are structurally required; all translations remain drafts pending native-speaker review.
+- Independent factual and answer-key/distractor review is mandatory before any release decision.
 - Institutional references above are initial research pointers. Reviewers must verify the precise claim, answer key and distractors at claim level before release.
 - The staged bank must remain excluded from app selectors and gameplay until factual review, native-speaker review, complete 25-combination tests, offline regression and accessibility review are signed off.
 - No Android build or APK is part of this batch.
