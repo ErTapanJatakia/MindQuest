@@ -82,6 +82,7 @@ jobs:
           node --check scripts/theme-accessibility-matrix-smoke.mjs
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
+          node --check scripts/question-bank-fail-closed-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
           node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/application-lifecycle-smoke.mjs
@@ -127,6 +128,9 @@ jobs:
 
       - name: Verify complete five-region runtime bank and localization integrity
         run: npm run test:runtime-bank
+
+      - name: Verify corrupted question banks fail closed without recording scores
+        run: npm run test:bank-fail-closed
 
       - name: Verify browser offline network isolation
         run: npm run test:offline-isolation
