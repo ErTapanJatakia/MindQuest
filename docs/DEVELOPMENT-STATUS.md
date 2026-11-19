@@ -1179,3 +1179,48 @@ This section supersedes earlier dated status statements above. Historical implem
 6. Only after all agreed feature work is complete, manually run final Android validation. Signing and store submission remain separate authorization gates.
 
 See [the release readiness and manual QA protocol](RELEASE-READINESS-AND-MANUAL-QA.md) and [the implementation tracker](ROADMAP.md).
+
+---
+
+## Authoritative status update — 2026-11-19, after PRs #45–#48
+
+This section supersedes the earlier dated phase, validation and queue snapshots above. Historical implementation notes are retained for traceability.
+
+### Current phase
+
+**Phase 4 — five-region/five-locale feature scope implemented; automated quality gates expanded; manual device/accessibility and release-preparation work remains.**
+
+### Delivered and validated
+
+- 250 stable question IDs across India, Russia, United States, Spain and Peru; 1,250 localized records across en-IN, en-US, ru-RU, es-ES and es-PE.
+- 125 independent interface-locale × region × question-locale combinations.
+- Human factual/answer-key and native-speaker reviews marked complete based on project-owner confirmation; not independent certification.
+- Runtime bank integrity, gameplay, cycle exhaustion, score-scope, storage resilience and browser lifecycle regressions.
+- Offline network isolation across all 25 region × question-language pairs; tested cross-origin requests are blocked and recorded.
+- Compact 320 CSS-pixel large-text regression across Home, Settings, Quiz, Results and answer review, with high contrast and reduced motion enabled together.
+- Strict score-ledger malformed-record recovery, valid-record recovery and failed legacy migration-write preservation.
+- Android WebView/lifecycle, manifest and feature-CI build-boundary static audits.
+- Routine CI remains web/content-only. Final Android validation remains manually dispatched and gated by feature_scope_complete=true.
+
+### Latest merged engineering
+
+| PR | Scope | Merge commit | Exact-head CI |
+|---:|---|---|---|
+| #45 | Score-ledger corruption recovery and QA evidence | 9151398566eaf78c00bc2d1693c878e28e9ad07f | [#44581783687](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44581783687) passed |
+| #46 | Compact-viewport large-text accessibility regression | 5084dbc5d823bb55d25a42c8d7811ca209d3afa6 | [#44582219981](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582219981) passed |
+| #47 | Offline isolation across 25 regional locale pairs | 9515aea7e431ff3560d4d78e29df464667fb22f6 | [#44582138992](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582138992) passed |
+| #48 | Android feature-build boundary enforcement | 0cdd4ff74d1a1339712623f17a88401d1a29690b | [#44582401075](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582401075) passed |
+
+### Remaining development priorities
+
+1. Complete physical display/orientation and device compatibility verification.
+2. Complete TalkBack, keyboard and switch-access manual verification; do not infer this from browser automation.
+3. Complete manual offline, persistence, gameplay and native Android regression after feature implementation is complete.
+4. Reconcile privacy/legal/store disclosures and prepare original store artwork and metadata.
+5. Only after full feature-scope review, manually dispatch final Android validation with feature_scope_complete=true. Signing and RuStore submission remain separate authorization gates.
+
+### Scope and baseline accounting
+
+The original baseline remains exactly 2,400 minutes / 40 hours: 1,745 earned, 655 remaining, 72.71% complete. Revised remaining plan: 1,135 minutes (18h 55m), including 120 minutes theme/device polish, 120 minutes manual accessibility verification, 60 minutes legal/editorial documentation, 180 minutes expanded manual/offline/Android regression and 655 minutes original baseline scope. Expansion, CI and audit work do not inflate baseline credit. Actual engineering hours are not tracked.
+
+No Android build/APK/signing, production deployment or RuStore submission occurred in PRs #45–#48.
