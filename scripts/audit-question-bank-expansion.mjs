@@ -133,7 +133,7 @@ for (const region of target.regions) {
 }
 const outstandingLocalizedRecords = totalMissingIds * target.locales.length + totalMissingTranslations;
 console.log(`Expansion gap: ${totalMissingIds} stable IDs and ${outstandingLocalizedRecords} localized records (including ${totalMissingTranslations} missing locales on existing IDs).`);
-console.log("Editorial gate: native-speaker review, factual source review and answer-key verification remain mandatory; this audit does not certify translation quality.");
+console.log("Editorial gate: human factual, answer-key/distractor and native-speaker reviews are recorded complete in docs/REGIONAL-BANK-RELEASE-SIGNOFF.md; this structural audit does not certify translation quality.");
 
 if (errors.length) {
   console.error("\nExpansion audit found structural errors:");
