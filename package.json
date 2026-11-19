@@ -12,7 +12,8 @@
     "validate:staged": "node scripts/validate-staged-regions.mjs",
     "audit:security": "node scripts/audit-runtime-security.mjs",
     "audit:editorial": "node scripts/audit-editorial-evidence.mjs",
-    "test:responsive": "node scripts/responsive-viewport-smoke.mjs"
+    "test:responsive": "node scripts/responsive-viewport-smoke.mjs",
+    "test:locale-persistence": "node scripts/locale-persistence-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
