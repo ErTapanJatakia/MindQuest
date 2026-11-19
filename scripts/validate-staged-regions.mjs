@@ -119,7 +119,7 @@ for (const region of ["ES","PE"]) {
   const cumulativeDifficulty = {easy:12,medium:16,hard:12};
   for (const [category, expected] of Object.entries(cumulativeCategories)) {
     const actual = regional.filter((question) => question.category === category).length;
-    if (actual !== expected) errors.push(`${region}: cumulative batches 01–02 expected ${expected} ${category}; found ${actual}`);
+    if (actual !== expected) errors.push(`${region}: cumulative batches 01–04 expected ${expected} ${category}; found ${actual}`);
   }
   for (const [level, expected] of Object.entries(cumulativeDifficulty)) {
     const actual = regional.filter((question) => question.difficulty === level).length;
@@ -146,7 +146,7 @@ for (const [batch, ids] of Object.entries(batchIds)) {
 }
 console.log("MindQuest staged Spain/Peru content validation — cumulative batches 01–04");
 console.log(`Canonical bank: ${canonical.length} enabled IDs; staged: ${staged.length} new IDs; locales per staged ID: ${locales.length}.`);
-console.log("Runtime exposure: both staged batches remain excluded from app selectors and gameplay.");
+console.log("Runtime exposure: all staged regional batches remain excluded from app selectors and gameplay.");
 if (errors.length) {
   console.error("\nStaged regional validation failed:");
   for (const error of errors) console.error(`- ${error}`);
