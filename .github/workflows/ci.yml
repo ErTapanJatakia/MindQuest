@@ -65,6 +65,7 @@ jobs:
           node --check scripts/audit-runtime-security.mjs
           node --check scripts/audit-editorial-evidence.mjs
           node --check scripts/responsive-viewport-smoke.mjs
+          node --check scripts/locale-persistence-smoke.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
@@ -79,6 +80,9 @@ jobs:
 
       - name: Run browser and gameplay smoke tests
         run: npm run test:browser
+
+      - name: Run locale and preference persistence regression
+        run: npm run test:locale-persistence
 
       - name: Run responsive viewport regression matrix
         run: npm run test:responsive
