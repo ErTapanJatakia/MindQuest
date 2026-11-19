@@ -19,7 +19,10 @@
     "test:storage-resilience": "node scripts/storage-resilience-smoke.mjs",
     "audit:android-manifest": "node scripts/audit-android-manifest.mjs",
     "test:theme-accessibility": "node scripts/theme-accessibility-matrix-smoke.mjs",
-    "test:score-scope": "node scripts/score-scope-regression-smoke.mjs"
+    "test:score-scope": "node scripts/score-scope-regression-smoke.mjs",
+    "test:runtime-bank": "node scripts/runtime-bank-integrity-smoke.mjs",
+    "test:offline-isolation": "node scripts/offline-network-isolation-smoke.mjs",
+    "test:question-cycle": "node scripts/question-cycle-regression-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
