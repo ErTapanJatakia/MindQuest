@@ -1132,3 +1132,50 @@ Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQue
 - APK package inspection confirmed the web entry point, gameplay JavaScript, MindQuest SVG logo, Android manifest and launcher foreground resource are present.
 - This build is debug-signed only and has not been physically device-tested. TalkBack, device restart, airplane-mode runtime, manual Android regression, production signing and RuStore preparation remain unaccepted.
 - No baseline credit was added for artifact retrieval or package inspection. The evidence-based baseline remains 1,745 / 2,400 minutes (72.71%); actual engineering time remains untracked.
+
+
+---
+
+## Authoritative status — 2026-11-19
+
+This section supersedes earlier dated status statements above. Historical implementation notes remain for traceability; use this snapshot for current product and release status.
+
+### Delivered
+
+- Five independent interface locales: `en-IN`, `en-US`, `ru-RU`, `es-ES`, `es-PE`.
+- Five independent question-bank regions: India, Russia, United States, Spain and Peru.
+- Five question locales: `en-IN`, `en-US`, `ru-RU`, `es-ES`, `es-PE`.
+- 250 stable question IDs / 1,250 localized records; 50 IDs per region.
+- Per-region category quotas 13/12/12/13 and difficulty quotas 15/20/15.
+- Guarded activation of the full five-region bank after structural invariants pass.
+- 125 locale/region/question-language combinations in persistence regression.
+- Gameplay, score-scope, replay/cycle, runtime-bank, offline isolation, storage resilience, responsive and accessibility browser regression gates.
+- Targeted runtime security and Android manifest static audits.
+- Human factual/answer-key review and native-speaker review are marked complete based on project-owner confirmation. This is not an independent certification.
+
+### Latest merged engineering
+
+- PR #34 enabled the five-region/five-locale runtime matrix; CI #44465413062 passed.
+- PR #35 added runtime-bank integrity, offline network isolation and question-cycle regression; corrected CI #44544484158 passed all 24 substantive checks.
+- Post-merge main workflow #44545667785 passed all 24 substantive stages.
+- PR #36 is open with corrected lifecycle assertions. CI #44547308686 is still running at the time of this snapshot; it must not be treated as green until all required checks conclude successfully.
+
+### Current constraints and release gates
+
+- Android final validation has not started. No intermediate APK/Gradle build or artifact upload is allowed during feature implementation.
+- Final Android validation is manually triggered only after the complete agreed feature scope, using the explicit `feature_scope_complete=true` gate.
+- No production signing, RuStore submission or production deployment is authorized.
+- Manual TalkBack/screen-reader and physical-device checks remain open.
+- Browser/static tests do not establish native Android process-death, WebView storage, OS backup/restore, WCAG 2.2 AA conformance or independent security certification.
+- Store artwork, exact-candidate package inspection, final disclosures and manual release evidence remain to be completed.
+
+### Current work queue
+
+1. Complete PR #36 lifecycle, storage-recovery and manifest validation; merge immediately if all required checks pass.
+2. Complete theme/device polish and the physical viewport/orientation matrix.
+3. Complete manual TalkBack and assistive-technology verification.
+4. Complete expanded manual offline, persistence, gameplay and Android regression.
+5. Reconcile legal/editorial documentation and prepare store assets/disclosures.
+6. Only after all agreed feature work is complete, manually run final Android validation. Signing and store submission remain separate authorization gates.
+
+See [the release readiness and manual QA protocol](RELEASE-READINESS-AND-MANUAL-QA.md) and [the implementation tracker](ROADMAP.md).
