@@ -149,6 +149,8 @@ try {
   }
   // Large-text, high-contrast and reduced-motion preferences must remain usable together on a compact viewport.
   await page.setViewportSize({ width:320, height:720 });
+  await page.reload({ waitUntil:"networkidle" });
+  await page.locator("#splash-dismiss").click();
   const largeTextRootSize = await page.evaluate(() => Number.parseFloat(getComputedStyle(document.documentElement).fontSize));
   if (!(largeTextRootSize > 16)) {
     throw new Error("Large-text preference did not increase the root text scale: " + largeTextRootSize);
