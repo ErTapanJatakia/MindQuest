@@ -23,7 +23,7 @@ for (const filename of docFiles) {
   const content = await readFile(new URL(filename, docsDirectory), "utf8");
   for (const match of content.matchAll(rowPattern)) {
     const [, id, claimCell, sourceCell] = match;
-    const claim = claimCell.replace(/[\`*_]/gu, "").trim();
+    const claim = claimCell.replace(/[*_]/gu, "").trim();
     const links = [...sourceCell.matchAll(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/gu)];
     const entry = { file: filename, claim, sources: links.map(([, label, url]) => ({ label, url })) };
     if (!register.has(id)) register.set(id, []);
