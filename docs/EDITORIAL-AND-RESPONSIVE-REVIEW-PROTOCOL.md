@@ -40,9 +40,15 @@ The browser regression matrix checks Home, Settings and Quiz at seven viewport p
 
 It checks horizontal document overflow, header brand/action overlap, Settings control bounds, Quiz content bounds and browser page errors. These Chromium viewport simulations are regression coverage, not physical-device certification. Android device validation and assistive-technology checks remain separate manual activities.
 
+## Automated accessibility and gameplay integrity gates
+
+The accessibility browser gate verifies launch-dialog focus isolation, destination-heading focus across Home/Settings/Help/Privacy/Accessibility views, accessible names on searchable settings, persisted large-text/reduced-motion/high-contrast preferences, keyboard theme operation, forced-colors availability and arrow-key answer navigation. It checks browser behaviour and DOM semantics; it does not emulate a full screen reader or certify assistive-technology interoperability.
+
+The gameplay integrity gate completes a mixed-answer round using each question's canonical answer key, verifies the expected score against the answer ledger, checks unique stable IDs, prevents progression before an answer, confirms answer controls lock after selection, checks complete answer review, and verifies that replay and settings changes do not retain stale round state.
+
 ## Manual accessibility and device acceptance
 
-Before release, record separate results for keyboard-only operation, visible focus, screen-reader/TalkBack announcements, text scaling, high-contrast mode, reduced motion, portrait/landscape layout, airplane-mode gameplay, app restart and local-data recovery. Automated checks and viewport simulation do not establish WCAG conformance or physical-device acceptance.
+Before release, record separate results for keyboard-only operation, visible focus, screen-reader/TalkBack announcements, text scaling at OS and app levels, high-contrast and forced-colors behaviour on target devices, reduced motion, portrait/landscape layout, airplane-mode gameplay, app restart and local-data recovery. Automated checks and viewport simulation do not establish WCAG conformance or physical-device acceptance.
 
 ## Release boundary
 
