@@ -47,7 +47,7 @@ const optionKeys = ["a","b","c","d"];
 const clean = (value) => typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
 const actualIds = staged.map((question) => question?.id);
 if (canonical.length !== 150) errors.push(`Canonical enabled bank must remain exactly 150 questions; found ${canonical.length}`);
-const expectedFiles = ["staged-region-questions-batch-01.js","staged-region-questions-batch-02.js","staged-region-questions-batch-03-04.js"];
+const expectedFiles = ["staged-region-questions-batch-01.js","staged-region-questions-batch-02.js","staged-region-questions-batch-03-04.js","staged-region-questions-batch-05.js"];
 if (JSON.stringify(stagedFiles) !== JSON.stringify(expectedFiles)) {
   errors.push(`Expected staged source files ${expectedFiles.join(", ")}; found ${stagedFiles.join(", ")}`);
 }
@@ -96,7 +96,8 @@ const batchQuotas = {
   1: {categories:{Geography:3,History:3,Science:2,Culture:2},difficulty:{easy:3,medium:4,hard:3}},
   2: {categories:{Geography:3,History:2,Science:3,Culture:2},difficulty:{easy:3,medium:4,hard:3}},
   3: {categories:{Geography:2,History:3,Science:2,Culture:3},difficulty:{easy:3,medium:4,hard:3}},
-  4: {categories:{Geography:3,History:2,Science:2,Culture:3},difficulty:{easy:3,medium:4,hard:3}}
+  4: {categories:{Geography:3,History:2,Science:2,Culture:3},difficulty:{easy:3,medium:4,hard:3}},
+  5: {categories:{Geography:2,History:2,Science:3,Culture:3},difficulty:{easy:3,medium:4,hard:3}}
 };
 for (const [batch, ids] of Object.entries(batchIds)) {
   const batchQuestions = staged.filter((question) => ids.includes(question.id));
@@ -115,15 +116,15 @@ for (const [batch, ids] of Object.entries(batchIds)) {
 }
 for (const region of ["ES","PE"]) {
   const regional = staged.filter((question) => question.region === region);
-  const cumulativeCategories = {Geography:11,History:10,Science:9,Culture:10};
-  const cumulativeDifficulty = {easy:12,medium:16,hard:12};
+  const cumulativeCategories = {Geography:13,History:12,Science:12,Culture:13};
+  const cumulativeDifficulty = {easy:15,medium:20,hard:15};
   for (const [category, expected] of Object.entries(cumulativeCategories)) {
     const actual = regional.filter((question) => question.category === category).length;
-    if (actual !== expected) errors.push(`${region}: cumulative batches 01–04 expected ${expected} ${category}; found ${actual}`);
+    if (actual !== expected) errors.push(`${region}: cumulative batches 01–05 expected ${expected} ${category}; found ${actual}`);
   }
   for (const [level, expected] of Object.entries(cumulativeDifficulty)) {
     const actual = regional.filter((question) => question.difficulty === level).length;
-    if (actual !== expected) errors.push(`${region}: cumulative batches 01–04 expected ${expected} ${level}; found ${actual}`);
+    if (actual !== expected) errors.push(`${region}: cumulative batches 01–05 expected ${expected} ${level}; found ${actual}`);
   }
 }
 const promptMap = new Map();
@@ -152,7 +153,7 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log("Staged regional content structurally valid: 80 IDs, 400 localized records, five explicit locales and registered source notes.");
-  console.log("Cumulative category quotas per region: Geography 11, History 10, Science 9, Culture 10; difficulty: easy 12, medium 16, hard 12.");
+  console.log("Staged regional content structurally valid: 100 IDs, 500 localized records, five explicit locales and registered source notes.");
+  console.log("Cumulative category quotas per region: Geography 13, History 12, Science 12, Culture 13; difficulty: easy 15, medium 20, hard 15.");
   console.log("Editorial status: factual source review and native-speaker review remain required before release.");
 }
