@@ -17,8 +17,8 @@ const server = createServer(async (request, response) => {
 });
 
 const interfaces = ["en-IN", "en-US", "ru-RU", "es-PE", "es-ES"];
-const regions = ["IN", "RU", "US"];
-const questionLocales = ["en-IN", "en-US", "ru-RU"];
+const regions = ["IN", "RU", "US", "ES", "PE"];
+const questionLocales = ["en-IN", "en-US", "ru-RU", "es-ES", "es-PE"];
 const expectedCombinations = interfaces.length * regions.length * questionLocales.length;
 let browser;
 try {
@@ -68,7 +68,7 @@ try {
       interfaceLocale: document.documentElement.lang,
       settings: JSON.parse(localStorage.getItem("mindquest.settings") || "null")
     }));
-    const expected = { interfaceLocale, questionRegion: "US", questionLocale: "ru-RU" };
+    const expected = { interfaceLocale, questionRegion: "PE", questionLocale: "es-PE" };
     if (persisted.interfaceLocale !== expected.interfaceLocale ||
         persisted.settings?.interfaceLocale !== expected.interfaceLocale ||
         persisted.settings?.questionRegion !== expected.questionRegion ||
@@ -101,7 +101,7 @@ try {
 
   if (combinations !== expectedCombinations) throw new Error("Expected " + expectedCombinations + " selector combinations, exercised " + combinations);
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
-  console.log("Locale persistence regression passed: " + combinations + " independent interface/region/question-language combinations, five reload persistence checkpoints, and nine live question-bank/language metadata checks.");
+  console.log("Locale persistence regression passed: " + combinations + " independent interface/region/question-language combinations, five reload persistence checkpoints, and 25 live question-bank/language metadata checks.");
 } finally {
   await browser?.close();
   await new Promise(resolveClose => server.close(resolveClose));
