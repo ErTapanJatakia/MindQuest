@@ -27,7 +27,7 @@ After batches 01–04, each region will have 40 staged questions with cumulative
 | ES-GEO-009 | Geography | Teide is on Tenerife in the Canary Islands | [UNESCO — Teide National Park](https://whc.unesco.org/en/list/1258/) |
 | ES-GEO-010 | Geography | Pyrenees form a natural border region between Spain and France | [Encyclopaedia / Spanish Government geography reference](https://www.lamoncloa.gob.es/lang/en/espana/historyandculture/geography/paginas/index.aspx) |
 | ES-GEO-011 | Geography | Tagus is the longest river of the Iberian Peninsula | [Spanish Government — Geography of Spain](https://www.lamoncloa.gob.es/lang/en/espana/historyandculture/geography/paginas/index.aspx) |
-| ES-HIS-006 | History | Spanish Constitution approved by referendum in 1978 | [Congress of Deputies — Spanish Constitution](https://www.congreso.es/en/constitucion) |
+| ES-HIS-006 | History | Spanish Constitution approved by referendum in 1978 | [Congress of Deputies — Spanish Constitution](https://www.lamoncloa.gob.es/lang/en/espana/Paginas/constitution.aspx) |
 | ES-HIS-007 | History | First voyage of Columbus reached the Caribbean in 1492 | [Spanish National Library](https://www.bne.es/en) |
 | ES-HIS-008 | History | Battle of Las Navas de Tolosa occurred in 1212 | [Spanish cultural heritage / national history references](https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/ahn.html) |
 | ES-HIS-009 | History | Spanish Civil War began in 1936 | [Spanish Government — Democratic Memory](https://www.mpr.gob.es/memoriademocratica/) |
@@ -48,7 +48,7 @@ After batches 01–04, each region will have 40 staged questions with cumulative
 | Stable ID | Category | Topic / fact to verify | Institutional source |
 |---|---|---|---|
 | PE-GEO-007 | Geography | Amazon River has major headwaters in the Peruvian Andes | [Peruvian National Water Authority](https://www.gob.pe/ana) |
-| PE-GEO-008 | Geography | Huascarán is Peru's highest mountain | [Peru Ministry of Environment / SERNANP](https://www.sernanp.gob.pe/) |
+| PE-GEO-008 | Geography | Huascarán is Peru's highest mountain | [Peru Ministry of Environment / SERNANP](https://www.unesco.org/en/mab/huascaran) |
 | PE-GEO-009 | Geography | Manu National Park spans Andean and Amazonian ecosystems | [UNESCO — Manu National Park](https://whc.unesco.org/en/list/402/) |
 | PE-GEO-010 | Geography | Paracas Peninsula lies on Peru's Pacific coast | [SERNANP — Paracas National Reserve](https://www.sernanp.gob.pe/) |
 | PE-GEO-011 | Geography | Cordillera Blanca is part of the Andes in Ancash | [UNESCO — Huascarán National Park](https://whc.unesco.org/en/list/333/) |
