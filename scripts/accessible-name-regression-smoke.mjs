@@ -70,38 +70,47 @@ try {
       name + " — " + result.controls.length + " visible interactive controls audited");
   }
 
-  await auditView("Home");
-  await page.locator("#settings-open").click();
-  await auditView("Settings");
-  await page.locator("#settings-back").click();
-  await page.locator("#home-help").click();
-  await auditView("Help");
-  await page.locator("#help-back").click();
-  await page.locator("#privacy-link").click();
-  await auditView("Privacy");
-  await page.locator("#privacy-back").click();
-  await page.locator("#accessibility-link").click();
-  await auditView("Accessibility statement");
-  await page.locator("#accessibility-back").click();
+  const interfaceLocales = ["en-IN", "en-US", "ru-RU", "es-ES", "es-PE"];
+  for (const locale of interfaceLocales) {
+    await page.locator("#settings-open").click();
+    await page.locator("#interface-locale").selectOption(locale);
+    await page.locator("#round-length").selectOption("5");
+    await page.locator("#settings-save").click();
+    const activeLocale = await page.locator("html").getAttribute("lang");
+    if (activeLocale !== locale) throw new Error("Interface locale did not apply before accessible-name audit: " + locale + " -> " + activeLocale);
 
-  await page.locator("#play-button").click();
-  await auditView("Quiz");
-  const roundLength = Number(await page.locator("#round-length").inputValue().catch(() => "5"));
-  const expectedQuestions = Number.isFinite(roundLength) && roundLength > 0 ? roundLength : 5;
-  for (let index=0; index<expectedQuestions; index+=1) {
-    const answers = page.locator("#answers button[role=radio]");
-    if (!(await answers.count())) throw new Error("Quiz answer controls missing at question " + (index+1));
-    await auditView("Quiz question " + (index+1));
-    await answers.first().click();
-    const next = page.locator("#next-button");
-    await next.waitFor({state:"visible"});
-    await next.click();
+    await auditView(locale + " — Home");
+    await page.locator("#settings-open").click();
+    await auditView(locale + " — Settings");
+    await page.locator("#settings-back").click();
+    await page.locator("#home-help").click();
+    await auditView(locale + " — Help");
+    await page.locator("#help-back").click();
+    await page.locator("#privacy-link").click();
+    await auditView(locale + " — Privacy");
+    await page.locator("#privacy-back").click();
+    await page.locator("#accessibility-link").click();
+    await auditView(locale + " — Accessibility statement");
+    await page.locator("#accessibility-back").click();
+
+    await page.locator("#play-button").click();
+    await auditView(locale + " — Quiz");
+    for (let index = 0; index < 5; index += 1) {
+      const answers = page.locator("#answers button[role=radio]");
+      if (!(await answers.count())) throw new Error(locale + " — Quiz answer controls missing at question " + (index + 1));
+      await auditView(locale + " — Quiz question " + (index + 1));
+      await answers.first().click();
+      const next = page.locator("#next-button");
+      await next.waitFor({ state:"visible" });
+      await next.click();
+    }
+    await page.locator("#result-view.active").waitFor({ state:"visible" });
+    await auditView(locale + " — Results and answer review");
+    if (locale !== interfaceLocales.at(-1)) await page.locator("#brand-home").click();
   }
-  await page.locator("#result-view.active").waitFor({state:"visible"});
-  await auditView("Results and answer review");
 
   if (failures.length) throw new Error(failures.join("\n"));
-  console.log("Accessible-name regression passed across Home, Settings, Help, Privacy, Accessibility, Quiz and Results; no unnamed visible controls, broken ARIA ID references or duplicate IDs.");
+  console.log("Accessible-name regression passed across all five interface locales and seven views, including five-question gameplay and results review; no unnamed visible controls, broken ARIA ID references or duplicate IDs.");
 } finally {
   await browser?.close();
   await new Promise(resolveClose => server.close(resolveClose));
