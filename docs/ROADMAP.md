@@ -1032,3 +1032,77 @@ The 120-minute theme/device work and 120-minute accessibility work are separate 
 ### Release constraints
 
 No intermediate APK/Gradle build or artifact upload during feature implementation. Do not claim WCAG 2.2 AA conformance, independent security certification or native Android acceptance based on browser/static tests. Physical-device, TalkBack, final candidate inspection, store artwork/disclosures and manual release checks remain open. See [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md).
+
+---
+
+## Authoritative project snapshot — 2026-11-19 (post PRs #45–#48)
+
+This snapshot supersedes earlier dated status and delivery statements in this historical tracker. The 2,400-minute baseline is unchanged; expansion, additional audits, documentation and CI policy work do not increase baseline credit.
+
+### Revised execution timeline — updated
+
+| Remaining work package | Remaining estimate |
+|---|---:|
+| Theme and device polish | 120 min |
+| Accessibility verification — manual TalkBack/device checks | 120 min |
+| Legal/editorial documentation and store disclosures | 60 min |
+| Expanded manual, offline and Android regression | 180 min |
+| Original baseline engineering scope | 655 min |
+| **Total planned remaining** | **1,135 min (18h 55m)** |
+
+Human factual/answer-key review and native-speaker review are complete based on project-owner confirmation. The 120-minute theme/device and 120-minute accessibility packages remain separate. Final Android validation is not included as a routine feature-development build.
+
+### Baseline engineering progress
+
+| # | Workstream | Baseline | Earned | Remaining |
+|---:|---|---:|---:|---:|
+| 1 | Project foundation | 60 | 50 | 10 |
+| 2 | Visual identity | 90 | 30 | 60 |
+| 3 | Home screen | 120 | 85 | 35 |
+| 4 | Independent localization | 150 | 115 | 35 |
+| 5 | Question-bank architecture | 150 | 150 | 0 |
+| 6 | Question content | 180 | 180 | 0 |
+| 7 | Core gameplay | 180 | 180 | 0 |
+| 8 | Game modes | 120 | 120 | 0 |
+| 9 | Difficulty progression | 90 | 90 | 0 |
+| 10 | Results screen | 90 | 90 | 0 |
+| 11 | Local persistence | 120 | 100 | 20 |
+| 12 | Accessibility | 120 | 120 | 0 |
+| 13 | Android application shell | 180 | 100 | 80 |
+| 14 | Offline/security hardening | 120 | 120 | 0 |
+| 15 | Device compatibility | 180 | 65 | 115 |
+| 16 | Manual functional testing | 180 | 60 | 120 |
+| 17 | RuStore release readiness | 180 | 0 | 180 |
+| 18 | Documentation/release | 90 | 90 | 0 |
+| | **Total** | **2,400** | **1,745** | **655** |
+
+**Baseline completion: 72.71%.** Actual engineering hours are not tracked.
+
+### Current Development Status
+
+| Workstream | Status | Evidence / next action |
+|---|---|---|
+| Question bank | Complete for current target | 250 stable IDs / 1,250 localized records; 50 per region; five locales |
+| Locale independence | Automated acceptance complete | 125 interface/region/question-language combinations |
+| Gameplay and question cycles | Automated acceptance complete | Four 15-question rounds per region; no within-round duplicate IDs |
+| Offline isolation | Automated acceptance complete | All 25 region × question-language pairs exercised with cross-origin requests blocked |
+| Accessibility | Browser automation expanded | Large-text/high-contrast/reduced-motion at 320 CSS px; TalkBack and physical-device checks remain |
+| Storage and score ledger | Automated acceptance expanded | Malformed schema/range recovery, valid-record recovery and failed legacy migration-write preservation |
+| Android source/security | Static audits merged | WebView/lifecycle, manifest and feature-CI build-boundary audits; no native build implied |
+| Theme/device polish | In progress | 120-minute planning allocation; physical display/orientation matrix remains |
+| Manual accessibility verification | Pending | TalkBack, keyboard/switch access and physical-device verification |
+| Legal/editorial documentation | In progress | Reconcile disclosures and store-facing materials against the current product |
+| Android final validation | Not started | Manually dispatch only after full feature scope completion using feature_scope_complete=true |
+| Signing / RuStore submission | Not authorized | Separate explicit authorization required |
+
+### Latest merged engineering — 19 November
+
+- PR #45 merged as 9151398566eaf78c00bc2d1693c878e28e9ad07f; exact-head CI [#44581783687](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44581783687) passed all 28 substantive steps.
+- PR #46 merged as 5084dbc5d823bb55d25a42c8d7811ca209d3afa6; exact-head CI [#44582219981](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582219981) passed all 28 substantive steps.
+- PR #47 merged as 9515aea7e431ff3560d4d78e29df464667fb22f6; exact-head CI [#44582138992](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582138992) passed all 28 substantive steps, including the 25-pair offline matrix.
+- PR #48 merged as 0cdd4ff74d1a1339712623f17a88401d1a29690b; exact-head CI [#44582401075](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582401075) passed all 29 substantive steps, including the feature-development Android build-boundary audit.
+- No APK/Gradle build, signing, production deployment or RuStore submission was performed in this batch.
+
+### Release constraints
+
+Browser/static checks do not establish native Android process-death behavior, TalkBack usability, switch-access usability, WCAG 2.2 AA conformance or independent security certification. Keep manual gates open until physically verified. Do not dispatch final Android validation until the complete agreed feature scope is implemented and reviewed.
