@@ -44,7 +44,6 @@ This document is an execution record and checklist, not a claim that the release
 | Android manifest | `npm run audit:android-manifest` | Static manifest security defaults and component/permission policy | Runtime Android security assessment |
 | Android build boundary | `npm run audit:feature-ci-boundary` | Routine CI remains web/content-only; final Android validation is manual and gated by feature_scope_complete=true | Does not execute Gradle or assemble an APK |
 | Android WebView/lifecycle source | `npm run audit:android-webview` | Static local-only navigation, WebView hardening, API 23/24+ callbacks, lifecycle cleanup, API 33+ back callback pairing, API 35+ insets and pinned toolchain | Kotlin compilation, APK inspection, Android framework execution or physical-device behavior |
-| Android WebView/lifecycle source | `npm run audit:android-webview` | Static local-only navigation, WebView hardening, API 23/24+ navigation callbacks, lifecycle cleanup, API 33+ back callback pairing, API 35+ insets and pinned toolchain | Kotlin compilation, APK inspection, Android framework execution, emulator or physical-device behavior |
 
 Run the complete web/content CI workflow on the exact candidate commit. Record the run URL, commit SHA, job conclusions and any corrective commits in the release evidence log. A green run on an earlier commit is not evidence for a later candidate.
 
