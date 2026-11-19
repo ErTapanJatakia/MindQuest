@@ -73,26 +73,30 @@ The GitHub Actions workflow validates content, localization, editorial evidence,
 
 Useful local commands (Node.js 20 or later):
 
-- `npm run validate:content`
-- `npm run audit:expansion`
-- `npm run validate:spanish`
-- `npm run audit:security`
+- `npm run audit:android-manifest`
+- `npm run audit:android-webview`
 - `npm run audit:editorial`
-- `npm run test:browser`
-- `npm run test:locale-persistence`
-- `npm run test:gameplay-integrity`
+- `npm run audit:expansion`
+- `npm run audit:feature-ci-boundary`
+- `npm run audit:project-docs`
+- `npm run audit:security`
 - `npm run test:accessibility`
-- `npm run test:responsive`
-- `npm run test:storage-resilience`
-- `npm run test:theme-accessibility`
-- `npm run test:score-scope`
-- `npm run test:runtime-bank`
+- `npm run test:accessible-names`
+- `npm run test:browser`
+- `npm run test:focus-order`
+- `npm run test:gameplay-integrity`
+- `npm run test:lifecycle`
+- `npm run test:locale-persistence`
 - `npm run test:offline-isolation`
 - `npm run test:question-cycle`
-- `npm run test:lifecycle`
-- `npm run test:accessible-names`
-- `npm run test:focus-order`
-
+- `npm run test:responsive`
+- `npm run test:runtime-bank`
+- `npm run test:score-scope`
+- `npm run test:storage-resilience`
+- `npm run test:theme-accessibility`
+- `npm run validate:content`
+- `npm run validate:spanish`
+- `npm run validate:staged`
 Never delete or weaken a test to obtain a passing result. After three consecutive failures with the same strategy, change the approach rather than repeating it.
 
 ## Release policy
