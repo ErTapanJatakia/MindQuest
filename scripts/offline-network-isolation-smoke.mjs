@@ -47,6 +47,35 @@ try {
   });
   await page.locator('#answers button[data-answer="' + correct + '"]').click();
   await page.locator("#next-button").click();
+  // Repeat the offline startup/settings/gameplay path for every region × question-language pair.
+  const matrix = [
+    ["IN","en-IN"],["IN","en-US"],["IN","ru-RU"],["IN","es-ES"],["IN","es-PE"],
+    ["RU","en-IN"],["RU","en-US"],["RU","ru-RU"],["RU","es-ES"],["RU","es-PE"],
+    ["US","en-IN"],["US","en-US"],["US","ru-RU"],["US","es-ES"],["US","es-PE"],
+    ["ES","en-IN"],["ES","en-US"],["ES","ru-RU"],["ES","es-ES"],["ES","es-PE"],
+    ["PE","en-IN"],["PE","en-US"],["PE","ru-RU"],["PE","es-ES"],["PE","es-PE"]
+  ];
+  for (const [region, locale] of matrix) {
+    await page.reload({ waitUntil:"networkidle" });
+    await page.locator("#splash-dismiss").click();
+    await page.locator("#settings-open").click();
+    await page.locator("#question-region").selectOption(region);
+    await page.locator("#question-locale").selectOption(locale);
+    await page.locator("#settings-save").click();
+    await page.locator("#play-button").click();
+    const rendered = await page.locator("#question-title").evaluate(node => ({
+      language:node.getAttribute("lang"),
+      id:node.dataset.questionId
+    }));
+    if (rendered.language !== locale || !rendered.id?.startsWith(region + "-")) {
+      throw new Error("Offline locale matrix mismatch for " + region + "/" + locale + ": " + JSON.stringify(rendered));
+    }
+    const answer = await page.evaluate(id => window.MINDQUEST_QUESTIONS.find(question => question.id === id)?.correct, rendered.id);
+    if (typeof answer !== "string") throw new Error("Offline question bank could not resolve the answer for " + region + "/" + locale);
+    await page.locator('#answers button[data-answer="' + answer + '"]').click();
+    await page.locator("#next-button").click();
+  }
+
   if (externalRequests.length) throw new Error("The application attempted external network access: " + externalRequests.join(", "));
   console.log("Offline network-isolation regression passed: startup, settings persistence and Spanish regional gameplay completed with zero cross-origin requests.");
 } finally {
