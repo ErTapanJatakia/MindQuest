@@ -8,6 +8,7 @@ on:
       - "scripts/**"
       - "package.json"
       - ".github/workflows/ci.yml"
+      - "docs/QUESTION-LOCALIZATION-REGIONS-BATCH-*.md"
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -47,6 +48,9 @@ jobs:
       - name: Validate staged Spain and Peru content
         run: npm run validate:staged
 
+      - name: Audit claim-level editorial evidence registers
+        run: npm run audit:editorial
+
       - name: Run JavaScript syntax checks
         run: |
           node --check app/src/data/questions.js
@@ -59,6 +63,8 @@ jobs:
           node --check app/src/ui-polish.js
           node --check app/src/experience.js
           node --check scripts/audit-runtime-security.mjs
+          node --check scripts/audit-editorial-evidence.mjs
+          node --check scripts/responsive-viewport-smoke.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
@@ -73,3 +79,6 @@ jobs:
 
       - name: Run browser and gameplay smoke tests
         run: npm run test:browser
+
+      - name: Run responsive viewport regression matrix
+        run: npm run test:responsive
