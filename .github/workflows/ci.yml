@@ -76,6 +76,9 @@ jobs:
           node --check scripts/audit-android-manifest.mjs
           node --check scripts/theme-accessibility-matrix-smoke.mjs
           node --check scripts/score-scope-regression-smoke.mjs
+          node --check scripts/runtime-bank-integrity-smoke.mjs
+          node --check scripts/offline-network-isolation-smoke.mjs
+          node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
@@ -111,6 +114,15 @@ jobs:
 
       - name: Run independent best-score scope regression
         run: npm run test:score-scope
+
+      - name: Verify complete five-region runtime bank and localization integrity
+        run: npm run test:runtime-bank
+
+      - name: Verify browser offline network isolation
+        run: npm run test:offline-isolation
+
+      - name: Verify question exhaustion, cycle restart and replay across all regions
+        run: npm run test:question-cycle
 
       - name: Audit Android manifest security defaults
         run: npm run audit:android-manifest
