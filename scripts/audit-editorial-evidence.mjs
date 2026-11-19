@@ -54,7 +54,15 @@ for (const id of ids) {
 }
 for (const id of register.keys()) if (!ids.includes(id)) errors.push(id + ": source-register row does not match a staged question.");
 const html = await readFile(new URL("app/index.html", root), "utf8");
-for (const filename of stagedFiles) if (html.includes(filename)) errors.push(filename + ": staged content must remain excluded from runtime HTML.");
+for (const filename of stagedFiles) {
+  if (!html.includes(filename)) errors.push(filename + ": reviewed regional content is not included in the runtime bundle.");
+}
+if (!html.includes("activate-reviewed-region-bank.js")) errors.push("Guarded regional-bank activation script is not loaded.");
+const signoff = await readFile(new URL("REGIONAL-BANK-RELEASE-SIGNOFF.md", docsDirectory), "utf8").catch(() => "");
+if (!/human factual review:\s*complete/iu.test(signoff)) errors.push("Human factual review sign-off must be recorded as complete.");
+if (!/answer-key and distractor review:\s*complete/iu.test(signoff)) errors.push("Answer-key and distractor review sign-off must be recorded as complete.");
+if (!/native-speaker review for es-ES and es-PE:\s*complete/iu.test(signoff)) errors.push("Native-speaker review sign-off must be recorded as complete.");
+if (!/125-combination locale matrix:\s*automated release gate/iu.test(signoff)) errors.push("The full 125-combination matrix must remain an automated release gate.");
 
 console.log("MindQuest claim-level editorial evidence gate");
 console.log("Audited " + staged.length + " staged IDs against " + docFiles.length + " batch registers and " + register.size + " claim rows.");
@@ -63,5 +71,5 @@ if (errors.length) {
   for (const error of errors) console.error("- " + error);
   process.exitCode = 1;
 } else {
-  console.log("Every staged question has exactly one claim description and at least one linked HTTPS source; human editorial sign-off remains required.");
+  console.log("Every regional question has one claim-level evidence row; the project-owner-recorded human reviews are complete, and the full 125-combination locale matrix remains a CI release gate.");
 }

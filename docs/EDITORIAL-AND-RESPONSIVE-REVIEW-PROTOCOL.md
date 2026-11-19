@@ -14,15 +14,16 @@ The audit does **not** fetch or assess source pages. It does not establish that 
 - Independent answer-key and distractor review.
 - Native-speaker review for es-ES and es-PE.
 - Editorial approval of terminology, spelling, locale conventions and explanation quality.
-- Completion of the full 125-combination matrix (5 interface locales × 5 question-bank regions × 5 question locales) only after every region and question locale is eligible for release. The current runtime intentionally exposes only 3 regions and 3 question locales, yielding 45 supported combinations.
+- Human factual, answer-key/distractor and native-speaker reviews are recorded complete per the project owner's confirmation in [REGIONAL-BANK-RELEASE-SIGNOFF.md](REGIONAL-BANK-RELEASE-SIGNOFF.md).
+- The runtime release gate now exercises all 125 combinations (5 interface locales × 5 question-bank regions × 5 question locales).
 
 Automated structural checks must never be treated as substitutes for these approvals.
 
 ## Automated locale and preference regression
 
-The locale-persistence browser gate exercises all 45 currently supported combinations of five interface locales, three playable regions and three playable question locales. It checks that the three choices remain independent, that the document language follows the interface locale, and that all three persisted values survive a full reload at each interface-locale checkpoint.
+The locale-persistence browser gate exercises all 125 combinations of five interface locales, five playable regions and five playable question locales. It checks that the three choices remain independent, that the document language follows the interface locale, and that all three persisted values survive a full reload at each interface-locale checkpoint.
 
-It additionally starts a live round for each of the nine currently playable region/question-language pairs and checks that the stable question ID belongs to the selected region and that question and answer text carry the selected question-language metadata. This is browser regression coverage, not native-speaker acceptance or factual verification.
+It additionally starts a live round for each of the 25 playable region/question-language pairs and checks that the stable question ID belongs to the selected region and that question and answer text carry the selected question-language metadata. This is browser regression coverage, not native-speaker acceptance or factual verification.
 
 ## Responsive viewport regression
 
@@ -52,7 +53,7 @@ Before release, record separate results for keyboard-only operation, visible foc
 
 ## Release boundary
 
-All Spain/Peru questions remain staged and excluded from runtime selectors and gameplay. No Android build, APK, signing, store submission, production deployment, or paid service is part of these checks.
+The 100 Spain/Peru questions are included in runtime through a guarded activation script that verifies the expected 150 canonical and 100 regional records, unique IDs and five-locale coverage before merging the arrays. The automated editorial evidence audit still does not independently validate source contents or human reviewer actions. No Android build, APK, signing, store submission, production deployment, or paid service is part of these checks.
 
 
 ## Theme and accessibility responsive matrix
