@@ -78,6 +78,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run audit:editorial`
 - `npm run audit:expansion`
 - `npm run audit:feature-ci-boundary`
+- `npm run audit:project-docs`
 - `npm run audit:security`
 - `npm run test:accessibility`
 - `npm run test:accessible-names`
