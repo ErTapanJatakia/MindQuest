@@ -9,7 +9,7 @@
     }))
   });
   const rows = [
-    make("ES-GEO-007","ES","Geography","easy","a",[
+    make("ES-GEO-007","ES","Geography","hard","a",[
       ["Which sea receives the Ebro River?",["Mediterranean Sea","Bay of Biscay","Atlantic Ocean","North Sea"],"The Ebro flows eastward across northeastern Spain and reaches the Mediterranean."],
       ["Which sea receives the Ebro River?",["Mediterranean Sea","Bay of Biscay","Atlantic Ocean","North Sea"],"The Ebro flows eastward across northeastern Spain and reaches the Mediterranean."],
       ["¿En qué mar desemboca el río Ebro?",["Mar Mediterráneo","Golfo de Vizcaya","Océano Atlántico","Mar del Norte"],"El Ebro atraviesa el noreste de España hacia el este y desemboca en el Mediterráneo."],
@@ -129,7 +129,7 @@
       ["¿En qué comunidad española se encuentra la cueva de Altamira, famosa por su arte paleolítico?",["Andalucía","Cataluña","Cantabria","Navarra"],"La cueva de Altamira está en Cantabria y es célebre por sus pinturas rupestres paleolíticas."],
       ["¿En qué región de España se ubica la cueva de Altamira, conocida por su arte paleolítico?",["Andalucía","Cataluña","Cantabria","Navarra"],"La cueva de Altamira se encuentra en Cantabria y destaca por sus pinturas rupestres paleolíticas."]
     ]),
-    make("PE-GEO-007","PE","Geography","easy","a",[
+    make("PE-GEO-007","PE","Geography","hard","a",[
       ["The Amazon River system has important headwaters in which South American country?",["Peru","Chile","Uruguay","Paraguay"],"Major headwater streams of the Amazon rise in the Peruvian Andes."],
       ["The Amazon River system has important headwaters in which South American country?",["Peru","Chile","Uruguay","Paraguay"],"Major headwater streams of the Amazon rise in the Peruvian Andes."],
       ["¿En qué país sudamericano nacen importantes afluentes de cabecera del sistema del Amazonas?",["Perú","Chile","Uruguay","Paraguay"],"Varios ríos de cabecera importantes del Amazonas nacen en los Andes peruanos."],
@@ -192,7 +192,7 @@
     make("PE-SCI-006","PE","Science","easy","c",[
       ["Which Peruvian mountain range is monitored by INAIGEM for glacier and snow changes in Junín?",["Vilcanota","Huaytapallana","Vilcabamba","Raura"],"INAIGEM monitors the Huaytapallana range to study glacier conditions, snow and climate-related impacts."],
       ["Which Peruvian mountain range is monitored by INAIGEM for glacier and snow changes in Junín?",["Vilcanota","Huaytapallana","Vilcabamba","Raura"],"INAIGEM monitors the Huaytapallana range to study glacier conditions, snow and climate-related impacts."],
-      ["¿Qué cordillera peruana monitorea el INAIGEM para estudiar cambios en la nieve y los glaciares de Junín?",["Vilcanota","Vilcabamba","Huaytapallana","Raura"],"El INAIGEM monitorea Huaytapallana para estudiar el estado glaciar, la nieve y los efectos del clima."],
+      ["¿Qué cordillera peruana monitorea el INAIGEM para estudiar cambios en la nieve y los glaciares de Junín?",["Vilcanota","Huaytapallana","Vilcabamba","Raura"],"El INAIGEM monitorea Huaytapallana para estudiar el estado glaciar, la nieve y los efectos del clima."],
       ["¿Qué cordillera del Perú monitorea el INAIGEM para investigar cambios de nieve y glaciares en Junín?",["Vilcanota","Vilcabamba","Huaytapallana","Raura"],"El INAIGEM realiza seguimiento a Huaytapallana para estudiar sus glaciares, la nieve y los impactos climáticos."]
     ]),
     make("PE-SCI-007","PE","Science","medium","a",[
