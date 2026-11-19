@@ -59,6 +59,10 @@ jobs:
           node --check app/src/data/spanish-question-translations-batch-13.js
           node --check app/src/data/spanish-question-translations-batch-14.js
           node --check app/src/data/staged-region-questions-batch-01.js
+          node --check app/src/data/staged-region-questions-batch-02.js
+          node --check app/src/data/staged-region-questions-batch-03-04.js
+          node --check app/src/data/staged-region-questions-batch-05.js
+          node --check app/src/data/activate-reviewed-region-bank.js
           node --check app/src/app.js
           node --check app/src/ui-polish.js
           node --check app/src/experience.js
