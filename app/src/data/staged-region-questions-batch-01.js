@@ -9,7 +9,7 @@
     id, region, category, difficulty, correct, translations
   });
 
-  window.MINDQUEST_STAGED_QUESTIONS = [
+  const batchQuestions = [
     q("ES-GEO-001","ES","Geography","easy","b",{
       "en-IN":t("Which mountain is the highest point on Spanish soil?",["Mulhacén","Mount Teide","Aneto","Moncayo"],"Mount Teide on Tenerife reaches 3,718 metres and is the highest point on Spanish soil."),
       "en-US":t("What is the highest point in Spain?",["Mulhacén","Mount Teide","Aneto","Moncayo"],"Mount Teide on Tenerife reaches 3,718 meters and is the highest point on Spanish soil."),
@@ -152,4 +152,5 @@
       "es-PE":t("¿Qué ciudad del Perú fue el centro histórico del Imperio inca y cuenta con reconocimiento de la UNESCO como Patrimonio Mundial?",["Arequipa","Trujillo","Cusco","Iquitos"],"La ciudad del Cusco ingresó a la Lista del Patrimonio Mundial de la UNESCO en 1983 y conserva el legado de la antigua capital inca.")
     })
   ];
+  window.MINDQUEST_STAGED_QUESTIONS = [...(window.MINDQUEST_STAGED_QUESTIONS || []), ...batchQuestions];
 })();
