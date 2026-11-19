@@ -63,7 +63,7 @@ try {
   }
   await persistent.close();
 
-  // A reload during an unanswered/partially answered round must not resurrect stale state.
+  // A reload during a partially answered round must discard transient gameplay state.
   const interrupted = await browser.newContext({ locale:"en-IN" });
   const interruptedPage = await interrupted.newPage();
   await interruptedPage.goto("http://127.0.0.1:4184/", { waitUntil:"networkidle" });
@@ -76,7 +76,8 @@ try {
   await interruptedPage.reload({ waitUntil:"networkidle" });
   await interruptedPage.locator("#splash-dismiss").click();
   if (!(await interruptedPage.locator("#home-view").isVisible())) throw new Error("Reload did not recover to Home after interrupted gameplay");
-  if (await interruptedPage.locator("#progress-label").textContent() !== "") throw new Error("Interrupted round progress was unexpectedly restored");
+  if (await interruptedPage.locator("#quiz-view").isVisible()) throw new Error("Interrupted quiz view was unexpectedly restored");
+  if (await interruptedPage.locator("#answers button").count() !== 0) throw new Error("Interrupted answer controls were unexpectedly restored");
   if (await interruptedPage.locator("#best-score").textContent() !== "—") throw new Error("Incomplete round was incorrectly persisted as a best score");
   await interrupted.close();
 
