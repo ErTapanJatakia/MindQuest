@@ -19,10 +19,17 @@ for (const name of stagedFiles) {
   vm.runInNewContext(await readFile(new URL(name, dataDirectory), "utf8"), sandbox, { timeout: 1000 });
 }
 const staged = sandbox.window.MINDQUEST_STAGED_QUESTIONS || [];
-const expectedIds = [
-  "ES-GEO-001","ES-GEO-002","ES-GEO-003","ES-HIS-001","ES-HIS-002","ES-HIS-003","ES-SCI-001","ES-SCI-002","ES-CUL-001","ES-CUL-002",
-  "PE-GEO-001","PE-GEO-002","PE-GEO-003","PE-HIS-001","PE-HIS-002","PE-HIS-003","PE-SCI-001","PE-SCI-002","PE-CUL-001","PE-CUL-002"
-];
+const batchIds = {
+  1: [
+    "ES-GEO-001","ES-GEO-002","ES-GEO-003","ES-HIS-001","ES-HIS-002","ES-HIS-003","ES-SCI-001","ES-SCI-002","ES-CUL-001","ES-CUL-002",
+    "PE-GEO-001","PE-GEO-002","PE-GEO-003","PE-HIS-001","PE-HIS-002","PE-HIS-003","PE-SCI-001","PE-SCI-002","PE-CUL-001","PE-CUL-002"
+  ],
+  2: [
+    "ES-GEO-004","ES-GEO-005","ES-GEO-006","ES-HIS-004","ES-HIS-005","ES-SCI-003","ES-SCI-004","ES-SCI-005","ES-CUL-003","ES-CUL-004",
+    "PE-GEO-004","PE-GEO-005","PE-GEO-006","PE-HIS-004","PE-HIS-005","PE-SCI-003","PE-SCI-004","PE-SCI-005","PE-CUL-003","PE-CUL-004"
+  ]
+};
+const expectedIds = Object.values(batchIds).flat();
 const locales = ["en-IN","en-US","ru-RU","es-ES","es-PE"];
 const categories = ["Geography","History","Science","Culture"];
 const errors = [];
@@ -32,8 +39,9 @@ const optionKeys = ["a","b","c","d"];
 const clean = (value) => typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
 const actualIds = staged.map((question) => question?.id);
 if (canonical.length !== 150) errors.push(`Canonical enabled bank must remain exactly 150 questions; found ${canonical.length}`);
-if (stagedFiles.length !== 1 || !stagedFiles.includes("staged-region-questions-batch-01.js")) {
-  errors.push("Batch 01 must be represented by exactly its registered staged source file.");
+const expectedFiles = ["staged-region-questions-batch-01.js","staged-region-questions-batch-02.js"];
+if (JSON.stringify(stagedFiles) !== JSON.stringify(expectedFiles)) {
+  errors.push(`Expected staged source files ${expectedFiles.join(", ")}; found ${stagedFiles.join(", ")}`);
 }
 if (staged.length !== expectedIds.length) errors.push(`Expected ${expectedIds.length} staged questions; found ${staged.length}`);
 if (new Set(actualIds).size !== actualIds.length) errors.push("Staged bank contains duplicate stable IDs.");
@@ -76,17 +84,36 @@ for (const question of staged) {
     }
   }
 }
+const batchQuotas = {
+  1: {categories:{Geography:3,History:3,Science:2,Culture:2},difficulty:{easy:3,medium:4,hard:3}},
+  2: {categories:{Geography:3,History:2,Science:3,Culture:2},difficulty:{easy:3,medium:4,hard:3}}
+};
+for (const [batch, ids] of Object.entries(batchIds)) {
+  const batchQuestions = staged.filter((question) => ids.includes(question.id));
+  for (const region of ["ES","PE"]) {
+    const regional = batchQuestions.filter((question) => question.region === region);
+    if (regional.length !== 10) errors.push(`Batch ${batch} / ${region}: expected 10 questions; found ${regional.length}`);
+    for (const [category, expected] of Object.entries(batchQuotas[batch].categories)) {
+      const actual = regional.filter((question) => question.category === category).length;
+      if (actual !== expected) errors.push(`Batch ${batch} / ${region}: expected ${expected} ${category}; found ${actual}`);
+    }
+    for (const [level, expected] of Object.entries(batchQuotas[batch].difficulty)) {
+      const actual = regional.filter((question) => question.difficulty === level).length;
+      if (actual !== expected) errors.push(`Batch ${batch} / ${region}: expected ${expected} ${level}; found ${actual}`);
+    }
+  }
+}
 for (const region of ["ES","PE"]) {
   const regional = staged.filter((question) => question.region === region);
-  if (regional.length !== 10) errors.push(`${region}: batch 01 must contain exactly 10 questions`);
-  const categoryCounts = Object.fromEntries(categories.map((category) => [category, regional.filter((q) => q.category === category).length]));
-  const expectedCategories = { Geography:3, History:3, Science:2, Culture:2 };
-  for (const category of categories) {
-    if (categoryCounts[category] !== expectedCategories[category]) errors.push(`${region}: batch 01 expected category mix 3/3/2/2; ${category} has ${categoryCounts[category]}`);
+  const cumulativeCategories = {Geography:6,History:5,Science:5,Culture:4};
+  const cumulativeDifficulty = {easy:6,medium:8,hard:6};
+  for (const [category, expected] of Object.entries(cumulativeCategories)) {
+    const actual = regional.filter((question) => question.category === category).length;
+    if (actual !== expected) errors.push(`${region}: cumulative batches 01–02 expected ${expected} ${category}; found ${actual}`);
   }
-  const difficultyCounts = Object.fromEntries(["easy","medium","hard"].map((level) => [level, regional.filter((q) => q.difficulty === level).length]));
-  for (const [level, count] of Object.entries({easy:3,medium:4,hard:3})) {
-    if (difficultyCounts[level] !== count) errors.push(`${region}: batch 01 expected ${count} ${level}; found ${difficultyCounts[level]}`);
+  for (const [level, expected] of Object.entries(cumulativeDifficulty)) {
+    const actual = regional.filter((question) => question.difficulty === level).length;
+    if (actual !== expected) errors.push(`${region}: cumulative batches 01–02 expected ${expected} ${level}; found ${actual}`);
   }
 }
 const promptMap = new Map();
@@ -100,17 +127,22 @@ for (const question of [...canonical, ...staged]) {
   }
 }
 const appHtml = await readFile(new URL("app/index.html", root), "utf8");
-if (appHtml.includes("staged-region-questions-batch-01.js")) errors.push("Staged content must not be loaded by the live application before full release gates.");
-const reviewDoc = await readFile(new URL("docs/QUESTION-LOCALIZATION-REGIONS-BATCH-01.md", root), "utf8");
-for (const id of expectedIds) if (!reviewDoc.includes(id)) errors.push(`${id}: missing from editorial/source register`);
-console.log("MindQuest staged Spain/Peru content validation — batch 01");
+for (const filename of stagedFiles) {
+  if (appHtml.includes(filename)) errors.push(`${filename}: staged content must not be loaded by the live application before full release gates.`);
+}
+for (const [batch, ids] of Object.entries(batchIds)) {
+  const reviewDoc = await readFile(new URL(`docs/QUESTION-LOCALIZATION-REGIONS-BATCH-0${batch}.md`, root), "utf8");
+  for (const id of ids) if (!reviewDoc.includes(id)) errors.push(`${id}: missing from batch ${batch} editorial/source register`);
+}
+console.log("MindQuest staged Spain/Peru content validation — cumulative batches 01–02");
 console.log(`Canonical bank: ${canonical.length} enabled IDs; staged: ${staged.length} new IDs; locales per staged ID: ${locales.length}.`);
-console.log("Runtime exposure: staged region content remains excluded from app selectors and gameplay.");
+console.log("Runtime exposure: both staged batches remain excluded from app selectors and gameplay.");
 if (errors.length) {
   console.error("\nStaged regional validation failed:");
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log("Staged regional content structurally valid: 20 IDs, 100 localized records, five explicit locales and registered source notes.");
+  console.log("Staged regional content structurally valid: 40 IDs, 200 localized records, five explicit locales and registered source notes.");
+  console.log("Cumulative category quotas per region: Geography 6, History 5, Science 5, Culture 4; difficulty: easy 6, medium 8, hard 6.");
   console.log("Editorial status: factual source review and native-speaker review remain required before release.");
 }
