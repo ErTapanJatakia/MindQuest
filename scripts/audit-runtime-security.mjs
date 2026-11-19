@@ -4,7 +4,8 @@ const html = await readFile("app/index.html", "utf8");
 const runtimeFiles = [
   "app/src/app.js",
   "app/src/experience.js",
-  "app/src/ui-polish.js"
+  "app/src/ui-polish.js",
+  "app/src/data/activate-reviewed-region-bank.js"
 ];
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
@@ -50,7 +51,20 @@ for (const [index, attributes] of [...html.matchAll(/<link\b([^>]*)>/gi)].map(ma
 }
 check(!/<(?:iframe|object|embed)\b/i.test(html), "Embedded active-content elements are not permitted.");
 check(!/\bon[a-z]+\s*=/i.test(html), "Inline HTML event handlers are not permitted.");
-check(!/staged-region-questions-batch/i.test(html), "Unreviewed Spain/Peru staged content must not be loaded at runtime.");
+const requiredRegionalScripts = [
+  "staged-region-questions-batch-01.js",
+  "staged-region-questions-batch-02.js",
+  "staged-region-questions-batch-03-04.js",
+  "staged-region-questions-batch-05.js",
+  "activate-reviewed-region-bank.js"
+];
+const scriptSources = scriptTags.map(attributes => attributes.match(/\\bsrc=["']([^"']+)["']/i)?.[1] || "");
+for (const filename of requiredRegionalScripts) {
+  check(scriptSources.includes("./src/data/" + filename), "Reviewed regional runtime bundle is missing: " + filename);
+}
+const activationIndex = scriptSources.indexOf("./src/data/activate-reviewed-region-bank.js");
+const finalStagedIndex = scriptSources.indexOf("./src/data/staged-region-questions-batch-05.js");
+check(activationIndex > finalStagedIndex, "Regional bank activation must run after every staged regional batch.");
 
 for (const path of runtimeFiles) {
   const source = await readFile(path, "utf8");
@@ -64,7 +78,7 @@ for (const path of runtimeFiles) {
 }
 
 console.log("MindQuest offline/security boundary audit");
-console.log(`Checked CSP directives, ${scriptTags.length} local script tags, linked assets, embedded content, staged-data exclusion and ${runtimeFiles.length} runtime modules.`);
+console.log(`Checked CSP directives, ${scriptTags.length} local script tags, linked assets, embedded content, guarded regional-data activation and ${runtimeFiles.length} runtime modules.`);
 if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
