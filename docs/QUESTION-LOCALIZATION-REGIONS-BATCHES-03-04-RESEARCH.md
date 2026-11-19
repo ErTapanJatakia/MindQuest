@@ -99,3 +99,18 @@ The remaining proposed claims must not be treated as fact-checked yet. In partic
 ### Editorial rule
 
 A claim may enter the staged question file only after its wording is supported by the linked source. If a proposed topic cannot be verified precisely, replace it with a better-supported original regional fact rather than weakening the evidence standard. This checkpoint does not constitute native-speaker review, independent answer-key review or final editorial approval.
+
+
+### Additional direct-source checks
+
+| Stable ID | Check result | Direct evidence |
+|---|---|---|
+| ES-GEO-008 | Confirmed: Doñana National Park is in Andalusia, in Huelva and Sevilla provinces. | [UNESCO — Doñana National Park](https://whc.unesco.org/en/list/685) |
+| ES-SCI-007 | Confirmed: Severo Ochoa shared the 1959 Nobel Prize in Physiology or Medicine with Arthur Kornberg. | [Nobel Prize — 1959 laureates](https://www.nobelprize.org/prizes/lists/all-nobel-prizes/all/) |
+| PE-HIS-007 | Confirmed: UNESCO describes Caral-Supe as the oldest centre of civilization in the Americas. | [UNESCO — Sacred City of Caral-Supe](https://whc.unesco.org/en/list/1269/) |
+| PE-HIS-010 | Confirmed: Lima's founding ceremony took place on 18 January 1535; the Peruvian Presidency's account identifies the ceremony and Francisco Pizarro. | [Presidency of Peru — History of Government Palace](https://www.gob.pe/800-presidencia-de-la-republica-del-peru-historia-de-palacio-de-gobierno) |
+| PE-CUL-006 | Confirmed: UNESCO identifies Cuzco as the capital of the Tawantinsuyu Inca Empire in the 15th–16th centuries. | [UNESCO — City of Cuzco](https://whc.unesco.org/en/list/273/) |
+| PE-CUL-007 | Confirmed: Peruvian ceviche practices and meanings were inscribed on UNESCO's Representative List in 2023. | [UNESCO — Ceviche](https://ich.unesco.org/en/RL/practices-and-meanings-associated-with-the-preparation-and-consumption-of-ceviche-an-expression-of-peruvian-traditional-cuisine-01952) |
+| PE-CUL-008 | Confirmed: the Festivity of Virgen de la Candelaria of Puno is included in UNESCO's Peru intangible-heritage register. | [UNESCO — Peru intangible heritage register](https://ich.unesco.org/en/state/peru-PE?cp=PE&topic=en-state) |
+
+These confirmations support topic selection only. Each final question still needs its own precise, unambiguous prompt, independently checked answer key and locale-specific editorial review.
