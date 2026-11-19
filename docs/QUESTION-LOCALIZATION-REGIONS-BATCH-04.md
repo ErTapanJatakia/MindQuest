@@ -12,7 +12,7 @@
 
 | Stable ID | Fact used by question | Institutional source |
 |---|---|---|
-| ES-GEO-009 | Mount Teide is on Tenerife | [UNESCO — Teide National Park](https://whc.unesco.org/en/list/1258/) |
+| ES-GEO-009 | Cantabrian Sea borders Spain's northern coast | [Spanish Ministry for Ecological Transition — Cantabrian coast](https://www.miteco.gob.es/va/costas/temas/proteccion-costa/conociendo-litoral/zonas-litorales-espanolas/clasificacion-geografica/costa-cantabrica-galicia.html) |
 | ES-GEO-010 | Pyrenees form the Spain–France border region | [UK Permanent Committee on Geographical Names — Spain factfile](https://assets.publishing.service.gov.uk/media/6941528d29501ea90654a507/Spain_Toponymic_Factfile.pdf) |
 | ES-GEO-011 | Tajo is the Spanish name for the Tagus | [Spanish Government — Geography of Spain](https://www.lamoncloa.gob.es/lang/en/espana/historyandculture/geography/paginas/index.aspx) |
 | ES-HIS-009 | Spanish Civil War began in 1936 | [Spanish Government — Democratic Memory](https://www.mpr.gob.es/memoriademocratica/) |
@@ -24,7 +24,7 @@
 | ES-CUL-010 | Altamira is known for Paleolithic cave art and is in Cantabria | [UNESCO — Cave of Altamira](https://whc.unesco.org/en/list/310/) |
 | PE-GEO-009 | Manu National Park spans Andean and Amazonian ecosystems | [UNESCO — Manu National Park](https://whc.unesco.org/en/list/402/) |
 | PE-GEO-010 | Paracas National Reserve is on Peru's Pacific coast in Ica | [Peru Congress — Law 30829](https://leyes.congreso.gob.pe/Documentos/2016_2021/ADLP/Texto_Consolidado/30829-TXM.pdf) |
-| PE-GEO-011 | Cordillera Blanca is part of the Peruvian Andes | [UNESCO — Huascarán National Park](https://whc.unesco.org/en/list/333/) |
+| PE-GEO-011 | Madre de Dios River belongs to the Amazon drainage system | [Peruvian National Water Authority — Madre de Dios Basin hydrological diagnosis](https://www.ana.gob.pe/sites/default/files/publication/files/diagnostico_hidrologico_-madre_de_dios_0.pdf) |
 | PE-HIS-009 | Battle of Junín took place in 1824 | [Peru bicentennial / government historical resources](https://www.gob.pe/) |
 | PE-HIS-010 | Lima's founding ceremony took place on 18 January 1535 | [Presidency of Peru — Government Palace history](https://www.gob.pe/800-presidencia-de-la-republica-del-peru-historia-de-palacio-de-gobierno) |
 | PE-SCI-008 | Peru's National Institute of Health performs public-health research and laboratory work | [Peru National Institute of Health](https://www.gob.pe/ins) |
