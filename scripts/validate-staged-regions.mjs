@@ -146,7 +146,7 @@ for (const filename of stagedFiles) {
   if (!appHtml.includes(filename)) errors.push(`${filename}: reviewed regional batch is missing from the runtime bundle.`);
 }
 if (!appHtml.includes("activate-reviewed-region-bank.js")) errors.push("Guarded regional-bank activation script is missing.");
-const scriptOrder = [...appHtml.matchAll(/<script\\b[^>]*src=["']([^"']+)["']/gu)].map(match => match[1]);
+const scriptOrder = [...appHtml.matchAll(/<script\b[^>]*src=["']([^"']+)["']/gu)].map(match => match[1]);
 const activationPosition = scriptOrder.indexOf("./src/data/activate-reviewed-region-bank.js");
 const finalBatchPosition = scriptOrder.indexOf("./src/data/staged-region-questions-batch-05.js");
 if (activationPosition <= finalBatchPosition) errors.push("Regional bank activation must run after all staged batches.");
