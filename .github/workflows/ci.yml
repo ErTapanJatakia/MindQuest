@@ -9,6 +9,7 @@ on:
       - "package.json"
       - ".github/workflows/ci.yml"
       - "docs/QUESTION-LOCALIZATION-REGIONS-BATCH-*.md"
+      - "android/**"
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -75,6 +76,7 @@ jobs:
           node --check scripts/accessible-name-regression-smoke.mjs
           node --check scripts/storage-resilience-smoke.mjs
           node --check scripts/audit-android-manifest.mjs
+          node --check scripts/audit-android-webview-lifecycle.mjs
           node --check scripts/theme-accessibility-matrix-smoke.mjs
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
@@ -135,6 +137,9 @@ jobs:
 
       - name: Verify keyboard focus order and inactive-view isolation
         run: npm run test:focus-order
+
+      - name: Audit Android WebView navigation and lifecycle source boundaries
+        run: npm run audit:android-webview
 
       - name: Audit Android manifest security defaults
         run: npm run audit:android-manifest

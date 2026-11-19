@@ -127,3 +127,10 @@ Use [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md) to rec
 ## Keyboard focus order and inactive-view isolation
 
 The `test:focus-order` browser gate verifies that exactly one application view is active during navigation through Home, Settings, Help, Privacy, Accessibility, Quiz and Results. It checks that inactive views are hidden and expose no visible tab-reachable controls, that each destination view has a programmatically focusable heading, and that focus is moved to that heading after navigation. It also completes a configured round, checks focus restoration between questions, validates Results and answer review, and verifies replay navigation. This is DOM/browser regression coverage; it does not replace keyboard-only testing on target devices, screen-reader/TalkBack testing, switch-access testing or a WCAG conformance evaluation.
+
+
+## Android WebView and Activity lifecycle source audit
+
+The `audit:android-webview` CI gate statically verifies the native source/configuration boundary: local-only WebView entry point, restrictive WebView settings, no JavaScript bridge, API 23 and API 24+ navigation callback coverage, subframe rejection on modern APIs, pause/resume timer pairing, WebView destruction, API 33+ back callback registration/unregistration, legacy back fallback, API 35+ system-bar/cutout/IME insets, application ID, SDK levels, pinned Android/Kotlin plugins, Gradle wrapper distribution and canonical bundled asset path.
+
+This gate does not execute Kotlin compilation or Gradle, assemble or inspect an APK, exercise Android lifecycle callbacks, or validate real gesture navigation, IME, cutouts, process death, OEM behaviour or physical devices. Those checks remain in the final manually gated Android validation phase. Android source changes trigger the regular web/content CI workflow; no Android build job is added to feature-development CI.

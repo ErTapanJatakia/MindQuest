@@ -90,3 +90,19 @@ The WebView needs local file access to load `file:///android_asset/index.html`. 
 - Added the legacy `shouldOverrideUrlLoading(WebView, String)` override so the explicit local-document navigation allowlist also applies on the minimum supported Android API 23, where `WebResourceRequest` is unavailable.
 - Both callback paths now share one URI predicate: only `file:///android_asset/index.html` is permitted, optional URL fragments remain usable for in-app state, query strings are rejected, and API 24+ subframe navigation is blocked.
 - Source-level change only. No Kotlin compilation, Android build, API 23 emulator, runtime navigation or device test was run; CI/Android validation remain deferred.
+
+
+## Automated Android source-boundary audit
+
+The web/content CI now runs `npm run audit:android-webview` when Android sources change and on every pull request. This static regression gate checks:
+
+- WebView debugging remains disabled; only the bundled app needs JavaScript and DOM storage.
+- Content-provider access, cross-file-origin access, universal file-origin access, automatic JavaScript windows, multiple windows and mixed content remain disabled.
+- No JavaScript-to-native bridge or remote HTTP(S) document load is introduced.
+- Both API 23 legacy and API 24+ navigation callbacks enforce the bundled `file:///android_asset/index.html` allowlist; modern callbacks reject subframes.
+- Activity pause/resume pairs WebView lifecycle and timers; destruction stops loading, pauses, detaches and destroys the WebView.
+- API 33+ back callback registration is guarded and unregistered; legacy back handling remains for earlier APIs.
+- API 35+ insets account for system bars, display cutouts and the IME.
+- Application ID, min/target SDK, Gradle plugin versions, Gradle wrapper distribution and canonical asset source remain pinned.
+
+This is a static source/configuration audit. It does not compile Kotlin, run Gradle, assemble an APK, inspect a binary, exercise Android framework callbacks or replace emulator/physical-device validation. The final Android workflow remains deferred until the feature scope is complete.
