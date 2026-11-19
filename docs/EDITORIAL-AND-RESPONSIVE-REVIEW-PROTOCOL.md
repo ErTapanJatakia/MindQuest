@@ -2,11 +2,20 @@
 
 ## Editorial evidence register
 
-The staged Spain and Peru question bank is not runtime-enabled. Each staged stable ID must have exactly one claim-level row across the five regional batch registers. Each row must identify the fact being tested and link at least one HTTPS institutional or primary reference.
+The 100 Spain and Peru questions are runtime-enabled through the guarded regional-bank activation script after all staged source bundles load. Each regional stable ID must have exactly one claim-level row across the five regional batch registers. Each row must identify the fact being tested and link at least one HTTPS institutional or primary reference.
 
-The automated evidence audit verifies register completeness, ID matching, descriptive claim text, HTTPS links, duplicate/missing rows, the documented human-review gates, and continued exclusion of staged source files from the runtime HTML.
+The automated evidence audit verifies register completeness, ID matching, descriptive claim text, HTTPS links, duplicate/missing rows and the documented human-review gates. The runtime security and staged-content validators verify that all four regional source bundles are loaded before the guarded activation script. Activation checks the expected 150 canonical and 100 regional records, unique IDs and complete five-locale coverage before exposing 250 records to gameplay.
 
 The audit does **not** fetch or assess source pages. It does not establish that a source supports a claim, that a question or answer key is factually correct, that distractors are unambiguous, or that any translation is idiomatic. Reviewers must open the source, verify the precise claim and answer key, inspect all distractors, and record human sign-off.
+
+
+## Offline, question-cycle and release-readiness regression
+
+- The browser offline-isolation gate exercises application startup, settings persistence and Spanish regional gameplay while aborting and recording any cross-origin request. A passing run must record zero external requests.
+- The runtime bank integrity gate checks all 250 enabled stable IDs, 50 questions per region, category quotas (13 Geography, 12 History, 12 Science, 13 Culture), difficulty quotas (15 easy, 20 medium, 15 hard), all five locale records, non-empty explanations and four distinct answer options per locale.
+- The question-cycle gate completes four 15-question rounds for each of the five regions. It requires no duplicate IDs within a round and coverage of all 50 IDs per region before verifying replay starts a fresh cycle. This is browser automation, not a statistical fairness proof for the random-number generator.
+- Static offline security checks and browser request monitoring are complementary. They do not constitute a penetration test, network-layer packet capture, mobile-platform assessment or independent security certification.
+- Android manifest checks are static configuration checks only. Android packaging, physical-device testing, TalkBack verification, signing and store submission remain separate release activities.
 
 ## Required human review
 
@@ -15,7 +24,7 @@ The audit does **not** fetch or assess source pages. It does not establish that 
 - Native-speaker review for es-ES and es-PE.
 - Editorial approval of terminology, spelling, locale conventions and explanation quality.
 - Human factual, answer-key/distractor and native-speaker reviews are recorded complete per the project owner's confirmation in [REGIONAL-BANK-RELEASE-SIGNOFF.md](REGIONAL-BANK-RELEASE-SIGNOFF.md).
-- The runtime release gate now exercises all 125 combinations (5 interface locales × 5 question-bank regions × 5 question locales).
+- The runtime release gate exercises all 125 combinations (5 interface locales × 5 question-bank regions × 5 question locales). The five-region runtime bank test additionally verifies the 250-ID total, 50 questions per region, category/difficulty quotas and complete five-locale answer/explanation content.
 
 Automated structural checks must never be treated as substitutes for these approvals.
 
