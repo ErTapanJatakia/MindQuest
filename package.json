@@ -22,6 +22,7 @@
     "test:theme-accessibility": "node scripts/theme-accessibility-matrix-smoke.mjs",
     "test:score-scope": "node scripts/score-scope-regression-smoke.mjs",
     "test:runtime-bank": "node scripts/runtime-bank-integrity-smoke.mjs",
+    "test:bank-fail-closed": "node scripts/question-bank-fail-closed-smoke.mjs",
     "test:offline-isolation": "node scripts/offline-network-isolation-smoke.mjs",
     "test:question-cycle": "node scripts/question-cycle-regression-smoke.mjs",
     "test:lifecycle": "node scripts/application-lifecycle-smoke.mjs",
