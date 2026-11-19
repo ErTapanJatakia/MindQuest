@@ -147,6 +147,50 @@ try {
   if (await page.evaluate(() => document.activeElement?.id) !== "next-button") {
     throw new Error("Keyboard answer selection did not move focus to the Next action");
   }
+  // Large-text, high-contrast and reduced-motion preferences must remain usable together on a compact viewport.
+  await page.setViewportSize({ width:320, height:720 });
+  const largeTextRootSize = await page.evaluate(() => Number.parseFloat(getComputedStyle(document.documentElement).fontSize));
+  if (!(largeTextRootSize > 16)) {
+    throw new Error("Large-text preference did not increase the root text scale: " + largeTextRootSize);
+  }
+  async function assertCompactReflow(label) {
+    const layout = await page.evaluate(() => {
+      const width = document.documentElement.clientWidth;
+      const visible = [...document.querySelectorAll("button,a[href],input:not([type='hidden']),select,textarea,[role='radio']")]
+        .filter(node => node.getClientRects().length && getComputedStyle(node).visibility !== "hidden" &&
+          !node.closest("[hidden],[aria-hidden='true'],[inert]"));
+      return {
+        width,
+        documentWidth:document.documentElement.scrollWidth,
+        bodyWidth:document.body.scrollWidth,
+        escaped:visible.map(node => {
+          const rect=node.getBoundingClientRect();
+          return { id:node.id || node.tagName.toLowerCase(), left:rect.left, right:rect.right };
+        }).filter(rect => rect.left < -1 || rect.right > width + 1)
+      };
+    });
+    if (layout.documentWidth > layout.width || layout.bodyWidth > layout.width || layout.escaped.length) {
+      throw new Error(label + " reflow failed at 320 CSS px with large text/high contrast: " + JSON.stringify(layout));
+    }
+  }
+  await assertCompactReflow("Home");
+  await page.locator("#settings-open").click();
+  await assertCompactReflow("Settings");
+  await page.locator("#settings-back").click();
+  await page.locator("#play-button").click();
+  await assertCompactReflow("Quiz");
+  const compactRoundLength = Number(await page.locator("#round-length").inputValue().catch(() => "10"));
+  const compactQuestions = Number.isFinite(compactRoundLength) && compactRoundLength > 0 ? compactRoundLength : 10;
+  for (let index=0; index<compactQuestions; index+=1) {
+    const answers = page.locator("#answers button[role=radio]");
+    if (!(await answers.count())) throw new Error("Compact large-text quiz lost answer controls at question " + (index + 1));
+    await answers.first().click();
+    await page.locator("#next-button").waitFor({ state:"visible" });
+    await page.locator("#next-button").click();
+  }
+  await page.locator("#result-view.active").waitFor({ state:"visible" });
+  await assertCompactReflow("Results and answer review");
+
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
   console.log("Accessibility regression passed: modal launch focus isolation, destination-heading focus, accessible searchable settings, large text/reduced motion/high contrast persistence, keyboard-operable theme selection, forced-colors availability, and arrow-key radio navigation.");
 } finally {
