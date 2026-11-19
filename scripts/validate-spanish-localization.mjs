@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
-const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, batch06Source, batch07Source, batch08Source, batch09Source, batch10Source, html] = await Promise.all([
+const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, batch06Source, batch07Source, batch08Source, batch09Source, batch10Source, batch11Source, html] = await Promise.all([
   readFile(new URL("app/src/data/questions.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-03.js", root), "utf8"),
@@ -13,6 +13,7 @@ const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, b
   readFile(new URL("app/src/data/spanish-question-translations-batch-08.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-09.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-10.js", root), "utf8"),
+  readFile(new URL("app/src/data/spanish-question-translations-batch-11.js", root), "utf8"),
   readFile(new URL("app/index.html", root), "utf8")
 ]);
 const sandbox = { window: {} };
@@ -26,6 +27,7 @@ vm.runInNewContext(batch07Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch08Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch09Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch10Source, sandbox, { timeout: 1000 });
+vm.runInNewContext(batch11Source, sandbox, { timeout: 1000 });
 
 const expected = {
   "IN-GEO-001": { key: "b", answer: "Jaipur" },
@@ -128,6 +130,22 @@ const expected = {
   "US-HIS-009": { key: "c", answer: "Constitución de Estados Unidos" },
   "US-SCI-008": { key: "d", answer: "Oppenheimer" },
   "US-SCI-009": { key: "c", answer: "New Horizons" },
+
+  "IN-GEO-010": { key: "c", answer: "Bahía de Bengala" },
+  "IN-HIS-010": { key: "a", answer: "Babur" },
+  "IN-SCI-010": { key: "d", answer: "Pokhran" },
+  "IN-CUL-009": { key: "b", answer: "Tamil" },
+  "IN-CUL-010": { key: "a", answer: "Andhra Pradesh" },
+  "RU-GEO-010": { key: "b", answer: "Mar de Kara" },
+  "RU-HIS-010": { key: "c", answer: "1380" },
+  "RU-SCI-010": { key: "a", answer: "Leónov" },
+  "RU-CUL-009": { key: "d", answer: "Fabergé" },
+  "RU-CUL-010": { key: "b", answer: "Tretiakov" },
+  "US-GEO-010": { key: "c", answer: "Golfo de México" },
+  "US-HIS-010": { key: "a", answer: "Seneca Falls" },
+  "US-SCI-010": { key: "d", answer: "Sally Ride" },
+  "US-CUL-009": { key: "c", answer: "Renacimiento de Harlem" },
+  "US-CUL-010": { key: "a", answer: "Hip-hop" },
 };
 const locales = ["es-ES", "es-PE"];
 const questions = new Map(sandbox.window.MINDQUEST_QUESTIONS.map((question) => [question.id, question]));
@@ -180,13 +198,14 @@ if (!html.includes('./src/data/spanish-question-translations.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-07.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-08.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-09.js') ||
-    !html.includes('./src/data/spanish-question-translations-batch-10.js')) {
+    !html.includes('./src/data/spanish-question-translations-batch-10.js') ||
+    !html.includes('./src/data/spanish-question-translations-batch-11.js')) {
   errors.push("Spanish translation overlays are not both loaded by the application.");
 }
 
-console.log("MindQuest Spanish localization batches 01–10");
+console.log("MindQuest Spanish localization batches 01–11");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
-console.log(`Validated: ${errors.length ? "with errors" : "200 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
+console.log(`Validated: ${errors.length ? "with errors" : "230 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
 console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
