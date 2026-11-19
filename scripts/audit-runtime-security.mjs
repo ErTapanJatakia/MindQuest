@@ -9,7 +9,7 @@ const runtimeFiles = [
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 
-const cspTag = html.match(/<meta\s+http-equiv=["']Content-Security-Policy["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+const cspTag = html.match(/<meta\s+http-equiv="Content-Security-Policy"[^>]*content="([^"]+)"[^>]*>/i);
 check(Boolean(cspTag), "A Content-Security-Policy meta element is required.");
 const directives = new Map((cspTag?.[1] || "").split(";").map(value => {
   const [name, ...tokens] = value.trim().split(/\s+/);
