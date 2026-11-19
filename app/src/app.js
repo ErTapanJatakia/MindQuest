@@ -1,22 +1,22 @@
 (() => {
   "use strict";
 
-  const LOCALES = ["en-IN", "en-US", "ru-RU"];
+  const LOCALES = ["en-IN", "en-US", "ru-RU", "es-ES", "es-PE"];
   const INTERFACE_LOCALES = ["en-IN", "en-US", "ru-RU", "es-PE", "es-ES"];
-  const REGIONS = ["IN", "RU", "US"];
+  const REGIONS = ["IN", "RU", "US", "ES", "PE"];
   const CATEGORIES = ["Geography", "History", "Science", "Culture"];
   const REGION_NAMES = {
     "en-IN": {
       categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
-      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "Republic of India", RU: "Russian Federation", US: "United States of America" },
+      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "Republic of India", RU: "Russian Federation", US: "United States of America", ES: "Kingdom of Spain", PE: "Republic of Peru" },
     "en-US": {
       categoryGeography:"Geography",categoryHistory:"History",categoryScience:"Science",categoryCulture:"Culture",
-      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States" },
+      categoryFilter:"Category",difficultyFilter:"Difficulty",allCategories:"All categories",anyDifficulty:"Any difficulty",easy:"Easy",medium:"Medium",hard:"Hard", IN: "India", RU: "Russia", US: "United States", ES: "Spain", PE: "Peru" },
     "ru-RU": {
       categoryGeography:"География",categoryHistory:"История",categoryScience:"Наука",categoryCulture:"Культура",
-      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Республика Индия", RU: "Российская Федерация", US: "Соединённые Штаты Америки" },
-    "es-PE": { categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Intermedia",hard:"Difícil",IN:"República de la India",RU:"Federación de Rusia",US:"Estados Unidos de América" },
-    "es-ES": { categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Media",hard:"Difícil",IN:"República de la India",RU:"Federación de Rusia",US:"Estados Unidos de América" }
+      categoryFilter:"Категория",difficultyFilter:"Сложность",allCategories:"Все категории",anyDifficulty:"Любая сложность",easy:"Лёгкая",medium:"Средняя",hard:"Сложная", IN: "Республика Индия", RU: "Российская Федерация", US: "Соединённые Штаты Америки", ES: "Королевство Испания", PE: "Республика Перу" },
+    "es-PE": { categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Intermedia",hard:"Difícil",IN:"República de la India",RU:"Federación de Rusia",US:"Estados Unidos de América",ES:"Reino de España",PE:"República del Perú" },
+    "es-ES": { categoryGeography:"Geografía",categoryHistory:"Historia",categoryScience:"Ciencia",categoryCulture:"Cultura",categoryFilter:"Categoría",difficultyFilter:"Dificultad",allCategories:"Todas las categorías",anyDifficulty:"Cualquier dificultad",easy:"Fácil",medium:"Media",hard:"Difícil",IN:"República de la India",RU:"Federación de Rusia",US:"Estados Unidos de América",ES:"Reino de España",PE:"República del Perú" }
   };
   const UI = {
     "en-IN": {
@@ -152,7 +152,7 @@
   const $ = (id) => document.getElementById(id);
   const views = ["home-view", "quiz-view", "result-view", "settings-view", "help-view", "privacy-view", "accessibility-view"];
   const t = (key) => (UI[settings.interfaceLocale] || UI["en-IN"])[key] || key;
-  const localeName = (locale) => locale === "ru-RU" ? "Russian (Russian Federation) — ru-RU" : locale === "en-US" ? "English (United States of America) — en-US" : "English (Republic of India) — en-IN";
+  const localeName = (locale) => ({ "en-IN":"English (India) — en-IN", "en-US":"English (United States) — en-US", "ru-RU":"Russian (Russian Federation) — ru-RU", "es-ES":"Spanish (Spain) — es-ES", "es-PE":"Spanish (Peru) — es-PE" })[locale] || "English (India) — en-IN";
   const regionName = (region) => REGION_NAMES[settings.interfaceLocale][region];
   const categoryName = (category) => t("category" + category);
   const selectedCategoryName = () => settings.category === "all" ? t("allCategories") : categoryName(settings.category);
@@ -282,12 +282,11 @@
         !["easy", "medium", "hard"].includes(question.difficulty) ||
         !["a", "b", "c", "d"].includes(question.correct) ||
         typeof question.id !== "string" ||
-        !new RegExp("^(IN|RU|US)-" + categoryCodes[question.category] + "-\\d{3}$").test(question.id) ||
+        !new RegExp("^(IN|RU|US|ES|PE)-" + categoryCodes[question.category] + "-\\d{3}$").test(question.id) ||
         !question.id.startsWith(question.region + "-")) return false;
 
     const translations = question.translations;
-    const stagedLocales = ["es-ES", "es-PE"];
-    const allowedLocales = [...LOCALES, ...stagedLocales];
+    const allowedLocales = LOCALES;
     const translationLocales = translations && typeof translations === "object" && !Array.isArray(translations)
       ? Object.keys(translations)
       : [];
@@ -301,7 +300,7 @@
       typeof value === "string" && value.trim().length > 0 && !/[\u0000-\u001F\u007F]/u.test(value);
 
     // Validate every present locale before admitting the shared question ID to a round.
-    // Staged Spanish records are validated but remain unavailable in the question selector.
+    // Every enabled question must provide complete coverage in all five locales.
     // The question-level correct key is the canonical answer identity for all translations.
     for (const locale of translationLocales) {
       const copy = translations[locale];
