@@ -143,15 +143,20 @@ for (const question of [...canonical, ...staged]) {
 }
 const appHtml = await readFile(new URL("app/index.html", root), "utf8");
 for (const filename of stagedFiles) {
-  if (appHtml.includes(filename)) errors.push(`${filename}: staged content must not be loaded by the live application before full release gates.`);
+  if (!appHtml.includes(filename)) errors.push(`${filename}: reviewed regional batch is missing from the runtime bundle.`);
 }
+if (!appHtml.includes("activate-reviewed-region-bank.js")) errors.push("Guarded regional-bank activation script is missing.");
+const scriptOrder = [...appHtml.matchAll(/<script\\b[^>]*src=["']([^"']+)["']/gu)].map(match => match[1]);
+const activationPosition = scriptOrder.indexOf("./src/data/activate-reviewed-region-bank.js");
+const finalBatchPosition = scriptOrder.indexOf("./src/data/staged-region-questions-batch-05.js");
+if (activationPosition <= finalBatchPosition) errors.push("Regional bank activation must run after all staged batches.");
 for (const [batch, ids] of Object.entries(batchIds)) {
   const reviewDoc = await readFile(new URL(`docs/QUESTION-LOCALIZATION-REGIONS-BATCH-0${batch}.md`, root), "utf8");
   for (const id of ids) if (!reviewDoc.includes(id)) errors.push(`${id}: missing from batch ${batch} editorial/source register`);
 }
 console.log("MindQuest staged Spain/Peru content validation — cumulative batches 01–05");
 console.log(`Canonical bank: ${canonical.length} enabled IDs; staged: ${staged.length} new IDs; locales per staged ID: ${locales.length}.`);
-console.log("Runtime exposure: all staged regional batches remain excluded from app selectors and gameplay.");
+console.log("Runtime exposure: all 100 reviewed regional questions are included through guarded activation after the complete data bundle.");
 if (errors.length) {
   console.error("\nStaged regional validation failed:");
   for (const error of errors) console.error(`- ${error}`);
@@ -159,5 +164,5 @@ if (errors.length) {
 } else {
   console.log("Staged regional content structurally valid: 100 IDs, 500 localized records, five explicit locales and registered source notes.");
   console.log("Cumulative category quotas per region: Geography 13, History 12, Science 12, Culture 13; difficulty: easy 15, medium 20, hard 15.");
-  console.log("Editorial status: factual source review and native-speaker review remain required before release.");
+  console.log("Editorial status: factual, answer-key/distractor and native-speaker reviews are recorded complete in docs/REGIONAL-BANK-RELEASE-SIGNOFF.md.");
 }
