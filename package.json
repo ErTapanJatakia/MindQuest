@@ -9,7 +9,8 @@
     "audit:expansion": "node scripts/audit-question-bank-expansion.mjs",
     "validate:spanish": "node scripts/validate-spanish-localization.mjs",
     "test:browser": "node scripts/browser-smoke.mjs",
-    "validate:staged": "node scripts/validate-staged-regions.mjs"
+    "validate:staged": "node scripts/validate-staged-regions.mjs",
+    "audit:security": "node scripts/audit-runtime-security.mjs"
   },
   "engines": {
     "node": ">=20"
