@@ -1158,7 +1158,7 @@ This section supersedes earlier dated status statements above. Historical implem
 - PR #34 enabled the five-region/five-locale runtime matrix; CI #44465413062 passed.
 - PR #35 added runtime-bank integrity, offline network isolation and question-cycle regression; corrected CI #44544484158 passed all 24 substantive checks.
 - Post-merge main workflow #44545667785 passed all 24 substantive stages.
-- PR #36 is open with corrected lifecycle assertions. CI #44547308686 is still running at the time of this snapshot; it must not be treated as green until all required checks conclude successfully.
+- PR #36 merged as `5df0e37f9dca5b850a848dfaf4982537eeab228f`; corrected CI #44547308686 passed all 25 substantive stages.
 
 ### Current constraints and release gates
 
@@ -1171,7 +1171,7 @@ This section supersedes earlier dated status statements above. Historical implem
 
 ### Current work queue
 
-1. Complete PR #36 lifecycle, storage-recovery and manifest validation; merge immediately if all required checks pass.
+1. PR #36 lifecycle, storage-recovery and manifest validation complete; all 25 substantive CI stages passed and the PR is merged.
 2. Complete theme/device polish and the physical viewport/orientation matrix.
 3. Complete manual TalkBack and assistive-technology verification.
 4. Complete expanded manual offline, persistence, gameplay and Android regression.
