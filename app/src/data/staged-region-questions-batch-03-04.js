@@ -294,5 +294,119 @@
     ])
   ];
   // Batch-specific quotas are validated independently by the repository validator.
+  const revise = (id, correct, entries) => {
+    const item = rows.find((question) => question.id === id);
+    if (!item) throw new Error("Missing staged revision target: " + id);
+    item.correct = correct;
+    item.translations = Object.fromEntries(locales.map((locale, index) => {
+      const [question, options, explanation] = entries[index];
+      return [locale, {question, options:Object.fromEntries(["a","b","c","d"].map((key, i) => [key, options[i]])), explanation}];
+    }));
+  };
+  revise("ES-GEO-007","a",[
+    ["Which river forms part of the border between Spain and Portugal?",["Miño River","Ebro River","Júcar River","Segura River"],"The Miño forms part of the northern border between Spain and Portugal before reaching the Atlantic."],
+    ["Which river forms part of the border between Spain and Portugal?",["Miño River","Ebro River","Júcar River","Segura River"],"The Miño forms part of the northern border between Spain and Portugal before reaching the Atlantic."],
+    ["Какая река образует часть границы между Испанией и Португалией?",["Река Миньо","Река Эбро","Река Хукар","Река Сегура"],"Миньо образует часть северной границы Испании и Португалии, прежде чем впасть в Атлантический океан."],
+    ["¿Qué río forma parte de la frontera entre España y Portugal?",["Río Miño","Río Ebro","Río Júcar","Río Segura"],"El Miño forma parte de la frontera norte entre España y Portugal antes de desembocar en el Atlántico."],
+    ["¿Qué río constituye parte del límite fronterizo entre España y Portugal?",["Río Miño","Río Ebro","Río Júcar","Río Segura"],"El Miño forma parte de la frontera norte entre España y Portugal y luego desemboca en el Atlántico."]
+  ]);
+  revise("ES-GEO-009","c",[
+    ["Which sea borders much of Spain's northern coastline?",["Mediterranean Sea","Alboran Sea","Cantabrian Sea","Balearic Sea"],"The Cantabrian Sea borders Spain's northern coast along the Bay of Biscay."],
+    ["Which sea borders much of Spain's northern coastline?",["Mediterranean Sea","Alboran Sea","Cantabrian Sea","Balearic Sea"],"The Cantabrian Sea borders Spain's northern coast along the Bay of Biscay."],
+    ["Какое море омывает значительную часть северного побережья Испании?",["Средиземное море","Альборанское море","Кантабрийское море","Балеарское море"],"Кантабрийское море омывает северное побережье Испании у Бискайского залива."],
+    ["¿Qué mar baña gran parte de la costa norte de España?",["Mar Mediterráneo","Mar de Alborán","Mar Cantábrico","Mar Balear"],"El mar Cantábrico baña la costa norte española, junto al golfo de Vizcaya."],
+    ["¿Qué mar se extiende frente a buena parte del litoral norte de España?",["Mar Mediterráneo","Mar de Alborán","Mar Cantábrico","Mar Balear"],"El mar Cantábrico bordea la costa norte de España, junto al golfo de Vizcaya."]
+  ]);
+  revise("ES-GEO-010","d",[
+    ["Which mountain range runs along much of northern Spain, near the Cantabrian coast?",["Sierra Morena","Sistema Central","Iberian System","Cantabrian Mountains"],"The Cantabrian Mountains run across northern Spain, parallel to much of the coast."],
+    ["Which mountain range runs along much of northern Spain, near the Cantabrian coast?",["Sierra Morena","Sistema Central","Iberian System","Cantabrian Mountains"],"The Cantabrian Mountains run across northern Spain, parallel to much of the coast."],
+    ["Какой горный хребет проходит вдоль значительной части севера Испании у Кантабрийского побережья?",["Сьерра-Морена","Центральная Кордильера","Иберийская система","Кантабрийские горы"],"Кантабрийские горы протянулись через север Испании параллельно значительной части побережья."],
+    ["¿Qué cordillera recorre buena parte del norte de España, cerca de la costa cantábrica?",["Sierra Morena","Sistema Central","Sistema Ibérico","Cordillera Cantábrica"],"La cordillera Cantábrica atraviesa el norte de España, paralela a buena parte de la costa."],
+    ["¿Qué sistema montañoso se extiende por gran parte del norte español, junto al litoral cantábrico?",["Sierra Morena","Sistema Central","Sistema Ibérico","Cordillera Cantábrica"],"La cordillera Cantábrica recorre el norte de España, paralela a buena parte del litoral."]
+  ]);
+  revise("ES-HIS-006","b",[
+    ["In which year did the Dos de Mayo uprising against French occupation take place in Madrid?",["1707","1808","1812","1898"],"The Dos de Mayo uprising began in Madrid on 2 May 1808 and became a key event in the Peninsular War."],
+    ["In which year did the Dos de Mayo uprising against French occupation take place in Madrid?",["1707","1808","1812","1898"],"The Dos de Mayo uprising began in Madrid on May 2, 1808 and became a key event in the Peninsular War."],
+    ["В каком году в Мадриде произошло восстание Дос-де-Майо против французской оккупации?",["1707","1808","1812","1898"],"Восстание Дос-де-Майо началось в Мадриде 2 мая 1808 года и стало важным событием Пиренейской войны."],
+    ["¿En qué año tuvo lugar en Madrid el levantamiento del Dos de Mayo contra la ocupación francesa?",["1707","1808","1812","1898"],"El levantamiento del Dos de Mayo comenzó en Madrid el 2 de mayo de 1808 y fue un hecho clave de la Guerra de la Independencia."],
+    ["¿En qué año ocurrió en Madrid el levantamiento del Dos de Mayo contra la ocupación francesa?",["1707","1808","1812","1898"],"El levantamiento del Dos de Mayo empezó en Madrid el 2 de mayo de 1808 y fue un episodio clave de la Guerra de la Independencia."]
+  ]);
+  revise("ES-SCI-006","a",[
+    ["Which endangered wild cat is the focus of major conservation programmes in Spain?",["Iberian lynx","European wildcat","Eurasian lynx","Caracal"],"The Iberian lynx is an endangered feline native to the Iberian Peninsula and has been the subject of major recovery efforts."],
+    ["Which endangered wild cat is the focus of major conservation programs in Spain?",["Iberian lynx","European wildcat","Eurasian lynx","Caracal"],"The Iberian lynx is an endangered feline native to the Iberian Peninsula and has been the subject of major recovery efforts."],
+    ["Какая редкая дикая кошка является объектом крупных программ по сохранению природы в Испании?",["Иберийская рысь","Европейская дикая кошка","Обыкновенная рысь","Каракал"],"Иберийская рысь — редкий вид кошачьих Пиренейского полуострова, для которого реализуются программы восстановления популяции."],
+    ["¿Qué felino silvestre amenazado es objeto de importantes programas de conservación en España?",["Lince ibérico","Gato montés europeo","Lince boreal","Caracal"],"El lince ibérico es un felino amenazado propio de la península ibérica y cuenta con importantes programas de recuperación."],
+    ["¿Qué felino silvestre en peligro es protagonista de grandes programas de conservación en España?",["Lince ibérico","Gato montés europeo","Lince boreal","Caracal"],"El lince ibérico es una especie amenazada de la península ibérica que ha sido objeto de programas de recuperación."]
+  ]);
+  revise("ES-SCI-007","c",[
+    ["The Atapuerca archaeological sites in Spain are especially important for research into what?",["Medieval shipbuilding","Roman aqueducts","Human evolution and early human fossils","Volcanic eruptions"],"Atapuerca preserves important human fossils and archaeological evidence used to study human evolution in Europe."],
+    ["The Atapuerca archaeological sites in Spain are especially important for research into what?",["Medieval shipbuilding","Roman aqueducts","Human evolution and early human fossils","Volcanic eruptions"],"Atapuerca preserves important human fossils and archaeological evidence used to study human evolution in Europe."],
+    ["Для изучения какой темы особенно важны археологические памятники Атапуэрки в Испании?",["Средневековое кораблестроение","Римские акведуки","Эволюция человека и древние человеческие останки","Извержения вулканов"],"В Атапуэрке найдены важные человеческие останки и археологические свидетельства, помогающие изучать эволюцию человека в Европе."],
+    ["¿Para qué investigación son especialmente importantes los yacimientos de Atapuerca, en España?",["Construcción naval medieval","Acueductos romanos","Evolución humana y fósiles humanos antiguos","Erupciones volcánicas"],"Atapuerca conserva fósiles humanos y evidencias arqueológicas importantes para estudiar la evolución humana en Europa."],
+    ["¿Qué campo de investigación destaca especialmente en los yacimientos de Atapuerca, en España?",["Construcción naval medieval","Acueductos romanos","Evolución humana y restos humanos antiguos","Erupciones volcánicas"],"Atapuerca conserva fósiles humanos y evidencias arqueológicas fundamentales para investigar la evolución humana en Europa."]
+  ]);
+  revise("ES-SCI-008","d",[
+    ["What is the main research focus of the Doñana Biological Station in Spain?",["Deep-space communications","Marine engineering","Seismic mapping","Ecology and biodiversity"],"The Doñana Biological Station is a CSIC research centre focused on ecology, biodiversity and conservation."],
+    ["What is the main research focus of the Doñana Biological Station in Spain?",["Deep-space communications","Marine engineering","Seismic mapping","Ecology and biodiversity"],"The Doñana Biological Station is a CSIC research centre focused on ecology, biodiversity and conservation."],
+    ["Какова основная область исследований Биологической станции Доньяна в Испании?",["Связь с дальним космосом","Морская инженерия","Сейсмическое картирование","Экология и биоразнообразие"],"Биологическая станция Доньяна — исследовательский центр CSIC, изучающий экологию, биоразнообразие и охрану природы."],
+    ["¿Cuál es el principal campo de investigación de la Estación Biológica de Doñana, en España?",["Comunicaciones espaciales","Ingeniería marina","Cartografía sísmica","Ecología y biodiversidad"],"La Estación Biológica de Doñana es un centro del CSIC dedicado a la ecología, la biodiversidad y la conservación."],
+    ["¿En qué ámbito se centra principalmente la investigación de la Estación Biológica de Doñana?",["Comunicaciones espaciales","Ingeniería marina","Cartografía sísmica","Ecología y biodiversidad"],"La Estación Biológica de Doñana, del CSIC, investiga la ecología, la biodiversidad y la conservación."]
+  ]);
+  revise("ES-CUL-005","a",[
+    ["Which Catalan tradition involves teams building human towers called castells?",["Castells","Flamenco","Fallas","Jota"],"Castells are human towers built by teams and are a recognised element of Catalan cultural heritage."],
+    ["Which Catalan tradition involves teams building human towers called castells?",["Castells","Flamenco","Fallas","Jota"],"Castells are human towers built by teams and are a recognised element of Catalan cultural heritage."],
+    ["Какая каталонская традиция связана с сооружением командами человеческих башен — кастелей?",["Кастельс","Фламенко","Фальяс","Хота"],"Кастельс — человеческие башни, которые строят команды; эта традиция признана частью культурного наследия Каталонии."],
+    ["¿Qué tradición catalana consiste en formar torres humanas llamadas castells?",["Castells","Flamenco","Fallas","Jota"],"Los castells son torres humanas construidas por equipos y forman parte del patrimonio cultural catalán."],
+    ["¿Qué tradición de Cataluña consiste en levantar torres humanas conocidas como castells?",["Castells","Flamenco","Fallas","Jota"],"Los castells son torres humanas que construyen equipos y constituyen una expresión del patrimonio cultural catalán."]
+  ]);
+  revise("ES-CUL-007","d",[
+    ["Which Spanish stage genre combines spoken theatre with sung musical passages?",["Sainete","Flamenco","Fandango","Zarzuela"],"Zarzuela is a Spanish lyric-dramatic genre that combines spoken dialogue and music."],
+    ["Which Spanish stage genre combines spoken theatre with sung musical passages?",["Sainete","Flamenco","Fandango","Zarzuela"],"Zarzuela is a Spanish lyric-dramatic genre that combines spoken dialogue and music."],
+    ["Какой испанский сценический жанр сочетает разговорный театр и музыкальные вокальные эпизоды?",["Сайнете","Фламенко","Фанданго","Сарсуэла"],"Сарсуэла — испанский музыкально-драматический жанр, сочетающий разговорные диалоги и музыку."],
+    ["¿Qué género escénico español combina teatro hablado con pasajes musicales cantados?",["Sainete","Flamenco","Fandango","Zarzuela"],"La zarzuela es un género lírico-dramático español que combina diálogo hablado y música."],
+    ["¿Qué género teatral musical de España alterna diálogos hablados y partes cantadas?",["Sainete","Flamenco","Fandango","Zarzuela"],"La zarzuela es un género lírico-dramático español que combina diálogos hablados y música."]
+  ]);
+  revise("PE-GEO-008","b",[
+    ["What is another name for Lake Junín in the central Peruvian Andes?",["Lake Parinacochas","Lake Chinchaycocha","Lake Llanganuco","Lake Sandoval"],"Lake Junín is also known as Chinchaycocha and lies in Peru's central highlands."],
+    ["What is another name for Lake Junín in the central Peruvian Andes?",["Lake Parinacochas","Lake Chinchaycocha","Lake Llanganuco","Lake Sandoval"],"Lake Junín is also known as Chinchaycocha and lies in Peru's central highlands."],
+    ["Как ещё называют озеро Хунин в центральных Перуанских Андах?",["Озеро Паринакочас","Озеро Чинчайкоча","Озеро Льянгануко","Озеро Сандоваль"],"Озеро Хунин также известно как Чинчайкоча и расположено в центральной части Перуанского нагорья."],
+    ["¿Qué otro nombre recibe el lago Junín, situado en los Andes centrales del Perú?",["Lago Parinacochas","Lago Chinchaycocha","Lago Llanganuco","Lago Sandoval"],"El lago Junín también se conoce como Chinchaycocha y está ubicado en la sierra central del Perú."],
+    ["¿Con qué otro nombre se conoce el lago Junín, en los Andes centrales del Perú?",["Lago Parinacochas","Lago Chinchaycocha","Lago Llanganuco","Lago Sandoval"],"El lago Junín también recibe el nombre de Chinchaycocha y se encuentra en la sierra central peruana."]
+  ]);
+  revise("PE-GEO-011","a",[
+    ["The Madre de Dios River belongs to which major river basin?",["Amazon Basin","La Plata Basin","Orinoco Basin","São Francisco Basin"],"The Madre de Dios River flows through southeastern Peru and is part of the Amazon drainage system."],
+    ["The Madre de Dios River belongs to which major river basin?",["Amazon Basin","La Plata Basin","Orinoco Basin","São Francisco Basin"],"The Madre de Dios River flows through southeastern Peru and is part of the Amazon drainage system."],
+    ["К какому крупному речному бассейну относится река Мадре-де-Дьос?",["Бассейн Амазонки","Бассейн Ла-Платы","Бассейн Ориноко","Бассейн Сан-Франсиску"],"Река Мадре-де-Дьос протекает на юго-востоке Перу и относится к системе стока Амазонки."],
+    ["¿A qué gran cuenca hidrográfica pertenece el río Madre de Dios?",["Cuenca del Amazonas","Cuenca del Plata","Cuenca del Orinoco","Cuenca del São Francisco"],"El río Madre de Dios recorre el sureste del Perú y forma parte del sistema hidrográfico amazónico."],
+    ["¿A qué gran sistema de drenaje pertenece el río Madre de Dios?",["Cuenca del Amazonas","Cuenca del Plata","Cuenca del Orinoco","Cuenca del São Francisco"],"El río Madre de Dios atraviesa el sureste peruano y pertenece a la cuenca amazónica."]
+  ]);
+  revise("PE-HIS-006","b",[
+    ["In which year did the uprising led by Túpac Amaru II begin?",["1750","1780","1810","1821"],"The uprising led by Túpac Amaru II began in 1780 in the Spanish Viceroyalty of Peru."],
+    ["In which year did the uprising led by Túpac Amaru II begin?",["1750","1780","1810","1821"],"The uprising led by Túpac Amaru II began in 1780 in the Spanish Viceroyalty of Peru."],
+    ["В каком году началось восстание под руководством Тупака Амару II?",["1750","1780","1810","1821"],"Восстание под руководством Тупака Амару II началось в 1780 году в испанском вице-королевстве Перу."],
+    ["¿En qué año comenzó la rebelión encabezada por Túpac Amaru II?",["1750","1780","1810","1821"],"La rebelión liderada por Túpac Amaru II comenzó en 1780 en el virreinato español del Perú."],
+    ["¿En qué año se inició el levantamiento liderado por Túpac Amaru II?",["1750","1780","1810","1821"],"La rebelión de Túpac Amaru II empezó en 1780, durante el virreinato español del Perú."]
+  ]);
+  revise("PE-HIS-007","c",[
+    ["Which ancient Andean culture established its major centre at the site of Huari near modern Ayacucho?",["Moche","Chimú","Wari","Paracas"],"The Wari culture developed a major urban and political centre at Huari in the Ayacucho region."],
+    ["Which ancient Andean culture established its major centre at the site of Huari near modern Ayacucho?",["Moche","Chimú","Wari","Paracas"],"The Wari culture developed a major urban and political centre at Huari in the Ayacucho region."],
+    ["Какая древняя андская культура создала крупный центр в Уари, недалеко от современного Аякучо?",["Моче","Чиму","Уари","Паракас"],"Культура Уари создала крупный городской и политический центр в районе Аякучо."],
+    ["¿Qué cultura andina antigua estableció un importante centro en Huari, cerca de la actual Ayacucho?",["Moche","Chimú","Wari","Paracas"],"La cultura Wari desarrolló un importante centro urbano y político en Huari, en la región de Ayacucho."],
+    ["¿Qué antigua cultura andina tuvo un centro político importante en Huari, cerca de la actual Ayacucho?",["Moche","Chimú","Wari","Paracas"],"La cultura Wari estableció un gran centro urbano y político en Huari, región de Ayacucho."]
+  ]);
+  revise("PE-SCI-007","a",[
+    ["Which international research centre focused on potato biodiversity is headquartered in Lima, Peru?",["International Potato Center","International Maize Center","World Agroforestry Centre","International Rice Research Institute"],"The International Potato Center, known as CIP, is headquartered in Lima and researches potato and other root and tuber crops."],
+    ["Which international research center focused on potato biodiversity is headquartered in Lima, Peru?",["International Potato Center","International Maize Center","World Agroforestry Centre","International Rice Research Institute"],"The International Potato Center, known as CIP, is headquartered in Lima and researches potato and other root and tuber crops."],
+    ["Какой международный научный центр по биоразнообразию картофеля находится в Лиме, Перу?",["Международный центр картофеля","Международный центр кукурузы","Всемирный центр агролесоводства","Международный институт риса"],"Международный центр картофеля (CIP) находится в Лиме и изучает картофель, а также другие корнеплоды и клубнеплоды."],
+    ["¿Qué centro internacional de investigación sobre la biodiversidad de la papa tiene su sede en Lima, Perú?",["Centro Internacional de la Papa","Centro Internacional del Maíz","Centro Mundial de Agroforestería","Instituto Internacional de Investigación del Arroz"],"El Centro Internacional de la Papa (CIP), con sede en Lima, investiga la papa y otros cultivos de raíces y tubérculos."],
+    ["¿Qué centro internacional dedicado a investigar la diversidad de la papa tiene su sede en Lima?",["Centro Internacional de la Papa","Centro Internacional del Maíz","Centro Mundial de Agroforestería","Instituto Internacional de Investigación del Arroz"],"El Centro Internacional de la Papa (CIP) tiene su sede en Lima y estudia la papa y otros cultivos de raíces y tubérculos."]
+  ]);
+  revise("PE-CUL-006","c",[
+    ["Which percussion instrument, made from a wooden box, is strongly associated with Afro-Peruvian music?",["Pan flute","Charango","Peruvian cajón","Quena"],"The Peruvian cajón is a box-shaped percussion instrument central to many Afro-Peruvian musical traditions."],
+    ["Which percussion instrument, made from a wooden box, is strongly associated with Afro-Peruvian music?",["Pan flute","Charango","Peruvian cajón","Quena"],"The Peruvian cajón is a box-shaped percussion instrument central to many Afro-Peruvian musical traditions."],
+    ["Какой ударный инструмент в форме деревянного ящика тесно связан с афро-перуанской музыкой?",["Пан-флейта","Чаранго","Перуанский кахон","Кена"],"Перуанский кахон — коробчатый ударный инструмент, важный для многих афро-перуанских музыкальных традиций."],
+    ["¿Qué instrumento de percusión, hecho como una caja de madera, está muy ligado a la música afroperuana?",["Flauta de pan","Charango","Cajón peruano","Quena"],"El cajón peruano es un instrumento de percusión en forma de caja, central en muchas tradiciones musicales afroperuanas."],
+    ["¿Qué instrumento de percusión con forma de caja de madera está asociado con la música afroperuana?",["Flauta de pan","Charango","Cajón peruano","Quena"],"El cajón peruano es un instrumento de percusión con forma de caja y tiene un papel central en la música afroperuana."]
+  ]);
   window.MINDQUEST_STAGED_QUESTIONS = [...(window.MINDQUEST_STAGED_QUESTIONS || []), ...rows];
 })();
