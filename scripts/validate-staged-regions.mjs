@@ -145,7 +145,7 @@ for (const [batch, ids] of Object.entries(batchIds)) {
   const reviewDoc = await readFile(new URL(`docs/QUESTION-LOCALIZATION-REGIONS-BATCH-0${batch}.md`, root), "utf8");
   for (const id of ids) if (!reviewDoc.includes(id)) errors.push(`${id}: missing from batch ${batch} editorial/source register`);
 }
-console.log("MindQuest staged Spain/Peru content validation — cumulative batches 01–04");
+console.log("MindQuest staged Spain/Peru content validation — cumulative batches 01–05");
 console.log(`Canonical bank: ${canonical.length} enabled IDs; staged: ${staged.length} new IDs; locales per staged ID: ${locales.length}.`);
 console.log("Runtime exposure: all staged regional batches remain excluded from app selectors and gameplay.");
 if (errors.length) {
