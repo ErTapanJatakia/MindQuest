@@ -99,7 +99,7 @@ try {
       reduced:document.documentElement.classList.contains("user-reduced-motion"),
       contrast:document.documentElement.classList.contains("user-high-contrast")
     }));
-    if (persisted.theme !== "sand" || !persisted.large || !persisted.reduced || !persisted.contrast) {
+    if (persisted.theme !== "paper" || !persisted.large || !persisted.reduced || !persisted.contrast) {
       throw new Error(viewport.name + ": theme/accessibility preferences did not survive reload: " + JSON.stringify(persisted));
     }
     console.log("PASS " + viewport.name + " — " + viewport.width + "×" + viewport.height + "; 10 themes and 3 accessibility modes");
