@@ -1,5 +1,3 @@
-| PE-HIS-009 | Battle of Junín took place on 6 August 1824 | [Peru National Library — Battle of Junín](https://www.gob.pe/institucion/bnp/noticias/1000885-bnp-recuerda-la-batalla-de-junin-con-los-manuscritos-de-juan-basilio-cortegana) |
-
 ## Scope and controls
 
 - 20 new stable IDs: 10 Spain and 10 Peru.
@@ -25,7 +23,7 @@
 | PE-GEO-009 | Manu National Park spans Andean and Amazonian ecosystems | [UNESCO — Manu National Park](https://whc.unesco.org/en/list/402/) |
 | PE-GEO-010 | Paracas National Reserve is on Peru's Pacific coast in Ica | [Peru Congress — Law 30829](https://leyes.congreso.gob.pe/Documentos/2016_2021/ADLP/Texto_Consolidado/30829-TXM.pdf) |
 | PE-GEO-011 | Madre de Dios River belongs to the Amazon drainage system | [Peruvian National Water Authority — Madre de Dios Basin hydrological diagnosis](https://www.ana.gob.pe/sites/default/files/publication/files/diagnostico_hidrologico_-madre_de_dios_0.pdf) |
-| PE-HIS-009 | Battle of Junín took place in 1824 | [Peru bicentennial / government historical resources](https://www.gob.pe/) |
+| PE-HIS-009 | Battle of Junín took place on 6 August 1824 | [Peru National Library — Battle of Junín](https://www.gob.pe/institucion/bnp/noticias/1000885-bnp-recuerda-la-batalla-de-junin-con-los-manuscritos-de-juan-basilio-cortegana) |
 | PE-HIS-010 | Lima's founding ceremony took place on 18 January 1535 | [Presidency of Peru — Government Palace history](https://www.gob.pe/800-presidencia-de-la-republica-del-peru-historia-de-palacio-de-gobierno) |
 | PE-SCI-008 | Peru's National Institute of Health performs public-health research and laboratory work | [Peru National Institute of Health](https://www.gob.pe/ins) |
 | PE-SCI-009 | INAIGEM's glacier inventory uses remote sensing and geographic information systems | [INAIGEM — National Glacier Inventory](https://www.gob.pe/institucion/inaigem/informes-publicaciones/4746459-inventario-nacional-de-glaciares-y-lagunas-de-origen-glaciar-inglog-ii) |
