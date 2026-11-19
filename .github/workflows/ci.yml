@@ -45,6 +45,8 @@ jobs:
         run: |
           node --check app/src/data/questions.js
           node --check app/src/data/spanish-question-translations.js
+          node --check app/src/data/spanish-question-translations-batch-12.js
+          node --check app/src/data/spanish-question-translations-batch-13.js
           node --check app/src/app.js
           node --check app/src/ui-polish.js
           node --check app/src/experience.js
