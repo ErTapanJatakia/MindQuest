@@ -91,7 +91,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:question-cycle`
 - `npm run test:lifecycle`
 - `npm run test:accessible-names`
-- `npm run test:focus-order`
+- `npm run test:focus-order`\n- `npm run test:accessible-names`\n- `npm run audit:android-manifest`\n- `npm run audit:android-webview`\n- `npm run audit:feature-ci-boundary`
 
 Never delete or weaken a test to obtain a passing result. After three consecutive failures with the same strategy, change the approach rather than repeating it.
 
