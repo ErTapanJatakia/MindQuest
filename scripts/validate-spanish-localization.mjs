@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
-const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, batch06Source, batch07Source, batch08Source, batch09Source, batch10Source, batch11Source, batch12Source, batch13Source, html] = await Promise.all([
+const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, batch06Source, batch07Source, batch08Source, batch09Source, batch10Source, batch11Source, batch12Source, batch13Source, batch14Source, html] = await Promise.all([
   readFile(new URL("app/src/data/questions.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-03.js", root), "utf8"),
@@ -16,6 +16,7 @@ const [bankSource, overlaySource, batch03Source, batch04Source, batch05Source, b
   readFile(new URL("app/src/data/spanish-question-translations-batch-11.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-12.js", root), "utf8"),
   readFile(new URL("app/src/data/spanish-question-translations-batch-13.js", root), "utf8"),
+  readFile(new URL("app/src/data/spanish-question-translations-batch-14.js", root), "utf8"),
   readFile(new URL("app/index.html", root), "utf8")
 ]);
 const sandbox = { window: {} };
@@ -32,6 +33,7 @@ vm.runInNewContext(batch10Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch11Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch12Source, sandbox, { timeout: 1000 });
 vm.runInNewContext(batch13Source, sandbox, { timeout: 1000 });
+vm.runInNewContext(batch14Source, sandbox, { timeout: 1000 });
 
 const expected = {
   "IN-GEO-001": { key: "b", answer: "Jaipur" },
@@ -180,6 +182,11 @@ const expected = {
   "US-CUL-011": { key: "b", answer: "Blues del delta" },
   "US-CUL-012": { key: "b", answer: "Grant Wood" },
   "US-CUL-013": { key: "c", answer: "Faulkner" },
+  "RU-CUL-007": { key: "c", answer: "Malévich" },
+  "US-HIS-007": { key: "a", answer: "Decimoquinta" },
+  "US-SCI-007": { key: "c", answer: "Jonas Salk" },
+  "US-CUL-007": { key: "b", answer: "Expresionismo abstracto" },
+  "US-CUL-008": { key: "d", answer: "Mark Twain" },
 };
 const locales = ["es-ES", "es-PE"];
 const questions = new Map(sandbox.window.MINDQUEST_QUESTIONS.map((question) => [question.id, question]));
@@ -246,11 +253,12 @@ if (!html.includes('./src/data/spanish-question-translations.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-10.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-11.js') ||
     !html.includes('./src/data/spanish-question-translations-batch-12.js') ||
-    !html.includes('./src/data/spanish-question-translations-batch-13.js')) {
+    !html.includes('./src/data/spanish-question-translations-batch-13.js') ||
+    !html.includes('./src/data/spanish-question-translations-batch-14.js')) {
   errors.push("Spanish translation overlays are not both loaded by the application.");
 }
 
-console.log("MindQuest Spanish localization batches 01–13");
+console.log("MindQuest Spanish localization batches 01–14");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
 console.log(`Validated: ${errors.length ? "with errors" : `${Object.keys(expected).length * locales.length} locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated`}.`);
 console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
