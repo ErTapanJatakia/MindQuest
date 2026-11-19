@@ -70,6 +70,8 @@ jobs:
           node --check scripts/accessibility-regression-smoke.mjs
           node --check scripts/storage-resilience-smoke.mjs
           node --check scripts/audit-android-manifest.mjs
+          node --check scripts/theme-accessibility-matrix-smoke.mjs
+          node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
@@ -99,6 +101,12 @@ jobs:
 
       - name: Run storage resilience regression
         run: npm run test:storage-resilience
+
+      - name: Run theme and accessibility responsive matrix
+        run: npm run test:theme-accessibility
+
+      - name: Run independent best-score scope regression
+        run: npm run test:score-scope
 
       - name: Audit Android manifest security defaults
         run: npm run audit:android-manifest
