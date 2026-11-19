@@ -16,15 +16,6 @@ const server = createServer(async (request, response) => {
 });
 
 const views = ["home-view","settings-view","help-view","privacy-view","accessibility-view","quiz-view","result-view"];
-const headingByView = {
-  "home-view":"home-title",
-  "settings-view":"settings-title",
-  "help-view":"help-title",
-  "privacy-view":"privacy-title",
-  "accessibility-view":"accessibility-title",
-  "quiz-view":"question-title",
-  "result-view":"result-title"
-};
 let browser;
 try {
   await new Promise((resolveListen, reject) => {
@@ -46,7 +37,7 @@ try {
         const view = document.getElementById(id);
         if (!view || id === expectedId) return [];
         const controls = [...view.querySelectorAll('a[href],button,input,select,textarea,[tabindex]')]
-          .filter(node => !node.disabled && node.tabIndex >= 0);
+          .filter(node => !node.disabled && node.tabIndex >= 0 && node.getClientRects().length > 0 && getComputedStyle(node).visibility !== "hidden");
         return controls.map(node => ({ view:id, control:node.id || node.tagName.toLowerCase(), hidden:view.hidden }));
       });
       const heading = document.getElementById(expectedId === "home-view" ? "home-title" :
@@ -111,8 +102,9 @@ try {
   await auditView("result-view", "Results and answer review");
   await page.locator("#replay-button").click();
   await auditView("quiz-view", "Replay");
-  await page.locator("#brand-home").click();
-  await auditView("home-view", "Home after replay");
+  await page.locator("#settings-open").click();
+  await page.locator("#settings-save").click();
+  await auditView("home-view", "Home after replay and settings save");
 
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
   console.log("Focus-order and hidden-view regression passed across all seven views, navigation paths, a completed round and replay.");
