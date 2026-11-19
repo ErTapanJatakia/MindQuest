@@ -68,6 +68,8 @@ jobs:
           node --check scripts/locale-persistence-smoke.mjs
           node --check scripts/gameplay-integrity-smoke.mjs
           node --check scripts/accessibility-regression-smoke.mjs
+          node --check scripts/storage-resilience-smoke.mjs
+          node --check scripts/audit-android-manifest.mjs
           node --check scripts/validate-question-bank.mjs
           node --check scripts/audit-question-bank-expansion.mjs
           node --check scripts/validate-spanish-localization.mjs
@@ -94,3 +96,9 @@ jobs:
 
       - name: Run responsive viewport regression matrix
         run: npm run test:responsive
+
+      - name: Run storage resilience regression
+        run: npm run test:storage-resilience
+
+      - name: Audit Android manifest security defaults
+        run: npm run audit:android-manifest
