@@ -1,5 +1,7 @@
 import { readFile } from "node:fs/promises";
 
+// Keep project-level status and command references synchronized with package.json.
+
 const paths = [
   "README.md",
   "docs/ROADMAP.md",
