@@ -75,3 +75,27 @@ After batches 01–04, each region will have 40 staged questions with cumulative
 - Where a source URL is a portal rather than a specific item, replace it with a direct institutional page before the content batch is marked fact-checked.
 - Ensure question wording has one unambiguous answer and all four distractors are plausible but clearly incorrect.
 - Native-speaker review is required for all five locales, with particular attention to es-ES versus es-PE vocabulary and naturalness.
+
+
+## Source-verification checkpoint — 19 November 2026
+
+This checkpoint distinguishes claims already supported by directly retrieved institutional material from items that still require exact-source verification. A listed portal or search result is not treated as evidence merely because it belongs to an institution.
+
+### Directly checked claims
+
+| Stable ID | Check result | Direct evidence |
+|---|---|---|
+| ES-HIS-006 | Confirmed: the Spanish Constitution was ratified by referendum on 6 December 1978 and entered into force on 29 December 1978. | [Spanish Senate — Constitution](https://www.senado.es/web/conocersenado/normas/constitucion/index.html?lang=en); [Spanish Ministry of the Interior — Referendums](https://infoelectoral.interior.gob.es/es/elecciones-celebradas/referendum/); [La Moncloa — Constitution](https://www.lamoncloa.gob.es/lang/en/espana/Paginas/constitution.aspx) |
+| ES-SCI-006 | Confirmed at the award-year level: Santiago Ramón y Cajal received the 1906 Nobel Prize in Physiology or Medicine. | [Nobel Prize — Cajal biographical page](https://www.nobelprize.org/prizes/medicine/1906/cajal/biographical/) |
+| PE-GEO-008 | Confirmed: Huascarán is Peru's highest peak at 6,768 m and lies in the Cordillera Blanca. | [UNESCO — Huascarán National Park](https://whc.unesco.org/en/list/333/); [UNESCO MAB — Huascarán](https://www.unesco.org/en/mab/huascaran) |
+| PE-GEO-009 | Confirmed: Manu National Park spans the Tropical Andes–Amazon Basin transition and a wide elevation range. | [UNESCO — Manu National Park](https://whc.unesco.org/en/list/402/) |
+| ES-CUL-005 | Confirmed: the Alhambra, Generalife and Albayzín property is in Granada. | [UNESCO — Spain World Heritage properties](https://whc.unesco.org/en/statesparties/ES) |
+| ES-CUL-010 | Confirmed: Cave of Altamira and Paleolithic Cave Art of Northern Spain is a UNESCO World Heritage property. | [UNESCO — Spain World Heritage properties](https://whc.unesco.org/en/statesparties/ES) |
+
+### Still requiring direct evidence before question authoring
+
+The remaining proposed claims must not be treated as fact-checked yet. In particular, replace generic portals for Spanish geography, Columbus, Las Navas de Tolosa, the Civil War, Tordesillas, Severo Ochoa, Margarita Salas and Calar Alto; and replace generic Peruvian government portals for Amazon headwaters, Paracas, independence, Moche, Junín, Huaytapallana, Humboldt, public-health research, Quechua and marinera. Direct UNESCO or official sources already cited for Caral, Camino de Santiago, Fallas, Picasso, Teide, Doñana, ceviche, Candelaria, Cusco and Qhapaq Ñan still require claim-level inspection before release.
+
+### Editorial rule
+
+A claim may enter the staged question file only after its wording is supported by the linked source. If a proposed topic cannot be verified precisely, replace it with a better-supported original regional fact rather than weakening the evidence standard. This checkpoint does not constitute native-speaker review, independent answer-key review or final editorial approval.
