@@ -72,6 +72,7 @@ jobs:
           node --check scripts/locale-persistence-smoke.mjs
           node --check scripts/gameplay-integrity-smoke.mjs
           node --check scripts/accessibility-regression-smoke.mjs
+          node --check scripts/accessible-name-regression-smoke.mjs
           node --check scripts/storage-resilience-smoke.mjs
           node --check scripts/audit-android-manifest.mjs
           node --check scripts/theme-accessibility-matrix-smoke.mjs
@@ -103,6 +104,9 @@ jobs:
 
       - name: Run accessibility and keyboard regression
         run: npm run test:accessibility
+
+      - name: Audit accessible names and ARIA references across application views
+        run: npm run test:accessible-names
 
       - name: Run responsive viewport regression matrix
         run: npm run test:responsive
