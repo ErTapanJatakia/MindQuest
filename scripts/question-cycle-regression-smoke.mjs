@@ -62,7 +62,11 @@ try {
     await page.locator("#replay-button").click();
     const replayId = await page.locator("#question-title").getAttribute("data-question-id");
     if (!replayId?.startsWith(region + "-")) throw new Error("Cycle restart failed for " + region);
-    await page.locator("#home-button").click();
+    // The Home control is only rendered on Results; replay starts a live round.
+    // Open Settings and save to exercise the supported safe return-to-Home path.
+    await page.locator("#settings-open").click();
+    await page.locator("#settings-save").click();
+    if (!(await page.locator("#home-view").isVisible())) throw new Error("Settings save did not return Home after replay for " + region);
   }
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
   console.log("Question-cycle regression passed: " + completedRounds + " complete rounds, all 250 stable IDs covered across five regions, no within-round duplicates, and replay/cycle restart verified.");
