@@ -32,9 +32,9 @@ This document is an execution record and checklist, not a claim that the release
 | Browser gameplay | `npm run test:browser` | Core browser launch and gameplay smoke | Native Android behaviour |
 | Locale persistence | `npm run test:locale-persistence` | 125 independent locale/region/question-language combinations | Human translation review |
 | Gameplay integrity | `npm run test:gameplay-integrity` | Answer flow, score, replay and state integrity | Long-duration device soak |
-| Accessibility | `npm run test:accessibility` | Browser semantic, keyboard and preference regressions | TalkBack certification or WCAG conformance |
-| Responsive viewports | `npm run test:responsive` | Defined browser viewport coverage | Every device density, OEM or orientation |
-| Storage resilience | `npm run test:storage-resilience` | Malformed, blocked and quota-limited browser storage paths | Android OS backup/restore behaviour |
+| Accessibility | `npm run test:accessibility`, `npm run test:focus-order`, accessible-name/ARIA audit | Browser semantics, keyboard behavior, focus transitions, inactive-view isolation, accessible names and ARIA references across Home, Settings, Help, Privacy, Accessibility, Quiz and Results | TalkBack certification, switch-access certification or WCAG conformance |
+| Responsive viewports | `npm run test:responsive`, `npm run test:theme-accessibility` | Twelve portrait/landscape profiles; ten themes and three accessibility modes across the same viewport matrix | Every device density, OEM or physical orientation |
+| Storage resilience and score ledger | `npm run test:storage-resilience`, `npm run test:score-scope` | Malformed/blocked/quota-limited storage, strict score-record schema and range validation, valid-record recovery, legacy migration, failed migration-write preservation and independent score partitions | Android OS backup/restore behaviour or arbitrary external data recovery |
 | Theme/accessibility matrix | `npm run test:theme-accessibility` | Ten themes across tested responsive viewports | Formal contrast certification beyond measured cases |
 | Score scope | `npm run test:score-scope` | Independent best-score partitions | Data recovery from arbitrary external corruption |
 | Runtime bank | `npm run test:runtime-bank` | 250 IDs, 50 per region, quotas and all five locales | Independent factual review |
@@ -42,6 +42,7 @@ This document is an execution record and checklist, not a claim that the release
 | Question cycle | `npm run test:question-cycle` | Exhaustion, no within-round duplicates and cycle restart | Human playability assessment |
 | Lifecycle | `npm run test:lifecycle` (registered in CI) | Browser reload recovery and interrupted-round handling | Native process death or Android WebView lifecycle |
 | Android manifest | `npm run audit:android-manifest` | Static manifest security defaults and component/permission policy | Runtime Android security assessment |
+| Android WebView/lifecycle source | `npm run audit:android-webview` | Static local-only navigation, WebView hardening, API 23/24+ navigation callbacks, lifecycle cleanup, API 33+ back callback pairing, API 35+ insets and pinned toolchain | Kotlin compilation, APK inspection, Android framework execution, emulator or physical-device behavior |
 
 Run the complete web/content CI workflow on the exact candidate commit. Record the run URL, commit SHA, job conclusions and any corrective commits in the release evidence log. A green run on an earlier commit is not evidence for a later candidate.
 
