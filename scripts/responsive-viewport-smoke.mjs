@@ -121,7 +121,7 @@ try {
       throw new Error(device.name + ": Results/review layout failed " + JSON.stringify(results));
     }
     if (errors.length) throw new Error(device.name + ": browser errors: " + errors.join("; "));
-    console.log("PASS " + device.name + " — " + device.width + "×" + device.height + "; Home, Settings, Quiz and Results
+    console.log("PASS " + device.name + " — " + device.width + "×" + device.height + "; Home, Settings, Quiz and Results");
     await page.close();
   }
   console.log("Responsive viewport regression passed for " + cases.length + " device profiles.");
