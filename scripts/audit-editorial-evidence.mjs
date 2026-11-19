@@ -30,7 +30,7 @@ for (const filename of docFiles) {
     register.get(id).push(entry);
   }
   if (!/native[- ]speaker review/iu.test(content)) errors.push(filename + ": native-speaker review gate must be explicitly documented.");
-  if (!/answer[- ]key review|answer[- ]key verification|independent answer/iu.test(content)) {
+  if (!/answer[- ]key(?:\/distractor)? review|answer[- ]key verification|independent answer/iu.test(content)) {
     errors.push(filename + ": independent answer-key review gate must be documented.");
   }
 }
