@@ -13,7 +13,7 @@ const overlayFiles = files.filter((name) => /^spanish-question-translations(?:-b
 for (const name of overlayFiles) {
   vm.runInNewContext(await readFile(new URL(name, dataDirectory), "utf8"), sandbox, { timeout: 1000 });
 }
-const stagedFiles = files.filter((name) => /^staged-region-questions-batch-\d+\.js$/u.test(name))
+const stagedFiles = files.filter((name) => /^staged-region-questions-batch-\d+(?:-\d+)?\.js$/u.test(name))
   .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
 for (const name of stagedFiles) {
   vm.runInNewContext(await readFile(new URL(name, dataDirectory), "utf8"), sandbox, { timeout: 1000 });
@@ -123,7 +123,7 @@ for (const region of ["ES","PE"]) {
   }
   for (const [level, expected] of Object.entries(cumulativeDifficulty)) {
     const actual = regional.filter((question) => question.difficulty === level).length;
-    if (actual !== expected) errors.push(`${region}: cumulative batches 01–02 expected ${expected} ${level}; found ${actual}`);
+    if (actual !== expected) errors.push(`${region}: cumulative batches 01–04 expected ${expected} ${level}; found ${actual}`);
   }
 }
 const promptMap = new Map();
