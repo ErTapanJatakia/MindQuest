@@ -154,3 +154,7 @@ This addendum supersedes earlier coverage counts and descriptions above.
 - PR #48: [workflow #44582401075](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582401075) — passed all 29 substantive steps.
 
 These were exact branch-head PR checks completed before merge. They do not constitute a native Android build, manual device acceptance, TalkBack verification, WCAG conformance assessment or store approval.
+
+## Question-bank fail-closed integrity regression — 2026-11-20
+
+The `test:bank-fail-closed` browser gate injects three controlled corruptions into the enabled India question bank: duplicate stable IDs, duplicate localized prompts across all five question locales, and invalid answer keys. Each scenario must route to the recovery Results state without producing a score, answer-review entries, replay action or persisted best-score record. This validates the app's runtime integrity guardrails against malformed in-memory content; it is not a security penetration test or a factual-content review.
