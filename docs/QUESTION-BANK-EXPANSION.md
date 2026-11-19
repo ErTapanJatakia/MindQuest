@@ -29,14 +29,16 @@ Use `{REGION}-{CATEGORY}-{NNN}`, where category codes are GEO, HIS, SCI and CUL.
 
 ## Current baseline and gap
 
-The current bank has 150 IDs (50 each for IN, RU and US) and 450 records (three locales per ID: en-IN, en-US and ru-RU).
+The current bank has 150 IDs (50 each for IN, RU and US) and 450 baseline records (three locales per ID: en-IN, en-US and ru-RU). Spanish batches 01–13 now cover 145 of those 150 IDs, adding 290 records across es-ES and es-PE. The 150-ID canonical bank remains unchanged.
 
 The target adds two regions (100 new IDs) and two Spanish question locales across the existing 150 IDs. The remaining work is therefore:
 
 - 100 new stable IDs for Spain and Peru.
-- 300 Spanish translations for the existing India/Russia/US questions.
+- 5 existing India/Russia/US IDs still need Spanish translations (10 localized records).
 - 500 localized records for the new Spain/Peru questions across all five locales.
-- Total remaining: 800 localized records, in addition to the 100 new IDs.
+- Total remaining: 510 localized records, in addition to the 100 new IDs.
+
+The Spanish question selectors remain hidden. The 145-ID structural count does not imply native-speaker or independent factual approval.
 
 Run `npm run audit:expansion` to see the live structural gap. The audit deliberately reports incomplete target coverage without failing routine CI; it fails only on malformed records, unsupported regions/locales or duplicate IDs. The existing strict question-bank validator remains the release gate for the currently enabled 150-ID bank.
 
