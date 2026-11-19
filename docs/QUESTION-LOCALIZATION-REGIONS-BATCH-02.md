@@ -15,7 +15,7 @@
 | ES-GEO-004 | Guadalquivir flows into the Atlantic | [Spanish Government — Geography of Spain](https://www.lamoncloa.gob.es/lang/en/espana/historyandculture/geography/paginas/index.aspx) |
 | ES-GEO-005 | Meseta Central is Spain's central plateau | [Spanish Government — Geography of Spain](https://www.lamoncloa.gob.es/lang/en/espana/historyandculture/geography/paginas/index.aspx) |
 | ES-GEO-006 | Balearic Islands lie in the Mediterranean | [Spain.info — Geography and landscape](https://www.spain.info/en/discover-spain/facts-spain-geography-landscape/) |
-| ES-HIS-004 | Nasrid Granada surrendered in 1492 | [Alhambra / UNESCO — Granada heritage context](https://whc.unesco.org/en/list/314) |
+| ES-HIS-004 | Nasrid Granada surrendered in 1492 | [Alhambra / UNESCO — Granada heritage context](https://www.alhambra-patronato.es/en/notas-prensa/the-alhambra-opens-the-enigmatic-gate-of-the-seven-floors-to-the-public) |
 | ES-HIS-005 | Magellan expedition departed Seville in 1519 | [Spanish Navy — First circumnavigation](https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/conocenosnoticias/prefLang-en/00noticias--2019--08--NT-094-NAVY-CELEB-500-en) |
 | ES-SCI-003 | Juan de la Cierva developed the autogyro; first flight in 1923 | [Spanish Official Gazette — centenary of the first autogyro flight](https://www.boe.es/buscar/doc.php?id=BOE-A-2023-1565) |
 | ES-SCI-004 | Isaac Peral launched his submarine in Cádiz Bay in 1888 | [Spanish Navy — submarine history](https://armada.defensa.gob.es/ArmadaPortal/page/Portal/ArmadaEspannola/conocenosorganizacion/prefLang-en/03Flota--06FLOSUB) |
