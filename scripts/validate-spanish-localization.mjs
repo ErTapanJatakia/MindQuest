@@ -220,9 +220,9 @@ if (!html.includes('./src/data/spanish-question-translations.js') ||
   errors.push("Spanish translation overlays are not both loaded by the application.");
 }
 
-console.log("MindQuest Spanish localization batches 01–12");
+console.log("MindQuest Spanish localization batches 01–13");
 console.log(`Expected: ${Object.keys(expected).length} stable IDs × ${locales.length} locales = ${Object.keys(expected).length * locales.length} localized records.`);
-console.log(`Validated: ${errors.length ? "with errors" : "240 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
+console.log(`Validated: ${errors.length ? "with errors" : "260 locale records structurally valid; canonical answer keys preserved; Spanish selectors remain gated"}.`);
 console.log("Editorial status: native-speaker and factual-source sign-off remain pending.");
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
