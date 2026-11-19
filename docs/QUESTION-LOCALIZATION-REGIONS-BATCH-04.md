@@ -1,4 +1,4 @@
-# Spain and Peru question-bank expansion — batch 04
+| PE-HIS-009 | Battle of Junín took place on 6 August 1824 | [Peru National Library — Battle of Junín](https://www.gob.pe/institucion/bnp/noticias/1000885-bnp-recuerda-la-batalla-de-junin-con-los-manuscritos-de-juan-basilio-cortegana) |
 
 ## Scope and controls
 
