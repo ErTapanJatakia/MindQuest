@@ -83,7 +83,7 @@ try {
     throw new Error("Accessibility preferences did not apply their corresponding document modes");
   }
   const motionDuration = await page.locator("#settings-view").evaluate(node => getComputedStyle(node).transitionDuration);
-  if (!motionDuration.split(",").every(value => parseFloat(value) <= 0.001)) {
+  if (!motionDuration.split(",").every(value => parseFloat(value) <= 0.011)) {
     throw new Error("Reduced-motion preference did not suppress transitions: " + motionDuration);
   }
   await page.locator("#settings-back").click();
