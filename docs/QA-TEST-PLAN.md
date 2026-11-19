@@ -27,7 +27,7 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Runtime security boundary | CSP directives, no remote scripts/styles, no inline event handlers, no dynamic code evaluation, no network APIs in app runtime, staged content excluded | Security boundary regressions fail CI before merge |
 | Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each current region | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
 | View focus and inactive-view isolation | Home, Settings, Help, Privacy, Accessibility, Quiz and Results navigation, heading focus, completed-round transitions and replay | Exactly one view is active; inactive views expose no visible tab-reachable controls; destination context receives focus |
-| Android WebView source boundary | Static checks for local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Source/configuration regressions fail CI; this is not Kotlin compilation, APK inspection or device validation |
+| Android WebView/lifecycle source | Static checks for local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Source/configuration regressions fail CI; this is not Kotlin compilation, APK inspection or device validation |
 | Android WebView source boundary | `npm run audit:android-webview` | Static local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Kotlin compilation, APK inspection or device validation |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
@@ -130,3 +130,28 @@ Use [Release readiness and manual QA](RELEASE-READINESS-AND-MANUAL-QA.md) to rec
 ## Keyboard focus order and inactive-view isolation
 
 The `test:focus-order` browser gate verifies that exactly one application view is active during navigation through Home, Settings, Help, Privacy, Accessibility, Quiz and Results. It checks that inactive views are hidden and expose no visible tab-reachable controls, that each destination view has a programmatically focusable heading, and that focus is moved to that heading after navigation. It also completes a configured round, checks focus restoration between questions, validates Results and answer review, and verifies replay navigation. This is DOM/browser regression coverage; it does not replace keyboard-only testing on target devices, screen-reader/TalkBack testing, switch-access testing or a WCAG conformance evaluation.
+
+---
+
+## Current automated coverage addendum — 2026-11-19
+
+This addendum supersedes earlier coverage counts and descriptions above.
+
+| Area | Current automated coverage | Limitation |
+|---|---|---|
+| Locale persistence | 125 combinations: 5 interface locales × 5 regions × 5 question locales | Does not replace human translation review |
+| Runtime question bank | 250 stable IDs, 50 per region, 1,250 localized records; category quotas 13/12/12/13 and difficulty quotas 15/20/15 per region | Structural checks do not independently prove factual accuracy |
+| Offline isolation | All 25 region × question-language pairs; startup, selector changes and gameplay are exercised while cross-origin requests are blocked and recorded | Does not prove Android radio isolation or absence of OS-originated traffic |
+| Compact accessibility reflow | 320 CSS px; Home, Settings, Quiz, Results and answer review with large text, high contrast and reduced motion enabled together; overflow and escaped visible controls are rejected | Browser viewport test only; physical devices and assistive technology remain manual |
+| Score-ledger resilience | Malformed shapes/fields/ranges, valid-record recovery, legacy migration and failed migration-write preservation | Does not prove Android OS backup/restore behavior |
+| Android WebView/lifecycle | Static local-only navigation, WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling and API 35+ insets | Does not compile Kotlin or execute Android framework callbacks |
+| Android build boundary | Static check that routine CI stays web/content-only and final Android validation is manual and gated by feature_scope_complete=true | Does not run Gradle or assemble an APK |
+
+### Latest exact-head CI evidence
+
+- PR #45: [workflow #44581783687](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44581783687) — passed all 28 substantive steps.
+- PR #46: [workflow #44582219981](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582219981) — passed all 28 substantive steps.
+- PR #47: [workflow #44582138992](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582138992) — passed all 28 substantive steps.
+- PR #48: [workflow #44582401075](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44582401075) — passed all 29 substantive steps.
+
+These were exact branch-head PR checks completed before merge. They do not constitute a native Android build, manual device acceptance, TalkBack verification, WCAG conformance assessment or store approval.
