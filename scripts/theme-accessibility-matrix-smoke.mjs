@@ -69,7 +69,7 @@ try {
         const rgb = value => {
           const match = value.match(/^#([0-9a-f]{6})$/i);
           if (match) return [0,2,4].map(index => parseInt(match[1].slice(index,index+2),16));
-          const parts = value.match(/[\\d.]+/g);
+          const parts = value.match(/[\d.]+/g);
           return parts && parts.length >= 3 ? parts.slice(0,3).map(Number) : null;
         };
         const luminance = value => {
