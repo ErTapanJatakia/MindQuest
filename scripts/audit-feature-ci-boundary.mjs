@@ -1,0 +1,38 @@
+import { readFile } from "node:fs/promises";
+
+const routineCi = await readFile(".github/workflows/ci.yml", "utf8");
+const releaseWorkflow = await readFile(".github/workflows/android-release-validation.yml", "utf8");
+const failures = [];
+
+const forbiddenRoutineBuild = /\b(?:gradle|gradlew|assemble(?:Debug|Release)|bundle(?:Debug|Release)|upload-artifact|setup-android|setup-java)\b/iu;
+if (forbiddenRoutineBuild.test(routineCi)) {
+  failures.push("Routine web/content CI must not install Android build tooling, invoke Gradle, assemble APKs or upload Android artifacts");
+}
+if (!/^\s*workflow_dispatch:\s*$/mu.test(releaseWorkflow)) {
+  failures.push("Final Android validation must remain manually dispatched only");
+}
+if (/^\s*(?:push|pull_request|schedule):/mu.test(releaseWorkflow)) {
+  failures.push("Final Android validation must not be triggered by push, pull request or schedule events");
+}
+if (!/feature_scope_complete:[\s\S]*?required:\s*true[\s\S]*?type:\s*boolean[\s\S]*?default:\s*false/u.test(releaseWorkflow)) {
+  failures.push("Final Android validation must require the explicit boolean feature_scope_complete input, default false");
+}
+if (!/^\s*if:\s*inputs\.feature_scope_complete\s*==\s*true\s*$/mu.test(releaseWorkflow)) {
+  failures.push("Android build job must be guarded by feature_scope_complete == true");
+}
+if (!/^\s*if:\s*inputs\.feature_scope_complete\s*!=\s*true\s*$/mu.test(releaseWorkflow)) {
+  failures.push("Android validation must retain a safe guard path when feature scope is incomplete");
+}
+if (!/Assemble debug APK[\s\S]*?assembleDebug/u.test(releaseWorkflow)) {
+  failures.push("The final validation workflow must retain its explicit debug APK validation step");
+}
+if (!/Upload debug APK[\s\S]*?upload-artifact/u.test(releaseWorkflow)) {
+  failures.push("The final validation workflow must retain its explicit validation artifact step");
+}
+if (failures.length) {
+  for (const failure of failures) console.error("FAIL: " + failure);
+  process.exitCode = 1;
+} else {
+  console.log("Android build-boundary audit passed: routine CI remains web/content-only; final Android validation is manual, explicitly gated by feature_scope_complete=true, and retains a safe no-build path.");
+  console.log("Scope: static workflow configuration audit only; no Android toolchain, Gradle task or APK was executed.");
+}
