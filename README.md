@@ -82,6 +82,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run audit:security`
 - `npm run test:accessibility`
 - `npm run test:accessible-names`
+- `npm run test:bank-fail-closed`
 - `npm run test:browser`
 - `npm run test:focus-order`
 - `npm run test:gameplay-integrity`
