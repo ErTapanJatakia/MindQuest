@@ -4,9 +4,9 @@ Last updated: 2026-11-21
 
 ## Current decision
 
-Gate 1 is complete. Gate 2 is **in progress** and is limited to release-candidate preparation, Android package validation, physical-device acceptance, assistive-technology checks, and native lifecycle/offline/storage verification.
+Gate 1 is complete. Gate 2 is **in progress** and is limited to release-candidate preparation, Android package validation, physical-device acceptance, assistive-technology checks, and native lifecycle/offline/storage verification. The PR #64 merge commit `c18b549651a243d59bef076216fe3335d368ab1f` has now passed its post-merge mainline workflow [#44836387831](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44836387831): all 38 substantive validation steps succeeded.
 
-The latest confirmed mainline closeout is PR [#63](https://github.com/ErTapanJatakia/MindQuest/pull/63), merged as `1bb620b66e50cd74f3d1419ce9e2c479c7733ca1`. Its exact-head PR workflow [#44823527042](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44823527042) passed. The post-merge main workflow [#44823360287](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44823360287) also completed successfully: all 38 substantive validation steps passed.
+The latest confirmed mainline closeout is PR [#64](https://github.com/ErTapanJatakia/MindQuest/pull/64), merged as `c18b549651a243d59bef076216fe3335d368ab1f`. Its exact-head PR workflow [#44831721965](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44831721965) passed all 38 substantive validation steps. The post-merge main workflow [#44836387831](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44836387831) also passed all 38 substantive validation steps.
 
 No Gate 2 APK has been built from the current closeout. No Gradle build, signing, production deployment or store submission has been performed as part of this Gate 2 entry work.
 
@@ -117,3 +117,12 @@ These checks require an actual Android device and must not be inferred from brow
 
 Capture exact reproduction steps and evidence; classify application defect, test defect, environment/tooling issue or documentation mismatch; fix root cause and add regression coverage. Never weaken/delete tests. After three consecutive failures using the same strategy, change approach.
 
+
+
+## Gate 2 post-merge verification — 2026-11-21
+
+- PR #64 is merged; exact-head CI #44831721965 and post-merge mainline CI #44836387831 both passed all 38 substantive validation steps.
+- The post-merge run completed browser/gameplay, locale and storage persistence, accessibility, responsive/theme, offline, fail-closed content, Android build-boundary, Android WebView/lifecycle and Android manifest checks.
+- This is the first fully green mainline result after the Gate 2 workflow-hardening merge. It does not build an APK and does not close physical-device, TalkBack/switch-access, native process-death, Android offline-runtime or manual package-acceptance items.
+- The release workflow remains deliberately manual and gated. The `feature_scope_complete=true` input must only be used after the agreed implementation scope has been reviewed. The connected GitHub integration cannot dispatch this workflow; it must be started from the repository Actions page.
+- The debug validation workflow is additionally protected by a static CI audit against production signing, release assembly, publishing and store submission. No signing, deployment or store submission is authorized.
