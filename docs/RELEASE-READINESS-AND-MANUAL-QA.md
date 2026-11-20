@@ -1,6 +1,6 @@
 # Release readiness and manual QA protocol
 
-Last updated: 2026-11-19
+Last updated: 2026-11-21
 
 ## Release boundary
 
@@ -40,8 +40,8 @@ This document is an execution record and checklist, not a claim that the release
 | Runtime bank | `npm run test:runtime-bank` | 250 IDs, 50 per region, quotas and all five locales | Independent factual review |
 | Offline isolation | `npm run test:offline-isolation` | Startup, settings and gameplay across all 25 region × question-language pairs with cross-origin requests blocked and recorded | Device-level radio/network isolation |
 | Question cycle | `npm run test:question-cycle` | Exhaustion, no within-round duplicates and cycle restart | Human playability assessment |
-| Lifecycle | `npm run test:lifecycle` (registered in CI) | Browser reload recovery and interrupted-round handling | Native process death or Android WebView lifecycle |
-| Android manifest | `npm run audit:android-manifest` | Static manifest security defaults and component/permission policy | Runtime Android security assessment |
+| Lifecycle | `npm run test:lifecycle`, `npm run test:fresh-context`, `npm run test:interrupted-context` | Browser reload, fresh-context preference/score restoration and interrupted-round recovery | Native process death or Android WebView lifecycle |
+| Multilingual announcements and review | `npm run test:multilingual-announcements` | 25 interface/question-locale pairs across five regions; 25 rounds / 125 questions; polite atomic announcements, focus, language metadata and review boundaries | TalkBack, screen-reader/switch-access acceptance or WCAG conformance |\n| Android manifest | `npm run audit:android-manifest` | Static manifest security defaults and component/permission policy | Runtime Android security assessment |
 | Android build boundary | `npm run audit:feature-ci-boundary` | Routine CI remains web/content-only; final Android validation is manual and gated by feature_scope_complete=true | Does not execute Gradle or assemble an APK |
 | Android WebView/lifecycle source | `npm run audit:android-webview` | Static local-only navigation, WebView hardening, API 23/24+ callbacks, lifecycle cleanup, API 33+ back callback pairing, API 35+ insets and pinned toolchain | Kotlin compilation, APK inspection, Android framework execution or physical-device behavior |
 
