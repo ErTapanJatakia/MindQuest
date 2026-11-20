@@ -1224,3 +1224,11 @@ This section supersedes the earlier dated phase, validation and queue snapshots 
 The original baseline remains exactly 2,400 minutes / 40 hours: 1,745 earned, 655 remaining, 72.71% complete. Revised remaining plan: 1,135 minutes (18h 55m), including 120 minutes theme/device polish, 120 minutes manual accessibility verification, 60 minutes legal/editorial documentation, 180 minutes expanded manual/offline/Android regression and 655 minutes original baseline scope. Expansion, CI and audit work do not inflate baseline credit. Actual engineering hours are not tracked.
 
 No Android build/APK/signing, production deployment or RuStore submission occurred in PRs #45–#48.
+
+## Authoritative status update — 2026-11-20, PR #57 merged
+
+- PR [#57](https://github.com/ErTapanJatakia/MindQuest/pull/57) merged as `582d8d8720a11fe67b9406c0e88f63764b0c0ac2` after exact-head workflow [#44656104511](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44656104511) completed successfully.
+- Added browser regression for unanswered-question blocking, exclusive answer locking, Settings back-navigation state preservation, safe discard of transient round state on changed settings, and independent selector application to the next round.
+- Current active batch adds a five-region category/difficulty/round-length matrix: 60 filtered rounds plus 15 round-length rounds, 375 question presentations. Its exact-head CI is pending and must not be represented as passed until GitHub reports success.
+- Original baseline remains 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining plan remains 1,135 minutes (18h 55m). Expansion, regression and CI work do not inflate baseline credit.
+- Android final validation remains unstarted and manually gated by `feature_scope_complete=true`. No APK/Gradle build, signing, production deployment or RuStore submission is part of this batch.
