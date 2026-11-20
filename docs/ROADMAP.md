@@ -1106,3 +1106,11 @@ Human factual/answer-key review and native-speaker review are complete based on 
 ### Release constraints
 
 Browser/static checks do not establish native Android process-death behavior, TalkBack usability, switch-access usability, WCAG 2.2 AA conformance or independent security certification. Keep manual gates open until physically verified. Do not dispatch final Android validation until the complete agreed feature scope is implemented and reviewed.
+
+## Authoritative engineering update — 2026-11-20
+
+- PR #57 merged as `582d8d8720a11fe67b9406c0e88f63764b0c0ac2` after exact-head CI [#44656104511](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44656104511) passed.
+- The merged regression verifies answer locking, unanswered-question blocking, Settings back-navigation preservation, transient-round discard on selector changes and independent settings on the next round.
+- New active work: `test:filter-round-matrix` covers 60 region/category/difficulty combinations and 15 round-length checks across all five regions (375 question presentations). Awaiting exact-head CI.
+- Baseline accounting is unchanged: 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). Do not credit expansion/CI work to the original baseline.
+- No Android build, APK, signing, deployment or store submission is authorized in this feature batch.
