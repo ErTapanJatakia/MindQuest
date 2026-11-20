@@ -92,6 +92,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:gameplay-state`
 - `npm run test:lifecycle`
 - `npm run test:locale-persistence`
+- `npm run test:multilingual-announcements`
 - `npm run test:offline-isolation`
 - `npm run test:question-cycle`
 - `npm run test:responsive`

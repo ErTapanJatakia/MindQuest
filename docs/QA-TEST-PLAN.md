@@ -188,3 +188,13 @@ The `test:fresh-context` browser gate exports the saved origin storage from one 
 ## Interrupted-round recovery across a fresh browser context — 2026-11-20
 
 The `test:interrupted-context` gate begins a configured five-question Peru/Spanish (Peru) round, records one answer in transient runtime state, then closes the browser context and recreates it from persisted origin storage. It verifies recovery to Home with no restored answer controls or answer-review entries, preserves the previously recorded scoped best score, restores all six independent preferences, checks focus transfer through Settings and back to Home, and confirms the next round uses the restored region and question locale. This simulates process-like browser-context termination; it does not establish native Android process-death, WebView data-directory behavior, OS backup/restore or physical-device acceptance.
+
+
+## Multilingual live-announcement and answer-review matrix — 2026-11-20
+
+The `test:multilingual-announcements` browser gate exercises all 25 interface-locale × question-locale pairs across all five question regions. It completes 25 five-question rounds (125 questions) and verifies polite atomic status semantics for progress, streak, feedback and Results; focus transfer after answer selection and question navigation; answer-group semantics and accessible naming; question and answer-option language tags; mixed-language feedback boundaries; and localized Results/answer-review language metadata. This is browser regression coverage and does not replace TalkBack, other screen-reader, switch-access or physical-device testing.
+
+
+## Gate 1 candidate verification notes — 2026-11-21
+
+The multilingual live-announcement and answer-review matrix is registered as `npm run test:multilingual-announcements` and is included in the CI workflow. Its exact-head result must be green before merge. The README command catalogue and release-readiness inventory must remain synchronized with `package.json`. A green browser workflow is not a substitute for physical Android, TalkBack or switch-access acceptance.

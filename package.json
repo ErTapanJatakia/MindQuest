@@ -35,7 +35,8 @@
     "test:gameplay-state": "node scripts/gameplay-state-isolation-smoke.mjs",
     "test:filter-round-matrix": "node scripts/filter-round-matrix-smoke.mjs",
     "test:fresh-context": "node scripts/fresh-context-persistence-smoke.mjs",
-    "test:interrupted-context": "node scripts/interrupted-context-recovery-smoke.mjs"
+    "test:interrupted-context": "node scripts/interrupted-context-recovery-smoke.mjs",
+    "test:multilingual-announcements": "node scripts/multilingual-live-announcement-matrix-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
