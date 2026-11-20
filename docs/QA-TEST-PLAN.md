@@ -214,3 +214,12 @@ Gate 1 automated browser/content/static validation is complete. Gate 2 is now ac
 The manually dispatched Android validation workflow remains gated by the required `feature_scope_complete=true` input. Its candidate-package inspection is being hardened to verify package identity/version, absence of manifest permissions, required offline assets and APK SHA-256. No Android build is triggered by this documentation/CI-preparation batch. Physical installation, orientation/inset checks, process-death and restart recovery, airplane-mode operation, TalkBack and switch-access remain open until tested on a real device.
 
 Do not infer native Android acceptance from Playwright, source audits or a successful debug APK build. Do not claim WCAG 2.2 AA conformance, TalkBack certification, penetration-test completion or store approval.
+
+
+## Gate 2 post-merge CI evidence — 2026-11-21
+
+- PR #64 exact-head validation: [workflow #44831721965](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44831721965) — all 38 substantive validation steps passed.
+- Post-merge mainline validation on `c18b549651a243d59bef076216fe3335d368ab1f`: [workflow #44836387831](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44836387831) — all 38 substantive validation steps passed.
+- The run includes the full browser/gameplay, locale/persistence, accessibility, responsive/theme, offline-isolation, fail-closed content, Android build-boundary, WebView/lifecycle source and manifest audits.
+- No Android build or APK artifact is produced by this routine CI. The manually dispatched validation workflow remains separately gated by `feature_scope_complete=true` and is statically checked to prohibit release signing, production publishing and store submission.
+- Passing CI does not close physical-device, TalkBack/switch-access, process-death, airplane-mode runtime or manual package acceptance. Record only checks actually performed on a device.
