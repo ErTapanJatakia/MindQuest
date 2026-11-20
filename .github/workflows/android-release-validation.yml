@@ -92,7 +92,7 @@ jobs:
             cat "$RUNNER_TEMP/mindquest-apk-permissions.txt"
           } > android-validation-evidence.txt
 
-      - name: Upload debug validation package and evidence
+      - name: Upload debug APK and validation evidence
         uses: actions/upload-artifact@v4
         with:
           name: mindquest-gate2-debug-validation
