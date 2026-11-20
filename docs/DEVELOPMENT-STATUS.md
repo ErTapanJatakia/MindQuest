@@ -1259,3 +1259,13 @@ No Android build/APK/signing, production deployment or RuStore submission occurr
 - New active batch: multilingual live-announcement and answer-review matrix across 25 interface/question-locale pairs, all five regions, 25 completed rounds and 125 questions. Exact-head CI pending.
 - Baseline remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining estimate remains 1,135 minutes (18h 55m); no expansion/CI credit added.
 - No Android build/APK/Gradle assembly, signing, deployment or store submission. Final Android validation remains manually gated by `feature_scope_complete=true`.
+
+
+## Gate 1 execution checkpoint — 2026-11-21
+
+- The multilingual live-announcement and answer-review regression is included in the Gate 1 candidate branch. It covers all 25 interface-locale × question-locale pairs across five regions, 25 completed rounds and 125 question presentations, including polite atomic announcements, focus movement, radiogroup semantics, language metadata and mixed-language review boundaries.
+- The regression is browser automation. It does not certify TalkBack, other screen readers, switch access, physical Android devices or WCAG conformance.
+- README command catalogue, QA test plan, development status, roadmap and release-readiness evidence are being reconciled together. The exact-head Gate 1 candidate CI remains the merge gate; no CI result is pre-declared successful.
+- Original baseline accounting is unchanged: 1,745 / 2,400 minutes earned (72.71%), 655 minutes remaining. Revised remaining plan is 1,135 minutes (18h 55m); expansion and QA automation do not add baseline credit.
+- Remaining work packages remain separate: theme/device polish 120 min; manual accessibility verification 120 min; legal/editorial documentation 60 min; expanded manual/offline/Android regression 180 min; original baseline scope 655 min.
+- No APK/Gradle build, signing, production deployment or RuStore submission was performed. Final Android validation remains manually gated by `feature_scope_complete=true`; signing and store submission remain separate authorization gates.
