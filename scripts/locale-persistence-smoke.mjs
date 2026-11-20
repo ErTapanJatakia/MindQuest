@@ -88,20 +88,51 @@ try {
       await page.locator("#round-length").selectOption("5");
       await page.locator("#settings-save").click();
       await page.locator("#play-button").click();
-      const question = page.locator("#question-title");
-      const id = await question.getAttribute("data-question-id");
-      const language = await question.getAttribute("lang");
-      if (!id?.startsWith(region + "-")) throw new Error("Question bank region leaked or mismatched: " + region + "/" + questionLocale + " -> " + id);
-      if (language !== questionLocale) throw new Error("Question language metadata mismatch: " + questionLocale + " -> " + language);
-      const answerLanguage = await page.locator("#answers button.answer-option span").nth(1).getAttribute("lang");
-      if (answerLanguage !== questionLocale) throw new Error("Answer option language metadata mismatch: " + questionLocale + " -> " + answerLanguage);
+      const seenQuestionIds = new Set();
+      for (let index = 0; index < 5; index += 1) {
+        const question = page.locator("#question-title");
+        const id = await question.getAttribute("data-question-id");
+        const language = await question.getAttribute("lang");
+        if (!id?.startsWith(region + "-")) throw new Error("Question bank region leaked or mismatched: " + region + "/" + questionLocale + " -> " + id);
+        if (seenQuestionIds.has(id)) throw new Error("Duplicate question ID within localized round: " + id);
+        seenQuestionIds.add(id);
+        if (language !== questionLocale) throw new Error("Question language metadata mismatch: " + questionLocale + " -> " + language);
+
+        const answerLanguages = await page.locator("#answers button.answer-option > span:not(.letter)").evaluateAll(nodes => nodes.map(node => node.getAttribute("lang")));
+        if (answerLanguages.length !== 4 || answerLanguages.some(value => value !== questionLocale)) {
+          throw new Error("Answer option language metadata mismatch: " + questionLocale + " -> " + JSON.stringify(answerLanguages));
+        }
+        const correctKey = await page.evaluate(questionId =>
+          window.MINDQUEST_QUESTIONS.find(item => item.id === questionId)?.correct, id);
+        if (!correctKey) throw new Error("Localized question has no canonical answer key: " + id);
+        await page.locator('#answers button[role="radio"][data-answer="' + correctKey + '"]').click();
+
+        const feedbackLanguages = await page.locator("#feedback span").evaluateAll(nodes => nodes.map(node => node.getAttribute("lang")));
+        if (feedbackLanguages.length !== 2 || feedbackLanguages[0] !== "es-PE" || feedbackLanguages[1] !== questionLocale) {
+          throw new Error("Feedback mixed interface/question language metadata: " + JSON.stringify({ region, questionLocale, feedbackLanguages }));
+        }
+        await page.locator("#next-button").click();
+      }
+
+      await page.locator("#result-view.active").waitFor({ state:"visible" });
+      const review = await page.locator("#answer-review-list article").evaluateAll(cards => cards.map(card => ({
+        heading:card.querySelector("h3")?.getAttribute("lang"),
+        status:card.querySelector(".review-status")?.getAttribute("lang"),
+        explanation:card.querySelector(".review-explanation")?.getAttribute("lang"),
+        answerValues:[...card.querySelectorAll("p span")].map(span => span.getAttribute("lang"))
+      })));
+      if (review.length !== 5 || review.some(card =>
+        card.heading !== questionLocale || card.status !== "es-PE" || card.explanation !== questionLocale ||
+        card.answerValues.some((value,index) => value !== (index % 2 === 0 ? "es-PE" : questionLocale)))) {
+        throw new Error("Results review mixed interface/question language metadata: " + JSON.stringify({ region, questionLocale, review }));
+      }
       await page.locator("#brand-home").click();
     }
   }
 
   if (combinations !== expectedCombinations) throw new Error("Expected " + expectedCombinations + " selector combinations, exercised " + combinations);
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
-  console.log("Locale persistence regression passed: " + combinations + " independent interface/region/question-language combinations, five reload persistence checkpoints, and 25 live question-bank/language metadata checks.");
+  console.log("Locale persistence regression passed: " + combinations + " independent interface/region/question-language combinations, five reload persistence checkpoints, and 25 complete five-question live gameplay/review rounds with question, answer, feedback and result language metadata verified.");
 } finally {
   await browser?.close();
   await new Promise(resolveClose => server.close(resolveClose));
