@@ -25,6 +25,7 @@ jobs:
   web-validation:
     name: Content, static checks and browser runtime
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -107,6 +108,7 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run browser and gameplay smoke tests
+        timeout-minutes: 10
         run: npm run test:browser
 
       - name: Run locale and preference persistence regression

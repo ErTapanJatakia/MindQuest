@@ -1,6 +1,6 @@
 # MindQuest QA Test Plan
 
-Last updated: 2026-11-19
+Last updated: 2026-11-21
 
 ## Purpose
 
@@ -205,3 +205,12 @@ The multilingual live-announcement and answer-review matrix is registered as `np
 Gate 1 candidate PR [#62](https://github.com/ErTapanJatakia/MindQuest/pull/62) merged as `39dd889404064e0151efac65449e28eea8705f09` after exact-head workflow [#44820209501](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44820209501) passed all 38 substantive validation steps. The merged test catalogue includes `npm run test:multilingual-announcements`, covering 25 interface/question-locale pairs, all five regions, 25 five-question rounds and 125 questions. It validates polite atomic announcements, focus movement, answer-group semantics, language metadata, mixed-language feedback and answer-review boundaries.
 
 The README command catalogue, package scripts, CI workflow and QA documentation are synchronized. Gate 1 automated QA is complete. Manual/native checks remain distinct: TalkBack and other assistive technology, switch access, physical Android devices, native lifecycle/process-death, Android offline/storage behavior and final candidate validation. Browser tests do not establish WCAG conformance or physical-device acceptance.
+
+
+## Gate 2 — native Android validation status (2026-11-21)
+
+Gate 1 automated browser/content/static validation is complete. Gate 2 is now active. The current five-region/five-locale regression coverage is documented in the [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) and [release-readiness protocol](RELEASE-READINESS-AND-MANUAL-QA.md). Historical three-region and three-locale limitations in earlier sections are superseded by the five-region addenda and merged PRs #34–#63.
+
+The manually dispatched Android validation workflow remains gated by the required `feature_scope_complete=true` input. Its candidate-package inspection is being hardened to verify package identity/version, absence of manifest permissions, required offline assets and APK SHA-256. No Android build is triggered by this documentation/CI-preparation batch. Physical installation, orientation/inset checks, process-death and restart recovery, airplane-mode operation, TalkBack and switch-access remain open until tested on a real device.
+
+Do not infer native Android acceptance from Playwright, source audits or a successful debug APK build. Do not claim WCAG 2.2 AA conformance, TalkBack certification, penetration-test completion or store approval.

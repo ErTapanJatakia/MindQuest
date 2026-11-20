@@ -47,11 +47,58 @@ jobs:
         working-directory: android
         run: ./gradlew --no-daemon --stacktrace assembleDebug
 
-      - name: Upload debug APK
+      - name: Inspect APK identity, permissions and bundled offline assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          test -s "$APK"
+          test -x "$AAPT"
+
+          BADGING="$("$AAPT" dump badging "$APK")"
+          printf '%s\n' "$BADGING" > "$RUNNER_TEMP/mindquest-apk-badging.txt"
+          grep -Eq "^package: name='app\.mindquest' versionCode='1' versionName='0\.1\.0'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
+
+          "$AAPT" dump permissions "$APK" > "$RUNNER_TEMP/mindquest-apk-permissions.txt"
+          if grep -Eq 'uses-permission|android\.permission\.(INTERNET|ACCESS_NETWORK_STATE)' "$RUNNER_TEMP/mindquest-apk-permissions.txt"; then
+            echo "Unexpected Android permission found in the offline-first package:"
+            cat "$RUNNER_TEMP/mindquest-apk-permissions.txt"
+            exit 1
+          fi
+
+          unzip -Z1 "$APK" > "$RUNNER_TEMP/mindquest-apk-files.txt"
+          for asset in assets/index.html assets/styles.css assets/src/app.js assets/src/data/questions.js; do
+            if ! grep -Fxq "$asset" "$RUNNER_TEMP/mindquest-apk-files.txt"; then
+              echo "Required bundled offline asset missing: $asset"
+              exit 1
+            fi
+          done
+
+          {
+            echo "validation_scope=debug-package-inspection-only"
+            echo "package_id=app.mindquest"
+            echo "version_code=1"
+            echo "version_name=0.1.0"
+            echo "manifest_permissions=none"
+            echo "required_offline_assets=present"
+            printf "apk_sha256="
+            sha256sum "$APK" | cut -d ' ' -f 1
+            echo
+            echo "[aapt package metadata]"
+            cat "$RUNNER_TEMP/mindquest-apk-badging.txt"
+            echo
+            echo "[aapt permission report]"
+            cat "$RUNNER_TEMP/mindquest-apk-permissions.txt"
+          } > android-validation-evidence.txt
+
+      - name: Upload debug APK and validation evidence
         uses: actions/upload-artifact@v4
         with:
-          name: mindquest-final-validation-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: mindquest-gate2-debug-validation
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            android-validation-evidence.txt
           if-no-files-found: error
           retention-days: 14
 
