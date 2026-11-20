@@ -1,5 +1,13 @@
 # MindQuest implementation tracker
 
+## Authoritative current status — Gate 2
+
+Gate 1 is complete; Gate 2 is in progress. The authoritative current product scope is 250 stable IDs (50 each for India, Russia, United States, Spain and Peru), 1,250 localized records across five question locales, five interface locales and 125 independent interface/region/question-language combinations. Human factual/answer-key and native-speaker reviews are complete based on project-owner confirmation.
+
+The original baseline remains exactly 2,400 min / 40h, with 1,745 min earned, 655 min remaining and 72.71% completion. The current revised remaining plan is 1,135 min (18h55m). See [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) for the current three status tables and native validation plan. Earlier three-region/450-record and 2,395-minute estimates below are historical snapshots superseded by this status and PRs #34–#63.
+
+No current Gate 2 APK has been generated. Physical-device, TalkBack/switch-access, native lifecycle, Android offline/runtime and final package validation remain open. No production signing, deployment or RuStore submission is authorized.
+
 **Planning baseline:** 2,400 minutes (40 engineering hours). Estimates are working-time estimates, not a calendar delivery promise. Actual effort will be updated as implementation progresses.
 
 Statuses: `Planned` = not started; `In progress` = partial implementation; `Review` = implementation complete, awaiting review; `Complete` = accepted against its criteria.
