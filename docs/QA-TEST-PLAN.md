@@ -173,3 +173,8 @@ The `test:staged-activation` browser gate injects three controlled corruptions b
 ## Gameplay answer locking and settings-state isolation — 2026-11-20
 
 The `test:gameplay-state` browser gate verifies that Next cannot skip an unanswered question, selecting an answer locks all four choices and maintains one checked radio, and a second selection cannot alter the recorded choice. It verifies that opening and backing out of Settings preserves the active answered question, while saving changed settings during a round discards transient question, answer-review, progress and streak state without recording a best score. A subsequent round must use the newly selected region, interface locale and question locale independently. This is automated browser coverage and does not replace physical-device or assistive-technology acceptance.
+
+
+## Five-region category, difficulty and round-length matrix — 2026-11-20
+
+The `test:filter-round-matrix` browser gate exercises all 60 region × category × difficulty combinations (five regions, four categories and three difficulty levels), completing one five-question round for each combination. It additionally completes 5-, 10- and 15-question mixed-filter rounds in each of the five regions. The 75 rounds present 375 questions in total and verify stable-ID region prefixes, exact category/difficulty membership, pool-size and quota diagnostics, no within-round duplicate IDs, completed Results navigation and a full answer-review record for every question. This is browser automation over the bundled question bank; it does not replace manual gameplay, device, editorial or assistive-technology review.
