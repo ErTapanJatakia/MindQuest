@@ -155,6 +155,6 @@ This addendum supersedes earlier coverage counts and descriptions above.
 
 These were exact branch-head PR checks completed before merge. They do not constitute a native Android build, manual device acceptance, TalkBack verification, WCAG conformance assessment or store approval.
 
-## Localized streak and results regression — 2026-11-20
+## Question-bank fail-closed integrity regression — 2026-11-20
 
-The `test:streak-localization` browser gate completes a five-question round in each of the five supported interface locales (25 questions total). It checks that correct answers increment the current streak, an incorrect answer resets only the current streak, the best streak remains the maximum consecutive-correct sequence, and the Results summary uses the selected interface locale. It also checks that the current-streak value is exposed through an atomic polite live region and that replay resets transient streak state. This is automated browser coverage and does not replace assistive-technology testing on physical devices.
+The `test:bank-fail-closed` browser gate injects three controlled corruptions into the enabled India question bank: duplicate stable IDs, duplicate localized prompts across all five question locales, and invalid answer keys. Each scenario must route to the recovery Results state without producing a score, answer-review entries, replay action or persisted best-score record. This validates the app's runtime integrity guardrails against malformed in-memory content; it is not a security penetration test or a factual-content review.
