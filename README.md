@@ -86,6 +86,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:browser`
 - `npm run test:focus-order`
 - `npm run test:gameplay-integrity`
+- `npm run test:gameplay-state`
 - `npm run test:lifecycle`
 - `npm run test:locale-persistence`
 - `npm run test:offline-isolation`
