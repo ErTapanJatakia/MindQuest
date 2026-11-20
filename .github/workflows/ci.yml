@@ -87,6 +87,7 @@ jobs:
           node --check scripts/staged-region-activation-fail-closed-smoke.mjs
           node --check scripts/gameplay-state-isolation-smoke.mjs
           node --check scripts/filter-round-matrix-smoke.mjs
+          node --check scripts/fresh-context-persistence-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
           node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/application-lifecycle-smoke.mjs
@@ -156,6 +157,9 @@ jobs:
 
       - name: Verify persistence, interrupted-round recovery and site-data reset
         run: npm run test:lifecycle
+
+      - name: Verify preferences and scoped scores across a fresh browser context
+        run: npm run test:fresh-context
 
       - name: Verify keyboard focus order and inactive-view isolation
         run: npm run test:focus-order
