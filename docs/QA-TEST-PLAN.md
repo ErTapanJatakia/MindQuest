@@ -178,3 +178,8 @@ The `test:gameplay-state` browser gate verifies that Next cannot skip an unanswe
 ## Five-region category, difficulty and round-length matrix — 2026-11-20
 
 The `test:filter-round-matrix` browser gate exercises all 60 region × category × difficulty combinations (five regions, four categories and three difficulty levels), requesting up to five questions per combination and correctly capping the round at the eligible pool size when a filtered pool contains fewer than five. It additionally completes full 5-, 10- and 15-question mixed-filter rounds in each of the five regions. Across 75 rounds it verifies stable-ID region prefixes, exact category/difficulty membership, pool-size and quota diagnostics, no within-round duplicate IDs, completed Results navigation and a full answer-review record for every presented question. This is browser automation over the bundled question bank; it does not replace manual gameplay, device, editorial or assistive-technology review.
+
+
+## Fresh browser-context persistence regression — 2026-11-20
+
+The `test:fresh-context` browser gate exports the saved origin storage from one browser context, closes that context, and restores the snapshot into a newly created context. It verifies independent interface locale, question region, question locale, round length, category and difficulty preferences, plus a scoped best-score record. It then starts gameplay and checks that the restored Peru region and Spanish (Peru) question language drive the actual question presented. This strengthens coverage beyond a same-page reload, but it remains a browser storage simulation rather than native Android process-death, WebView data-directory, OS backup/restore or physical-device verification.

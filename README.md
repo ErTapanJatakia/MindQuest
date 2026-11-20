@@ -86,6 +86,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:browser`
 - `npm run test:filter-round-matrix`
 - `npm run test:focus-order`
+- `npm run test:fresh-context`
 - `npm run test:gameplay-integrity`
 - `npm run test:gameplay-state`
 - `npm run test:lifecycle`

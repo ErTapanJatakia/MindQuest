@@ -1114,3 +1114,12 @@ Browser/static checks do not establish native Android process-death behavior, Ta
 - New active work: `test:filter-round-matrix` covers 60 region/category/difficulty combinations and 15 round-length checks across all five regions (375 question presentations). Awaiting exact-head CI.
 - Baseline accounting is unchanged: 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). Do not credit expansion/CI work to the original baseline.
 - No Android build, APK, signing, deployment or store submission is authorized in this feature batch.
+
+
+## Authoritative engineering update — 2026-11-20, PR #58 merged
+
+- PR #58 merged as `f00c9acd4f635003e4dfd52ccb34dd5c38dd49b9` after exact-head CI [#44663883648](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44663883648) passed all 35 substantive validation steps.
+- The merged filter/round matrix covers 60 region/category/difficulty combinations and full 5-, 10- and 15-question rounds in all five regions. Filtered rounds correctly cap to eligible pool size.
+- New active work: fresh-browser-context persistence regression for six independent preferences, scoped best-score restoration and actual gameplay application after context recreation. Exact-head CI is pending.
+- Baseline accounting remains unchanged: 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). Do not credit expansion/CI work to the original baseline.
+- No Android build, APK, signing, deployment or store submission is authorized in this feature batch.

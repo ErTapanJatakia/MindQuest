@@ -1232,3 +1232,12 @@ No Android build/APK/signing, production deployment or RuStore submission occurr
 - Current active batch adds a five-region category/difficulty/round-length matrix: 60 filtered rounds plus 15 round-length rounds, 375 question presentations. Its exact-head CI is pending and must not be represented as passed until GitHub reports success.
 - Original baseline remains 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining plan remains 1,135 minutes (18h 55m). Expansion, regression and CI work do not inflate baseline credit.
 - Android final validation remains unstarted and manually gated by `feature_scope_complete=true`. No APK/Gradle build, signing, production deployment or RuStore submission is part of this batch.
+
+
+## Authoritative status update — 2026-11-20, PR #58 merged
+
+- PR [#58](https://github.com/ErTapanJatakia/MindQuest/pull/58) merged as `f00c9acd4f635003e4dfd52ccb34dd5c38dd49b9` after exact-head workflow [#44663883648](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44663883648) passed all 35 substantive validation steps.
+- The merged five-region filter/round matrix covers all 60 region × category × difficulty combinations and completes 5-, 10- and 15-question rounds in each region, with actual round length capped by the eligible pool.
+- New active batch adds a fresh-browser-context persistence regression for independent preferences, scoped best score and actual next-round region/question-language application. Exact-head CI is pending.
+- Original baseline remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining plan remains 1,135 minutes (18h 55m). Expansion, CI and audit work do not inflate baseline credit.
+- No Android build/APK/Gradle assembly, signing, production deployment or RuStore submission is part of this batch. Final Android validation remains manually gated by `feature_scope_complete=true`.

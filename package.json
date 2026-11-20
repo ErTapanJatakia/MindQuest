@@ -33,7 +33,8 @@
     "audit:project-docs": "node scripts/audit-project-docs.mjs",
     "test:staged-activation": "node scripts/staged-region-activation-fail-closed-smoke.mjs",
     "test:gameplay-state": "node scripts/gameplay-state-isolation-smoke.mjs",
-    "test:filter-round-matrix": "node scripts/filter-round-matrix-smoke.mjs"
+    "test:filter-round-matrix": "node scripts/filter-round-matrix-smoke.mjs",
+    "test:fresh-context": "node scripts/fresh-context-persistence-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
