@@ -86,6 +86,7 @@ jobs:
           node --check scripts/question-bank-fail-closed-smoke.mjs
           node --check scripts/staged-region-activation-fail-closed-smoke.mjs
           node --check scripts/gameplay-state-isolation-smoke.mjs
+          node --check scripts/filter-round-matrix-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
           node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/application-lifecycle-smoke.mjs
@@ -140,6 +141,9 @@ jobs:
 
       - name: Verify gameplay answer locking and settings-state isolation
         run: npm run test:gameplay-state
+
+      - name: Verify category, difficulty and round-length filters across all five regions
+        run: npm run test:filter-round-matrix
 
       - name: Verify staged regional activation fails closed
         run: npm run test:staged-activation
