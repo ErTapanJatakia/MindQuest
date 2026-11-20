@@ -163,3 +163,8 @@ The `test:streak-localization` browser gate completes a five-question round in e
 ## Question-bank fail-closed integrity regression — 2026-11-20
 
 The `test:bank-fail-closed` browser gate injects three controlled corruptions into the enabled India question bank: duplicate stable IDs, duplicate localized prompts across all five question locales, and invalid answer keys. Each scenario must route to the recovery Results state without producing a score, answer-review entries, replay action or persisted best-score record. This validates the app's runtime integrity guardrails against malformed in-memory content; it is not a security penetration test or a factual-content review.
+
+
+## Staged-region activation fail-closed regression — 2026-11-20
+
+The `test:staged-activation` browser gate injects three controlled corruptions before the guarded regional-bank activation script executes: a staged ID colliding with the canonical bank, a missing `es-PE` translation, and an incomplete staged regional bundle. Each scenario must abort activation, preserve the complete canonical 150-question bank without adding any Spain/Peru records, and leave the release metadata unset. This tests the activation boundary itself, separately from the enabled-bank gameplay corruption tests; it does not establish factual correctness or replace the static staged-content validator.
