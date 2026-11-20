@@ -168,3 +168,8 @@ The `test:bank-fail-closed` browser gate injects three controlled corruptions in
 ## Staged-region activation fail-closed regression — 2026-11-20
 
 The `test:staged-activation` browser gate injects three controlled corruptions before the guarded regional-bank activation script executes: a staged ID colliding with the canonical bank, a missing `es-PE` translation, and an incomplete staged regional bundle. Each scenario must abort activation, preserve the complete canonical 150-question bank without adding any Spain/Peru records, and leave the release metadata unset. This tests the activation boundary itself, separately from the enabled-bank gameplay corruption tests; it does not establish factual correctness or replace the static staged-content validator.
+
+
+## Gameplay answer locking and settings-state isolation — 2026-11-20
+
+The `test:gameplay-state` browser gate verifies that Next cannot skip an unanswered question, selecting an answer locks all four choices and maintains one checked radio, and a second selection cannot alter the recorded choice. It verifies that opening and backing out of Settings preserves the active answered question, while saving changed settings during a round discards transient question, answer-review, progress and streak state without recording a best score. A subsequent round must use the newly selected region, interface locale and question locale independently. This is automated browser coverage and does not replace physical-device or assistive-technology acceptance.
