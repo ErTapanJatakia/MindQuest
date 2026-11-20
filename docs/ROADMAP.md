@@ -1132,3 +1132,11 @@ Browser/static checks do not establish native Android process-death behavior, Ta
 - New active work: interrupted-round recovery across a newly created browser context, transient answer/review discard, preservation of the previous best score, focus restoration and next-round localization. Exact-head CI is pending.
 - Baseline accounting remains unchanged: 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). No expansion/CI credit added.
 - No Android build, APK, signing, deployment or store submission in this feature batch.
+
+
+## Multilingual accessibility semantics batch — 2026-11-20
+
+- PR #60 merged as `6438a6daad27d8e10112abbdf1460c02b4374887` after exact-head CI [#44780994889](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44780994889) passed all 37 substantive steps, including interrupted-round recovery across fresh browser contexts.
+- New active work adds a 25-pair interface/question-language matrix across all five regions, with complete rounds and checks for live status announcements, keyboard focus, mixed-language feedback and Results answer-review metadata. Exact-head CI is pending.
+- Original baseline remains 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). Expansion and CI work do not inflate baseline credit.
+- No APK/Gradle build, signing, deployment or store submission in this batch.
