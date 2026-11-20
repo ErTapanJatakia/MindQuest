@@ -1250,3 +1250,12 @@ No Android build/APK/signing, production deployment or RuStore submission occurr
 - New active batch adds process-like interrupted-round recovery across context termination, no transient answer/review restoration, preservation of prior score records, post-restart keyboard focus and next-round locale application. Exact-head CI is pending.
 - Baseline remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining plan remains 1,135 minutes (18h 55m); expansion and CI work do not inflate baseline credit.
 - No Android build/APK/Gradle assembly, signing, deployment or RuStore submission. Final Android validation remains manually gated by `feature_scope_complete=true`.
+
+
+## Authoritative status update — 2026-11-20, PR #60 merged
+
+- PR [#60](https://github.com/ErTapanJatakia/MindQuest/pull/60) merged as `6438a6daad27d8e10112abbdf1460c02b4374887` after exact-head workflow [#44780994889](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44780994889) passed all 37 substantive validation steps.
+- Interrupted-round recovery now verifies transient answer/review discard across a newly created browser context, preservation of six independent preferences and a prior scoped best score, keyboard focus restoration, and correct locale application to the next round.
+- New active batch: multilingual live-announcement and answer-review matrix across 25 interface/question-locale pairs, all five regions, 25 completed rounds and 125 questions. Exact-head CI pending.
+- Baseline remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining estimate remains 1,135 minutes (18h 55m); no expansion/CI credit added.
+- No Android build/APK/Gradle assembly, signing, deployment or store submission. Final Android validation remains manually gated by `feature_scope_complete=true`.
