@@ -93,6 +93,7 @@ Useful local commands (Node.js 20 or later):
 - `npm run test:responsive`
 - `npm run test:runtime-bank`
 - `npm run test:score-scope`
+- `npm run test:streak-localization`
 - `npm run test:storage-resilience`
 - `npm run test:theme-accessibility`
 - `npm run validate:content`
