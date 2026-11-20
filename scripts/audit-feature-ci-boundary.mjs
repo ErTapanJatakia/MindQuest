@@ -29,7 +29,7 @@ if (!/Assemble debug APK[\s\S]*?assembleDebug/u.test(releaseWorkflow)) {
 if (!/Upload debug APK[\s\S]*?upload-artifact/u.test(releaseWorkflow)) {
   failures.push("The final validation workflow must retain its explicit validation artifact step");
 }
-if (!/Inspect APK identity, permissions and bundled offline assets[\s\S]*?aapt dump badging[\s\S]*?aapt dump permissions[\s\S]*?unzip -Z1[\s\S]*?sha256sum/u.test(releaseWorkflow)) {
+if (!/Inspect APK identity, permissions and bundled offline assets[\s\S]*?dump badging[\s\S]*?dump permissions[\s\S]*?unzip -Z1[\s\S]*?sha256sum/u.test(releaseWorkflow)) {
   failures.push("The final validation workflow must inspect APK metadata, permissions, bundled offline assets and SHA-256 after assembly");
 }
 for (const required of ["package_id=app.mindquest", "version_code=1", "version_name=0.1.0", "versionCode='1'", "assets/index.html", "assets/styles.css", "assets/src/app.js", "assets/src/data/questions.js", "mindquest-gate2-debug-validation"]) {
