@@ -57,11 +57,11 @@ jobs:
           test -x "$AAPT"
 
           BADGING="$("$AAPT" dump badging "$APK")"
-          printf '%s\\n' "$BADGING" > "$RUNNER_TEMP/mindquest-apk-badging.txt"
-          grep -Eq "^package: name='app\\.mindquest' versionCode='1' versionName='0\\.1\\.0'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
+          printf '%s\n' "$BADGING" > "$RUNNER_TEMP/mindquest-apk-badging.txt"
+          grep -Eq "^package: name='app\.mindquest' versionCode='1' versionName='0\.1\.0'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
 
           "$AAPT" dump permissions "$APK" > "$RUNNER_TEMP/mindquest-apk-permissions.txt"
-          if grep -Eq 'uses-permission|android\\.permission\\.(INTERNET|ACCESS_NETWORK_STATE)' "$RUNNER_TEMP/mindquest-apk-permissions.txt"; then
+          if grep -Eq 'uses-permission|android\.permission\.(INTERNET|ACCESS_NETWORK_STATE)' "$RUNNER_TEMP/mindquest-apk-permissions.txt"; then
             echo "Unexpected Android permission found in the offline-first package:"
             cat "$RUNNER_TEMP/mindquest-apk-permissions.txt"
             exit 1
