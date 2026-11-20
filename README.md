@@ -121,6 +121,7 @@ Before release, complete the physical-device and TalkBack checklist, verify offl
 - [Architecture decisions](docs/ARCHITECTURE.md)
 - [Product and release requirements](docs/PRODUCT-AND-RELEASE-REQUIREMENTS.md)
 - [Release readiness and manual QA](docs/RELEASE-READINESS-AND-MANUAL-QA.md)
+- [Gate 2 Android validation execution log](docs/GATE-2-EXECUTION-LOG.md)
 - [Privacy Policy](PRIVACY-POLICY.md)
 - [Accessibility Statement](ACCESSIBILITY.md)
 - [Security Policy](SECURITY.md)
