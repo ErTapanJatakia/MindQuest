@@ -31,7 +31,8 @@
     "test:focus-order": "node scripts/focus-order-hidden-view-smoke.mjs",
     "audit:feature-ci-boundary": "node scripts/audit-feature-ci-boundary.mjs",
     "audit:project-docs": "node scripts/audit-project-docs.mjs",
-    "test:staged-activation": "node scripts/staged-region-activation-fail-closed-smoke.mjs"
+    "test:staged-activation": "node scripts/staged-region-activation-fail-closed-smoke.mjs",
+    "test:gameplay-state": "node scripts/gameplay-state-isolation-smoke.mjs"
   },
   "engines": {
     "node": ">=20"
