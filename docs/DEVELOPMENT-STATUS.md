@@ -1,6 +1,14 @@
 # Development status
 
-Last updated: 2026-11-18
+## Authoritative current status — Gate 2
+
+Gate 1 is complete. Gate 2 (Android release-candidate preparation and manual native validation) is in progress. The current product is five regions, five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. Spain and Peru are enabled; Spanish question-language support is implemented. The human factual/answer-key review and native-speaker review are complete based on project-owner confirmation.
+
+Use [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) and the current [release-readiness protocol](RELEASE-READINESS-AND-MANUAL-QA.md) as the authoritative status. Older three-region/150-question/450-record statements and historical workflow references below are archival snapshots and are superseded by the current five-region evidence and merged PRs #34–#63.
+
+No Gate 2 APK has been built from the Gate 1 closeout. Physical-device, TalkBack/switch-access, native process-death, Android offline/runtime and final package checks remain open. No signing, deployment or store submission is authorized.
+
+Last updated: 2026-11-21
 
 ## Current phase
 
