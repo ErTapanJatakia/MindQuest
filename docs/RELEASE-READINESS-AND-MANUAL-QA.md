@@ -139,3 +139,12 @@ Gate 1 is complete: PR [#62](https://github.com/ErTapanJatakia/MindQuest/pull/62
 This closes feature-development and automated QA/documentation Gate 1 only. The following remain mandatory before a stable Android release candidate: physical-device layout/orientation and installation/update checks; TalkBack, screen-reader and switch-access checks; native Android lifecycle/process-death, offline and storage recovery regression; final manually triggered Android validation after `feature_scope_complete=true`; candidate APK inspection and security/privacy review. Browser/static tests do not establish these outcomes and do not establish WCAG 2.2 AA conformance.
 
 No APK/Gradle build, signing, production deployment or RuStore submission was performed as part of Gate 1. Signing and store submission remain separate actions requiring explicit authorization.
+
+
+## Gate 2 execution entry — 2026-11-21
+
+Gate 1 closeout is complete. Gate 2 is active and its execution evidence, three status tables and device acceptance sequence are maintained in [Gate 2 execution log](GATE-2-EXECUTION-LOG.md). The latest exact-head PR #63 workflow and post-merge main workflow both passed; see the execution log for run links and the current scope.
+
+The Android WebView, manifest and lifecycle checks currently available are static source/configuration audits only. They do not establish Kotlin compilation, runtime WebView behavior, process-death recovery, device-level offline operation, TalkBack usability or physical display compatibility. The final Android workflow remains manually dispatched and explicitly gated. The Gate 2 preparation batch adds package identity/version, permission, offline-asset and SHA-256 checks after the debug build. It does not sign or release the package.
+
+Physical-device and assistive-technology checks remain open until executed and evidenced. No production signing, deployment or RuStore submission is authorized.
