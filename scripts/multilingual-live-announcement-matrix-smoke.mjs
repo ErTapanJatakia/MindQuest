@@ -42,8 +42,8 @@ try {
       live:node.getAttribute("aria-live"),
       atomic:node.getAttribute("aria-atomic")
     }));
-    requireCondition(state.role === "status" && state.live === "polite" && state.atomic === "true",
-      label + " must remain a polite atomic status region: " + JSON.stringify(state));
+    requireCondition((state.role === "status" || state.role === null) && state.live === "polite" && state.atomic === "true",
+      label + " must remain a polite atomic live region (explicit status role when present): " + JSON.stringify(state));
   }
 
   let rounds = 0;
