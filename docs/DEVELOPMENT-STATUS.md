@@ -1241,3 +1241,12 @@ No Android build/APK/signing, production deployment or RuStore submission occurr
 - New active batch adds a fresh-browser-context persistence regression for independent preferences, scoped best score and actual next-round region/question-language application. Exact-head CI is pending.
 - Original baseline remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining plan remains 1,135 minutes (18h 55m). Expansion, CI and audit work do not inflate baseline credit.
 - No Android build/APK/Gradle assembly, signing, production deployment or RuStore submission is part of this batch. Final Android validation remains manually gated by `feature_scope_complete=true`.
+
+
+## Authoritative status update — 2026-11-20, PR #59 merged
+
+- PR [#59](https://github.com/ErTapanJatakia/MindQuest/pull/59) merged as `e962c9a21031304e8f495dc3bd2f13b5c3e5313a` after exact-head workflow [#44766831215](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44766831215) passed all 36 substantive validation steps.
+- The merged fresh-context persistence regression verifies six independent preferences, scoped best-score restoration and actual next-round application after a newly created browser context.
+- New active batch adds process-like interrupted-round recovery across context termination, no transient answer/review restoration, preservation of prior score records, post-restart keyboard focus and next-round locale application. Exact-head CI is pending.
+- Baseline remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised remaining plan remains 1,135 minutes (18h 55m); expansion and CI work do not inflate baseline credit.
+- No Android build/APK/Gradle assembly, signing, deployment or RuStore submission. Final Android validation remains manually gated by `feature_scope_complete=true`.
