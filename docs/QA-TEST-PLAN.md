@@ -193,3 +193,8 @@ The `test:interrupted-context` gate begins a configured five-question Peru/Spani
 ## Multilingual live-announcement and answer-review matrix — 2026-11-20
 
 The `test:multilingual-announcements` browser gate exercises all 25 interface-locale × question-locale pairs across all five question regions. It completes 25 five-question rounds (125 questions) and verifies polite atomic status semantics for progress, streak, feedback and Results; focus transfer after answer selection and question navigation; answer-group semantics and accessible naming; question and answer-option language tags; mixed-language feedback boundaries; and localized Results/answer-review language metadata. This is browser regression coverage and does not replace TalkBack, other screen-reader, switch-access or physical-device testing.
+
+
+## Gate 1 candidate verification notes — 2026-11-21
+
+The multilingual live-announcement and answer-review matrix is registered as `npm run test:multilingual-announcements` and is included in the CI workflow. Its exact-head result must be green before merge. The README command catalogue and release-readiness inventory must remain synchronized with `package.json`. A green browser workflow is not a substitute for physical Android, TalkBack or switch-access acceptance.
