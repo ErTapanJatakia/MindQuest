@@ -1123,3 +1123,12 @@ Browser/static checks do not establish native Android process-death behavior, Ta
 - New active work: fresh-browser-context persistence regression for six independent preferences, scoped best-score restoration and actual gameplay application after context recreation. Exact-head CI is pending.
 - Baseline accounting remains unchanged: 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). Do not credit expansion/CI work to the original baseline.
 - No Android build, APK, signing, deployment or store submission is authorized in this feature batch.
+
+
+## Authoritative engineering update — 2026-11-20, PR #59 merged
+
+- PR #59 merged as `e962c9a21031304e8f495dc3bd2f13b5c3e5313a` after exact-head CI [#44766831215](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44766831215) passed all 36 substantive validation steps.
+- Fresh-browser-context persistence now verifies six independent preferences, scoped best-score restoration and actual gameplay application after context recreation.
+- New active work: interrupted-round recovery across a newly created browser context, transient answer/review discard, preservation of the previous best score, focus restoration and next-round localization. Exact-head CI is pending.
+- Baseline accounting remains unchanged: 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). No expansion/CI credit added.
+- No Android build, APK, signing, deployment or store submission in this feature batch.
