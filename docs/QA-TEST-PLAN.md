@@ -183,3 +183,8 @@ The `test:filter-round-matrix` browser gate exercises all 60 region × category 
 ## Fresh browser-context persistence regression — 2026-11-20
 
 The `test:fresh-context` browser gate exports the saved origin storage from one browser context, closes that context, and restores the snapshot into a newly created context. It verifies independent interface locale, question region, question locale, round length, category and difficulty preferences, plus a scoped best-score record. It then starts gameplay and checks that the restored Peru region and Spanish (Peru) question language drive the actual question presented. This strengthens coverage beyond a same-page reload, but it remains a browser storage simulation rather than native Android process-death, WebView data-directory, OS backup/restore or physical-device verification.
+
+
+## Interrupted-round recovery across a fresh browser context — 2026-11-20
+
+The `test:interrupted-context` gate begins a configured five-question Peru/Spanish (Peru) round, records one answer in transient runtime state, then closes the browser context and recreates it from persisted origin storage. It verifies recovery to Home with no restored answer controls or answer-review entries, preserves the previously recorded scoped best score, restores all six independent preferences, checks focus transfer through Settings and back to Home, and confirms the next round uses the restored region and question locale. This simulates process-like browser-context termination; it does not establish native Android process-death, WebView data-directory behavior, OS backup/restore or physical-device acceptance.

@@ -88,6 +88,7 @@ jobs:
           node --check scripts/gameplay-state-isolation-smoke.mjs
           node --check scripts/filter-round-matrix-smoke.mjs
           node --check scripts/fresh-context-persistence-smoke.mjs
+          node --check scripts/interrupted-context-recovery-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
           node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/application-lifecycle-smoke.mjs
@@ -160,6 +161,9 @@ jobs:
 
       - name: Verify preferences and scoped scores across a fresh browser context
         run: npm run test:fresh-context
+
+      - name: Verify interrupted-round recovery across a fresh browser context
+        run: npm run test:interrupted-context
 
       - name: Verify keyboard focus order and inactive-view isolation
         run: npm run test:focus-order
