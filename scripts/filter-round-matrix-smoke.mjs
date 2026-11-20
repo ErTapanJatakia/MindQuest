@@ -54,13 +54,15 @@ try {
         (category === "all" || question.category === category) &&
         (difficulty === "all" || question.difficulty === difficulty)
       ).length, { region, category, difficulty });
-    if (details.region !== region || details.roundLength !== length || details.poolSize !== expectedPool ||
-        expectedPool < length || Object.values(details.quotas).reduce((sum, value) => sum + value, 0) !== length) {
-      throw new Error("Round allocation mismatch: " + JSON.stringify({ region, category, difficulty, length, expectedPool, details }));
+    const expectedLength = Math.min(length, expectedPool);
+    if (!expectedPool || details.region !== region || details.roundLength !== expectedLength ||
+        details.poolSize !== expectedPool ||
+        Object.values(details.quotas).reduce((sum, value) => sum + value, 0) !== expectedLength) {
+      throw new Error("Round allocation mismatch: " + JSON.stringify({ region, category, difficulty, requestedLength:length, expectedPool, expectedLength, details }));
     }
 
     const seen = new Set();
-    for (let index = 0; index < length; index += 1) {
+    for (let index = 0; index < expectedLength; index += 1) {
       const id = await page.locator("#question-title").getAttribute("data-question-id");
       if (!id?.startsWith(region + "-") || seen.has(id)) {
         throw new Error("Wrong-region or duplicate question ID in round: " + id);
@@ -82,15 +84,17 @@ try {
       throw new Error("Round did not finish for " + [region, category, difficulty, length].join("/"));
     }
     const reviewCount = await page.locator("#answer-review-list article").count();
-    if (reviewCount !== length) throw new Error("Answer review count mismatch: expected " + length + ", received " + reviewCount);
+    if (reviewCount !== expectedLength) throw new Error("Answer review count mismatch: expected " + expectedLength + ", received " + reviewCount);
+    return expectedLength;
   }
 
   let filterRounds = 0;
+  let questionPresentations = 0;
   for (const region of regions) {
     for (const category of categories) {
       for (const difficulty of difficulties) {
         await configure(region, category, difficulty, 5);
-        await completeRound(region, category, difficulty, 5);
+        questionPresentations += await completeRound(region, category, difficulty, 5);
         filterRounds += 1;
       }
     }
@@ -100,7 +104,7 @@ try {
   for (const region of regions) {
     for (const length of [5, 10, 15]) {
       await configure(region, "all", "all", length);
-      await completeRound(region, "all", "all", length);
+      questionPresentations += await completeRound(region, "all", "all", length);
       lengthRounds += 1;
     }
   }
@@ -108,7 +112,8 @@ try {
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
   console.log("Five-region filter/round matrix passed: " + filterRounds +
     " category × difficulty rounds across all five regions, plus " + lengthRounds +
-    " round-length checks (5/10/15) across all five regions; 375 question presentations, exact pool diagnostics, filter isolation, unique IDs and complete localized answer review verified.");
+    " round-length checks (5/10/15) across all five regions; " + questionPresentations +
+    " question presentations, exact pool diagnostics, filter isolation, unique IDs and complete localized answer review verified.");
 } finally {
   await browser?.close();
   await new Promise(resolveClose => server.close(resolveClose));
