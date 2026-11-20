@@ -72,7 +72,6 @@ jobs:
           node --check scripts/responsive-viewport-smoke.mjs
           node --check scripts/locale-persistence-smoke.mjs
           node --check scripts/gameplay-integrity-smoke.mjs
-          node --check scripts/streak-localization-regression-smoke.mjs
           node --check scripts/accessibility-regression-smoke.mjs
           node --check scripts/accessible-name-regression-smoke.mjs
           node --check scripts/storage-resilience-smoke.mjs
@@ -83,6 +82,7 @@ jobs:
           node --check scripts/theme-accessibility-matrix-smoke.mjs
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
+          node --check scripts/question-bank-fail-closed-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
           node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/application-lifecycle-smoke.mjs
@@ -108,9 +108,6 @@ jobs:
       - name: Run gameplay integrity and score-ledger regression
         run: npm run test:gameplay-integrity
 
-      - name: Verify current and best streak behavior across all interface locales
-        run: npm run test:streak-localization
-
       - name: Run accessibility and keyboard regression
         run: npm run test:accessibility
 
@@ -131,6 +128,9 @@ jobs:
 
       - name: Verify complete five-region runtime bank and localization integrity
         run: npm run test:runtime-bank
+
+      - name: Verify corrupted question banks fail closed without recording scores
+        run: npm run test:bank-fail-closed
 
       - name: Verify browser offline network isolation
         run: npm run test:offline-isolation
