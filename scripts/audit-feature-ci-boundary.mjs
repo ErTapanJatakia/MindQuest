@@ -35,6 +35,21 @@ if (!/Inspect APK identity, permissions and bundled offline assets[\s\S]*?dump b
 for (const required of ["package_id=app.mindquest", "version_code=1", "version_name=0.1.0", "versionCode='1'", "assets/index.html", "assets/styles.css", "assets/src/app.js", "assets/src/data/questions.js", "mindquest-gate2-debug-validation"]) {
   if (!releaseWorkflow.includes(required)) failures.push("Final Android package inspection is missing required assertion: " + required);
 }
+if (!/^permissions:\s*\n\s*contents:\s*read\s*$/mu.test(releaseWorkflow)) {
+  failures.push("Final Android validation must retain read-only repository permissions");
+}
+if (!/retention-days:\s*14/u.test(releaseWorkflow)) {
+  failures.push("Debug validation artifact retention must remain limited to 14 days");
+}
+if (!/validation_scope=debug-package-inspection-only/u.test(releaseWorkflow) || !/apk_sha256=/u.test(releaseWorkflow)) {
+  failures.push("Validation evidence must identify its debug-only scope and record the APK SHA-256");
+}
+if (/\b(?:assembleRelease|bundleRelease|signingConfig|apksigner\s+sign|jarsigner|publish.*(?:play|store)|upload.*(?:play|store|rustore))\b/iu.test(releaseWorkflow)) {
+  failures.push("Gate 2 workflow must not sign, publish or submit a production package");
+}
+if (!/versionName=\x270\.1\.0\x27/u.test(releaseWorkflow) || !/manifest_permissions=none/u.test(releaseWorkflow) || !/required_offline_assets=present/u.test(releaseWorkflow)) {
+  failures.push("Debug package evidence must assert version identity, zero permissions and bundled offline assets");
+}
 if (failures.length) {
   for (const failure of failures) console.error("FAIL: " + failure);
   process.exitCode = 1;
