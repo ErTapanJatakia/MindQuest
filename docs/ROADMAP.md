@@ -1140,3 +1140,52 @@ Browser/static checks do not establish native Android process-death behavior, Ta
 - New active work adds a 25-pair interface/question-language matrix across all five regions, with complete rounds and checks for live status announcements, keyboard focus, mixed-language feedback and Results answer-review metadata. Exact-head CI is pending.
 - Original baseline remains 1,745 / 2,400 minutes earned (72.71%); 655 baseline minutes remain. Revised execution estimate remains 1,135 minutes (18h 55m). Expansion and CI work do not inflate baseline credit.
 - No APK/Gradle build, signing, deployment or store submission in this batch.
+
+
+## Gate 1 execution checkpoint — 2026-11-21
+
+The Gate 1 candidate consolidates the multilingual live-announcement and answer-review regression with release-document reconciliation. The new browser matrix covers 25 interface-locale × question-locale pairs across all five regions, 25 completed rounds and 125 questions. It verifies polite atomic progress/streak/feedback/Results announcements, focus transfer, answer-group semantics, question/option language tags, mixed-language feedback and answer-review metadata. Browser automation does not establish TalkBack, switch-access, physical-device or WCAG conformance.
+
+The exact-head candidate CI is the merge gate. No pending check is represented as passed. The baseline remains 1,745 / 2,400 minutes (72.71%), with 655 baseline minutes remaining; the revised plan remains 1,135 minutes (18h 55m). Expansion and additional QA do not inflate the baseline. No APK/Gradle build, signing, production deployment or RuStore submission is part of Gate 1.
+
+### Revised execution timeline — updated
+
+| Remaining work package | Remaining effort |
+|---|---:|
+| Human factual and answer-key review | 0 min — complete per project-owner confirmation |
+| Native-speaker review | 0 min — complete per project-owner confirmation |
+| 125-combination locale matrix | 0 min — complete |
+| Theme and device polish | 120 min |
+| Accessibility verification | 120 min — automated gates; manual checks remain |
+| Legal/editorial documentation | 60 min |
+| Expanded manual, offline and Android regression | 180 min |
+| Original baseline engineering scope | 655 min |
+| **Total planned remaining** | **1,135 min (18h 55m)** |
+
+### Baseline engineering progress
+
+| Metric | Current |
+|---|---:|
+| Original baseline | 2,400 min / 40h |
+| Earned | 1,745 min |
+| Remaining | 655 min |
+| Completion | **72.71%** |
+| Actual engineering hours | Not tracked |
+
+### Current Development Status
+
+| Workstream | Status | Evidence / next action |
+|---|---|---|
+| Five-region content and localization | Complete for current target | 250 IDs / 1,250 localized records; owner-confirmed human reviews |
+| Locale independence | Automated acceptance complete | 125 selector combinations |
+| Gameplay, filters and question cycles | Automated acceptance complete | Five-region gameplay and filter matrices |
+| Offline isolation | Automated acceptance complete | All 25 region × question-language pairs |
+| Storage and interrupted-round recovery | Automated browser gates merged | Same-origin reload and fresh-context simulations; native Android remains open |
+| Multilingual live announcements and answer review | Gate 1 candidate | 25 locale pairs, 5 regions, 25 rounds, 125 questions; exact-head CI required |
+| Documentation reconciliation | Gate 1 candidate | README, QA plan, development status, roadmap and release protocol |
+| Theme/device polish | In progress | 120-minute planning allocation; physical display/orientation checks remain |
+| Manual accessibility | Pending | TalkBack, switch access and physical-device checks remain |
+| Android final validation | Not started | Manual dispatch only after feature scope is complete |
+| Signing / RuStore submission | Not authorized | Separate explicit authorization required |
+
+No WCAG 2.2 AA conformance, independent security certification or native Android acceptance is claimed from browser/static evidence.
