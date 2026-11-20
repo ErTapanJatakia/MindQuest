@@ -84,6 +84,7 @@ jobs:
           node --check scripts/score-scope-regression-smoke.mjs
           node --check scripts/runtime-bank-integrity-smoke.mjs
           node --check scripts/question-bank-fail-closed-smoke.mjs
+          node --check scripts/staged-region-activation-fail-closed-smoke.mjs
           node --check scripts/offline-network-isolation-smoke.mjs
           node --check scripts/question-cycle-regression-smoke.mjs
           node --check scripts/application-lifecycle-smoke.mjs
@@ -135,6 +136,9 @@ jobs:
 
       - name: Verify corrupted question banks fail closed without recording scores
         run: npm run test:bank-fail-closed
+
+      - name: Verify staged regional activation fails closed
+        run: npm run test:staged-activation
 
       - name: Verify browser offline network isolation
         run: npm run test:offline-isolation
