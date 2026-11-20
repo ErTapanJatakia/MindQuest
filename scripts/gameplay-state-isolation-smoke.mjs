@@ -90,7 +90,7 @@ try {
   await page.locator("#settings-save").click();
   if (!(await page.locator("#home-view").isVisible())) throw new Error("Saving changed settings did not return Home");
   const discarded = await page.evaluate(() => ({
-    questionId:document.querySelector("#question-title").getAttribute("data-question-id"),
+    quizVisible:document.querySelector("#quiz-view").classList.contains("active") && !document.querySelector("#quiz-view").hidden,
     answerCount:document.querySelectorAll("#answers button").length,
     reviewCount:document.querySelectorAll("#answer-review-list article").length,
     nextDisabled:document.querySelector("#next-button").disabled,
@@ -102,7 +102,7 @@ try {
     indiaBest:localStorage.getItem("mindquest.best.IN.all.all.5"),
     russiaBest:localStorage.getItem("mindquest.best.RU.all.all.5")
   }));
-  if (discarded.questionId !== null || discarded.answerCount !== 0 || discarded.reviewCount !== 0 ||
+  if (discarded.quizVisible || discarded.answerCount !== 0 || discarded.reviewCount !== 0 ||
       discarded.nextDisabled !== true || discarded.progress !== "0" || discarded.streak !== "0" ||
       discarded.region !== "RU" || discarded.locale !== "es-ES" || discarded.interfaceLocale !== "es-ES" ||
       discarded.indiaBest !== JSON.stringify({ score:1,total:5 }) || discarded.russiaBest !== null) {
