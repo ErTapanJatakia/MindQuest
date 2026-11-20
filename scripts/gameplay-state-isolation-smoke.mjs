@@ -43,7 +43,8 @@ try {
   const firstId = await page.locator("#question-title").getAttribute("data-question-id");
   if (!firstId?.startsWith("IN-")) throw new Error("Initial round did not use the India question bank");
   if (!(await page.locator("#next-button").isDisabled())) throw new Error("Next was enabled before an answer was selected");
-  await page.locator("#next-button").click();
+  // A disabled native button cannot be activated by a user; invoke its DOM click method to verify the browser no-op without Playwright waiting for an enabled control.
+  await page.locator("#next-button").evaluate(button => button.click());
   if (!(await page.locator("#question-title").getAttribute("data-question-id") === firstId)) {
     throw new Error("An unanswered question was skipped");
   }
