@@ -10,6 +10,7 @@ MindQuest is a free, offline-first multilingual puzzle and trivia game for Andro
 - Offline-first: question content and interface assets are bundled with the application.
 - No account, backend, analytics SDK or mandatory network connection.
 - Android-first, with a lightweight web application used for development and browser regression.
+- Android application ID: `com.mindquest.app` (stable package identity for the first release).
 - Interface language, question-bank region and question language remain independent preferences.
 - Privacy-conscious local persistence; no gameplay telemetry is required.
 
