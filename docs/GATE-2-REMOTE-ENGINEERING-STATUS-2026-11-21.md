@@ -46,3 +46,16 @@ The remote hand-off point has **not** been declared. It will be declared only af
 The original baseline remains exactly **2,400 minutes / 40 hours**: **1,745 minutes earned**, **655 minutes remaining**, **72.71%**. Actual engineering hours are not tracked. Expansion, CI, audits and documentation work add no credit to the original baseline.
 
 The revised planned remaining estimate remains **1,135 minutes (18h 55m)**, comprising theme/device polish 120 min, manual accessibility verification 120 min, legal/editorial documentation 60 min, expanded manual/offline/Android regression 180 min and original baseline scope 655 min. These are planning estimates, not elapsed-time measurements.
+
+## Post-PR #73 mainline closeout — 2026-11-21
+
+- PR [#73](https://github.com/ErTapanJatakia/MindQuest/pull/73) is merged as `41f8e68fee2993279f722c4ea9a0e303413e3a9b`.
+- Post-merge mainline workflow [#44917735958](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44917735958) completed successfully on that exact merge commit: **38/38 substantive validation steps passed**.
+- The completed suite includes all-region question-cycle/replay, persistence and interrupted-round recovery, fresh-browser-context checks, multilingual announcements/review, keyboard focus isolation, Android build-boundary, WebView/lifecycle source and manifest security audits.
+- Current remote source/configuration review reconfirmed application ID `app.mindquest`, minSdk 23, targetSdk 35, versionCode 1, versionName 0.1.0, Java/Kotlin 17, and the documented local-only WebView/manifest boundaries. Privacy and accessibility disclosures continue to distinguish intended behavior from evidence and manual acceptance.
+- The manually dispatched Android debug-validation workflow remains unexecuted. No APK/Gradle build, artifact inspection, production signing, deployment or store submission has occurred.
+- Remote browser/static engineering is green at merge commit `41f8e68fee2993279f722c4ea9a0e303413e3a9b`; the remote hand-off is **not yet declared** because the gated debug package has not been built and inspected.
+- After the agreed feature scope and review are confirmed complete, the project owner must manually dispatch `.github/workflows/android-release-validation.yml` with `feature_scope_complete=true`. The connected GitHub integration does not expose a workflow-dispatch action.
+- Physical-device, TalkBack/other screen-reader and switch-access acceptance remain project-owner checks against the exact candidate build. No WCAG conformance, TalkBack certification, penetration-test completion or store approval is claimed.
+- Baseline and planning figures remain unchanged: 1,745/2,400 min earned (72.71%), 655 min baseline remaining, and 1,135 min revised planned remaining. No expansion, CI, audit or documentation work is credited to the original baseline.
+
