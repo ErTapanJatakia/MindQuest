@@ -115,3 +115,7 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
 .footer-center{width:100%;max-width:220px;margin:0 auto}.footer-accessibility-button{min-height:42px;padding:9px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--text);font:inherit;font-size:12px;font-weight:750;cursor:pointer}.footer-accessibility-button:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
 @media(max-width:520px){.splash-dismiss{min-height:64vh;padding:25px 20px}.splash-logo{width:min(58vw,190px)}.wcag-target-badge{min-width:146px}.app-footer{grid-template-columns:1fr}.footer-center{max-width:100%}}
 @media(forced-colors:active){.wcag-target-badge,.footer-accessibility-button{background:Canvas;color:CanvasText;border:1px solid CanvasText}.wcag-target-badge strong,.wcag-target-badge span{color:CanvasText}}
+
+/* Override the legacy splash span rule so both tagline lines receive the exact 40% increase. */
+.splash-dismiss .splash-tagline{font-size:clamp(19.6px,5.32vw,25.2px);line-height:1.16;color:var(--accent)}
+.splash-dismiss .splash-tagline span{font-size:inherit;color:inherit;font-weight:750}
