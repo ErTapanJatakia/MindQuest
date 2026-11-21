@@ -38,7 +38,10 @@ for (const required of ["package_id=app.mindquest", "version_code=1", "version_n
 if (!/^permissions:\s*\n\s*contents:\s*read\s*$/mu.test(releaseWorkflow)) {
   failures.push("Final Android validation must retain read-only repository permissions");
 }
-if (!/^\s*timeout-minutes:\s*30\s*$/mu.test(releaseWorkflow)) {\n  failures.push("Final Android package validation must have a bounded 30-minute job timeout");\n}\nif (!/retention-days:\s*14/u.test(releaseWorkflow)) {
+if (!/^\s*timeout-minutes:\s*30\s*$/mu.test(releaseWorkflow)) {
+  failures.push("Final Android package validation must have a bounded 30-minute job timeout");
+}
+if (!/retention-days:\s*14/u.test(releaseWorkflow)) {
   failures.push("Debug validation artifact retention must remain limited to 14 days");
 }
 if (!/validation_scope=debug-package-inspection-only/u.test(releaseWorkflow) || !/apk_sha256=/u.test(releaseWorkflow)) {
