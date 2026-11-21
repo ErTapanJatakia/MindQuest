@@ -46,52 +46,12 @@
     });
   }
 
-  const actions = document.querySelector(".topbar-actions");
-  const panel = document.createElement("div");
-  panel.id = "theme-panel";
-  panel.className = "theme-panel";
-  panel.hidden = true;
-  const label = document.createElement("label");
-  label.htmlFor = "theme-select";
-  label.textContent = "Colour theme";
-  const select = document.createElement("select");
-  select.id = "theme-select";
-  select.setAttribute("aria-label", "Choose application colour theme");
-  Object.entries(themes).forEach(([value, theme]) => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = theme.label;
-    select.append(option);
-  });
-  panel.append(label, select);
-  actions.append(panel);
-
-  const themeButton = document.getElementById("theme-open");
-  themeButton.addEventListener("click", () => {
-    panel.hidden = !panel.hidden;
-    themeButton.setAttribute("aria-expanded", String(!panel.hidden));
-    if (!panel.hidden) select.focus();
-  });
-  select.addEventListener("change", () => applyTheme(select.value));
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && !panel.hidden) {
-      panel.hidden = true;
-      themeButton.setAttribute("aria-expanded", "false");
-      themeButton.focus();
-    }
-  });
-
-  const access = [
-    ["setting-large-text", "largeText"],
-    ["setting-reduced-motion", "reducedMotion"],
-    ["setting-high-contrast", "highContrast"]
-  ];
-  access.forEach(([id, key]) => {
-    const control = document.getElementById(id);
-    control.addEventListener("change", () => {
-      write("mindquest.access." + key, String(control.checked));
-      applyAccessibility();
-    });
+  const themeSelect = document.getElementById("theme-select");
+  themeSelect.addEventListener("change", () => applyTheme(themeSelect.value));
+  const access = [["setting-large-text","largeText"],["setting-reduced-motion","reducedMotion"],["setting-high-contrast","highContrast"]];
+  access.forEach(([id,key]) => {
+    const control=document.getElementById(id);
+    control.addEventListener("change",()=>{write("mindquest.access."+key,String(control.checked));applyAccessibility();});
   });
 
   function showDocumentView(id) {
@@ -105,8 +65,6 @@
       heading.setAttribute("tabindex", "-1");
       heading.focus();
     }
-    panel.hidden = true;
-    themeButton.setAttribute("aria-expanded", "false");
   }
 
   document.getElementById("privacy-link").addEventListener("click", event => {
@@ -118,81 +76,6 @@
   document.getElementById("accessibility-back").addEventListener("click", () => showDocumentView("home-view"));
 
   applyTheme(read("mindquest.theme", "obsidian"));
-
-  // Searchable, native datalist-backed selector controls. The underlying select
-  // remains the canonical value source for the gameplay and existing test API.
-  const searchable = [
-    ["interface-locale", "Search interface languages"],
-    ["question-region", "Search question regions"],
-    ["question-locale", "Search question languages"],
-    ["question-category", "Search categories"]
-  ];
-  function setupSearchableSelectors() {
-    searchable.forEach(([selectId, placeholder]) => {
-      const nativeSelect = document.getElementById(selectId);
-      if (nativeSelect.dataset.searchReady) return;
-      const input = document.createElement("input");
-      const list = document.createElement("datalist");
-      const inputId = selectId + "-search";
-      const listId = selectId + "-options";
-      input.type = "search";
-      input.id = inputId;
-      input.setAttribute("list", listId);
-      input.setAttribute("autocomplete", "off");
-      input.setAttribute("aria-label", placeholder);
-      input.placeholder = placeholder;
-      input.className = "searchable-select";
-      list.id = listId;
-      nativeSelect.classList.add("search-backed-select");
-      nativeSelect.before(input);
-      input.after(list);
-      const fieldLabel = document.querySelector('label[for="' + selectId + '"]');
-      if (fieldLabel) fieldLabel.htmlFor = inputId;
-
-      const refresh = () => {
-        list.replaceChildren();
-        [...nativeSelect.options].forEach(option => {
-          const entry = document.createElement("option");
-          entry.value = option.textContent.trim();
-          entry.dataset.value = option.value;
-          list.append(entry);
-        });
-        const current = [...nativeSelect.options].find(option => option.value === nativeSelect.value);
-        input.value = current ? current.textContent.trim() : "";
-        input.setAttribute("aria-invalid", "false");
-      };
-      const commitSearch = () => {
-        const match = [...list.options].find(option =>
-          option.value.toLocaleLowerCase() === input.value.trim().toLocaleLowerCase());
-        if (!match) return false;
-        if (nativeSelect.value !== match.dataset.value) {
-          nativeSelect.value = match.dataset.value;
-          nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
-        }
-        input.setAttribute("aria-invalid", "false");
-        return true;
-      };
-      // Commit an exact datalist match as soon as the user finishes typing it.
-      // This avoids depending on browser-specific blur/change timing and keeps
-      // the canonical native select synchronized for keyboard and touch users.
-      input.addEventListener("input", () => {
-        if (commitSearch()) return;
-        input.setAttribute("aria-invalid", "false");
-      });
-      input.addEventListener("change", () => {
-        if (commitSearch()) return;
-        input.setAttribute("aria-invalid", "true");
-        input.value = [...nativeSelect.options].find(option => option.value === nativeSelect.value)?.textContent.trim() || "";
-      });
-      nativeSelect.addEventListener("change", refresh);
-      document.getElementById("settings-open").addEventListener("click", refresh);
-      document.getElementById("settings-save").addEventListener("click", refresh);
-      document.getElementById("interface-locale").addEventListener("change", () => window.setTimeout(refresh, 0));
-      nativeSelect.dataset.searchReady = "true";
-      refresh();
-    });
-  }
-  setupSearchableSelectors();
 
   applyAccessibility();
 
