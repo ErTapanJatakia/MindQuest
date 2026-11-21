@@ -2,7 +2,7 @@
 
 ## Gate 2 latest verification — 2026-11-21
 
-PR [#64](https://github.com/ErTapanJatakia/MindQuest/pull/64) merged as `c18b549651a243d59bef076216fe3335d368ab1f`. Exact-head workflow [#44831721965](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44831721965) and post-merge mainline workflow [#44836387831](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44836387831) both passed all 38 substantive validation steps. Gate 2 remains open for manually gated debug package validation and real-device, assistive-technology, native lifecycle and offline acceptance. No APK was produced by these CI runs; no production signing or store submission is authorized.
+PR [#67](https://github.com/ErTapanJatakia/MindQuest/pull/67) merged as `e044efa1bd7171e1c3bb601c87ae2fa9126abb43`; exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430) passed all 38 substantive validation steps. PR #65 exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) also passed all 38 steps. A post-merge mainline run for PR #67's merge commit has not yet been observed. Gate 2 remains open for remaining remote review and gated debug package validation, followed by physical-device, assistive-technology, native lifecycle and offline acceptance. No APK was produced by these CI runs; no production signing or store submission is authorized.
 
 ## Authoritative current status — Gate 2
 
@@ -38,7 +38,7 @@ Statuses: `Planned` = not started; `In progress` = partial implementation; `Revi
 | 18 | Documentation/release | 90 | 90 | 0 | README, architecture, roadmap, QA plan, development status and baseline reconciliation current; legal/editorial review remains |
 |  | **Total** | **2,400** | **1,745** | **655** | |
 
-## Revised execution timeline — updated 2026-11-18
+## Historical planning snapshot — 2026-11-18 (superseded by the authoritative 1,135-minute plan above)
 
 The original engineering baseline remains 2,400 minutes. PR #3, PR #4 and PR #5 have passed full validation and are reconciled inside the baseline; expansion work remains separate.
 
@@ -1260,3 +1260,13 @@ No APK/Gradle build, signing, production deployment or store submission is part 
 - No Android build or APK artifact was produced. This milestone does not close physical-device, assistive-technology, native lifecycle, airplane-mode or manual package acceptance.
 - A post-merge mainline run for merge commit `1fab23c732e4e4a26811e5db0483595934a8def6` has not yet been recorded; do not infer it from the exact-head PR check.
 - Baseline accounting is unchanged: 2,400 min total, 1,745 min earned, 655 min remaining (72.71%); revised plan remains 1,135 min.
+
+
+## Gate 2 current execution update — 2026-11-21
+
+- PR #67 is merged as `e044efa1bd7171e1c3bb601c87ae2fa9126abb43`; exact-head CI [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430) passed 38/38 substantive steps.
+- PR #68 is reconciling current product requirements and the authoritative Gate 2 phase; its exact-head CI is the current merge gate.
+- Current product scope remains five regions, five interface locales, five question locales, 250 stable IDs and 1,250 localized records.
+- Remote engineering is not yet at final hand-off: documentation and CI evidence reconciliation must pass, the manually gated debug APK must be built and inspected, and any remote-detectable defect must be closed.
+- Physical-device and assistive-technology acceptance remain reserved for the project owner. No WCAG conformance, TalkBack certification or production release is claimed.
+- Original baseline accounting remains 1,745/2,400 min (72.71%), 655 min remaining; revised remaining plan 1,135 min. No expansion or audit work is credited to the baseline.
