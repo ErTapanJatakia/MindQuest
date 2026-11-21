@@ -15,7 +15,7 @@ No independent WCAG 2.2 AA audit or complete assistive-technology test result is
 
 ## Accessibility features and design practices
 
-The project includes or is working toward:
+The following engineering features and automated browser checks are implemented:
 
 - Semantic headings, labels, buttons, and form controls;
 - Keyboard focus visibility and programmatic focus movement between views;
@@ -30,15 +30,15 @@ The presence of source-level support does not guarantee that every combination w
 
 ## Known limitations and verification
 
-The project still requires broader manual verification, including TalkBack on supported Android versions, keyboard-only operation in the hosted web development shell, screen-reader reading order, text scaling, contrast checks across every theme, focus visibility, and end-to-end review of all new searchable controls and policy pages.
+Automated browser regression currently covers keyboard navigation and focus transitions, accessible names and ARIA references, live-region semantics, language metadata, large-text/high-contrast/reduced-motion behavior at compact widths, and contrast measurements for ten themes across twelve viewport profiles. These results are limited to the tested browser configurations and do not establish conformance. The remaining acceptance work for this release is physical Android verification with TalkBack and other supported screen readers, switch-access operation, and device-specific focus, text-scaling, contrast and layout behavior. Those checks must be recorded against the exact candidate build.
 
 Please report barriers with the device model, Android/browser version, assistive technology, steps to reproduce, and (if possible) a description of the affected screen. Do not include sensitive personal information in a report.
 
 ## Feedback and remediation
 
-Accessibility feedback is welcome. The project will assess reported barriers, prioritize issues by impact, and document material changes. Users may contact the accessibility auditor using the details below.
+Accessibility feedback is welcome. The project will assess reported barriers, prioritize issues by impact, and document material changes. Users may contact the project accessibility feedback contact using the details below.
 
-## Contact Information of the WCAG Auditor
+## Accessibility feedback contact
 
 - **Name:** Er. Tapan Jatakia (C. Eng.)
 - **Email:** cyber.litigation.advisor@gmail.com
