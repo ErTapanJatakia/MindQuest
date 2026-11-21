@@ -59,3 +59,8 @@ The revised planned remaining estimate remains **1,135 minutes (18h 55m)**, comp
 - Physical-device, TalkBack/other screen-reader and switch-access acceptance remain project-owner checks against the exact candidate build. No WCAG conformance, TalkBack certification, penetration-test completion or store approval is claimed.
 - Baseline and planning figures remain unchanged: 1,745/2,400 min earned (72.71%), 655 min baseline remaining, and 1,135 min revised planned remaining. No expansion, CI, audit or documentation work is credited to the original baseline.
 
+
+
+## Approved Android package identity migration — 2026-11-21
+
+The project owner approved `com.mindquest.app` as the permanent Android application ID for portfolio consistency. The previous `app.mindquest` value is historical only. This migration updates Gradle namespace/applicationId, Kotlin package/source path, source audit and final APK identity/evidence checks. Version 0.1.0 (code 1), minSdk 23 and targetSdk 35 remain unchanged. The earlier debug artifact is superseded because it carries the previous package ID; a replacement must be built by the manually gated workflow after this migration merges. Physical-device and assistive-technology acceptance remain owner-run against the replacement APK. No production signing, deployment or store submission is authorized.
