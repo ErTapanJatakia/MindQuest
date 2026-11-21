@@ -48,8 +48,8 @@ requirePattern("activity", /override fun onBackPressed\(\)[\s\S]*?SDK_INT\s*<\s*
 requirePattern("activity", /SDK_INT\s*>=\s*35[\s\S]*?WindowInsets\.Type\.systemBars\(\)[\s\S]*?WindowInsets\.Type\.displayCutout\(\)[\s\S]*?WindowInsets\.Type\.ime\(\)/u, "API 35+ safe-area handling must include system bars, cutouts and IME");
 
 // Build metadata and bundled asset path must match the documented Android support boundary.
-requirePattern("appGradle", /namespace\s*=\s*"app\.mindquest"/u, "Android namespace must remain com.mindquest.app");
-requirePattern("appGradle", /applicationId\s*=\s*"app\.mindquest"/u, "Android application ID must remain com.mindquest.app");
+requirePattern("appGradle", /namespace\s*=\s*"com\.mindquest\.app"/u, "Android namespace must remain com.mindquest.app");
+requirePattern("appGradle", /applicationId\s*=\s*"com\.mindquest\.app"/u, "Android application ID must remain com.mindquest.app");
 requirePattern("appGradle", /minSdk\s*=\s*23/u, "Minimum Android API must remain 23");
 requirePattern("appGradle", /targetSdk\s*=\s*35/u, "Target Android API must remain 35");
 requirePattern("appGradle", /assets\.srcDir\("\.\.\/\.\.\/app"\)/u, "APK assets must use the canonical repository app directory");
