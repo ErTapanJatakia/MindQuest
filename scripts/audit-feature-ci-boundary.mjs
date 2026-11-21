@@ -47,7 +47,7 @@ if (!/validation_scope=debug-package-inspection-only/u.test(releaseWorkflow) || 
 if (/\b(?:assembleRelease|bundleRelease|signingConfig|apksigner\s+sign|jarsigner|publish.*(?:play|store)|upload.*(?:play|store|rustore))\b/iu.test(releaseWorkflow)) {
   failures.push("Gate 2 workflow must not sign, publish or submit a production package");
 }
-if (!/versionName=\x270\.1\.0\x27/u.test(releaseWorkflow) || !/manifest_permissions=none/u.test(releaseWorkflow) || !/required_offline_assets=present/u.test(releaseWorkflow)) {
+if (!/versionName=\x270\\\.1\\\.0\x27/u.test(releaseWorkflow) || !/manifest_permissions=none/u.test(releaseWorkflow) || !/required_offline_assets=present/u.test(releaseWorkflow)) {
   failures.push("Debug package evidence must assert version identity, zero permissions and bundled offline assets");
 }
 if (failures.length) {
