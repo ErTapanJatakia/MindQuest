@@ -18,7 +18,7 @@ const forbidPattern = (key, pattern, message) => {
 };
 
 // WebView must load only the bundled offline document and must not expose a native bridge.
-requirePattern("activity", /^package com\\.mindquest\\.app$/mu, "Kotlin source package must remain com.mindquest.app");
+requirePattern("activity", /^package com\.mindquest\.app$/mu, "Kotlin source package must remain com.mindquest.app");
 requirePattern("activity", /WebView\.setWebContentsDebuggingEnabled\(false\)/u, "WebView remote debugging must remain disabled");
 requirePattern("activity", /javaScriptEnabled\s*=\s*true/u, "Bundled game JavaScript must remain enabled");
 requirePattern("activity", /domStorageEnabled\s*=\s*true/u, "Local DOM storage must remain enabled for preferences and scores");
