@@ -239,3 +239,8 @@ The check is static policy validation. It does not build or inspect an APK, prov
 - PR #67 exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430): 38/38 substantive steps passed. This is PR-head evidence, not post-merge mainline evidence.
 - Do not infer a mainline workflow result when a docs-only push is excluded by the workflow path filter. The CI workflow is being updated to run on documentation and policy-file changes as well as application, script and build-boundary changes.
 - Physical Android, TalkBack, switch-access and native lifecycle/offline acceptance remain manual owner-run checks. A debug APK is not a production release and must not be signed or submitted without separate authorization.
+
+
+## Accessibility statement alignment — 2026-11-21
+
+The public [Accessibility Statement](../ACCESSIBILITY.md) distinguishes implemented browser-tested engineering controls from pending physical Android assistive-technology acceptance. Automated browser evidence includes keyboard/focus behavior, accessible names and ARIA references, live-region semantics, localized language metadata, compact-width large-text/high-contrast/reduced-motion behavior and measured theme contrast cases. TalkBack, other screen readers, switch access and device-specific rendering remain owner-run manual acceptance. No WCAG 2.2 AA conformance claim is made.
