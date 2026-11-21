@@ -29,16 +29,16 @@ if (!/Assemble debug APK[\s\S]*?assembleDebug/u.test(releaseWorkflow)) {
 if (!/Upload debug APK[\s\S]*?upload-artifact/u.test(releaseWorkflow)) {
   failures.push("The final validation workflow must retain its explicit validation artifact step");
 }
-if (!/Inspect APK identity, permissions and bundled offline assets[\s\S]*?dump badging[\s\S]*?dump permissions[\s\S]*?unzip -Z1[\s\S]*?sha256sum/u.test(releaseWorkflow)) {
+if (!/Inspect APK identity, permissions and bundled offline assets[\s\S]*?dump badging[\s\S]*?sdkVersion:'23'[\s\S]*?targetSdkVersion:'35'[\s\S]*?dump permissions[\s\S]*?unzip -Z1[\s\S]*?sha256sum/u.test(releaseWorkflow)) {
   failures.push("The final validation workflow must inspect APK metadata, permissions, bundled offline assets and SHA-256 after assembly");
 }
-for (const required of ["package_id=app.mindquest", "version_code=1", "version_name=0.1.0", "versionCode='1'", "assets/index.html", "assets/styles.css", "assets/src/app.js", "assets/src/data/questions.js", "mindquest-gate2-debug-validation"]) {
+for (const required of ["package_id=app.mindquest", "version_code=1", "version_name=0.1.0", "min_sdk=23", "target_sdk=35", "sdkVersion:'23'", "targetSdkVersion:'35'", "versionCode='1'", "assets/index.html", "assets/styles.css", "assets/src/app.js", "assets/src/data/questions.js", "mindquest-gate2-debug-validation"]) {
   if (!releaseWorkflow.includes(required)) failures.push("Final Android package inspection is missing required assertion: " + required);
 }
 if (!/^permissions:\s*\n\s*contents:\s*read\s*$/mu.test(releaseWorkflow)) {
   failures.push("Final Android validation must retain read-only repository permissions");
 }
-if (!/retention-days:\s*14/u.test(releaseWorkflow)) {
+if (!/^\s*timeout-minutes:\s*30\s*$/mu.test(releaseWorkflow)) {\n  failures.push("Final Android package validation must have a bounded 30-minute job timeout");\n}\nif (!/retention-days:\s*14/u.test(releaseWorkflow)) {
   failures.push("Debug validation artifact retention must remain limited to 14 days");
 }
 if (!/validation_scope=debug-package-inspection-only/u.test(releaseWorkflow) || !/apk_sha256=/u.test(releaseWorkflow)) {
