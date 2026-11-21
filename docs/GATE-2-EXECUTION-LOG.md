@@ -158,3 +158,14 @@ Capture exact reproduction steps and evidence; classify application defect, test
 - PR #67 is documentation-only. It does not build an APK, execute Gradle or close native/physical acceptance.
 - The CI push path filter is being expanded to include project documentation and policy files so future docs-only main-branch changes receive the same required regression suite after merge.
 - Gate 2 remains open for final remote review and debug-package validation, followed by project-owner physical Android and assistive-technology acceptance. No signing, deployment or store submission is authorized.
+
+
+## Latest verified Gate 2 checkpoint — PR #72 (2026-11-21)
+
+- PR [#72](https://github.com/ErTapanJatakia/MindQuest/pull/72) merged to `main` as `bf205a4dfb8b3a0a19ada06bca5f88b0d06a77d5`.
+- Exact-head CI [#44857711817](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44857711817) passed all 38 substantive validation steps.
+- Post-merge mainline CI [#44858943902](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44858943902) passed all 38 substantive validation steps on the merge commit.
+- The compact-phone hero overlap correction and actual rendered-text geometry regression are now merged and green. The regression remains enabled across the 12 responsive profiles.
+- The remote status checkpoint is documented in [Gate 2 remote engineering status](GATE-2-REMOTE-ENGINEERING-STATUS-2026-11-21.md).
+- Gate 2 remains open: no debug APK has been built/inspected; physical-device, TalkBack/switch-access, native process-death/storage and airplane-mode runtime acceptance remain outstanding. The remote hand-off has not yet been declared.
+- No APK/Gradle build, production signing, deployment or RuStore submission occurred in this batch. No release authorization is inferred.
