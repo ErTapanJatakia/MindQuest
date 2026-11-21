@@ -1,5 +1,13 @@
 # Development status
 
+## Latest authoritative status — 2026-11-21
+
+PR [#68](https://github.com/ErTapanJatakia/MindQuest/pull/68) is merged to `main` as `a89a919b3726a4e198df167698c414d380f1f0ec`. Its exact-head workflow [#44848743446](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44848743446) passed all 38 substantive validation steps on head `3adefe2429eb04f30eb5738d469cb52e843d2814`. Post-merge mainline workflow [#44851298170](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44851298170) was triggered and remains pending as of this update. Gate 2 remains in progress; neither exact-head nor mainline browser/static validation constitutes APK assembly or physical Android/TalkBack/switch-access acceptance.
+
+Current product scope: five regions, five interface locales and five question locales; 250 stable question IDs and 1,250 localized records. Human factual/answer-key and native-speaker reviews are complete per project-owner confirmation. No Gate 2 debug APK has yet been built or inspected. No production signing, deployment or store submission is authorized.
+
+The detailed historical implementation narrative below contains superseded snapshots. For current scope and gate decisions, use this section and [Gate 2 execution log](GATE-2-EXECUTION-LOG.md). Historical 150-question/450-record, three-region, and three-locale references are archival only.
+
 ## Gate 2 latest verification — 2026-11-21
 
 PR [#67](https://github.com/ErTapanJatakia/MindQuest/pull/67) is merged as `e044efa1bd7171e1c3bb601c87ae2fa9126abb43`. Its exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430) passed all 38 substantive validation steps. PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) is also merged; its exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 steps. A post-merge mainline run for the PR #67 merge commit has not yet been observed. Gate 2 remains in progress: these are automated browser/content/static checks, not APK assembly or physical Android/TalkBack/switch-access acceptance. No production signing, deployment or store submission is authorized. See [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) for current evidence and remaining gates.
