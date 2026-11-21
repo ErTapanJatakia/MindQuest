@@ -525,9 +525,8 @@ try {
   await page.locator("#question-locale").selectOption("ru-RU");
   await page.locator("#round-length").selectOption("15");
   await page.locator("#settings-save").click();
-  await page.locator("#theme-open").click();
-  await page.locator("#theme-select").selectOption("forest");
   await page.locator("#settings-open").click();
+  await page.locator("#theme-select").selectOption("forest");
   await page.locator("#setting-large-text").check();
   await page.locator("#setting-reduced-motion").check();
   await page.locator("#setting-high-contrast").check();
