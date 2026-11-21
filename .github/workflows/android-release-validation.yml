@@ -17,6 +17,7 @@ jobs:
     if: inputs.feature_scope_complete == true
     name: Final Android build and package validation
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -59,6 +60,8 @@ jobs:
           BADGING="$("$AAPT" dump badging "$APK")"
           printf '%s\n' "$BADGING" > "$RUNNER_TEMP/mindquest-apk-badging.txt"
           grep -Eq "^package: name='app\.mindquest' versionCode='1' versionName='0\.1\.0'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
+          grep -Fxq "sdkVersion:'23'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
+          grep -Fxq "targetSdkVersion:'35'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
 
           "$AAPT" dump permissions "$APK" > "$RUNNER_TEMP/mindquest-apk-permissions.txt"
           if grep -Eq 'uses-permission|android\.permission\.(INTERNET|ACCESS_NETWORK_STATE)' "$RUNNER_TEMP/mindquest-apk-permissions.txt"; then
@@ -80,6 +83,8 @@ jobs:
             echo "package_id=app.mindquest"
             echo "version_code=1"
             echo "version_name=0.1.0"
+            echo "min_sdk=23"
+            echo "target_sdk=35"
             echo "manifest_permissions=none"
             echo "required_offline_assets=present"
             printf "apk_sha256="

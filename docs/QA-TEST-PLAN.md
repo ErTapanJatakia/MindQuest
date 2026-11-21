@@ -244,3 +244,10 @@ The check is static policy validation. It does not build or inspect an APK, prov
 ## Accessibility statement alignment — 2026-11-21
 
 The public [Accessibility Statement](../ACCESSIBILITY.md) distinguishes implemented browser-tested engineering controls from pending physical Android assistive-technology acceptance. Automated browser evidence includes keyboard/focus behavior, accessible names and ARIA references, live-region semantics, localized language metadata, compact-width large-text/high-contrast/reduced-motion behavior and measured theme contrast cases. TalkBack, other screen readers, switch access and device-specific rendering remain owner-run manual acceptance. No WCAG 2.2 AA conformance claim is made.
+
+
+## Gate 2 latest evidence — PR #68 (2026-11-21)
+
+PR [#68](https://github.com/ErTapanJatakia/MindQuest/pull/68) passed all 38 substantive checks in exact-head workflow [#44848743446](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44848743446) and merged as `a89a919b3726a4e198df167698c414d380f1f0ec`. Its post-merge mainline workflow [#44851298170](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44851298170) was triggered and is pending as of this update. The current product scope is five regions, five interface locales, five question locales, 250 stable IDs and 1,250 localized records. Do not treat browser/static validation as APK, native Android, TalkBack, switch-access or WCAG conformance evidence.
+
+The next remote hardening batch extends the manually dispatched debug-package workflow to assert the built APK's min SDK 23 and target SDK 35 metadata, and applies a 30-minute job timeout. These assertions are static-policy tested in routine CI; the manually gated Android build remains unexecuted until the complete feature scope is reviewed and the owner explicitly triggers it with `feature_scope_complete=true`.
