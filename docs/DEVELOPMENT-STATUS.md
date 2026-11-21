@@ -1,5 +1,9 @@
 # Development status
 
+## Gate 2 latest verification — 2026-11-21
+
+PR [#64](https://github.com/ErTapanJatakia/MindQuest/pull/64) is merged. Exact-head workflow [#44831721965](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44831721965) and post-merge mainline workflow [#44836387831](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44836387831) both passed all 38 substantive validation steps. Gate 2 remains in progress: these are automated browser/content/static checks, not APK assembly or physical Android/TalkBack/switch-access acceptance. No production signing, deployment or store submission is authorized. See [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) for the current evidence and remaining manual gates.
+
 ## Authoritative current status — Gate 2
 
 Gate 1 is complete. Gate 2 (Android release-candidate preparation and manual native validation) is in progress. The current product is five regions, five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. Spain and Peru are enabled; Spanish question-language support is implemented. The human factual/answer-key review and native-speaker review are complete based on project-owner confirmation.
