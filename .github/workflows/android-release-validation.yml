@@ -59,7 +59,7 @@ jobs:
 
           BADGING="$("$AAPT" dump badging "$APK")"
           printf '%s\n' "$BADGING" > "$RUNNER_TEMP/mindquest-apk-badging.txt"
-          grep -Eq "^package: name='app\.mindquest' versionCode='1' versionName='0\.1\.0'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
+          grep -Eq "^package: name='com\.mindquest\.app' versionCode='1' versionName='0\.1\.0'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
           grep -Fxq "sdkVersion:'23'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
           grep -Fxq "targetSdkVersion:'35'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
 
@@ -80,7 +80,7 @@ jobs:
 
           {
             echo "validation_scope=debug-package-inspection-only"
-            echo "package_id=app.mindquest"
+            echo "package_id=com.mindquest.app"
             echo "version_code=1"
             echo "version_name=0.1.0"
             echo "min_sdk=23"

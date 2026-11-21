@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 
 const files = {
-  activity: "android/app/src/main/java/app/mindquest/MainActivity.kt",
+  activity: "android/app/src/main/java/com/mindquest/app/MainActivity.kt",
   manifest: "android/app/src/main/AndroidManifest.xml",
   appGradle: "android/app/build.gradle.kts",
   rootGradle: "android/build.gradle.kts",
@@ -18,6 +18,7 @@ const forbidPattern = (key, pattern, message) => {
 };
 
 // WebView must load only the bundled offline document and must not expose a native bridge.
+requirePattern("activity", /^package com\.mindquest\.app$/mu, "Kotlin source package must remain com.mindquest.app");
 requirePattern("activity", /WebView\.setWebContentsDebuggingEnabled\(false\)/u, "WebView remote debugging must remain disabled");
 requirePattern("activity", /javaScriptEnabled\s*=\s*true/u, "Bundled game JavaScript must remain enabled");
 requirePattern("activity", /domStorageEnabled\s*=\s*true/u, "Local DOM storage must remain enabled for preferences and scores");
@@ -48,8 +49,8 @@ requirePattern("activity", /override fun onBackPressed\(\)[\s\S]*?SDK_INT\s*<\s*
 requirePattern("activity", /SDK_INT\s*>=\s*35[\s\S]*?WindowInsets\.Type\.systemBars\(\)[\s\S]*?WindowInsets\.Type\.displayCutout\(\)[\s\S]*?WindowInsets\.Type\.ime\(\)/u, "API 35+ safe-area handling must include system bars, cutouts and IME");
 
 // Build metadata and bundled asset path must match the documented Android support boundary.
-requirePattern("appGradle", /namespace\s*=\s*"app\.mindquest"/u, "Android namespace must remain app.mindquest");
-requirePattern("appGradle", /applicationId\s*=\s*"app\.mindquest"/u, "Android application ID must remain app.mindquest");
+requirePattern("appGradle", /namespace\s*=\s*"com\.mindquest\.app"/u, "Android namespace must remain com.mindquest.app");
+requirePattern("appGradle", /applicationId\s*=\s*"com\.mindquest\.app"/u, "Android application ID must remain com.mindquest.app");
 requirePattern("appGradle", /minSdk\s*=\s*23/u, "Minimum Android API must remain 23");
 requirePattern("appGradle", /targetSdk\s*=\s*35/u, "Target Android API must remain 35");
 requirePattern("appGradle", /assets\.srcDir\("\.\.\/\.\.\/app"\)/u, "APK assets must use the canonical repository app directory");

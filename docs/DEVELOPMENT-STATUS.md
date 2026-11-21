@@ -1334,3 +1334,13 @@ The original baseline remains 2,400 minutes: 1,745 earned, 655 remaining, 72.71%
 - No APK/Gradle build, signing, deployment or store submission has occurred. No WCAG conformance or assistive-technology certification is claimed.
 - Baseline remains 1,745/2,400 min earned (72.71%), 655 min remaining; revised plan remains 1,135 min. No expansion, CI, audit or documentation work is added to baseline credit.
 
+
+
+## Android application identity migration — 2026-11-21
+
+- The project owner approved the permanent Android application ID `com.mindquest.app` for consistency with the wider app portfolio.
+- The previous `app.mindquest` identity is retained only in historical build records; it is not the release identity.
+- Gradle namespace/applicationId, Kotlin package declaration/source path, static Android source audit and the manually gated APK identity/evidence assertions are being migrated together.
+- The previously generated debug artifact uses the old ID and is superseded for all further device acceptance. A fresh debug APK must be built and inspected from the merged migration commit using the manually dispatched workflow with `feature_scope_complete=true`.
+- Version code/name remain 1 / 0.1.0; minSdk/targetSdk remain 23 / 35. No signing, production deployment or store submission is authorized.
+- Gate 2C physical-device and assistive-technology acceptance remains project-owner work against the new-ID APK.
