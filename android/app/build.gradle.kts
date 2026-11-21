@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "app.mindquest"
+    namespace = "com.mindquest.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "app.mindquest"
+        applicationId = "com.mindquest.app"
         minSdk = 23
         targetSdk = 35
         versionCode = 1
