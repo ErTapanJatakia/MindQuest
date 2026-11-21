@@ -49,10 +49,22 @@ try {
       document: document.documentElement.scrollWidth,
       body: document.body.scrollWidth,
       brand: document.querySelector(".brand").getBoundingClientRect().toJSON(),
-      actions: document.querySelector(".topbar-actions").getBoundingClientRect().toJSON()
+      actions: document.querySelector(".topbar-actions").getBoundingClientRect().toJSON(),
+      heroEyebrow: document.querySelector(".hero .eyebrow").getBoundingClientRect().toJSON(),
+      heroTitle: document.querySelector("#home-title").getBoundingClientRect().toJSON(),
+      heroCopy: document.querySelector(".hero-copy").getBoundingClientRect().toJSON(),
+      heroOrbit: document.querySelector(".hero-orbit").getBoundingClientRect().toJSON(),
+      heroActions: [...document.querySelectorAll("#play-button, #home-help")].map(node => node.getBoundingClientRect().toJSON())
     }));
+    const overlaps = (a, b) => a.width > 0 && a.height > 0 && b.width > 0 && b.height > 0 &&
+      a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
     if (home.document > home.viewport || home.body > home.viewport) throw new Error(device.name + ": horizontal overflow at Home " + JSON.stringify(home));
     if (home.brand.right > home.actions.left + 1) throw new Error(device.name + ": brand overlaps header actions " + JSON.stringify(home));
+    const heroText = [home.heroEyebrow, home.heroTitle, home.heroCopy];
+    if (heroText.some(rect => overlaps(rect, home.heroOrbit)) ||
+        home.heroActions.some(rect => overlaps(rect, home.heroOrbit))) {
+      throw new Error(device.name + ": decorative hero orbit overlaps readable text or actions " + JSON.stringify(home));
+    }
     await page.locator("#settings-open").click();
     const settings = await page.evaluate(() => ({
       viewport: document.documentElement.clientWidth,
