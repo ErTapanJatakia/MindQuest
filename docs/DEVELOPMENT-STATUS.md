@@ -2,7 +2,7 @@
 
 ## Gate 2 latest verification — 2026-11-21
 
-PR [#64](https://github.com/ErTapanJatakia/MindQuest/pull/64) is merged. Exact-head workflow [#44831721965](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44831721965) and post-merge mainline workflow [#44836387831](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44836387831) both passed all 38 substantive validation steps. Gate 2 remains in progress: these are automated browser/content/static checks, not APK assembly or physical Android/TalkBack/switch-access acceptance. No production signing, deployment or store submission is authorized. See [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) for the current evidence and remaining manual gates.
+PR [#67](https://github.com/ErTapanJatakia/MindQuest/pull/67) is merged as `e044efa1bd7171e1c3bb601c87ae2fa9126abb43`. Its exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430) passed all 38 substantive validation steps. PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) is also merged; its exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 steps. A post-merge mainline run for the PR #67 merge commit has not yet been observed. Gate 2 remains in progress: these are automated browser/content/static checks, not APK assembly or physical Android/TalkBack/switch-access acceptance. No production signing, deployment or store submission is authorized. See [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) for current evidence and remaining gates.
 
 ## Authoritative current status — Gate 2
 
@@ -12,11 +12,11 @@ Use [Gate 2 execution log](GATE-2-EXECUTION-LOG.md) and the current [release-rea
 
 No Gate 2 APK has been built from the Gate 1 closeout. Physical-device, TalkBack/switch-access, native process-death, Android offline/runtime and final package checks remain open. No signing, deployment or store submission is authorized.
 
-Last updated: 2026-11-21
+Last updated: 2026-11-21 (PR #67 closeout merged)
 
 ## Current phase
 
-**Phase 3 — expanded experience foundation merged and validated; Spanish question content, accessibility verification and release preparation continue.**
+**Gate 2 — remote engineering, automated regression, source-level Android checks and release-evidence reconciliation.** Five-region/five-locale content is implemented and reviewed per project-owner confirmation. Remaining remote work is limited to any verified engineering/documentation gaps and final gated debug-package inspection; physical-device and assistive-technology acceptance are reserved for the project owner.
 
 Repository: [ErTapanJatakia/MindQuest](https://github.com/ErTapanJatakia/MindQuest), default branch `main`.
 

@@ -6,6 +6,11 @@ on:
     paths:
       - "app/**"
       - "scripts/**"
+      - "docs/**"
+      - "README.md"
+      - "ACCESSIBILITY.md"
+      - "PRIVACY-POLICY.md"
+      - "SECURITY.md"
       - "package.json"
       - ".github/workflows/ci.yml"
       - "docs/QUESTION-LOCALIZATION-REGIONS-BATCH-*.md"

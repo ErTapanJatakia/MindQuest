@@ -230,3 +230,17 @@ Do not infer native Android acceptance from Playwright, source audits or a succe
 PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) merged as `1fab23c732e4e4a26811e5db0483595934a8def6` after exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 substantive validation steps on `ffaba22d01a98f71bfdb078c2deeac14ec4566ef`. The strengthened static audit verifies that routine feature CI uses read-only repository permissions, does not invoke release assembly/signing/publishing paths, retains the 14-day debug artifact limit, and requires debug-only package evidence for identity/version, permissions, offline assets and APK SHA-256.
 
 The check is static policy validation. It does not build or inspect an APK, prove Android runtime behavior, or close physical-device, TalkBack/switch-access, native process-death or airplane-mode acceptance. The PR #65 exact-head result is not a post-merge mainline result; record the latter only when the run on merge commit `1fab23c732e4e4a26811e5db0483595934a8def6` is observed. No production signing, deployment or store submission is authorized.
+
+
+## Gate 2 exact-head and mainline evidence — 2026-11-21
+
+- PR #65 exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405): 38/38 substantive steps passed.
+- PR #66 exact-head workflow [#44841777408](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44841777408): 38/38 substantive steps passed; the version-evidence audit pattern correction is covered.
+- PR #67 exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430): 38/38 substantive steps passed. This is PR-head evidence, not post-merge mainline evidence.
+- Do not infer a mainline workflow result when a docs-only push is excluded by the workflow path filter. The CI workflow is being updated to run on documentation and policy-file changes as well as application, script and build-boundary changes.
+- Physical Android, TalkBack, switch-access and native lifecycle/offline acceptance remain manual owner-run checks. A debug APK is not a production release and must not be signed or submitted without separate authorization.
+
+
+## Accessibility statement alignment — 2026-11-21
+
+The public [Accessibility Statement](../ACCESSIBILITY.md) distinguishes implemented browser-tested engineering controls from pending physical Android assistive-technology acceptance. Automated browser evidence includes keyboard/focus behavior, accessible names and ARIA references, live-region semantics, localized language metadata, compact-width large-text/high-contrast/reduced-motion behavior and measured theme contrast cases. TalkBack, other screen readers, switch access and device-specific rendering remain owner-run manual acceptance. No WCAG 2.2 AA conformance claim is made.

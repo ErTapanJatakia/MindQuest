@@ -137,3 +137,14 @@ Capture exact reproduction steps and evidence; classify application defect, test
 - PR #65 exact-head success does not itself establish a post-merge mainline run on `1fab23c732e4e4a26811e5db0483595934a8def6`; that evidence must be recorded only after the corresponding run is observed.
 - Gate 2 remains in progress. Physical installation/display/orientation, TalkBack and switch access, native process-death/storage recovery, airplane-mode runtime observation and manual candidate-package acceptance remain outstanding.
 - No APK/Gradle build, production signing, deployment or RuStore submission has been performed or authorized.
+
+
+## Gate 2 evidence reconciliation — 2026-11-21 (PRs #65–#67)
+
+- PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) merged as `1fab23c732e4e4a26811e5db0483595934a8def6`; exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 substantive validation steps on head `ffaba22d01a98f71bfdb078c2deeac14ec4566ef`.
+- PR [#66](https://github.com/ErTapanJatakia/MindQuest/pull/66) merged as `a8c8ba53d4194fde4e0104d51c45d806db6c4786`; exact-head workflow [#44841777408](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44841777408) passed all 38 steps and verified the corrected version-evidence audit expression.
+- PR [#67](https://github.com/ErTapanJatakia/MindQuest/pull/67) merged as `e044efa1bd7171e1c3bb601c87ae2fa9126abb43`; exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430) passed all 38 substantive validation steps.
+- The PR #67 workflow is exact-head PR evidence. A post-merge mainline run on `e044efa1bd7171e1c3bb601c87ae2fa9126abb43` has not been observed; do not claim one passed.
+- PR #67 is documentation-only. It does not build an APK, execute Gradle or close native/physical acceptance.
+- The CI push path filter is being expanded to include project documentation and policy files so future docs-only main-branch changes receive the same required regression suite after merge.
+- Gate 2 remains open for final remote review and debug-package validation, followed by project-owner physical Android and assistive-technology acceptance. No signing, deployment or store submission is authorized.
