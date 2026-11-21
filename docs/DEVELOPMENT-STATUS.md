@@ -1297,3 +1297,12 @@ No Android build/APK/signing, production deployment or RuStore submission occurr
 - Original baseline accounting remains exactly 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised planned remaining work remains 1,135 minutes (18h 55m). Expansion, CI, audits and documentation batches do not add baseline credit.
 - Remaining work packages: theme/device polish 120 min; manual accessibility verification 120 min; legal/editorial documentation 60 min; expanded manual/offline/Android regression 180 min; original baseline scope 655 min.
 - No APK/Gradle build, signing, production deployment or RuStore submission was performed. Final Android validation remains manually gated by `feature_scope_complete=true`; signing and store submission require separate explicit authorization.
+
+
+## Gate 2 release-boundary audit update — 2026-11-21
+
+PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) is merged as `1fab23c732e4e4a26811e5db0483595934a8def6`. Its exact-head CI [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 substantive validation steps on head `ffaba22d01a98f71bfdb078c2deeac14ec4566ef`. The audit hardens the boundary against release assembly/signing/publishing paths, enforces read-only routine CI permissions, preserves short-lived debug artifact retention and validates package/version/permission/offline-asset/hash evidence.
+
+This is a Gate 2 preparation and policy-audit milestone, not Android package validation. No APK or Gradle build was run. No production signing, deployment or store submission is authorized. Physical-device, TalkBack/switch-access, native process-death and airplane-mode checks remain open. The PR #65 exact-head result must not be described as a post-merge mainline run; that separate evidence is pending observation.
+
+The original baseline remains 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised planned remaining work remains 1,135 minutes (18h 55m). No baseline credit is added for this audit or documentation reconciliation.
