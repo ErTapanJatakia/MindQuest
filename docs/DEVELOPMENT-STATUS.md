@@ -1323,3 +1323,14 @@ The original baseline remains 2,400 minutes: 1,745 earned, 655 remaining, 72.71%
 - Gate 2 remains in progress. Remote browser/static evidence is green, but final gated debug-package inspection and project-owner physical-device/assistive-technology acceptance remain open. Remote hand-off is not yet declared.
 - Baseline unchanged: 1,745/2,400 min earned (72.71%), 655 min remaining; revised planned remaining estimate 1,135 min. No expansion, CI, audit or documentation credit is added to the baseline.
 - No APK/Gradle build, signing, deployment or RuStore submission was performed.
+
+## Gate 2 mainline closeout after PR #73 — 2026-11-21
+
+- PR [#73](https://github.com/ErTapanJatakia/MindQuest/pull/73) merged as `41f8e68fee2993279f722c4ea9a0e303413e3a9b`.
+- Post-merge mainline workflow [#44917735958](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44917735958) passed all **38/38 substantive validation steps** on the PR #73 merge commit.
+- The final run completed the five-region runtime bank, all gameplay/filter/replay checks, storage and fresh-context recovery, multilingual announcements/review, keyboard focus isolation, Android build-boundary and WebView/manifest source audits.
+- Remote source/configuration and policy review is complete for this checkpoint. Package identity/version and SDK settings are consistent; privacy and accessibility disclosures retain their stated limitations.
+- Gate 2 is not closed: the manually gated debug APK has not been built or inspected, and project-owner physical-device, native Android lifecycle/offline/storage, TalkBack and switch-access acceptance remain open.
+- No APK/Gradle build, signing, deployment or store submission has occurred. No WCAG conformance or assistive-technology certification is claimed.
+- Baseline remains 1,745/2,400 min earned (72.71%), 655 min remaining; revised plan remains 1,135 min. No expansion, CI, audit or documentation work is added to baseline credit.
+

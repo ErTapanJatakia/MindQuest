@@ -169,3 +169,14 @@ Capture exact reproduction steps and evidence; classify application defect, test
 - The remote status checkpoint is documented in [Gate 2 remote engineering status](GATE-2-REMOTE-ENGINEERING-STATUS-2026-11-21.md).
 - Gate 2 remains open: no debug APK has been built/inspected; physical-device, TalkBack/switch-access, native process-death/storage and airplane-mode runtime acceptance remain outstanding. The remote hand-off has not yet been declared.
 - No APK/Gradle build, production signing, deployment or RuStore submission occurred in this batch. No release authorization is inferred.
+
+## Post-PR #73 mainline closeout — 2026-11-21
+
+- PR [#73](https://github.com/ErTapanJatakia/MindQuest/pull/73) merged as `41f8e68fee2993279f722c4ea9a0e303413e3a9b`.
+- Post-merge mainline workflow [#44917735958](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44917735958) passed **all 38/38 substantive validation steps** on the merge commit. This supersedes the earlier pending status recorded in historical entries.
+- Final passing steps include question exhaustion/cycle restart/replay, persistence and site-data reset, fresh-context preferences and interrupted-round recovery, multilingual live announcements and answer review, keyboard focus isolation, Android build-boundary, WebView/lifecycle source and manifest security audits.
+- Remote source/configuration and disclosure review reconfirmed the Android package identity/version and SDK configuration, local-only WebView boundaries, disabled backup/cleartext, no declared manifest permissions, and privacy/accessibility limitations.
+- The manually gated debug APK workflow has not been dispatched or executed. No APK/Gradle build, artifact inspection, signing, deployment or store submission has occurred.
+- Gate 2 remains open pending gated debug-package build/inspection and project-owner physical-device, native lifecycle/offline/storage and assistive-technology acceptance. No remote hand-off is declared yet.
+- To run the package validation after the agreed feature scope is confirmed complete, the project owner must manually dispatch `.github/workflows/android-release-validation.yml` with `feature_scope_complete=true`. The connected GitHub integration has no workflow-dispatch action.
+
