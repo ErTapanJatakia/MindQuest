@@ -4,11 +4,11 @@
   const interfaceSelect = document.getElementById("interface-locale");
   const questionLocaleSelect = document.getElementById("question-locale");
   const regionNames = {
-    "en-IN": { IN:"Republic of India — IN", RU:"Russian Federation — RU", US:"United States of America — US" },
-    "en-US": { IN:"Republic of India — IN", RU:"Russian Federation — RU", US:"United States of America — US" },
-    "ru-RU": { IN:"Республика Индия — IN", RU:"Российская Федерация — RU", US:"Соединённые Штаты Америки — US" },
-    "es-PE": { IN:"República de la India — IN", RU:"Federación de Rusia — RU", US:"Estados Unidos de América — US" },
-    "es-ES": { IN:"República de la India — IN", RU:"Federación de Rusia — RU", US:"Estados Unidos de América — US" }
+    "en-IN": { IN:"Republic of India — IN", RU:"Russian Federation — RU", US:"United States of America — US", ES:"Kingdom of Spain — ES", PE:"Republic of Peru — PE" },
+    "en-US": { IN:"Republic of India — IN", RU:"Russian Federation — RU", US:"United States of America — US", ES:"Kingdom of Spain — ES", PE:"Republic of Peru — PE" },
+    "ru-RU": { IN:"Республика Индия — IN", RU:"Российская Федерация — RU", US:"Соединённые Штаты Америки — US", ES:"Королевство Испания — ES", PE:"Республика Перу — PE" },
+    "es-PE": { IN:"República de la India — IN", RU:"Federación de Rusia — RU", US:"Estados Unidos de América — US", ES:"Reino de España — ES", PE:"República del Perú — PE" },
+    "es-ES": { IN:"República de la India — IN", RU:"Federación de Rusia — RU", US:"Estados Unidos de América — US", ES:"Reino de España — ES", PE:"República del Perú — PE" }
   };
   const localeNames = {
     "en-IN": { "en-IN":"English (Republic of India) — en-IN", "en-US":"English (United States of America) — en-US", "ru-RU":"Russian (Russian Federation) — ru-RU", "es-PE":"Spanish (Republic of Peru) — es-PE", "es-ES":"Spanish (Kingdom of Spain) — es-ES" },
