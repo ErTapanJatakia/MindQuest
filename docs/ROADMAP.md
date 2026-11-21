@@ -1275,3 +1275,13 @@ No APK/Gradle build, signing, production deployment or store submission is part 
 ## Gate 2 current position — 2026-11-21
 
 PR #68 is merged as `a89a919b3726a4e198df167698c414d380f1f0ec`; exact-head workflow [#44848743446](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44848743446) passed all 38 substantive validation steps. Post-merge mainline run [#44851298170](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44851298170) was triggered and remains pending at this update. Gate 2 remains active for remote hardening, debug package inspection and manual owner acceptance. Current content scope is 250 stable IDs and 1,250 localized records across five regions and five locales. Historical roadmap snapshots are not authoritative for current region/locale scope.
+
+
+## Latest Gate 2 verified checkpoint — 2026-11-21 (PR #72)
+
+- PR [#72](https://github.com/ErTapanJatakia/MindQuest/pull/72) merged as `bf205a4dfb8b3a0a19ada06bca5f88b0d06a77d5`.
+- Exact-head CI [#44857711817](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44857711817) and post-merge mainline CI [#44858943902](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44858943902) both passed all 38 substantive validation steps.
+- Compact-phone home hero overlap fix and geometry regression are merged; the test checks rendered eyebrow text rather than the full-width containing block.
+- Gate 2 is still active. Remote source/browser/documentation review continues; the debug package has not been built or inspected, and owner physical-device/assistive-technology acceptance remains outstanding. Do not mark remote hand-off complete yet.
+- Baseline and revised plan remain unchanged: 1,745/2,400 min earned (72.71%), 655 min remaining; 1,135 min revised planned remaining. No expansion/CI/audit/documentation credit is added to the baseline.
+- No APK/Gradle build, signing, deployment or store submission has occurred.
