@@ -180,3 +180,8 @@ Capture exact reproduction steps and evidence; classify application defect, test
 - Gate 2 remains open pending gated debug-package build/inspection and project-owner physical-device, native lifecycle/offline/storage and assistive-technology acceptance. No remote hand-off is declared yet.
 - To run the package validation after the agreed feature scope is confirmed complete, the project owner must manually dispatch `.github/workflows/android-release-validation.yml` with `feature_scope_complete=true`. The connected GitHub integration has no workflow-dispatch action.
 
+
+
+## Android package identity migration — 2026-11-21
+
+The project owner approved `com.mindquest.app` as the permanent Android application ID. The former `app.mindquest` package ID remains only in historical records. The migration updates Gradle namespace/applicationId, Kotlin package/source path, static source audit and final APK package/evidence assertions as one change set. Version code/name and SDK levels remain unchanged (1 / 0.1.0; minSdk 23; targetSdk 35). The prior debug artifact carries the old identity and must not be used for Gate 2C acceptance. After this change is merged, the owner must manually dispatch the final validation workflow with `feature_scope_complete=true` to produce the replacement debug APK. No signing, production release or store submission is authorized.
