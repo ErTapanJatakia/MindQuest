@@ -1314,3 +1314,12 @@ PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) is merged as `1fab
 This is a Gate 2 preparation and policy-audit milestone, not Android package validation. No APK or Gradle build was run. No production signing, deployment or store submission is authorized. Physical-device, TalkBack/switch-access, native process-death and airplane-mode checks remain open. The PR #65 exact-head result must not be described as a post-merge mainline run; that separate evidence is pending observation.
 
 The original baseline remains 2,400 minutes: 1,745 earned, 655 remaining, 72.71%. Revised planned remaining work remains 1,135 minutes (18h 55m). No baseline credit is added for this audit or documentation reconciliation.
+
+
+## Latest verified Gate 2 checkpoint — PR #72 (2026-11-21)
+
+- PR [#72](https://github.com/ErTapanJatakia/MindQuest/pull/72) merged as `bf205a4dfb8b3a0a19ada06bca5f88b0d06a77d5`; exact-head CI [#44857711817](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44857711817) and post-merge mainline CI [#44858943902](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44858943902) each passed all 38 substantive validation steps.
+- The compact-phone home hero overlap fix is merged. The responsive test now measures actual eyebrow text geometry and continues to assert no overlap.
+- Gate 2 remains in progress. Remote browser/static evidence is green, but final gated debug-package inspection and project-owner physical-device/assistive-technology acceptance remain open. Remote hand-off is not yet declared.
+- Baseline unchanged: 1,745/2,400 min earned (72.71%), 655 min remaining; revised planned remaining estimate 1,135 min. No expansion, CI, audit or documentation credit is added to the baseline.
+- No APK/Gradle build, signing, deployment or RuStore submission was performed.
