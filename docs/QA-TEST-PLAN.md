@@ -223,3 +223,10 @@ Do not infer native Android acceptance from Playwright, source audits or a succe
 - The run includes the full browser/gameplay, locale/persistence, accessibility, responsive/theme, offline-isolation, fail-closed content, Android build-boundary, WebView/lifecycle source and manifest audits.
 - No Android build or APK artifact is produced by this routine CI. The manually dispatched validation workflow remains separately gated by `feature_scope_complete=true` and is statically checked to prohibit release signing, production publishing and store submission.
 - Passing CI does not close physical-device, TalkBack/switch-access, process-death, airplane-mode runtime or manual package acceptance. Record only checks actually performed on a device.
+
+
+## Gate 2 release-boundary audit regression — 2026-11-21
+
+PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65) merged as `1fab23c732e4e4a26811e5db0483595934a8def6` after exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 substantive validation steps on `ffaba22d01a98f71bfdb078c2deeac14ec4566ef`. The strengthened static audit verifies that routine feature CI uses read-only repository permissions, does not invoke release assembly/signing/publishing paths, retains the 14-day debug artifact limit, and requires debug-only package evidence for identity/version, permissions, offline assets and APK SHA-256.
+
+The check is static policy validation. It does not build or inspect an APK, prove Android runtime behavior, or close physical-device, TalkBack/switch-access, native process-death or airplane-mode acceptance. The PR #65 exact-head result is not a post-merge mainline result; record the latter only when the run on merge commit `1fab23c732e4e4a26811e5db0483595934a8def6` is observed. No production signing, deployment or store submission is authorized.
