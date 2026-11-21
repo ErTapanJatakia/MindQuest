@@ -212,6 +212,8 @@ try {
   }
   const interfaceValues = await page.locator("#interface-locale option").evaluateAll(options => options.map(option => option.value));
   const questionValues = await page.locator("#question-locale option").evaluateAll(options => options.map(option => option.value));
+  const regionLabels = await page.locator("#question-region option").evaluateAll(options => options.map(option => ({ value:option.value, label:option.textContent.trim() })));
+  if (regionLabels.length !== 5 || regionLabels.some(option => !option.label || option.label === "undefined")) throw new Error("Every question region must have a localized visible label");
   const locales = ["en-IN", "en-US", "ru-RU", "es-ES", "es-PE"];
   for (const locale of locales) {
     if (!interfaceValues.includes(locale) || !questionValues.includes(locale)) {
