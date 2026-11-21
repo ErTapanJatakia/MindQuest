@@ -102,18 +102,12 @@ try {
   if (!externalConnectionBlocked) throw new Error("CSP did not block an external connection attempt");
 
   // Theme palette, persistence, policy surfaces and accessibility preferences.
-  await page.locator("#theme-open").click();
-  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "true" ||
-      await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
-    throw new Error("Theme selector did not expose expanded state and receive keyboard focus");
+  await page.locator("#settings-open").click();
+  await page.locator("#theme-select").focus();
+  if (await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
+    throw new Error("Settings theme selector did not receive keyboard focus");
   }
   if (await page.locator("#theme-select option").count() < 10) throw new Error("Expected at least ten themes");
-  await page.keyboard.press("Escape");
-  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "false" ||
-      await page.evaluate(() => document.activeElement?.id) !== "theme-open") {
-    throw new Error("Escape did not close the theme selector and restore focus");
-  }
-  await page.locator("#theme-open").click();
   await page.locator("#theme-select").selectOption("aurora");
   if (await page.locator("html").getAttribute("data-theme") !== "aurora") throw new Error("Theme was not applied");
   const themeNames = ["obsidian", "midnight", "aurora", "ocean", "forest", "ember", "royal", "rose", "sand", "paper"];
@@ -142,6 +136,7 @@ try {
       }
     }
   }
+  await page.locator("#settings-back").click();
   await page.locator("#settings-open").click();
   for (const id of ["#setting-large-text", "#setting-reduced-motion", "#setting-high-contrast"]) {
     await page.locator(id).check();
@@ -209,47 +204,31 @@ try {
     }
   }
 
-  // Searchable controls are part of Settings, so enter that view before asserting visibility.
+  // Native Settings dropdowns remain visible and expose every supported locale.
   await page.locator("#settings-open").click();
   await auditAccessibleControls("Settings");
-  for (const id of ["#interface-locale-search", "#question-region-search", "#question-locale-search", "#question-category-search"]) {
-    if (!(await page.locator(id).isVisible())) throw new Error("Searchable selector missing: " + id);
+  for (const id of ["#interface-locale", "#question-region", "#question-locale", "#question-category", "#theme-select"]) {
+    if (!(await page.locator(id).isVisible())) throw new Error("Native Settings dropdown missing: " + id);
   }
-  const selectBySearch = async (inputId, selectId, value) => {
-    const label = await page.locator(inputId).evaluate(input => {
-      const list = document.getElementById(input.getAttribute("list"));
-      return [...list.options].find(option => option.dataset.value === input.dataset.expectedValue)?.value;
-    });
-    if (!label) throw new Error("Search option not found for " + selectId + "/" + value);
-    await page.locator(inputId).fill(label);
-    if (await page.locator(selectId).inputValue() !== value) {
-      throw new Error("Exact search match did not synchronize immediately: " + selectId + "/" + value);
+  const interfaceValues = await page.locator("#interface-locale option").evaluateAll(options => options.map(option => option.value));
+  const questionValues = await page.locator("#question-locale option").evaluateAll(options => options.map(option => option.value));
+  const regionLabels = await page.locator("#question-region option").evaluateAll(options => options.map(option => ({ value:option.value, label:option.textContent.trim() })));
+  if (regionLabels.length !== 5 || regionLabels.some(option => !option.label || option.label === "undefined")) throw new Error("Every question region must have a localized visible label");
+  const locales = ["en-IN", "en-US", "ru-RU", "es-ES", "es-PE"];
+  for (const locale of locales) {
+    if (!interfaceValues.includes(locale) || !questionValues.includes(locale)) {
+      throw new Error("Supported locale is missing from a native dropdown: " + locale);
     }
-    await page.locator(inputId).press("Tab");
-    if (await page.locator(selectId).inputValue() !== value) {
-      throw new Error("Search selection changed after keyboard focus moved: " + selectId + "/" + value);
-    }
-    if (await page.locator(inputId).getAttribute("aria-invalid") !== "false") {
-      throw new Error("Valid search match was marked invalid: " + inputId);
-    }
-  };
-  for (const [inputId, selectId, value] of [
-    ["#interface-locale-search", "#interface-locale", "es-PE"],
-    ["#question-region-search", "#question-region", "RU"],
-    ["#question-locale-search", "#question-locale", "ru-RU"],
-    ["#question-category-search", "#question-category", "History"]
-  ]) {
-    await page.locator(inputId).evaluate((input, expectedValue) => { input.dataset.expectedValue = expectedValue; }, value);
-    await selectBySearch(inputId, selectId, value);
   }
-  const regionBeforeInvalidSearch = await page.locator("#question-region").inputValue();
-  await page.locator("#question-region-search").fill("not a real region");
-  await page.locator("#question-region-search").press("Tab");
-  if (await page.locator("#question-region-search").getAttribute("aria-invalid") !== "true") {
-    throw new Error("Invalid search text was not exposed to assistive technology");
-  }
-  if (await page.locator("#question-region").inputValue() !== regionBeforeInvalidSearch) {
-    throw new Error("Invalid search text changed the canonical region selection");
+  await page.locator("#interface-locale").selectOption("es-PE");
+  await page.locator("#question-region").selectOption("RU");
+  await page.locator("#question-locale").selectOption("ru-RU");
+  await page.locator("#question-category").selectOption("History");
+  if (await page.locator("#interface-locale").inputValue() !== "es-PE" ||
+      await page.locator("#question-region").inputValue() !== "RU" ||
+      await page.locator("#question-locale").inputValue() !== "ru-RU" ||
+      await page.locator("#question-category").inputValue() !== "History") {
+    throw new Error("Native dropdown selection did not update its canonical value");
   }
   await page.locator("#settings-back").click();
 
@@ -548,9 +527,8 @@ try {
   await page.locator("#question-locale").selectOption("ru-RU");
   await page.locator("#round-length").selectOption("15");
   await page.locator("#settings-save").click();
-  await page.locator("#theme-open").click();
-  await page.locator("#theme-select").selectOption("forest");
   await page.locator("#settings-open").click();
+  await page.locator("#theme-select").selectOption("forest");
   await page.locator("#setting-large-text").check();
   await page.locator("#setting-reduced-motion").check();
   await page.locator("#setting-high-contrast").check();
