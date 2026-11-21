@@ -1250,3 +1250,13 @@ Gate 1 closes the current planned feature-development and automated QA/documenta
 | Signing / RuStore submission | Not authorized | Separate explicit authorization required |
 
 No APK/Gradle build, signing, production deployment or store submission is part of Gate 1 closeout. No WCAG 2.2 AA conformance, independent security certification or native Android acceptance is claimed from browser/static evidence.
+
+
+## Gate 2 release-boundary audit milestone — 2026-11-21
+
+- Merged PR [#65](https://github.com/ErTapanJatakia/MindQuest/pull/65), merge commit `1fab23c732e4e4a26811e5db0483595934a8def6`.
+- Exact-head CI [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) passed all 38 substantive validation steps on `ffaba22d01a98f71bfdb078c2deeac14ec4566ef`.
+- Release-boundary audit now checks that routine CI stays read-only and that Android validation remains debug-only, manually gated, short-retention and evidence-backed; production signing, publishing and store submission paths are rejected.
+- No Android build or APK artifact was produced. This milestone does not close physical-device, assistive-technology, native lifecycle, airplane-mode or manual package acceptance.
+- A post-merge mainline run for merge commit `1fab23c732e4e4a26811e5db0483595934a8def6` has not yet been recorded; do not infer it from the exact-head PR check.
+- Baseline accounting is unchanged: 2,400 min total, 1,745 min earned, 655 min remaining (72.71%); revised plan remains 1,135 min.
