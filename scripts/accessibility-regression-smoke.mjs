@@ -51,7 +51,7 @@ try {
   await page.locator("#privacy-back").click();
   await page.locator("#accessibility-link").click();
   const accessibilityText = await page.locator("#accessibility-view").innerText();
-  for (const marker of ["Commitment","Standards and target","Accessibility features and design practices","Known limitations and verification","Feedback and remediation","Accessibility feedback contact"]) if (!accessibilityText.includes(marker)) throw new Error("Accessibility statement missing section: " + marker);
+  for (const marker of ["Commitment","Standards and conformance responsibility","Accessibility features and design practices","Known limitations and verification","Feedback and remediation","Accessibility feedback contact"]) if (!accessibilityText.includes(marker)) throw new Error("Accessibility statement missing section: " + marker);
   if (await page.locator("#accessibility-view .wcag-target-badge").count() !== 2) throw new Error("Accessibility target badges must appear at top and bottom");
   if (privacyText.includes("For the complete policy, see") || accessibilityText.includes("For the complete statement, see")) throw new Error("Legal view still defers its full document to the repository");
   await page.locator("#accessibility-back").click();
