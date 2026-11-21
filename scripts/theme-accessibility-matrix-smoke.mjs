@@ -48,8 +48,9 @@ try {
     await page.locator("#launch-splash").waitFor({ state:"detached" });
 
     for (const theme of themes) {
-      await page.locator("#theme-open").click();
+      await page.locator("#settings-open").click();
       await page.locator("#theme-select").selectOption(theme);
+      await page.locator("#settings-back").click();
       const applied = await page.evaluate(() => ({
         theme:document.documentElement.dataset.theme,
         background:getComputedStyle(document.documentElement).getPropertyValue("--bg").trim(),

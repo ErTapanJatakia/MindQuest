@@ -27,6 +27,10 @@ try {
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("http://127.0.0.1:4177/", { waitUntil:"networkidle" });
 
+  const tagline = await page.locator(".splash-tagline span").allTextContents();
+  if (tagline.join("|") !== "Stay Curious|Outsmart the Ordinary") throw new Error("Launch tagline must use two separate lines");
+  if (!(await page.locator(".splash-wcag-badge").isVisible())) throw new Error("Launch WCAG target badge is missing");
+  if (await page.locator(".splash-tagline").evaluate(node => parseFloat(getComputedStyle(node).fontSize)) < 19.6) throw new Error("Launch tagline size increase is missing");
   // The launch dialog traps keyboard focus and the app remains inert until dismissed.
   if (!(await page.locator(".app-shell").evaluate(node => node.inert && node.getAttribute("aria-hidden")==="true"))) {
     throw new Error("Launch dialog did not isolate the application from assistive technology");
@@ -40,6 +44,17 @@ try {
   if (await page.evaluate(() => document.activeElement?.id) !== "home-title") {
     throw new Error("Dismissed launch dialog did not return focus to the Home heading");
   }
+
+  await page.locator("#privacy-link").click();
+  const privacyText = await page.locator("#privacy-view").innerText();
+  for (const marker of ["1. Overview","2. Information handled by the application","3. Network access and third parties","4. Children and families","5. Data retention and security","6. Your choices and rights","7. Changes to this policy","8. Contact information","Data Protection Officer (DPO)"]) if (!privacyText.includes(marker)) throw new Error("Privacy policy missing section: " + marker);
+  await page.locator("#privacy-back").click();
+  await page.locator("#accessibility-link").click();
+  const accessibilityText = await page.locator("#accessibility-view").innerText();
+  for (const marker of ["Commitment","Standards and target","Accessibility features and design practices","Known limitations and verification","Feedback and remediation","Accessibility feedback contact"]) if (!accessibilityText.includes(marker)) throw new Error("Accessibility statement missing section: " + marker);
+  if (await page.locator("#accessibility-view .wcag-target-badge").count() !== 2) throw new Error("Accessibility target badges must appear at top and bottom");
+  if (privacyText.includes("For the complete policy, see") || accessibilityText.includes("For the complete statement, see")) throw new Error("Legal view still defers its full document to the repository");
+  await page.locator("#accessibility-back").click();
 
   // View transitions must announce context by moving focus to the destination heading.
   for (const [trigger, heading, back] of [
@@ -60,15 +75,22 @@ try {
 
   // All accessibility controls must apply their preference and persist it across reload.
   await page.locator("#settings-open").click();
+  const introText = await page.locator(".settings-intro").innerText();
+  if (introText !== "Choose each setting independently: Interface Language, Question Region, Question Language, Category, Difficulty.") throw new Error("Settings intro copy is incorrect");
+  if (await page.locator("#settings-save").innerText() !== "Save Settings") throw new Error("Save Settings button copy is incorrect");
+  for (const label of ["Larger Text","Reduce Motion","High Contrast"]) if (!(await page.locator(".accessibility-settings").innerText()).includes(label)) throw new Error("Accessibility label missing: " + label);
   const settingsHeading = await page.locator("#settings-title").getAttribute("tabindex");
   if (settingsHeading !== "-1") throw new Error("Settings heading is not programmatically focusable");
-  const searchInputs = ["#interface-locale-search","#question-region-search","#question-locale-search","#question-category-search"];
-  for (const selector of searchInputs) {
-    const input = page.locator(selector);
-    if (!(await input.isVisible()) || !(await input.getAttribute("aria-label"))) {
-      throw new Error("Searchable setting lacks a visible accessible name: " + selector);
-    }
+  for (const selector of ["#interface-locale","#question-region","#question-locale","#question-category","#theme-select"]) {
+    if (!(await page.locator(selector).isVisible())) throw new Error("Native setting selector is not visible: " + selector);
+    const id = selector.slice(1);
+    if (!(await page.locator("label[for=\x27" + id + "\x27]").count())) throw new Error("Setting selector lacks an associated label: " + selector);
   }
+  const interfaceOptions = await page.locator("#interface-locale option").evaluateAll(nodes => nodes.map(node => node.value));
+  const questionOptions = await page.locator("#question-locale option").evaluateAll(nodes => nodes.map(node => node.value));
+  const expectedLocales = ["en-IN","en-US","ru-RU","es-PE","es-ES"];
+  if (expectedLocales.some(locale => !interfaceOptions.includes(locale) || !questionOptions.includes(locale))) throw new Error("Complete five-locale catalogue is not exposed");
+  if (await page.locator("#theme-open").count()) throw new Error("Header colour-theme icon must not be present");
   await page.locator("#settings-back").click();
   await page.locator("#settings-open").click();
   await page.locator("#setting-large-text").check();
@@ -98,19 +120,12 @@ try {
     throw new Error("Accessibility preferences did not survive application reload");
   }
 
-  // Theme control keyboard operation and theme palette persistence.
-  await page.locator("#theme-open").focus();
-  await page.keyboard.press("Enter");
-  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "true" ||
-      await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
-    throw new Error("Keyboard activation did not open and focus the theme selector");
-  }
+  // Theme selection is a native keyboard-operable Settings control.
+  await page.locator("#settings-open").click();
+  await page.locator("#theme-select").focus();
+  if (await page.evaluate(() => document.activeElement?.id) !== "theme-select") throw new Error("Theme selector cannot receive keyboard focus");
   await page.locator("#theme-select").selectOption("paper");
-  await page.keyboard.press("Escape");
-  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "false" ||
-      await page.evaluate(() => document.activeElement?.id) !== "theme-open") {
-    throw new Error("Escape did not close theme selection and restore focus");
-  }
+  await page.locator("#settings-back").click();
   await page.reload({ waitUntil:"networkidle" });
   await page.locator("#splash-dismiss").click();
   if (await page.locator("html").getAttribute("data-theme") !== "paper") {
@@ -119,11 +134,13 @@ try {
 
   // Forced-colors and OS reduced-motion media preferences must retain usable controls.
   await page.emulateMedia({ forcedColors:"active", reducedMotion:"reduce" });
-  const forced = await page.locator("#theme-open").evaluate(node => {
+  await page.locator("#settings-open").click();
+  const forced = await page.locator("#theme-select").evaluate(node => {
     const style = getComputedStyle(node);
     return { outlineStyle:style.outlineStyle, outlineWidth:style.outlineWidth, display:style.display };
   });
   if (forced.display === "none") throw new Error("Theme control disappeared in forced-colors mode");
+  await page.locator("#settings-back").click();
   const splashForced = await page.locator(".app-shell").evaluate(node => {
     const style = getComputedStyle(document.querySelector(".app-shell"));
     return { visibility:style.visibility, display:style.display };
@@ -194,7 +211,7 @@ try {
   await assertCompactReflow("Results and answer review");
 
   if (errors.length) throw new Error("Browser runtime errors: " + errors.join(" | "));
-  console.log("Accessibility regression passed: modal launch focus isolation, destination-heading focus, accessible searchable settings, large text/reduced motion/high contrast persistence, keyboard-operable theme selection, forced-colors availability, and arrow-key radio navigation.");
+  console.log("Accessibility regression passed: modal launch focus isolation, native locale/settings selectors, embedded legal disclosures, WCAG target badges, accessibility preferences, Settings theme selection, forced-colors availability, and arrow-key radio navigation.");
 } finally {
   await browser?.close();
   await new Promise(resolveClose => server.close(resolveClose));
