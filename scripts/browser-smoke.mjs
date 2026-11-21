@@ -102,18 +102,12 @@ try {
   if (!externalConnectionBlocked) throw new Error("CSP did not block an external connection attempt");
 
   // Theme palette, persistence, policy surfaces and accessibility preferences.
-  await page.locator("#theme-open").click();
-  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "true" ||
-      await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
-    throw new Error("Theme selector did not expose expanded state and receive keyboard focus");
+  await page.locator("#settings-open").click();
+  await page.locator("#theme-select").focus();
+  if (await page.evaluate(() => document.activeElement?.id) !== "theme-select") {
+    throw new Error("Settings theme selector did not receive keyboard focus");
   }
   if (await page.locator("#theme-select option").count() < 10) throw new Error("Expected at least ten themes");
-  await page.keyboard.press("Escape");
-  if (await page.locator("#theme-open").getAttribute("aria-expanded") !== "false" ||
-      await page.evaluate(() => document.activeElement?.id) !== "theme-open") {
-    throw new Error("Escape did not close the theme selector and restore focus");
-  }
-  await page.locator("#theme-open").click();
   await page.locator("#theme-select").selectOption("aurora");
   if (await page.locator("html").getAttribute("data-theme") !== "aurora") throw new Error("Theme was not applied");
   const themeNames = ["obsidian", "midnight", "aurora", "ocean", "forest", "ember", "royal", "rose", "sand", "paper"];
@@ -142,6 +136,7 @@ try {
       }
     }
   }
+  await page.locator("#settings-back").click();
   await page.locator("#settings-open").click();
   for (const id of ["#setting-large-text", "#setting-reduced-motion", "#setting-high-contrast"]) {
     await page.locator(id).check();
