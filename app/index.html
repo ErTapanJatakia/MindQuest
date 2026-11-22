@@ -11,6 +11,37 @@
 </head>
 <body>
   <div class="launch-splash" id="launch-splash" role="dialog" aria-modal="true" aria-label="MindQuest launch screen"><button type="button" class="splash-dismiss" id="splash-dismiss" aria-label="Tap anywhere to continue"><img class="splash-logo" src="./assets/mindquest-mark.svg" alt=""><strong>MindQuest</strong><span class="splash-tagline" aria-label="Stay Curious. Outsmart the Ordinary."><span>Stay Curious</span><span>Outsmart the Ordinary</span></span><small class="splash-prompt">Tap anywhere to continue</small></button><a class="wcag-logo-link splash-wcag-badge" href="https://www.w3.org/WAI/WCAG2AA-Conformance" title="Explanation of WCAG 2 Level AA conformance" target="_blank" rel="noopener noreferrer"><img src="./assets/wcag-2.2-aa.svg" width="88" height="31" alt="Level AA conformance, W3C Web Content Accessibility Guidelines 2.2"></a></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="MindQuest home" data-i18n-aria-label="homeLinkLabel" id="brand-home">
+        <span class="brand-mark" aria-hidden="true"><img src="./assets/mindquest-mark.svg" alt=""></span>
+        <span><strong>MindQuest</strong><small>Мозговой вызов</small></span>
+      </a>
+      <div class="topbar-actions"><button class="icon-button" id="settings-open" type="button" aria-label="Open settings" data-i18n-aria-label="settingsButtonLabel">⚙</button></div>
+    </header>
+
+    <section class="view active" id="home-view" aria-labelledby="home-title">
+      <div class="hero">
+        <p class="eyebrow" data-i18n="eyebrow">A little challenge for your mind</p>
+        <h1 id="home-title" data-i18n="welcome">Stay Curious. Outsmart the Ordinary.</h1>
+        <p class="hero-copy" data-i18n="intro">Explore the world, one question at a time.</p>
+        <div class="hero-orbit" aria-hidden="true"><span>?</span><i></i><b></b></div>
+        <button class="primary-button" id="play-button" type="button" data-i18n="play">Start a round</button>
+        <button class="secondary-button" id="home-help" type="button" data-i18n="help">How to play</button>
+      </div>
+      <div class="home-stats">
+        <article class="stat-card"><span data-i18n="bestScore">Best score</span><strong id="best-score">—</strong><small class="stat-context" id="best-score-scope"></small></article>
+        <article class="stat-card"><span data-i18n="questionRegion">Question region</span><strong id="home-region">India</strong></article>
+      </div>
+      <p class="offline-note"><span aria-hidden="true">●</span> <span data-i18n="offline">Ready to play offline</span></p>
+      <p class="storage-warning" id="storage-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+    </section>
+
+    <section class="view" id="quiz-view" aria-labelledby="question-title" hidden>
+      <div class="quiz-meta"><span id="round-label">ROUND</span><span id="progress-label" role="status" aria-live="polite" aria-atomic="true">1 / 3</span></div>
+      <p class="streak-indicator"><span data-i18n="streakLabel">Current streak</span>: <strong id="streak-value" aria-live="polite" aria-atomic="true">0</strong></p>
+      <div class="progress-track" id="question-progress" role="progressbar" aria-label="Question progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-fill"></div></div>
       <div class="question-tags"><p class="category-label" id="category-label">QUESTION</p><p class="difficulty-label" id="difficulty-label">MEDIUM</p></div>
       <h2 id="question-title" tabindex="-1">Question text</h2>
       <div class="answers" id="answers" role="radiogroup" aria-orientation="vertical" aria-label="Answer options" aria-describedby="question-title"></div>
