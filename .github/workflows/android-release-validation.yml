@@ -111,7 +111,7 @@ jobs:
           } > android-validation-evidence.txt
 
       - name: Upload debug APK and validation evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-gate2-debug-validation
           path: |

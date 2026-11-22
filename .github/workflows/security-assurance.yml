@@ -51,7 +51,7 @@ jobs:
 
       - name: Archive CodeQL SARIF
         if: always() && hashFiles('results/javascript.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-codeql-sarif
           path: results/javascript.sarif
@@ -88,7 +88,7 @@ jobs:
 
       - name: Archive Semgrep SARIF
         if: always() && hashFiles('semgrep.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-semgrep-sarif
           path: semgrep.sarif
@@ -123,7 +123,7 @@ jobs:
 
       - name: Archive DevSkim SARIF
         if: always() && hashFiles('devskim-results.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-devskim-sarif
           path: devskim-results.sarif
@@ -217,7 +217,7 @@ jobs:
 
       - name: Archive MobSFscan SARIF
         if: always() && hashFiles('mobsfscan-results.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-mobsfscan-sarif
           path: mobsfscan-results.sarif
@@ -255,7 +255,7 @@ jobs:
 
       - name: Archive Trivy SARIF
         if: always() && hashFiles('trivy-results.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-trivy-sarif
           path: trivy-results.sarif
@@ -315,7 +315,7 @@ jobs:
 
       - name: Archive OSV SARIF
         if: always() && steps.osv_scan.outputs.report_created == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-osv-sarif
           path: osv-results.sarif
@@ -338,7 +338,7 @@ jobs:
           upload-artifact: false
 
       - name: Archive SBOM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mindquest-source-sbom
           path: mindquest-sbom.cdx.json
