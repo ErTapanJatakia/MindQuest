@@ -25,7 +25,9 @@
 | Tool | Purpose | MindQuest fit | Operating model |
 |---|---|---|---|
 | GitHub CodeQL | Semantic SAST and security queries | JavaScript/TypeScript (Kotlin extraction deferred due Android Gradle autobuild dependency-resolution failure) | GitHub-hosted workflow; SARIF code scanning |
-| Semgrep Community Edition | Rule-based SAST | JavaScript and Android/Kotlin source patterns | Self-hosted CLI in GitHub Actions; community rules |\n| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |\n| MobSFscan | Mobile-source SAST | Kotlin, Android XML and hybrid web source | Free open-source CLI pinned to 1.2.0; SARIF |
+| Semgrep Community Edition | Rule-based SAST | JavaScript and Android/Kotlin source patterns | Self-hosted CLI in GitHub Actions; community rules |
+| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |
+| MobSFscan | Mobile-source SAST | Kotlin, Android XML and hybrid web source | Free open-source CLI pinned to 1.2.0; SARIF |
 | Trivy | Filesystem vulnerability, secret and misconfiguration scan | Repository manifests, configuration and detectable secrets | Free open-source CLI/action; SARIF |
 | OSV-Scanner | Known vulnerable dependency detection | Supported lockfiles/manifests, including Gradle ecosystems where dependency metadata is available | Free open-source CLI |
 | Dependency Review | Detect vulnerable dependency changes in pull requests | PR dependency changes | GitHub-maintained action |
