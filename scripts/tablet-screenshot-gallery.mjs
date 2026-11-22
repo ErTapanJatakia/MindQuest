@@ -121,7 +121,7 @@ try {
 
   // Every available Russian category/difficulty combination (including sparse pools).
   const combinations = [
-    ["Geography","easy"],["Geography","medium"],
+    ["Geography","easy"],["Geography","medium"],["Geography","hard"],
     ["History","easy"],["History","medium"],["History","hard"],
     ["Science","easy"],["Science","medium"],["Science","hard"],
     ["Culture","easy"],["Culture","medium"],["Culture","hard"]
