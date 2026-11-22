@@ -113,6 +113,52 @@ jobs:
           path: devskim-results.sarif
           retention-days: 30
 
+
+  mobsfscan:
+    name: MobSF mobile source SAST
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned MobSF source scanner
+        run: python -m pip install --disable-pip-version-check mobsfscan==1.2.0
+
+      - name: Scan Android, Kotlin, XML and hybrid web source
+        id: mobsf_scan
+        shell: bash
+        run: |
+          set +e
+          mobsfscan . --sarif -o mobsfscan-results.sarif
+          scan_status=$?
+          set -e
+          if [ ! -s mobsfscan-results.sarif ]; then
+            echo "MobSFscan did not produce a SARIF report."
+            exit 1
+          fi
+          exit "$scan_status"
+
+      - name: Upload MobSFscan findings
+        if: always() && hashFiles('mobsfscan-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: mobsfscan-results.sarif
+          category: mobsfscan-mobile-source
+
+      - name: Archive MobSFscan SARIF
+        if: always() && hashFiles('mobsfscan-results.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-mobsfscan-sarif
+          path: mobsfscan-results.sarif
+          retention-days: 30
+
   trivy:
     name: Trivy filesystem security scan
     runs-on: ubuntu-24.04
