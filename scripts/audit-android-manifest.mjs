@@ -4,6 +4,13 @@ const manifest = await readFile("android/app/src/main/AndroidManifest.xml", "utf
 const failures = [];
 const gradleBuild = await readFile("android/app/build.gradle.kts", "utf8");
 const targetSdkMatch = gradleBuild.match(/^\s*targetSdk\s*=\s*(\d+)/mu);
+const wrapperProperties = await readFile("android/gradle/wrapper/gradle-wrapper.properties", "utf8");
+const distributionUrl = wrapperProperties.match(/^distributionUrl=(.+)$/mu)?.[1] ?? "";
+const distributionChecksum = wrapperProperties.match(/^distributionSha256Sum=([a-f0-9]{64})$/mu)?.[1];
+const wrapperVersion = distributionUrl.match(/gradle-([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)-bin\\.zip/u)?.[1];
+if (!wrapperVersion) failures.push("Gradle Wrapper must use an explicit versioned binary distribution URL");
+if (!distributionChecksum) failures.push("Gradle Wrapper must pin the official distribution SHA-256 checksum");
+if (wrapperVersion === "8.9" && distributionChecksum !== "d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab") failures.push("Gradle 8.9 distribution checksum does not match the official release checksum");
 if (!targetSdkMatch || Number(targetSdkMatch[1]) < 29) {
   failures.push("Android target SDK must remain at API 29 or higher to retain platform mitigation for legacy task-hijacking attacks");
 }
