@@ -54,11 +54,7 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: javascript-typescript, java-kotlin
-          build-mode: autobuild
           queries: security-extended
-
-      - name: Autobuild analysed languages
-        uses: github/codeql-action/autobuild@v3
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v3
