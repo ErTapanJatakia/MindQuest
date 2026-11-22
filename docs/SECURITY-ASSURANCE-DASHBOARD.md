@@ -39,7 +39,7 @@
 - OSV and Trivy coverage depends on supported manifests, lockfiles and package metadata. Their reports must be checked for skipped/unresolved inputs.
 - Syft's SBOM is an inventory, not a vulnerability verdict.
 - Scorecard measures repository practices, not application runtime security.
-- CodeQL/ Semgrep/Trivy results may overlap. Deduplicate by root cause, affected component and CWE before remediation.
+- CodeQL/Semgrep/Trivy results may overlap. Deduplicate by root cause, affected component and CWE before remediation.
 - No DAST/API scanner is enabled: the product intentionally has no backend or network API. Do not introduce an external test target or network dependency merely to satisfy a tool catalogue.
 - MobSFscan is enabled for source-level Android/Kotlin/XML and hybrid web checks. The full MobSF framework's APK-level and dynamic-analysis stages remain separate: APK scanning requires a completed Android build artifact, while dynamic analysis requires a controlled Android runtime.
 - Commercial offerings and free-tier SaaS tools requiring account/API credentials are excluded until the owner explicitly approves their terms, data handling and any credentials.
