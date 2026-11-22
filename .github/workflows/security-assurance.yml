@@ -150,7 +150,50 @@ jobs:
             echo "MobSFscan did not produce a SARIF report."
             exit 1
           fi
-          exit "$scan_status"
+
+          python - <<'PY'
+          import json
+          import re
+          import sys
+          from pathlib import Path
+
+          report = json.loads(Path("mobsfscan-results.sarif").read_text())
+          results = [item for run in report.get("runs", []) for item in run.get("results", [])]
+          errors = [item for item in results if item.get("level") == "error"]
+
+          gradle = Path("android/app/build.gradle.kts").read_text()
+          target = re.search(r"^\\s*targetSdk\\s*=\\s*(\\d+)", gradle, re.MULTILINE)
+          manifest = Path("android/app/src/main/AndroidManifest.xml").read_text()
+          activities = re.findall(r"<activity\\b([^>]*)>([\\s\\S]*?)</activity>", manifest)
+          launcher_ok = (
+              len(activities) == 1
+              and 'android:exported="true"' in activities[0][0]
+              and "android.intent.action.MAIN" in activities[0][1]
+              and "android.intent.category.LAUNCHER" in activities[0][1]
+          )
+
+          accepted = []
+          unexpected = []
+          for finding in errors:
+              rule = finding.get("ruleId")
+              locations = finding.get("locations", [])
+              uri = locations[0].get("physicalLocation", {}).get("artifactLocation", {}).get("uri", "") if locations else ""
+              if rule == "android_task_hijacking2" and uri.endswith("AndroidManifest.xml"):
+                  accepted.append(finding)
+              else:
+                  unexpected.append(finding)
+
+          if accepted and (not target or int(target.group(1)) < 29 or not launcher_ok):
+              print("StrandHogg source finding is not eligible for the target-SDK exception.")
+              sys.exit(1)
+          if unexpected:
+              print(f"MobSFscan reported {len(unexpected)} unapproved error-level finding(s).")
+              sys.exit(1)
+          if accepted:
+              print(f"::notice::Accepted {len(accepted)} source-only StrandHogg rule result(s): Gradle targetSdk >= 29 and the sole exported component is the MAIN/LAUNCHER activity. Final merged APK targetSdk must still be verified at release gate.")
+          if scan_status != 0 and not accepted:
+              sys.exit(scan_status)
+          PY
 
       - name: Upload MobSFscan findings
         if: always() && hashFiles('mobsfscan-results.sarif') != ''
