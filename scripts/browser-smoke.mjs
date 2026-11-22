@@ -68,8 +68,12 @@ try {
     throw new Error("Launch splash did not isolate the application from assistive technology");
   }
   await page.keyboard.press("Tab");
+  if (!(await page.locator(".splash-wcag-badge").evaluate(node => node === document.activeElement))) {
+    throw new Error("Launch splash did not move keyboard focus to the official WCAG logo link");
+  }
+  await page.keyboard.press("Tab");
   if (await page.evaluate(() => document.activeElement?.id) !== "splash-dismiss") {
-    throw new Error("Launch splash did not retain keyboard focus");
+    throw new Error("Launch splash did not wrap keyboard focus back to its dismiss control");
   }
   await page.keyboard.press("Escape");
   await page.locator("#launch-splash").waitFor({ state: "detached" });
