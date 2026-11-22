@@ -109,9 +109,16 @@
       return;
     }
     if (event.key === "Tab") {
-      // The branded splash contains one interactive control; keep focus inside it.
-      event.preventDefault();
-      splashButton.focus();
+      const focusable = [...splash.querySelectorAll("button:not([disabled]),a[href]")];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
   splashButton.focus();
