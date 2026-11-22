@@ -4,7 +4,7 @@ The Android module is a minimal Kotlin Activity hosting the locally bundled game
 
 ## Current configuration
 
-- Application ID: `app.mindquest`
+- Application ID: `com.mindquest.app`
 - Minimum SDK: 23
 - Compile / target SDK: 35
 - Java / Kotlin target: 17
