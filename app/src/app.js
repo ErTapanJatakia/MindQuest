@@ -282,7 +282,7 @@
         !["easy", "medium", "hard"].includes(question.difficulty) ||
         !["a", "b", "c", "d"].includes(question.correct) ||
         typeof question.id !== "string" ||
-        !/^(IN|RU|US|ES|PE)-(GEO|HIS|SCI|CUL)-\\d{3}$/u.test(question.id) ||
+        !/^(IN|RU|US|ES|PE)-(GEO|HIS|SCI|CUL)-\d{3}$/u.test(question.id) ||
         !question.id.startsWith(question.region + "-" + categoryCodes[question.category] + "-")) return false;
 
     const translations = question.translations;
