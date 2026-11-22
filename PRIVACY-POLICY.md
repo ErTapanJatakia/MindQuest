@@ -64,7 +64,3 @@ The policy version and effective date will be updated when material changes are 
 - **Email:** cyber.litigation.advisor@gmail.com
 - **Phone Number:** +91 9664332984
 - **Website:** https://linktr.ee/ertapanjatakia
-
----
-
-*This document describes the application's intended data practices and is not legal advice. The developer should review it against the exact release binary, distribution-platform disclosures, and applicable law before publication.*
