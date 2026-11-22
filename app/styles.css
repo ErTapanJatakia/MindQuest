@@ -119,3 +119,18 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
 /* Override the legacy splash span rule so both tagline lines receive the exact 40% increase. */
 .splash-dismiss .splash-tagline{font-size:clamp(19.6px,5.32vw,25.2px);line-height:1.16;color:var(--accent)}
 .splash-dismiss .splash-tagline span{font-size:inherit;color:inherit;font-weight:750}
+
+/* App-wide spacing refinement; retain readable line-height and existing control target sizes. */
+.app-shell{padding-block:12px}.topbar{margin-bottom:14px}.hero{min-height:0;padding:24px 22px 22px}
+.hero h1{margin:13px 0 9px}.primary-button{margin-top:15px}.home-stats{gap:10px;margin-top:10px}
+.stat-card{padding:13px}.offline-note{margin:14px 0}.progress-track{margin:10px 0 22px}
+.view h2{margin-bottom:16px}.answers{gap:8px}.score-ring{margin:20px auto 14px}
+.field-label{margin:14px 0 6px}.app-footer{padding-top:14px}.legal-view{padding-bottom:14px}
+.legal-view h2{margin-top:18px!important;margin-bottom:7px!important}.legal-view p,.legal-view li{line-height:1.62}
+.launch-splash{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.splash-dismiss{min-height:52vh;max-height:520px}.splash-wcag-badge{display:block;flex:0 0 auto;margin:0 auto}
+.wcag-logo-link{display:block;width:88px;height:31px;line-height:0;flex:0 0 auto}
+.wcag-logo-link img{display:block;width:88px;height:31px;max-width:100%;object-fit:contain}
+.statement-wcag-top,.statement-wcag-bottom{margin:10px auto 18px}
+@media(max-width:520px){.hero{padding:21px 16px 19px}.splash-dismiss{min-height:52vh;padding:22px 18px}.app-footer{row-gap:7px}}
+@media(forced-colors:active){.wcag-logo-link:focus-visible{outline:3px solid Highlight;outline-offset:4px}}
