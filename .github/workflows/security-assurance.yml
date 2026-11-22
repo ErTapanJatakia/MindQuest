@@ -137,7 +137,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          "$(go env GOPATH)/bin/osv-scanner" scan source -r . --format sarif --output-file osv-results.sarif
+          "$(go env GOPATH)/bin/osv-scanner" scan source -r . --format sarif > osv-results.sarif
 
       - name: Upload OSV findings
         if: always() && hashFiles('osv-results.sarif') != ''
