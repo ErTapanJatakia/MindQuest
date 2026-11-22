@@ -1,0 +1,65 @@
+name: MindQuest Android Dependency Inventory
+
+on:
+  pull_request:
+    paths:
+      - "android/**"
+      - ".github/workflows/android-dependency-inventory.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  resolve-android-dependencies:
+    name: Resolve Gradle plugins and Android dependency graph
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Java 17
+        uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4
+        with:
+          packages: 'platform-tools'
+
+      - name: Install Android 35 SDK packages
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@8da46b539cd8fe6ab27ca75128919a18d757604c # v6
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6
+        with:
+          gradle-version: wrapper
+          cache-provider: basic
+
+      - name: Resolve dependency metadata and generate SHA-256 verification candidates
+        working-directory: android
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon --stacktrace --console=plain \
+            --write-verification-metadata sha256 \
+            help buildEnvironment :app:buildEnvironment :app:dependencies \
+            | tee "$RUNNER_TEMP/mindquest-gradle-dependency-report.txt"
+          test -s gradle/verification-metadata.xml
+          grep -q '<verification-metadata' gradle/verification-metadata.xml
+
+      - name: Upload dependency inventory and verification candidates
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: mindquest-gradle-dependency-inventory
+          path: |
+            android/gradle/verification-metadata.xml
+            ${{ runner.temp }}/mindquest-gradle-dependency-report.txt
+          if-no-files-found: error
+          retention-days: 14
