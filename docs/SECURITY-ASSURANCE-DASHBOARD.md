@@ -38,7 +38,7 @@
 ### Important coverage limitations
 
 - MindQuest currently has no `package-lock.json` and no declared npm runtime dependencies. Do not interpret an empty JavaScript dependency scan as proof that there are no transitive dependencies.
-- Gradle dependency declarations and the Gradle wrapper distribution must be reviewed; dependency locking and verification are not assumed to exist. The Wrapper distribution checksum is now pinned and statically audited (PR #99 candidate); dependency graph/locking remains open.
+- Gradle dependency declarations and the Gradle wrapper distribution must be reviewed; dependency locking and verification are not assumed to exist. The Wrapper distribution checksum is now pinned and statically audited (PR #100 candidate); dependency graph/locking remains open.
 - OSV and Trivy coverage depends on supported manifests, lockfiles and package metadata. Their reports must be checked for skipped/unresolved inputs.
 - Syft's SBOM is an inventory, not a vulnerability verdict.
 - Scorecard measures repository practices, not application runtime security. The first successful main-branch snapshot scored 4.1; several findings are repository configuration or release-lifecycle gaps, not application vulnerabilities.
@@ -93,7 +93,7 @@ The review must cover every tracked source/configuration file, not only files ch
 - [ ] WebView JavaScript, DOM storage, file/content access and universal/file-origin access
 - [ ] Navigation allow-list, URL parsing, external intent handling and local asset origin
 - [ ] Lifecycle, back navigation, configuration changes, edge-to-edge insets and WebView destruction
-- [ ] Gradle plugins, repositories, dependency versions, wrapper integrity and build reproducibility (distribution checksum pin and regression audit added in PR #99 candidate; dependency graph/locking remains open)
+- [ ] Gradle plugins, repositories, dependency versions, wrapper integrity and build reproducibility (distribution checksum pin and regression audit added in PR #100 candidate; dependency graph/locking remains open)
 - [ ] APK package identity, permissions, bundled assets and cryptographic hash
 
 ### Repository and delivery
@@ -122,7 +122,7 @@ The following source-level pass has inspected the HTML entry point, core JavaScr
 | MQ-AND-001 | WebView loads local content through `file://` with `allowFileAccess=true` | Hardening opportunity; not a confirmed vulnerability | Low / Medium | Evaluate WebViewAssetLoader migration and compatibility before changing |
 | MQ-CSP-001 | CSP `style-src` allows `'unsafe-inline'` | Defence-in-depth review item | Low / Medium | Determine whether inline style allowance can be narrowed safely |
 | MQ-SCA-001 | Gradle dependency graph/lockfile coverage is incomplete; no npm lockfile is present | Coverage gap, not a vulnerability finding | Medium | Dependabot is enabled; resolve and record Gradle plugin/runtime dependency graph; assess lockfile and verification metadata |
-| MQ-SUP-002 | Gradle Wrapper distribution URL lacked `distributionSha256Sum` | Build-tool integrity hardening gap; no evidence of a tampered distribution | Medium | PR #99 candidate adds the official Gradle 8.9 binary distribution SHA-256 and a static regression audit; verify after merge |
+| MQ-SUP-002 | Gradle Wrapper distribution URL lacked `distributionSha256Sum` | Build-tool integrity hardening gap; no evidence of a tampered distribution | Medium | PR #100 candidate adds the official Gradle 8.9 binary distribution SHA-256 and a static regression audit; verify after merge |
 | MQ-CI-001 | One-time Gradle wrapper bootstrap workflow grants top-level `contents: write` and pushes directly to `main` | CI/CD least-privilege risk; workflow is obsolete because verified wrapper files already exist | Medium | Retire workflow; normal Android CI continues validating the checked-in wrapper |
 | MQ-SUP-001 | GitHub Actions and selected npm/pip tools are not pinned to immutable revisions/versions | Supply-chain reproducibility and tag-movement risk | Medium | Pin all workflow actions to verified full commit SHAs and pin scanner/tool versions where supported |
 | MQ-REPO-001 | Scorecard reports no branch protection on `main` | Repository governance gap | High | Owner to configure PR/status-check protections; verify with a fresh Scorecard report |
@@ -170,4 +170,4 @@ A scanner alert is a lead, not an automatically confirmed vulnerability. Each fi
 - [Repository Code Scanning](https://github.com/ErTapanJatakia/MindQuest/security/code-scanning)
 - [Repository Actions](https://github.com/ErTapanJatakia/MindQuest/actions)
 
-**Next checkpoint (2026-11-23):** PR #98 merged; PR #99 checksum hardening is being rebased onto the updated `main` after all original checks passed. Verify the refreshed main-branch Security Assurance and Scorecard results; continue the repository-wide review of scripts, CI workflows, localization/content assets and Android build chain; resolve Gradle dependency graph/verification coverage; owner configures `main` branch protection; after all feature scope is confirmed complete, run the manually gated Android validation and reconcile the APK-level inventory. PRs #95–#97 (Kotlin, Gradle and Android Gradle Plugin major upgrades) remain held as one coordinated candidate until that build validation is authorized and passes.
+**Next checkpoint (2026-11-23):** PR #98 merged; PR #100 checksum hardening is being rebased onto the updated `main` after all original checks passed. Verify the refreshed main-branch Security Assurance and Scorecard results; continue the repository-wide review of scripts, CI workflows, localization/content assets and Android build chain; resolve Gradle dependency graph/verification coverage; owner configures `main` branch protection; after all feature scope is confirmed complete, run the manually gated Android validation and reconcile the APK-level inventory. PRs #95–#97 (Kotlin, Gradle and Android Gradle Plugin major upgrades) remain held as one coordinated candidate until that build validation is authorized and passes.
