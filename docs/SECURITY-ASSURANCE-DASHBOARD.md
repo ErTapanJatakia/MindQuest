@@ -25,7 +25,7 @@
 | Tool | Purpose | MindQuest fit | Operating model |
 |---|---|---|---|
 | GitHub CodeQL | Semantic SAST and security queries | JavaScript/TypeScript and Kotlin | GitHub-hosted workflow; SARIF code scanning |
-| Semgrep Community Edition | Rule-based SAST | JavaScript and Android source patterns | Self-hosted CLI in GitHub Actions; community rules |\n| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |
+| Semgrep Community Edition | Rule-based SAST | JavaScript and Android/Kotlin source patterns | Self-hosted CLI in GitHub Actions; community rules |\n| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |
 | Trivy | Filesystem vulnerability, secret and misconfiguration scan | Repository manifests, configuration and detectable secrets | Free open-source CLI/action; SARIF |
 | OSV-Scanner | Known vulnerable dependency detection | Supported lockfiles/manifests, including Gradle ecosystems where dependency metadata is available | Free open-source CLI |
 | Dependency Review | Detect vulnerable dependency changes in pull requests | PR dependency changes | GitHub-maintained action |
@@ -43,6 +43,15 @@
 - No DAST/API scanner is enabled: the product intentionally has no backend or network API. Do not introduce an external test target or network dependency merely to satisfy a tool catalogue.
 - Mobile SaaS products such as Appknox, NowSecure and zScan are not part of the free baseline. MobSF can be evaluated separately for local APK static analysis; dynamic testing still requires a controlled Android runtime.
 - Commercial offerings and free-tier SaaS tools requiring account/API credentials are excluded until the owner explicitly approves their terms, data handling and any credentials.
+
+### First scanner-run triage (PR validation)
+
+- **Trivy:** completed successfully and produced a valid SARIF report with zero findings. This does not establish dependency coverage for manifests that Trivy cannot resolve.
+- **Semgrep Community:** the first complete scan ran 236 rules over 44 files and reported two findings. The dynamic-regex warning in `app/src/app.js` was remediated by replacing the constructed expression with a fixed allow-listed pattern and a stricter region/category prefix check. The exported Android launcher activity finding is an expected platform requirement: it is the sole activity with only the `MAIN`/`LAUNCHER` filter and exposes no privileged native bridge or privileged intent operation. It remains documented as an accepted design finding, not silently suppressed.
+- **DevSkim:** seven findings were reviewed. Six `DS137138` alerts are false positives on the Android XML namespace URI (`http://schemas.android.com/apk/res/android`), not network requests. One `DS172411` note is a false positive on a static function callback passed to `setTimeout`, not a string or untrusted value. Preserve the rule and rationale; do not suppress the whole rule globally.
+- **OSV-Scanner:** the repository contains no supported package source/lockfile for OSV to scan. The workflow now records this as a coverage notice rather than claiming a clean scan or failing with an empty SARIF. Trivy and PR Dependency Review remain enabled.
+- **Syft:** generated a valid CycloneDX SBOM with zero package components. This reflects the absence of detected package manifests/lockfiles; it is not an inventory of every bundled application asset.
+- **CodeQL:** the initial combined JavaScript/Kotlin extraction could not complete the Android Gradle autobuild because Gradle plugin dependencies could not be resolved on the runner. The workflow has been narrowed to JavaScript/TypeScript semantic analysis; Kotlin remains covered by Semgrep, DevSkim and manual review. Do not represent Kotlin as CodeQL-scanned.
 
 ## Source review checklist
 
