@@ -47,6 +47,14 @@ jobs:
         with:
           category: "/language:javascript-typescript"
 
+      - name: Archive CodeQL SARIF
+        if: always() && hashFiles('results/javascript.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-codeql-sarif
+          path: results/javascript.sarif
+          retention-days: 30
+
   semgrep:
     name: Semgrep community SAST
     runs-on: ubuntu-24.04
