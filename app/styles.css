@@ -134,3 +134,7 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
 .statement-wcag-top,.statement-wcag-bottom{margin:10px auto 18px}
 @media(max-width:520px){.hero{padding:21px 16px 19px}.splash-dismiss{min-height:52vh;padding:22px 18px}.app-footer{row-gap:7px}}
 @media(forced-colors:active){.wcag-logo-link:focus-visible{outline:3px solid Highlight;outline-offset:4px}}
+
+/* Discourage text selection and long-press copy across all application screens. */
+html,body,.app-shell,.launch-splash,.app-shell *,.launch-splash *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,[contenteditable="true"],[contenteditable=""]{-webkit-user-select:text;user-select:text}
