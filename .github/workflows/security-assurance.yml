@@ -36,22 +36,22 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           languages: javascript-typescript
           queries: security-extended
 
       - name: Perform CodeQL analysis
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           category: "/language:javascript-typescript"
 
       - name: Archive CodeQL SARIF
         if: always() && hashFiles('results/javascript.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-codeql-sarif
           path: results/javascript.sarif
@@ -66,29 +66,29 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: "3.12"
 
       - name: Install Semgrep Community Edition
-        run: python -m pip install --disable-pip-version-check semgrep
+        run: python -m pip install --disable-pip-version-check semgrep==1.186.0
 
       - name: Scan application and Android source
         run: semgrep scan --config p/default --sarif --metrics=off --output semgrep.sarif app android
 
       - name: Upload Semgrep findings
         if: always() && hashFiles('semgrep.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           sarif_file: semgrep.sarif
           category: semgrep-community
 
       - name: Archive Semgrep SARIF
         if: always() && hashFiles('semgrep.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-semgrep-sarif
           path: semgrep.sarif
@@ -104,10 +104,10 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Scan source and configuration
-        uses: microsoft/DevSkim-Action@v1
+        uses: microsoft/DevSkim-Action@734c6ed89671b1c7a5211ed334c79db261e3f221 # v1
         with:
           directory-to-scan: .
           should-scan-archives: false
@@ -116,14 +116,14 @@ jobs:
 
       - name: Upload DevSkim findings
         if: always() && hashFiles('devskim-results.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           sarif_file: devskim-results.sarif
           category: microsoft-devskim
 
       - name: Archive DevSkim SARIF
         if: always() && hashFiles('devskim-results.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-devskim-sarif
           path: devskim-results.sarif
@@ -139,10 +139,10 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: "3.12"
 
@@ -210,14 +210,14 @@ jobs:
 
       - name: Upload MobSFscan findings
         if: always() && hashFiles('mobsfscan-results.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           sarif_file: mobsfscan-results.sarif
           category: mobsfscan-mobile-source
 
       - name: Archive MobSFscan SARIF
         if: always() && hashFiles('mobsfscan-results.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-mobsfscan-sarif
           path: mobsfscan-results.sarif
@@ -232,10 +232,10 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Scan dependencies, secrets and configuration
-        uses: aquasecurity/trivy-action@v0.36.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -248,14 +248,14 @@ jobs:
 
       - name: Upload Trivy findings
         if: always() && hashFiles('trivy-results.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           sarif_file: trivy-results.sarif
           category: trivy-filesystem
 
       - name: Archive Trivy SARIF
         if: always() && hashFiles('trivy-results.sarif') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-trivy-sarif
           path: trivy-results.sarif
@@ -270,10 +270,10 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7
         with:
           go-version: "1.24.x"
 
@@ -308,14 +308,14 @@ jobs:
 
       - name: Upload OSV findings
         if: always() && steps.osv_scan.outputs.report_created == 'true'
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           sarif_file: osv-results.sarif
           category: osv-scanner
 
       - name: Archive OSV SARIF
         if: always() && steps.osv_scan.outputs.report_created == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-osv-sarif
           path: osv-results.sarif
@@ -327,10 +327,10 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Generate source SBOM with Syft
-        uses: anchore/sbom-action@v0
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
         with:
           path: .
           format: cyclonedx-json
@@ -338,7 +338,7 @@ jobs:
           upload-artifact: false
 
       - name: Archive SBOM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: mindquest-source-sbom
           path: mindquest-sbom.cdx.json
@@ -357,12 +357,12 @@ jobs:
       actions: read
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
 
       - name: Run OpenSSF Scorecard
-        uses: ossf/scorecard-action@v2.4.2
+        uses: ossf/scorecard-action@23f22cd43608bae7a1f1fa2603d7314dee9538a5 # v2.6.0
         with:
           results_file: scorecard.sarif
           results_format: sarif
@@ -370,7 +370,7 @@ jobs:
 
       - name: Upload Scorecard findings
         if: always() && hashFiles('scorecard.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4
         with:
           sarif_file: scorecard.sarif
           category: openssf-scorecard
