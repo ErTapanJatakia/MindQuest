@@ -19,7 +19,6 @@ on:
 
 permissions:
   contents: read
-  security-events: write
   actions: read
   pull-requests: read
 
@@ -29,6 +28,9 @@ concurrency:
 
 jobs:
   codeql:
+    permissions:
+      contents: read
+      security-events: write
     name: CodeQL JavaScript and TypeScript
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -56,6 +58,9 @@ jobs:
           retention-days: 30
 
   semgrep:
+    permissions:
+      contents: read
+      security-events: write
     name: Semgrep community SAST
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -91,6 +96,9 @@ jobs:
 
 
   devskim:
+    permissions:
+      contents: read
+      security-events: write
     name: Microsoft DevSkim security lint
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -123,6 +131,9 @@ jobs:
 
 
   mobsfscan:
+    permissions:
+      contents: read
+      security-events: write
     name: MobSF mobile source SAST
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -213,6 +224,9 @@ jobs:
           retention-days: 30
 
   trivy:
+    permissions:
+      contents: read
+      security-events: write
     name: Trivy filesystem security scan
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -248,6 +262,9 @@ jobs:
           retention-days: 30
 
   osv:
+    permissions:
+      contents: read
+      security-events: write
     name: OSV dependency vulnerability scan
     runs-on: ubuntu-24.04
     timeout-minutes: 20
