@@ -1,0 +1,359 @@
+name: MindQuest Security Assurance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "android/**"
+      - "scripts/**"
+      - ".github/workflows/**"
+      - "package.json"
+      - "docs/SECURITY-ASSURANCE-DASHBOARD.md"
+      - "SECURITY.md"
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+  pull-requests: read
+
+concurrency:
+  group: mindquest-security-assurance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codeql:
+    name: CodeQL JavaScript and TypeScript
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:javascript-typescript"
+
+      - name: Archive CodeQL SARIF
+        if: always() && hashFiles('results/javascript.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-codeql-sarif
+          path: results/javascript.sarif
+          retention-days: 30
+
+  semgrep:
+    name: Semgrep community SAST
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Semgrep Community Edition
+        run: python -m pip install --disable-pip-version-check semgrep
+
+      - name: Scan application and Android source
+        run: semgrep scan --config p/default --sarif --metrics=off --output semgrep.sarif app android
+
+      - name: Upload Semgrep findings
+        if: always() && hashFiles('semgrep.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep-community
+
+      - name: Archive Semgrep SARIF
+        if: always() && hashFiles('semgrep.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-semgrep-sarif
+          path: semgrep.sarif
+          retention-days: 30
+
+
+  devskim:
+    name: Microsoft DevSkim security lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Scan source and configuration
+        uses: microsoft/DevSkim-Action@v1
+        with:
+          directory-to-scan: .
+          should-scan-archives: false
+          output-filename: devskim-results.sarif
+          ignore-globs: "**/.git/**,**/node_modules/**,**/build/**,**/.gradle/**"
+
+      - name: Upload DevSkim findings
+        if: always() && hashFiles('devskim-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: devskim-results.sarif
+          category: microsoft-devskim
+
+      - name: Archive DevSkim SARIF
+        if: always() && hashFiles('devskim-results.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-devskim-sarif
+          path: devskim-results.sarif
+          retention-days: 30
+
+
+  mobsfscan:
+    name: MobSF mobile source SAST
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned MobSF source scanner
+        run: python -m pip install --disable-pip-version-check mobsfscan==1.2.0
+
+      - name: Scan Android, Kotlin, XML and hybrid web source
+        id: mobsf_scan
+        shell: bash
+        run: |
+          set +e
+          mobsfscan . --sarif -o mobsfscan-results.sarif
+          scan_status=$?
+          set -e
+          if [ ! -s mobsfscan-results.sarif ]; then
+            echo "MobSFscan did not produce a SARIF report."
+            exit 1
+          fi
+
+          SCAN_STATUS="$scan_status" python - <<'PY'
+          import json
+          import os
+          import re
+          import sys
+          from pathlib import Path
+
+          report = json.loads(Path("mobsfscan-results.sarif").read_text())
+          results = [item for run in report.get("runs", []) for item in run.get("results", [])]
+          errors = [item for item in results if item.get("level") == "error"]
+          scan_status = int(os.environ["SCAN_STATUS"])
+
+          gradle = Path("android/app/build.gradle.kts").read_text()
+          target = re.search(r"^\s*targetSdk\s*=\s*(\d+)", gradle, re.MULTILINE)
+          manifest = Path("android/app/src/main/AndroidManifest.xml").read_text()
+          activities = re.findall(r"<activity\b([^>]*)>([\s\S]*?)</activity>", manifest)
+          launcher_ok = (
+              len(activities) == 1
+              and 'android:exported="true"' in activities[0][0]
+              and "android.intent.action.MAIN" in activities[0][1]
+              and "android.intent.category.LAUNCHER" in activities[0][1]
+          )
+
+          accepted = []
+          unexpected = []
+          for finding in errors:
+              rule = finding.get("ruleId")
+              locations = finding.get("locations", [])
+              uri = locations[0].get("physicalLocation", {}).get("artifactLocation", {}).get("uri", "") if locations else ""
+              if rule == "android_task_hijacking2" and uri.endswith("AndroidManifest.xml"):
+                  accepted.append(finding)
+              else:
+                  unexpected.append(finding)
+
+          if accepted and (not target or int(target.group(1)) < 29 or not launcher_ok):
+              print("StrandHogg source finding is not eligible for the target-SDK exception.")
+              sys.exit(1)
+          if unexpected:
+              print(f"MobSFscan reported {len(unexpected)} unapproved error-level finding(s).")
+              sys.exit(1)
+          if accepted:
+              print(f"::notice::Accepted {len(accepted)} source-only StrandHogg rule result(s): Gradle targetSdk >= 29 and the sole exported component is the MAIN/LAUNCHER activity. Final merged APK targetSdk must still be verified at release gate.")
+          if scan_status != 0 and not accepted:
+              sys.exit(scan_status)
+          PY
+
+      - name: Upload MobSFscan findings
+        if: always() && hashFiles('mobsfscan-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: mobsfscan-results.sarif
+          category: mobsfscan-mobile-source
+
+      - name: Archive MobSFscan SARIF
+        if: always() && hashFiles('mobsfscan-results.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-mobsfscan-sarif
+          path: mobsfscan-results.sarif
+          retention-days: 30
+
+  trivy:
+    name: Trivy filesystem security scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Scan dependencies, secrets and configuration
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,misconfig,secret
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: "0"
+          ignore-unfixed: true
+          skip-dirs: .git,artifacts,coverage
+
+      - name: Upload Trivy findings
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy-filesystem
+
+      - name: Archive Trivy SARIF
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-trivy-sarif
+          path: trivy-results.sarif
+          retention-days: 30
+
+  osv:
+    name: OSV dependency vulnerability scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24.x"
+
+      - name: Install OSV-Scanner
+        run: go install github.com/google/osv-scanner/v2/cmd/osv-scanner@v2.2.2
+
+      - name: Scan supported lockfiles and manifests
+        id: osv_scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          "$(go env GOPATH)/bin/osv-scanner" scan source -r . --format sarif > osv-results.sarif 2> osv-scanner.log
+          scan_status=$?
+          set -e
+
+          if grep -Fq "No package sources found" osv-scanner.log; then
+            echo "report_created=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::OSV-Scanner found no supported package sources or lockfiles. This is a coverage limitation, not a clean dependency bill of health; Trivy and Dependency Review remain enabled."
+            exit 0
+          fi
+
+          if [ ! -s osv-results.sarif ]; then
+            cat osv-scanner.log
+            echo "OSV-Scanner did not produce a SARIF report."
+            exit 1
+          fi
+
+          echo "report_created=true" >> "$GITHUB_OUTPUT"
+          cat osv-scanner.log
+          exit "$scan_status"
+
+      - name: Upload OSV findings
+        if: always() && steps.osv_scan.outputs.report_created == 'true'
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: osv-results.sarif
+          category: osv-scanner
+
+      - name: Archive OSV SARIF
+        if: always() && steps.osv_scan.outputs.report_created == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-osv-sarif
+          path: osv-results.sarif
+          retention-days: 30
+
+  sbom:
+    name: Generate CycloneDX SBOM
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Generate source SBOM with Syft
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: mindquest-sbom.cdx.json
+          upload-artifact: false
+
+      - name: Archive SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: mindquest-source-sbom
+          path: mindquest-sbom.cdx.json
+          if-no-files-found: error
+          retention-days: 30
+
+  scorecard:
+    name: OpenSSF Scorecard
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
+      actions: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run OpenSSF Scorecard
+        uses: ossf/scorecard-action@v2.4.2
+        with:
+          results_file: scorecard.sarif
+          results_format: sarif
+          publish_results: true
+
+      - name: Upload Scorecard findings
+        if: always() && hashFiles('scorecard.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: scorecard.sarif
+          category: openssf-scorecard

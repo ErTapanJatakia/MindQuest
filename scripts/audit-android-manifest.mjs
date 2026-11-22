@@ -2,6 +2,11 @@ import { readFile } from "node:fs/promises";
 
 const manifest = await readFile("android/app/src/main/AndroidManifest.xml", "utf8");
 const failures = [];
+const gradleBuild = await readFile("android/app/build.gradle.kts", "utf8");
+const targetSdkMatch = gradleBuild.match(/^\s*targetSdk\s*=\s*(\d+)/mu);
+if (!targetSdkMatch || Number(targetSdkMatch[1]) < 29) {
+  failures.push("Android target SDK must remain at API 29 or higher to retain platform mitigation for legacy task-hijacking attacks");
+}
 const applicationMatches = [...manifest.matchAll(/<application\b([^>]*)>([\s\S]*?)<\/application>/gu)];
 if (applicationMatches.length !== 1) failures.push("Manifest must contain exactly one application element");
 if (!/<manifest\b[^>]*xmlns:android="http:\/\/schemas\.android\.com\/apk\/res\/android"/su.test(manifest)) failures.push("Android XML namespace is missing");
@@ -33,5 +38,5 @@ if (failures.length) {
   for (const failure of failures) console.error("FAIL: " + failure);
   process.exitCode = 1;
 } else {
-  console.log("Android manifest audit passed: namespace/application structure, backup and cleartext protections, RTL and predictive-back flags, explicit launcher/configuration/keyboard behaviour, no permissions or additional components, and no debuggable flag.");
+  console.log("Android manifest audit passed: namespace/application structure, backup and cleartext protections, RTL and predictive-back flags, explicit launcher/configuration/keyboard behaviour, no permissions or additional components, no debuggable flag, and target SDK >= 29.");
 }

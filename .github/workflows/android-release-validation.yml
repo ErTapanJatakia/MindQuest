@@ -63,10 +63,21 @@ jobs:
           grep -Fxq "sdkVersion:'23'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
           grep -Fxq "targetSdkVersion:'35'" "$RUNNER_TEMP/mindquest-apk-badging.txt"
 
+          # Verify the packaged/merged manifest, not only the source XML.
+          "$AAPT" dump xmltree "$APK" AndroidManifest.xml > "$RUNNER_TEMP/mindquest-merged-manifest.txt"
+          EXPORTED_COUNT="$(grep -c 'android:exported' "$RUNNER_TEMP/mindquest-merged-manifest.txt" || true)"
+          test "$EXPORTED_COUNT" -eq 1
+          grep -q 'android:exported.*0xffffffff' "$RUNNER_TEMP/mindquest-merged-manifest.txt"
+          grep -q 'android.intent.action.MAIN' "$RUNNER_TEMP/mindquest-merged-manifest.txt"
+          grep -q 'android.intent.category.LAUNCHER' "$RUNNER_TEMP/mindquest-merged-manifest.txt"
+
           "$AAPT" dump permissions "$APK" > "$RUNNER_TEMP/mindquest-apk-permissions.txt"
           if grep -Eq 'uses-permission|android\.permission\.(INTERNET|ACCESS_NETWORK_STATE)' "$RUNNER_TEMP/mindquest-apk-permissions.txt"; then
             echo "Unexpected Android permission found in the offline-first package:"
             cat "$RUNNER_TEMP/mindquest-apk-permissions.txt"
+            echo
+            echo "[merged manifest export review]"
+            cat "$RUNNER_TEMP/mindquest-merged-manifest.txt"
             exit 1
           fi
 
@@ -85,6 +96,8 @@ jobs:
             echo "version_name=0.1.0"
             echo "min_sdk=23"
             echo "target_sdk=35"
+            echo "merged_manifest_exported_components=1"
+            echo "exported_component_scope=MAIN_LAUNCHER_only"
             echo "manifest_permissions=none"
             echo "required_offline_assets=present"
             printf "apk_sha256="
