@@ -105,6 +105,7 @@ jobs:
           node --check scripts/validate-spanish-localization.mjs
           node --check scripts/validate-staged-regions.mjs
           node --check scripts/browser-smoke.mjs
+          node --check scripts/tablet-screenshot-gallery.mjs
 
       - name: Install pinned browser test dependency
         run: npm install --no-save --package-lock=false playwright@1.56.1
