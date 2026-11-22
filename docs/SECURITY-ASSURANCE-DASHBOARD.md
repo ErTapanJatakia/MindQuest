@@ -70,6 +70,28 @@ The review must cover every tracked source/configuration file, not only files ch
 - [ ] SBOM completeness, dependency provenance and known-vulnerability exposure
 - [ ] Privacy policy, security policy, accessibility statement and product claims consistency
 
+## Initial manual source-review observations
+
+The following source-level pass has inspected the HTML entry point, core JavaScript runtime modules, all JavaScript files referenced by the app entry point (including the bundled question/translation data modules), stylesheet, Android manifest, Kotlin activity and Gradle configuration. This is an initial review checkpoint, not the completed repository-wide assessment.
+
+- The reviewed runtime JavaScript contains no detected `innerHTML`, `outerHTML`, `insertAdjacentHTML`, `eval`, `new Function`, `fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `sendBeacon` or `document.cookie` usage. Rendering observed in the core path uses DOM construction, `textContent`, and `replaceChildren()`.
+- Settings and score data are read from local storage with exception handling and strict shape/range validation. Theme and accessibility preferences use guarded local-storage access and constrained values.
+- The Android activity enables JavaScript for the bundled game, does not expose a JavaScript bridge, disables WebView debugging, content access, file-origin cross-access, universal file-origin access, automatic JavaScript windows and mixed content, and filters main-frame navigation to the bundled entry document.
+- The current WebView still uses a `file://` entry point and `allowFileAccess=true`. This is constrained by the other settings and the local-only app design; no exploit has been established from this observation. Consider AndroidX `WebViewAssetLoader` as a future hardening option to move to an HTTPS-like app asset origin and disable general file access, but only after compatibility testing.
+- The CSP intentionally includes `'unsafe-inline'` in `style-src`. Review whether this can be narrowed without breaking theme tokens and accessibility presentation; do not remove it blindly.
+- The app's privacy and accessibility text contains direct developer contact details. Because the repository is public and these pages are bundled in the application, confirm that the published contact channels are intentionally public and that no personal contact method should be removed or replaced.
+
+### Initial finding register
+
+| ID | Observation | Classification | Priority | Status / next action |
+|---|---|---|---|---|
+| MQ-PRIV-001 | Direct developer contact details are embedded in public in-app legal pages and shipped assets | Potential privacy exposure; owner intent required | Medium | Needs owner confirmation; no automatic deletion |
+| MQ-AND-001 | WebView loads local content through `file://` with `allowFileAccess=true` | Hardening opportunity; not a confirmed vulnerability | Low / Medium | Evaluate WebViewAssetLoader migration and compatibility before changing |
+| MQ-CSP-001 | CSP `style-src` allows `'unsafe-inline'` | Defence-in-depth review item | Low / Medium | Determine whether inline style allowance can be narrowed safely |
+| MQ-SCA-001 | Gradle dependency graph/lockfile coverage is incomplete; no npm lockfile is present | Coverage gap, not a vulnerability finding | Medium | Verify Dependency Review, Trivy, OSV and SBOM coverage; consider Gradle dependency locking |
+
+No confirmed exploitable vulnerability is recorded from this initial manual pass. Scanner results and deeper review of the complete repository, build chain and release artefact remain outstanding.
+
 ## Finding severity and remediation policy
 
 | Priority | Triage expectation | Required handling |
