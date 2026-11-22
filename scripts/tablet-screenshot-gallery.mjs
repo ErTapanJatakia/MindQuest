@@ -136,9 +136,9 @@ try {
     const page = await newApp(1280, 800);
     await dismissSplash(page);
     await configure(page, { theme });
-    await capture(page, `${String(28+index).padStart(2,"0")}-theme-${theme}-home.png`, `Russian configuration — ${theme} theme, Home`);
+    await capture(page, `${String(29+index).padStart(2,"0")}-theme-${theme}-home.png`, `Russian configuration — ${theme} theme, Home`);
     await page.locator("#settings-open").click();
-    await capture(page, `${String(38+index).padStart(2,"0")}-theme-${theme}-settings.png`, `Russian configuration — ${theme} theme, Settings`);
+    await capture(page, `${String(39+index).padStart(2,"0")}-theme-${theme}-settings.png`, `Russian configuration — ${theme} theme, Settings`);
     await page.close();
   }
 
