@@ -63,6 +63,15 @@ try {
     const overlaps = (a, b) => a.width > 0 && a.height > 0 && b.width > 0 && b.height > 0 &&
       a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
     if (home.document > home.viewport || home.body > home.viewport) throw new Error(device.name + ": horizontal overflow at Home " + JSON.stringify(home));
+    if (device.width >= 768) {
+      const tabletLayout = await page.evaluate(() => ({
+        shellWidth: document.querySelector(".app-shell").getBoundingClientRect().width,
+        homeDisplay: getComputedStyle(document.querySelector("#home-view")).display
+      }));
+      if (tabletLayout.shellWidth <= 680 || tabletLayout.homeDisplay !== "grid") {
+        throw new Error(device.name + ": tablet Home did not adopt the expanded layout " + JSON.stringify(tabletLayout));
+      }
+    }
     if (home.brand.right > home.actions.left + 1) throw new Error(device.name + ": brand overlaps header actions " + JSON.stringify(home));
     const heroText = [home.heroEyebrow, home.heroTitle, home.heroCopy];
     if (heroText.some(rect => overlaps(rect, home.heroOrbit)) ||
@@ -79,6 +88,10 @@ try {
       })
     }));
     if (settings.document > settings.viewport) throw new Error(device.name + ": horizontal overflow in Settings " + JSON.stringify(settings));
+    if (device.width >= 768) {
+      const columns = await page.locator("#settings-view").evaluate(node => getComputedStyle(node).gridTemplateColumns.split(" ").length);
+      if (columns < 2) throw new Error(device.name + ": tablet Settings did not use two columns");
+    }
     for (const control of settings.controls) {
       if (control.width > 0 && (control.left < -1 || control.right > settings.viewport + 1)) {
         throw new Error(device.name + ": control " + control.id + " escapes viewport " + JSON.stringify(control));
@@ -92,6 +105,10 @@ try {
       question: document.querySelector("#question-title").getBoundingClientRect().toJSON(),
       answers: document.querySelector("#answers").getBoundingClientRect().toJSON()
     }));
+    if (device.width >= 768) {
+      const answerColumns = await page.locator("#answers").evaluate(node => getComputedStyle(node).gridTemplateColumns.split(" ").length);
+      if (answerColumns < 2) throw new Error(device.name + ": tablet Quiz answers did not use two columns");
+    }
     if (quiz.document > quiz.viewport || quiz.question.right > quiz.viewport + 1 || quiz.answers.right > quiz.viewport + 1) {
       throw new Error(device.name + ": quiz content overflows viewport " + JSON.stringify(quiz));
     }
@@ -135,6 +152,10 @@ try {
         results.cards.length !== expectedQuestions ||
         results.cards.some(rect => rect.left < -1 || rect.right > results.viewport + 1)) {
       throw new Error(device.name + ": Results/review layout failed " + JSON.stringify(results));
+    }
+    if (device.width >= 768) {
+      const reviewColumns = await page.locator("#answer-review-list").evaluate(node => getComputedStyle(node).gridTemplateColumns.split(" ").length);
+      if (reviewColumns < 2) throw new Error(device.name + ": tablet Results review did not use two columns");
     }
     if (errors.length) throw new Error(device.name + ": browser errors: " + errors.join("; "));
     console.log("PASS " + device.name + " — " + device.width + "×" + device.height + "; Home, Settings, Quiz and Results");

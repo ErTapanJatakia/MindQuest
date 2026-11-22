@@ -138,3 +138,51 @@ body{background:radial-gradient(ellipse at 50% -15%,color-mix(in srgb,var(--acce
 /* Discourage text selection and long-press copy across all application screens. */
 html,body,.app-shell,.launch-splash,.app-shell *,.launch-splash *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 input,textarea,[contenteditable="true"],[contenteditable=""]{-webkit-user-select:text;user-select:text}
+
+
+/* Tablet-first layout: use available width instead of stretching a phone-sized column. */
+@media (min-width:760px) {
+  .app-shell{width:min(calc(100% - 64px),1180px);padding-block:22px 30px}
+  .topbar{padding-bottom:22px}
+  #home-view.active{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.8fr);gap:22px;align-content:start}
+  #home-view .hero{grid-column:1;grid-row:1 / span 3;min-height:500px;padding:42px 40px;display:flex;flex-direction:column;justify-content:center}
+  #home-view .hero-orbit{display:none}
+  #home-view .hero h1{max-width:680px;font-size:clamp(42px,5vw,64px)}
+  #home-view .home-stats{grid-column:2;grid-row:1;grid-template-columns:1fr;gap:14px;margin:0}
+  #home-view .stat-card{padding:22px}
+  #home-view .offline-note{grid-column:2;grid-row:2;align-self:start;margin:4px 0;text-align:left}
+  #home-view .storage-warning{grid-column:2;grid-row:3}
+  #settings-view.active{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;align-content:start}
+  #settings-view>.eyebrow,#settings-view>h1,#settings-view>.settings-intro,
+  #settings-view>.accessibility-settings,#settings-view>#settings-save,
+  #settings-view>#settings-help,#settings-view>#settings-back{grid-column:1 / -1}
+  #settings-view>.field-label{margin-top:16px;align-self:end}
+  #settings-view>select,#settings-view>.searchable-select{width:100%;min-width:0}
+  #quiz-view.active{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:30px;align-content:start}
+  #quiz-view>.quiz-meta,#quiz-view>.streak-indicator,#quiz-view>.progress-track,
+  #quiz-view>.question-tags,#quiz-view>#question-title,#quiz-view>#feedback,
+  #quiz-view>#next-button{grid-column:1 / -1}
+  #quiz-view #answers{grid-column:1 / -1;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  #quiz-view #question-title{max-width:1000px}
+  #result-view.active{display:grid;grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);column-gap:30px;align-content:start}
+  #result-view>.eyebrow,#result-view>#result-title,#result-view>.score-ring,
+  #result-view>#result-message,#result-view>.result-actions{grid-column:1}
+  #result-view>.answer-review{grid-column:2;grid-row:1 / span 5;margin-top:0}
+  #answer-review-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  #answer-review-list>.review-card{margin:0;min-width:0}
+  #result-view .result-actions{align-self:start}
+  .legal-view{max-width:1040px;margin-inline:auto}
+}
+@media (min-width:760px) and (orientation:landscape) and (max-height:800px) {
+  .app-shell{padding-block:10px 20px}
+  #home-view .hero{min-height:390px;padding:28px 36px}
+  #home-view .hero h1{font-size:clamp(38px,4.2vw,54px)}
+  #quiz-view #answers{gap:10px}
+  #quiz-view .answer-option{min-height:54px}
+  .splash-dismiss{min-height:68vh}
+}
+@media (min-width:1100px) {
+  .app-shell{width:min(calc(100% - 96px),1280px)}
+  #settings-view.active{column-gap:40px}
+  #quiz-view.active{column-gap:40px}
+}
