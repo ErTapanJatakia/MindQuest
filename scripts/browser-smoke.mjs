@@ -1,9 +1,10 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, resolve, sep } from "node:path";
+import { dirname, extname, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
-const root = resolve("app");
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "../app");
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -43,7 +44,25 @@ try {
   page.on("request", request => {
     if (new URL(request.url()).origin !== "http://127.0.0.1:4173") externalRequests.push(request.url());
   });
-  await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  const navigationResponse = await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  if (!(await page.locator(".app-shell").count())) {
+    throw new Error("Browser smoke server did not serve the app shell (HTTP " + navigationResponse?.status() + ", URL " + page.url() + "). Check resolved app root: " + root + ".");
+  }
+  const copyProtection = await page.evaluate(() => {
+    const shell = document.querySelector(".app-shell");
+    const copyEvent = new ClipboardEvent("copy", { bubbles: true, cancelable: true });
+    const contextEvent = new MouseEvent("contextmenu", { bubbles: true, cancelable: true });
+    document.dispatchEvent(copyEvent);
+    shell.dispatchEvent(contextEvent);
+    const shortcut = new KeyboardEvent("keydown", { key: "c", ctrlKey: true, bubbles: true, cancelable: true });
+    document.dispatchEvent(shortcut);
+    return { copyPrevented: copyEvent.defaultPrevented, contextMenuPrevented: contextEvent.defaultPrevented,
+      shortcutPrevented: shortcut.defaultPrevented, selection: getComputedStyle(shell).userSelect };
+  });
+  if (!copyProtection.copyPrevented || !copyProtection.contextMenuPrevented ||
+      !copyProtection.shortcutPrevented || copyProtection.selection !== "none") {
+    throw new Error("App-wide copy deterrence failed: " + JSON.stringify(copyProtection));
+  }
   if (!(await page.locator(".app-shell").evaluate(node => node.inert &&
       node.getAttribute("aria-hidden") === "true"))) {
     throw new Error("Launch splash did not isolate the application from assistive technology");
