@@ -162,9 +162,9 @@ jobs:
           errors = [item for item in results if item.get("level") == "error"]
 
           gradle = Path("android/app/build.gradle.kts").read_text()
-          target = re.search(r"^\\s*targetSdk\\s*=\\s*(\\d+)", gradle, re.MULTILINE)
+          target = re.search(r"^\s*targetSdk\s*=\s*(\d+)", gradle, re.MULTILINE)
           manifest = Path("android/app/src/main/AndroidManifest.xml").read_text()
-          activities = re.findall(r"<activity\\b([^>]*)>([\\s\\S]*?)</activity>", manifest)
+          activities = re.findall(r"<activity\b([^>]*)>([\s\S]*?)</activity>", manifest)
           launcher_ok = (
               len(activities) == 1
               and 'android:exported="true"' in activities[0][0]
