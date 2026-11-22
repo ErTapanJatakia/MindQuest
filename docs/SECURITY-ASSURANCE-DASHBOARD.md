@@ -1,6 +1,6 @@
 # MindQuest Security Assurance Dashboard
 
-**Programme status:** Scanner baseline validated on PR #80; repository-wide source review remains in progress; APK-level verification is a separate release gate.  
+**Programme status:** Security scanner baseline operational on `main`; post-merge Security Assurance run passed on 2026-11-22; repository-wide source review remains in progress; APK-level verification is a separate release gate.  
 **Application:** MindQuest — offline-first Android app with a bundled HTML/CSS/JavaScript runtime and Kotlin WebView wrapper.  
 **Android application ID:** `com.mindquest.app`  
 **Scope:** Entire repository, application source, Android wrapper, dependencies, build configuration, CI/CD and distributable artefacts.
@@ -15,7 +15,7 @@
 | B — SAST | JavaScript/TypeScript and Kotlin source | CodeQL security-extended for JavaScript/TypeScript; Semgrep, DevSkim and MobSFscan for broader source coverage | Initial PR scan completed; no new alerts in changed files |
 | C — Dependency security | Gradle and any supported package manifests/lockfiles | Dependency Review on PRs; OSV-Scanner; Trivy | Initial scans completed; OSV reports no supported package source/lockfile |
 | D — Android hardening | Manifest, WebView settings, navigation, lifecycle, APK permissions and bundled assets | Existing custom audits + CodeQL; final APK inspection | Existing checks; deeper review in progress |
-| E — Supply chain | Source inventory, SBOM and repository security posture | Syft CycloneDX SBOM; OpenSSF Scorecard | SBOM generated; Scorecard runs on main after merge |
+| E — Supply chain | Source inventory, SBOM and repository security posture | Syft CycloneDX SBOM; OpenSSF Scorecard; Dependabot | SBOM generated; Scorecard successfully published on main (4.1 snapshot); Dependabot merged; follow-up inventory remains open |
 | F — Runtime and regression | Offline isolation, CSP, persistence, gameplay, accessibility, responsive layouts and lifecycle | Existing project CI suite | Existing CI; review findings to be correlated |
 | G — Remediation verification | Triage, fix, regression test, scanner rerun and closure evidence | Pull requests and this dashboard | Initial scanner triage documented; no new alerts in PR-changed lines |
 | H — Release evidence | Exact candidate APK, package identity, permissions, hashes and manual acceptance | Gated Android validation + owner testing | Separate release gate |
@@ -31,6 +31,7 @@
 | Trivy | Filesystem vulnerability, secret and misconfiguration scan | Repository manifests, configuration and detectable secrets | Free open-source CLI/action; SARIF |
 | OSV-Scanner | Known vulnerable dependency detection | Supported lockfiles/manifests, including Gradle ecosystems where dependency metadata is available | Free open-source CLI |
 | Dependency Review | Detect vulnerable dependency changes in pull requests | PR dependency changes | GitHub-maintained action |
+| Dependabot | Automated dependency update proposals | Gradle build plugins and GitHub Actions | Weekly update PRs; manual review and merge only |
 | Syft | Software Bill of Materials | Source/dependency inventory | CycloneDX JSON artifact |
 | OpenSSF Scorecard | Repository and supply-chain hygiene | Public GitHub repository | Free open-source action |
 
@@ -40,7 +41,9 @@
 - Gradle dependency declarations and the Gradle wrapper distribution must be reviewed; dependency locking and verification are not assumed to exist.
 - OSV and Trivy coverage depends on supported manifests, lockfiles and package metadata. Their reports must be checked for skipped/unresolved inputs.
 - Syft's SBOM is an inventory, not a vulnerability verdict.
-- Scorecard measures repository practices, not application runtime security.
+- Scorecard measures repository practices, not application runtime security. The first successful main-branch snapshot scored 4.1; several findings are repository configuration or release-lifecycle gaps, not application vulnerabilities.
+- Dependabot configuration was merged in PR #82 after that 4.1 Scorecard snapshot; a later main-branch run is required to verify the Dependency-Update-Tool improvement.
+- The Gradle plugin and wrapper dependency graph still needs a resolved, reviewable inventory; the source SBOM's zero package components is not sufficient evidence.
 - CodeQL/Semgrep/Trivy results may overlap. Deduplicate by root cause, affected component and CWE before remediation.
 - No DAST/API scanner is enabled: the product intentionally has no backend or network API. Do not introduce an external test target or network dependency merely to satisfy a tool catalogue.
 - MobSFscan is enabled for source-level Android/Kotlin/XML and hybrid web checks. The full MobSF framework's APK-level and dynamic-analysis stages remain separate: APK scanning requires a completed Android build artifact, while dynamic analysis requires a controlled Android runtime.
@@ -54,6 +57,7 @@
 - **OSV-Scanner:** the repository contains no supported package source/lockfile for OSV to scan. The workflow now records this as a coverage notice rather than claiming a clean scan or failing with an empty SARIF. Trivy and PR Dependency Review remain enabled.
 - **Syft:** generated a valid CycloneDX SBOM with zero package components. This reflects the absence of detected package manifests/lockfiles; it is not an inventory of every bundled application asset.
 - **CodeQL:** JavaScript/TypeScript security-extended analysis completed successfully. Kotlin extraction is not claimed: the earlier Android Gradle autobuild could not resolve plugin dependencies on the runner. Kotlin is covered by Semgrep, DevSkim, MobSFscan and manual review.
+- **OpenSSF Scorecard:** the first main-branch run failed only at publishing because `security-events: write` was declared globally. PR #81 moved SARIF write permissions to the individual scanner jobs. The subsequent main-branch run (commit `2c859356c9a7ae0dd5265c1d9dd59d99f1435699`) completed successfully, published its report and scored **4.1**. It reported zero known unfixed vulnerabilities, but highlighted unpinned workflow/tool dependencies, missing main-branch protection, the obsolete wrapper-bootstrap workflow's top-level `contents: write`, no fuzzing integration, no signed release, and no dependency-update tool at the time of that scan. PR #82 subsequently added Dependabot; this needs a fresh Scorecard run.
 
 
 ### Exception and coverage register
@@ -66,7 +70,11 @@
 | DevSkim DS172411 (setTimeout callback) | False positive | Static function callback, not string evaluation or untrusted input | Retain rationale; no global rule suppression |
 | OSV no package sources | Coverage limitation | No supported package lockfile was present; scanner completion is not a clean dependency verdict | Add dependency lockfiles if runtime/build dependency declarations are introduced; inspect Gradle plugin versions and wrapper separately |
 | Syft zero package components | Coverage limitation | Source scan did not identify package components; bundled source assets are not equivalent to package inventory | Generate an APK-level SBOM at release gate and reconcile it with source inventory |
-| OpenSSF Scorecard skipped on PR | Expected workflow scope | Scorecard job is intentionally main-branch-only | Confirm scheduled/push run after merge |
+| OpenSSF Scorecard skipped on PR | Expected workflow scope | Scorecard job is intentionally main-branch-only; main run now succeeds and publishes SARIF | Keep main/scheduled scan and review each snapshot |
+| Scorecard Token-Permissions | Repository hardening item | Initial report identified top-level `contents: write` in the one-time Gradle wrapper bootstrap workflow | Retire the now-obsolete bootstrap workflow; re-run Scorecard |
+| Scorecard Pinned-Dependencies | Supply-chain hardening item | Scorecard found workflow actions and npm/pip commands not pinned by immutable versions/hashes | Pin action references and tool versions in a dedicated reviewed change |
+| Scorecard Branch-Protection | Repository settings gap | Scorecard reports main branch protection is not enabled; connected GitHub integration cannot read/update the admin-only setting | Owner to configure and verify GitHub branch protection/ruleset |
+| Scorecard Fuzzing / Signed-Releases | Lifecycle maturity items | No fuzzing integration or signed release is currently detected; no public release has been created | Evaluate property-based tests; implement signed release attestations when release process is established |
 
 ## Source review checklist
 
@@ -90,6 +98,7 @@ The review must cover every tracked source/configuration file, not only files ch
 
 ### Repository and delivery
 - [ ] GitHub Actions permissions, action pinning, untrusted PR handling and artifact retention
+- [ ] Branch protection / repository ruleset on `main`
 - [ ] Secret exposure, generated files, release/signing boundaries and branch protection
 - [ ] SBOM completeness, dependency provenance and known-vulnerability exposure
 - [ ] Privacy policy, security policy, accessibility statement and product claims consistency
@@ -112,7 +121,10 @@ The following source-level pass has inspected the HTML entry point, core JavaScr
 | MQ-PRIV-001 | Direct developer contact details are embedded in public in-app legal pages and shipped assets | Potential privacy exposure; owner intent required | Medium | Needs owner confirmation; no automatic deletion |
 | MQ-AND-001 | WebView loads local content through `file://` with `allowFileAccess=true` | Hardening opportunity; not a confirmed vulnerability | Low / Medium | Evaluate WebViewAssetLoader migration and compatibility before changing |
 | MQ-CSP-001 | CSP `style-src` allows `'unsafe-inline'` | Defence-in-depth review item | Low / Medium | Determine whether inline style allowance can be narrowed safely |
-| MQ-SCA-001 | Gradle dependency graph/lockfile coverage is incomplete; no npm lockfile is present | Coverage gap, not a vulnerability finding | Medium | Verify Dependency Review, Trivy, OSV and SBOM coverage; consider Gradle dependency locking |
+| MQ-SCA-001 | Gradle dependency graph/lockfile coverage is incomplete; no npm lockfile is present | Coverage gap, not a vulnerability finding | Medium | Dependabot is enabled; resolve and record Gradle plugin/runtime dependency graph; assess lockfile and verification metadata |
+| MQ-CI-001 | One-time Gradle wrapper bootstrap workflow grants top-level `contents: write` and pushes directly to `main` | CI/CD least-privilege risk; workflow is obsolete because verified wrapper files already exist | Medium | Retire workflow; normal Android CI continues validating the checked-in wrapper |
+| MQ-SUP-001 | GitHub Actions and selected npm/pip tools are not pinned to immutable revisions/versions | Supply-chain reproducibility and tag-movement risk | Medium | Pin all workflow actions to verified full commit SHAs and pin scanner/tool versions where supported |
+| MQ-REPO-001 | Scorecard reports no branch protection on `main` | Repository governance gap | High | Owner to configure PR/status-check protections; verify with a fresh Scorecard report |
 
 No confirmed exploitable vulnerability is recorded from this initial manual pass. Scanner results and deeper review of the complete repository, build chain and release artefact remain outstanding.
 
@@ -157,4 +169,4 @@ A scanner alert is a lead, not an automatically confirmed vulnerability. Each fi
 - [Repository Code Scanning](https://github.com/ErTapanJatakia/MindQuest/security/code-scanning)
 - [Repository Actions](https://github.com/ErTapanJatakia/MindQuest/actions)
 
-**Next checkpoint:** Run the new workflows on the default branch, inspect all scanner output (including skipped coverage), then complete the source review module-by-module and publish a finding register with remediation status.
+**Next checkpoint:** Re-run Scorecard after Dependabot merge and bootstrap-workflow retirement; address action/tool pinning; owner configures main-branch protection; complete the source review module-by-module; then execute the gated APK validation and reconcile the APK-level inventory.
