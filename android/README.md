@@ -4,7 +4,7 @@ The Android module is a minimal Kotlin Activity hosting the locally bundled game
 
 ## Current configuration
 
-- Application ID: `app.mindquest`
+- Application ID: `com.mindquest.app`
 - Minimum SDK: 23
 - Compile / target SDK: 35
 - Java / Kotlin target: 17
@@ -14,7 +14,7 @@ The Android module is a minimal Kotlin Activity hosting the locally bundled game
 
 ## Build prerequisites
 
-Install JDK 17 and Android SDK Platform 35. The project pins Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21; use Gradle 8.9 for this configuration. The official Gradle 8.9 wrapper is now committed, so a fresh checkout has the project-pinned Gradle launcher and distribution configuration. The Android build itself has not yet been executed. `android/gradle.properties` establishes UTF-8/heap, AndroidX and Kotlin style defaults.
+Install JDK 17 and Android SDK Platform 35. The project pins Android Gradle Plugin 8.7.3 and Kotlin Android plugin 2.0.21; use Gradle 8.9 for this configuration. The official Gradle 8.9 wrapper is now committed, so a fresh checkout has the project-pinned Gradle launcher and distribution configuration. The Android build itself has not yet been executed in the current security-assurance cycle; an earlier debug APK workflow is recorded in the QA test plan, but the present toolchain candidate still requires its gated build and merged-manifest validation. `android/gradle.properties` establishes UTF-8/heap, AndroidX and Kotlin style defaults.
 
 ### Verified Gradle wrapper
 
