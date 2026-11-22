@@ -151,8 +151,9 @@ jobs:
             exit 1
           fi
 
-          python - <<'PY'
+          SCAN_STATUS="$scan_status" python - <<'PY'
           import json
+          import os
           import re
           import sys
           from pathlib import Path
@@ -160,6 +161,7 @@ jobs:
           report = json.loads(Path("mobsfscan-results.sarif").read_text())
           results = [item for run in report.get("runs", []) for item in run.get("results", [])]
           errors = [item for item in results if item.get("level") == "error"]
+          scan_status = int(os.environ["SCAN_STATUS"])
 
           gradle = Path("android/app/build.gradle.kts").read_text()
           target = re.search(r"^\s*targetSdk\s*=\s*(\d+)", gradle, re.MULTILINE)
