@@ -1,6 +1,6 @@
 # MindQuest Security Assurance Dashboard
 
-**Programme status:** Baseline configuration proposed; awaiting CI execution and source-review findings.  
+**Programme status:** Scanner baseline validated on PR #80; repository-wide source review remains in progress; APK-level verification is a separate release gate.  
 **Application:** MindQuest — offline-first Android app with a bundled HTML/CSS/JavaScript runtime and Kotlin WebView wrapper.  
 **Android application ID:** `com.mindquest.app`  
 **Scope:** Entire repository, application source, Android wrapper, dependencies, build configuration, CI/CD and distributable artefacts.
@@ -12,19 +12,19 @@
 | Gate | Scope | Evidence / control | Status |
 |---|---|---|---|
 | A — Repository baseline | Source inventory, architecture, data flows, trust boundaries, secrets and configuration | Manual review + repository checks | In progress |
-| B — SAST | JavaScript/TypeScript and Kotlin source | CodeQL security-extended; Semgrep Community | Configured; first run pending |
-| C — Dependency security | Gradle and any supported package manifests/lockfiles | Dependency Review on PRs; OSV-Scanner; Trivy | Configured; first run pending |
+| B — SAST | JavaScript/TypeScript and Kotlin source | CodeQL security-extended for JavaScript/TypeScript; Semgrep, DevSkim and MobSFscan for broader source coverage | Initial PR scan completed; no new alerts in changed files |
+| C — Dependency security | Gradle and any supported package manifests/lockfiles | Dependency Review on PRs; OSV-Scanner; Trivy | Initial scans completed; OSV reports no supported package source/lockfile |
 | D — Android hardening | Manifest, WebView settings, navigation, lifecycle, APK permissions and bundled assets | Existing custom audits + CodeQL; final APK inspection | Existing checks; deeper review in progress |
-| E — Supply chain | Source inventory, SBOM and repository security posture | Syft CycloneDX SBOM; OpenSSF Scorecard | Configured; first run pending |
+| E — Supply chain | Source inventory, SBOM and repository security posture | Syft CycloneDX SBOM; OpenSSF Scorecard | SBOM generated; Scorecard runs on main after merge |
 | F — Runtime and regression | Offline isolation, CSP, persistence, gameplay, accessibility, responsive layouts and lifecycle | Existing project CI suite | Existing CI; review findings to be correlated |
-| G — Remediation verification | Triage, fix, regression test, scanner rerun and closure evidence | Pull requests and this dashboard | Pending findings |
+| G — Remediation verification | Triage, fix, regression test, scanner rerun and closure evidence | Pull requests and this dashboard | Initial scanner triage documented; no new alerts in PR-changed lines |
 | H — Release evidence | Exact candidate APK, package identity, permissions, hashes and manual acceptance | Gated Android validation + owner testing | Separate release gate |
 
 ## Configured free / open-source controls
 
 | Tool | Purpose | MindQuest fit | Operating model |
 |---|---|---|---|
-| GitHub CodeQL | Semantic SAST and security queries | JavaScript/TypeScript and Kotlin | GitHub-hosted workflow; SARIF code scanning |
+| GitHub CodeQL | Semantic SAST and security queries | JavaScript/TypeScript (Kotlin extraction deferred due Android Gradle autobuild dependency-resolution failure) | GitHub-hosted workflow; SARIF code scanning |
 | Semgrep Community Edition | Rule-based SAST | JavaScript and Android/Kotlin source patterns | Self-hosted CLI in GitHub Actions; community rules |\n| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |\n| MobSFscan | Mobile-source SAST | Kotlin, Android XML and hybrid web source | Free open-source CLI pinned to 1.2.0; SARIF |
 | Trivy | Filesystem vulnerability, secret and misconfiguration scan | Repository manifests, configuration and detectable secrets | Free open-source CLI/action; SARIF |
 | OSV-Scanner | Known vulnerable dependency detection | Supported lockfiles/manifests, including Gradle ecosystems where dependency metadata is available | Free open-source CLI |
@@ -51,7 +51,20 @@
 - **DevSkim:** seven findings were reviewed. Six `DS137138` alerts are false positives on the Android XML namespace URI (`http://schemas.android.com/apk/res/android`), not network requests. One `DS172411` note is a false positive on a static function callback passed to `setTimeout`, not a string or untrusted value. Preserve the rule and rationale; do not suppress the whole rule globally.
 - **OSV-Scanner:** the repository contains no supported package source/lockfile for OSV to scan. The workflow now records this as a coverage notice rather than claiming a clean scan or failing with an empty SARIF. Trivy and PR Dependency Review remain enabled.
 - **Syft:** generated a valid CycloneDX SBOM with zero package components. This reflects the absence of detected package manifests/lockfiles; it is not an inventory of every bundled application asset.
-- **CodeQL:** the initial combined JavaScript/Kotlin extraction could not complete the Android Gradle autobuild because Gradle plugin dependencies could not be resolved on the runner. The workflow has been narrowed to JavaScript/TypeScript semantic analysis; Kotlin remains covered by Semgrep, DevSkim and manual review. Do not represent Kotlin as CodeQL-scanned.
+- **CodeQL:** JavaScript/TypeScript security-extended analysis completed successfully. Kotlin extraction is not claimed: the earlier Android Gradle autobuild could not resolve plugin dependencies on the runner. Kotlin is covered by Semgrep, DevSkim, MobSFscan and manual review.
+
+
+### Exception and coverage register
+
+| Item | Classification | Disposition / evidence | Closure condition |
+|---|---|---|---|
+| Android launcher exported activity (Semgrep) | Expected Android platform requirement | Sole exported activity has only MAIN/LAUNCHER; no privileged JS bridge or privileged intent handler is exposed | Retain; re-check merged APK manifest at release gate |
+| StrandHogg 2.0 source heuristic (MobSFscan) | Conditional source-only false positive | Gradle config declares targetSdk 35; source scan cannot resolve the effective merged manifest | Release workflow must confirm final APK targetSdkVersion 35 and inspect merged manifest before release |
+| DevSkim DS137138 (Android XML namespace URI) | False positive | URI is an XML namespace identifier, not an outbound network request | Retain rationale; no global rule suppression |
+| DevSkim DS172411 (setTimeout callback) | False positive | Static function callback, not string evaluation or untrusted input | Retain rationale; no global rule suppression |
+| OSV no package sources | Coverage limitation | No supported package lockfile was present; scanner completion is not a clean dependency verdict | Add dependency lockfiles if runtime/build dependency declarations are introduced; inspect Gradle plugin versions and wrapper separately |
+| Syft zero package components | Coverage limitation | Source scan did not identify package components; bundled source assets are not equivalent to package inventory | Generate an APK-level SBOM at release gate and reconcile it with source inventory |
+| OpenSSF Scorecard skipped on PR | Expected workflow scope | Scorecard job is intentionally main-branch-only | Confirm scheduled/push run after merge |
 
 ## Source review checklist
 
