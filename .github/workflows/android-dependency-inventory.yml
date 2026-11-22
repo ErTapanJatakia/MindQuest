@@ -1,6 +1,9 @@
 name: MindQuest Android Dependency Inventory
 
 on:
+  push:
+    branches:
+      - "security/gradle-dependency-inventory"
   pull_request:
     paths:
       - "android/**"
