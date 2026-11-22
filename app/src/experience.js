@@ -14,6 +14,19 @@
     paper: { label:"Paper", bg:"#f3f0e8", panel:"#fffdf7", panel2:"#e8e2d5", text:"#252b32", muted:"#5c6670", accent:"#176c60", accent2:"#9b5a18", line:"#c9c2b4", hero1:"#e4eee7", hero2:"#dbe5e7" }
   };
 
+  // Discourage casual copying of application content across every app view.
+  // This is a UI deterrent, not a security boundary against browser tools or screenshots.
+  document.addEventListener("copy", event => event.preventDefault(), true);
+  document.addEventListener("cut", event => event.preventDefault(), true);
+  document.addEventListener("contextmenu", event => event.preventDefault(), true);
+  document.addEventListener("keydown", event => {
+    const key = event.key.toLowerCase();
+    const modifier = event.ctrlKey || event.metaKey;
+    const copyShortcut = modifier && ["a", "c", "x"].includes(key);
+    const legacyCopyShortcut = event.shiftKey && key === "insert";
+    if (copyShortcut || legacyCopyShortcut) event.preventDefault();
+  }, true);
+
   const root = document.documentElement;
   const read = (key, fallback) => {
     try { return localStorage.getItem(key) || fallback; } catch (_) { return fallback; }
