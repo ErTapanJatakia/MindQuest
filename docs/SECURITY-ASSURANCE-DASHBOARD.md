@@ -25,7 +25,7 @@
 | Tool | Purpose | MindQuest fit | Operating model |
 |---|---|---|---|
 | GitHub CodeQL | Semantic SAST and security queries | JavaScript/TypeScript and Kotlin | GitHub-hosted workflow; SARIF code scanning |
-| Semgrep Community Edition | Rule-based SAST | JavaScript and Android/Kotlin source patterns | Self-hosted CLI in GitHub Actions; community rules |\n| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |
+| Semgrep Community Edition | Rule-based SAST | JavaScript and Android/Kotlin source patterns | Self-hosted CLI in GitHub Actions; community rules |\n| Microsoft DevSkim | Security linting | JavaScript, Kotlin/Java and configuration patterns | Free open-source GitHub Action; SARIF |\n| MobSFscan | Mobile-source SAST | Kotlin, Android XML and hybrid web source | Free open-source CLI pinned to 1.2.0; SARIF |
 | Trivy | Filesystem vulnerability, secret and misconfiguration scan | Repository manifests, configuration and detectable secrets | Free open-source CLI/action; SARIF |
 | OSV-Scanner | Known vulnerable dependency detection | Supported lockfiles/manifests, including Gradle ecosystems where dependency metadata is available | Free open-source CLI |
 | Dependency Review | Detect vulnerable dependency changes in pull requests | PR dependency changes | GitHub-maintained action |
@@ -41,7 +41,7 @@
 - Scorecard measures repository practices, not application runtime security.
 - CodeQL/ Semgrep/Trivy results may overlap. Deduplicate by root cause, affected component and CWE before remediation.
 - No DAST/API scanner is enabled: the product intentionally has no backend or network API. Do not introduce an external test target or network dependency merely to satisfy a tool catalogue.
-- Mobile SaaS products such as Appknox, NowSecure and zScan are not part of the free baseline. MobSF can be evaluated separately for local APK static analysis; dynamic testing still requires a controlled Android runtime.
+- MobSFscan is enabled for source-level Android/Kotlin/XML and hybrid web checks. The full MobSF framework's APK-level and dynamic-analysis stages remain separate: APK scanning requires a completed Android build artifact, while dynamic analysis requires a controlled Android runtime.
 - Commercial offerings and free-tier SaaS tools requiring account/API credentials are excluded until the owner explicitly approves their terms, data handling and any credentials.
 
 ### First scanner-run triage (PR validation)
