@@ -16,7 +16,7 @@ if (activities.length === 1) {
   const [_, attributes, body] = activities[0];
   if (!/android:exported="true"/u.test(attributes)) failures.push("Launcher activity must declare exported=true");
   if (!/android:name="\.MainActivity"/u.test(attributes)) failures.push("Unexpected launcher activity declaration");
-  if (!/android:screenOrientation="portrait"/u.test(attributes)) failures.push("Launcher activity must be locked to portrait orientation");
+  if (!/android:screenOrientation="sensor"/u.test(attributes)) failures.push("Launcher activity must support sensor-driven portrait and landscape orientation");
   if (!/android:configChanges="orientation\|screenSize\|keyboardHidden"/u.test(attributes)) failures.push("Expected configuration-change handling is missing");
   if (!/android:windowSoftInputMode="adjustResize"/u.test(attributes)) failures.push("Soft keyboard must resize the application viewport");
   if (!/<action android:name="android\.intent\.action\.MAIN"\s*\/>/u.test(body) ||
