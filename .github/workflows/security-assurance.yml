@@ -90,6 +90,30 @@ jobs:
           sarif_file: semgrep.sarif
           category: semgrep-community
 
+
+  devskim:
+    name: Microsoft DevSkim security lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Scan source and configuration
+        uses: microsoft/DevSkim-Action@v1
+        with:
+          directory-to-scan: .
+          should-scan-archives: false
+          output-filename: devskim-results.sarif
+          ignore-globs: "**/.git/**,**/node_modules/**,**/build/**,**/.gradle/**"
+
+      - name: Upload DevSkim findings
+        if: always() && hashFiles('devskim-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: devskim-results.sarif
+          category: microsoft-devskim
+
   trivy:
     name: Trivy filesystem security scan
     runs-on: ubuntu-24.04
