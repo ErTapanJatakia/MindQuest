@@ -1,5 +1,19 @@
 # MindQuest Security Assurance Dashboard
 
+## Gate 2 update — 2026-11-24
+
+The manually gated **MindQuest Android Release Validation** workflow [run 45262565854](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45262565854) completed successfully on branch `maintenance/android-kotlin-compiler-options`, commit `2329025d7ecb86cb25ae1e355f27c2cb2243dbc3`. The package-validation job ran and the guard job was skipped, confirming that the required `feature_scope_complete=true` gate was enabled for this dispatch.
+
+- The stacked candidate includes PR [#116](https://github.com/ErTapanJatakia/MindQuest/pull/116) (AGP 8.11.1, Kotlin Gradle Plugin 2.2.21, Gradle 8.14.8 with the official distribution SHA-256 pin) and PR [#117](https://github.com/ErTapanJatakia/MindQuest/pull/117) (typed Kotlin `compilerOptions`, JVM 17). Both PRs remain open and unmerged.
+- Gradle/Kotlin compilation and debug APK assembly succeeded. APK inspection confirmed application ID `com.mindquest.app`, versionCode `1`, versionName `0.1.0`, minSdk `23`, targetSdk `35`, one exported MAIN/LAUNCHER component only, no manifest permissions, and required offline assets present.
+- The short-retention debug artifact is [mindquest-gate2-debug-validation.zip](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45262565854/artifacts/14860982111). It is a debug validation package, not a production-signed release.
+- PR #117's Web Validation, dependency review and configured security checks completed successfully; OpenSSF Scorecard was skipped on the PR as designed. This does not establish zero vulnerabilities or complete security assurance.
+
+This update supersedes older statements below that feature-gated APK validation remained unexecuted. Package inspection is now complete on the candidate PR stack; broader assurance gaps remain open.
+
+Physical-device functional/offline/lifecycle acceptance and TalkBack/screen-reader/switch-access checks remain open for project-owner verification against the exact candidate. Full tracked-file review, independent publisher checksum/signature verification and complete Gradle configuration-resolution coverage, APK-level SBOM reconciliation, WebView/CSP hardening assessment, and branch-protection/contact-disclosure decisions also remain open. No production signing, deployment, release publication or store submission is authorized.
+
+
 **Programme status (2026-11-23):** The latest application/toolchain commit on `main` is `8310d670af4c9041144c1c3d81d4a5e42fab5ebe` (PR #113). PR #114 was a documentation-only reconciliation merged as `17b5a6073a2ad3ff1d76efe0b04a0fa21f3402f6`. Its exact-head Web Validation [run 45131524000](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45131524000) passed all 41 steps; Security Assurance [run 45131523997](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45131523997) passed all scanner/SBOM jobs (Scorecard skipped on PR as designed); Dependency Review [run 45131523989](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45131523989) passed. Post-merge mainline Security Assurance [run 45133096884](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45133096884) passed all eight jobs and Web Validation [run 45133096812](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45133096812) passed all 41 steps. Latest OpenSSF Scorecard is 6.2 on `17b5a6073a2ad3ff1d76efe0b04a0fa21f3402f6` (SAST 18/29 sampled commits; CI-Tests 29/29 merged PRs). The docs-only merge did not alter application/runtime code. Full tracked-file review and independent Gradle plugin/transitive-artifact provenance/configuration coverage remain open; APK-level verification remains feature-completion-gated.
 **Application:** MindQuest — offline-first Android app with a bundled HTML/CSS/JavaScript runtime and Kotlin WebView wrapper.  
 **Android application ID:** `com.mindquest.app`  
