@@ -84,10 +84,10 @@ requirePattern("appGradle", /applicationId\s*=\s*"com\.mindquest\.app"/u, "Andro
 requirePattern("appGradle", /minSdk\s*=\s*23/u, "Minimum Android API must remain 23");
 requirePattern("appGradle", /targetSdk\s*=\s*35/u, "Target Android API must remain 35");
 requirePattern("appGradle", /assets\.srcDir\("\.\.\/\.\.\/app"\)/u, "APK assets must use the canonical repository app directory");
-requirePattern("rootGradle", /com\.android\.application"\) version "8\.7\.3"/u, "Android Gradle Plugin version must remain pinned");
-requirePattern("rootGradle", /org\.jetbrains\.kotlin\.android"\) version "2\.0\.21"/u, "Kotlin Android plugin version must remain pinned");
+requirePattern("rootGradle", /com\.android\.application"\) version "8\.11\.1"/u, "Android Gradle Plugin version must remain pinned");
+requirePattern("rootGradle", /org\.jetbrains\.kotlin\.android"\) version "2\.2\.21"/u, "Kotlin Android plugin version must remain pinned");
 requirePattern("gradleProperties", /android\.useAndroidX=true/u, "AndroidX Gradle setting must remain explicit");
-requirePattern("wrapper", /distributionUrl=.*gradle-8\.9-bin\.zip/u, "Gradle wrapper distribution must remain pinned to 8.9");
+requirePattern("wrapper", /distributionUrl=.*gradle-8\.14\.8-bin\.zip/u, "Gradle wrapper distribution must remain pinned to 8.14.8");
 
 if (failures.length) {
   for (const failure of failures) console.error("FAIL: " + failure);
