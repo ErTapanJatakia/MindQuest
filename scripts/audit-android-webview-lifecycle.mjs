@@ -87,7 +87,7 @@ requirePattern("appGradle", /assets\.srcDir\("\.\.\/\.\.\/app"\)/u, "APK assets 
 requirePattern("rootGradle", /com\.android\.application"\) version "8\.11\.1"/u, "Android Gradle Plugin version must remain pinned");
 requirePattern("rootGradle", /org\.jetbrains\.kotlin\.android"\) version "2\.2\.21"/u, "Kotlin Android plugin version must remain pinned");
 requirePattern("gradleProperties", /android\.useAndroidX=true/u, "AndroidX Gradle setting must remain explicit");
-requirePattern("wrapper", /distributionUrl=.*gradle-8\.14\.8-bin\.zip/u, "Gradle wrapper distribution must remain pinned to 8.9");
+requirePattern("wrapper", /distributionUrl=.*gradle-8\.14\.8-bin\.zip/u, "Gradle wrapper distribution must remain pinned to 8.14.8");
 
 if (failures.length) {
   for (const failure of failures) console.error("FAIL: " + failure);
