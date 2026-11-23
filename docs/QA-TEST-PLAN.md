@@ -1,5 +1,19 @@
 # MindQuest QA Test Plan
 
+## Gate 2 update — 2026-11-24
+
+The manually gated **MindQuest Android Release Validation** workflow [run 45262565854](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45262565854) completed successfully on branch `maintenance/android-kotlin-compiler-options`, commit `2329025d7ecb86cb25ae1e355f27c2cb2243dbc3`. The package-validation job ran and the guard job was skipped, confirming that the required `feature_scope_complete=true` gate was enabled for this dispatch.
+
+- The stacked candidate includes PR [#116](https://github.com/ErTapanJatakia/MindQuest/pull/116) (AGP 8.11.1, Kotlin Gradle Plugin 2.2.21, Gradle 8.14.8 with the official distribution SHA-256 pin) and PR [#117](https://github.com/ErTapanJatakia/MindQuest/pull/117) (typed Kotlin `compilerOptions`, JVM 17). Both PRs remain open and unmerged.
+- Gradle/Kotlin compilation and debug APK assembly succeeded. APK inspection confirmed application ID `com.mindquest.app`, versionCode `1`, versionName `0.1.0`, minSdk `23`, targetSdk `35`, one exported MAIN/LAUNCHER component only, no manifest permissions, and required offline assets present.
+- The short-retention debug artifact is [mindquest-gate2-debug-validation.zip](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45262565854/artifacts/14860982111). It is a debug validation package, not a production-signed release.
+- PR #117's Web Validation, dependency review and configured security checks completed successfully; OpenSSF Scorecard was skipped on the PR as designed. This does not establish zero vulnerabilities or complete security assurance.
+
+This update supersedes older statements below that no current Gate 2 APK had been built. The package inspection is CI evidence only and does not replace physical-device or assistive-technology acceptance.
+
+Physical-device functional/offline/lifecycle acceptance and TalkBack/screen-reader/switch-access checks remain open for project-owner verification against the exact candidate. Full tracked-file review, independent publisher checksum/signature verification and complete Gradle configuration-resolution coverage, APK-level SBOM reconciliation, WebView/CSP hardening assessment, and branch-protection/contact-disclosure decisions also remain open. No production signing, deployment, release publication or store submission is authorized.
+
+
 Last updated: 2026-11-23
 
 ## Current authoritative status — 2026-11-23
