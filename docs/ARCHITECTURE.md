@@ -1,40 +1,76 @@
-# Architecture decisions
+# MindQuest architecture and security boundaries
+
+**Current baseline:** 2026-11-23  
+**Android application ID:** `com.mindquest.app`
 
 ## Product shape
 
-MindQuest will ship as a self-contained Android application. The initial game experience is implemented with local HTML, CSS and JavaScript, hosted inside a minimal Android WebView shell. This keeps the game lightweight and makes the same UI straightforward to inspect and manually exercise during development. The Android wrapper is a packaging target, not a dependency on a hosted website.
+MindQuest is a self-contained Android application. The game UI is implemented in local HTML, CSS and JavaScript and hosted inside a minimal Kotlin Android WebView shell. The canonical web source is in `app/` and is bundled into the APK as local assets. The Android wrapper is a packaging target, not a dependency on a hosted website.
 
-## Runtime constraints
+## Runtime and trust boundaries
 
-- All production HTML, CSS, JavaScript, fonts, icons and question data are bundled in the APK.
-- No runtime CDN, remote font, remote script, analytics, advertising, login, API or network dependency.
-- WebView JavaScript is enabled only for the bundled local application. Do not expose a JavaScript bridge unless a reviewed native feature strictly requires it.
-- Disable cleartext traffic and unnecessary WebView capabilities; use the narrowest Android permissions possible.
-- Store preferences and best score locally. Do not store personal data because the MVP does not need it.
+- Production HTML, CSS, JavaScript, icons and question data are bundled locally.
+- The application is designed for offline use and does not require an account, backend, analytics SDK, advertising SDK, CDN, remote font, remote script, gameplay API or network connection.
+- The Android manifest currently declares no runtime permissions, disables backup and cleartext traffic, and exposes only the launcher activity.
+- WebView JavaScript and DOM storage are enabled for the bundled game. No JavaScript/native bridge is exposed.
+- WebView debugging, content access, file-origin cross-access, universal file-origin access, automatic JavaScript windows, multiple windows and mixed content are disabled.
+- Main-frame navigation is constrained to the bundled `file:///android_asset/index.html` entry point.
+- The current implementation still uses a `file://` asset origin with `allowFileAccess=true` to load APK assets. This is a documented hardening opportunity, not a confirmed vulnerability. Evaluate AndroidX WebViewAssetLoader only as a separately tested migration that preserves offline operation and API 23 compatibility.
+- The web entry point applies a restrictive CSP, including `connect-src 'none'`, `object-src 'none'` and local-only script/style/font sources. `style-src 'unsafe-inline'` remains for the theme engine's runtime CSS custom-property updates; do not remove it without a compatible refactor and regression evidence.
+- Preferences and best-score records are stored locally. The application does not need player identity or gameplay telemetry.
 
-## Localization model
+## Localization and content model
 
-The app maintains three separate language/content settings plus independent gameplay filters. The gameplay filters include category, difficulty and a configurable round length of 5, 10 or 15 questions (default 10). If the eligible pool is smaller than the selected length, the round uses every available question. Best-score records are scoped by region, category, difficulty and selected round length. Each stored record has exactly two integer fields, `score` and `total`; the reader rejects malformed shapes, non-positive totals, totals above the selected round length and scores outside the total.
+The product supports five independent interface locales, five question-bank regions and five question locales:
 
-The app maintains three separate settings:
+| Dimension | Supported values |
+|---|---|
+| Interface locale | `en-IN`, `en-US`, `ru-RU`, `es-ES`, `es-PE` |
+| Question region | `IN`, `RU`, `US`, `ES`, `PE` |
+| Question locale | `en-IN`, `en-US`, `ru-RU`, `es-ES`, `es-PE` |
 
-1. `interfaceLocale`: controls navigation, buttons, labels, help and feedback UI.
-2. `questionRegion`: chooses the regional content pool (`IN`, `RU`, `US`).
-3. `questionLocale`: selects the language variant for the selected question IDs.
+The three settings remain independent. Device locale may suggest only the initial interface locale.
 
-No setting is inferred from or forcibly coupled to another after initial setup. Device locale may be used only as a first-launch suggestion for `interfaceLocale`.
+The enabled runtime bank contains 250 stable question IDs (50 per region) and 1,250 localized records (five locales per ID). Each region has 13 Geography, 12 History, 12 Science and 13 Culture questions, with 15 easy, 20 medium and 15 hard questions.
 
-## Question data model
+Each question has a stable ID, region, category, difficulty and localized representations. The correct-answer identity is shared across locales; question, options and explanations are translated. The guarded activation path validates the complete bank, unique IDs, region quotas and locale coverage before making the expanded content available. Structural validators and evidence-register checks do not independently certify every factual claim or translation; human factual/answer-key and native-speaker review is recorded as owner-confirmed.
 
-Every conceptually unique question has a stable ID, region, category, difficulty, and a localized representation for each supported locale. All localized representations share the same answer identity and correct-answer key. Explanations are translated alongside the question and answer options. Runtime selection filters by region, category and difficulty, then renders the selected locale. Missing translations must be detected during content review; silently substituting a different question is not acceptable.
+## Gameplay state and persistence
 
-## Proposed Android packaging
+- Round lengths are 5, 10 or 15 questions.
+- Selection is filtered by region, category and difficulty; the question locale selects the displayed language variant.
+- Best-score records are scoped by region, category, difficulty and round length.
+- Persisted score records have exactly two integer fields, `score` and `total`; readers reject malformed shapes, non-positive totals, totals above the selected round length and scores outside the total.
+- Storage access is guarded; malformed or unavailable storage must not prevent core gameplay.
 
-Use a minimal native Android project with a WebView loading the bundled app from Android assets. Keep the app's web runtime offline and local. Android build tooling and SDK versions will be pinned after the initial wrapper review. Release signing material must remain outside Git and be supplied securely by the owner at release time.
+## Android build configuration
 
-## Quality strategy
+| Setting | Current value |
+|---|---|
+| Application ID / namespace | `com.mindquest.app` |
+| minSdk / compileSdk / targetSdk | 23 / 35 / 35 |
+| Java / Kotlin target | 17 / 17 |
+| Android Gradle Plugin | 8.7.3 |
+| Kotlin Android plugin | 2.0.21 |
+| Gradle Wrapper | 8.9 |
+| Wrapper distribution SHA-256 | `d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab` |
 
-- Source review and manual checks during feature implementation.
-- No CI workflows or CI runs until the feature-complete checkpoint.
-- At the final validation gate, introduce a focused CI suite and Android build validation.
-- Do not weaken or remove tests to force a pass. After three consecutive failures with the same approach, change the approach.
+The Gradle wrapper distribution checksum is pinned and covered by a source regression audit. A non-release dependency-inventory workflow resolved build/plugin dependency metadata without assembling an APK. Its generated verification metadata is not yet trusted or enforced: 235 components, 71 groups and 413 artifact entries were recorded, but hashes were generated by the same resolver and signature verification was disabled. Independent publisher provenance and configuration coverage remain open.
+
+The Kotlin/AGP/Gradle major-version Dependabot proposals are held together as a coordinated toolchain change; do not merge them independently or bypass the Gradle 8.9 compatibility guard.
+
+## Quality and delivery strategy
+
+Routine GitHub Actions validation is active and covers content structure, syntax, browser gameplay, localization, accessibility semantics, persistence, responsive behavior, offline isolation, source security audits, Android manifest/WebView source boundaries, dependency scanning and SBOM generation.
+
+The Android APK validation workflow is separate, manually dispatched and gated by `feature_scope_complete=true`. Do not run it until the agreed feature scope is confirmed complete. Browser/static CI does not prove Kotlin compilation, APK integrity, native lifecycle behavior, physical-device compatibility, TalkBack/switch-access acceptance, WCAG conformance, penetration-test completion or store approval.
+
+Physical-device and assistive-technology acceptance are performed by the project owner against the exact candidate APK. Production signing, release publication, deployment and store submission require separate explicit authorization.
+
+## Engineering guardrails
+
+- Preserve offline-first behavior and the minimum Android/WebView capability set.
+- Keep secrets, signing keys and credentials outside source control.
+- Do not weaken, delete or bypass tests to obtain a pass.
+- After three consecutive failures with the same strategy, stop repeating it and redesign or defer.
+- Treat scanner findings as leads requiring triage; document false positives, accepted design choices and coverage limitations with evidence.
