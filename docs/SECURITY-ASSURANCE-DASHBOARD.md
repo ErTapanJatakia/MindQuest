@@ -1,6 +1,6 @@
 # MindQuest Security Assurance Dashboard
 
-**Programme status:** Security scanner baseline operational on `main`; PRs #83, #94, #100, #103 and #104 merged; post-PR #104 Security Assurance (run `45074825719`) passed all eight jobs and Web Validation (run `45074825740`) passed all 38 steps; full repository source review remains in progress; APK-level verification is a separate, feature-completion-gated release check.  
+**Programme status (2026-11-23):** Security scanner baseline operational on `main`; PR #109 merged as `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb`. PR-head Security Assurance, Dependency Review and Web Validation all passed (Web Validation: 40/40 steps). Post-merge mainline Security Assurance has completed all eight jobs successfully; post-merge Web Validation is still running at this checkpoint. Full tracked-file source review remains in progress; APK-level verification remains separately feature-completion-gated.  
 **Application:** MindQuest — offline-first Android app with a bundled HTML/CSS/JavaScript runtime and Kotlin WebView wrapper.  
 **Android application ID:** `com.mindquest.app`  
 **Scope:** Entire repository, application source, Android wrapper, dependencies, build configuration, CI/CD and distributable artefacts.
@@ -42,8 +42,8 @@
 - OSV and Trivy coverage depends on supported manifests, lockfiles and package metadata. Their reports must be checked for skipped/unresolved inputs.
 - Syft's SBOM is an inventory, not a vulnerability verdict.
 - Scorecard measures repository practices, not application runtime security. The initial main-branch snapshot scored 4.1. The refreshed snapshot for commit `e551a511d63075058c04c17a1064a4d185a7acc4` scored **6.1**; several findings are repository configuration or release-lifecycle gaps, not application vulnerabilities.
-- Dependabot configuration was merged in PR #82. PR #83 retired the obsolete wrapper-bootstrap workflow; PR #94 pinned all 43 GitHub Actions references in scope to verified full SHAs and Semgrep to `1.186.0`; PR #100 pinned the Gradle 8.9 binary distribution checksum. The refreshed Scorecard confirms Token-Permissions 10/10 and reports all 43 GitHub Action dependencies pinned. Its overall score is 6.1.
-- The Gradle plugin and wrapper dependency graph still needs a resolved, reviewable inventory; the source SBOM's zero package components is not sufficient evidence.
+- Dependabot configuration was merged in PR #82. PR #83 retired the obsolete wrapper-bootstrap workflow; PR #94 pinned all 43 GitHub Actions references in scope to verified full SHAs and Semgrep to `1.186.0`; PR #100 pinned the Gradle 8.9 binary distribution checksum. The latest Scorecard confirms Token-Permissions 10/10 and reports all 49 GitHub Action dependencies pinned (39 GitHub-owned and 10 third-party). Its overall score is 6.2.
+- The Gradle plugin and wrapper dependency graph now has a resolved candidate inventory (PR #105): 235 components, 71 groups and 413 artifact records. The current Syft source SBOM detects GitHub Actions usage and the Gradle wrapper JAR, but neither artifact is an APK/runtime SBOM or proof of complete Gradle configuration coverage.
 - CodeQL/Semgrep/Trivy results may overlap. Deduplicate by root cause, affected component and CWE before remediation.
 - No DAST/API scanner is enabled: the product intentionally has no backend or network API. Do not introduce an external test target or network dependency merely to satisfy a tool catalogue.
 - MobSFscan is enabled for source-level Android/Kotlin/XML and hybrid web checks. The full MobSF framework's APK-level and dynamic-analysis stages remain separate: APK scanning requires a completed Android build artifact, while dynamic analysis requires a controlled Android runtime.
@@ -55,9 +55,9 @@
 - **Semgrep Community:** the first complete scan ran 236 rules over 44 files and reported two findings. The dynamic-regex warning in `app/src/app.js` was remediated by replacing the constructed expression with a fixed allow-listed pattern and a stricter region/category prefix check. The exported Android launcher activity finding is an expected platform requirement: it is the sole activity with only the `MAIN`/`LAUNCHER` filter and exposes no privileged native bridge or privileged intent operation. It remains documented as an accepted design finding, not silently suppressed.
 - **DevSkim:** seven findings were reviewed. Six `DS137138` alerts are false positives on the Android XML namespace URI (`http://schemas.android.com/apk/res/android`), not network requests. One `DS172411` note is a false positive on a static function callback passed to `setTimeout`, not a string or untrusted value. Preserve the rule and rationale; do not suppress the whole rule globally.
 - **OSV-Scanner:** the repository contains no supported package source/lockfile for OSV to scan. The workflow now records this as a coverage notice rather than claiming a clean scan or failing with an empty SARIF. Trivy and PR Dependency Review remain enabled.
-- **Syft:** generated a valid CycloneDX SBOM with zero package components. This reflects the absence of detected package manifests/lockfiles; it is not an inventory of every bundled application asset.
+- **Syft (initial baseline):** the first CycloneDX run had zero package components. The later post-PR #109 run now detects 38 components: 30 GitHub Actions usage entries, seven source-file entries and one Gradle Wrapper JAR. This improves workflow/source inventory but does not represent the app's runtime dependencies or a built APK.
 - **CodeQL:** JavaScript/TypeScript security-extended analysis completed successfully. Kotlin extraction is not claimed: the earlier Android Gradle autobuild could not resolve plugin dependencies on the runner. Kotlin is covered by Semgrep, DevSkim, MobSFscan and manual review.
-- **OpenSSF Scorecard:** the latest main-branch snapshot for commit `091257120d5b8d07584857db40afd0794c880690` (run `45074825719`) scored **6.1** and reported zero known unfixed vulnerabilities. Token-Permissions scored 10/10 and all 43 GitHub Action references were pinned; Pinned-Dependencies scored 7/10 because npm and pip installer commands are not hash-pinned. Branch-Protection and Code-Review remain 0/10; Fuzzing is 0/10. These are repository-practice signals, not application vulnerability findings or a security certification.
+- **OpenSSF Scorecard:** the earlier main-branch snapshot for commit `091257120d5b8d07584857db40afd0794c880690` (run `45074825719`) scored 6.1. The latest post-PR #109 main-branch snapshot for commit `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb` (run `45116991486`) scored **6.2** and reported zero existing vulnerabilities. Token-Permissions scored 10/10; all 49 GitHub Action dependencies were pinned (39 GitHub-owned and 10 third-party); Pinned-Dependencies scored 8/10 because npm and pip installer commands are not hash-pinned. Branch-Protection and Code-Review remain 0/10; Fuzzing is 0/10. These are repository-practice signals, not application vulnerability findings or a security certification.
 
 
 ### Exception and coverage register
@@ -69,10 +69,10 @@
 | DevSkim DS137138 (Android XML namespace URI) | False positive | URI is an XML namespace identifier, not an outbound network request | Retain rationale; no global rule suppression |
 | DevSkim DS172411 (setTimeout callback) | False positive | Static function callback, not string evaluation or untrusted input | Retain rationale; no global rule suppression |
 | OSV no package sources | Coverage limitation | No supported package lockfile was present; scanner completion is not a clean dependency verdict | Add dependency lockfiles if runtime/build dependency declarations are introduced; inspect Gradle plugin versions and wrapper separately |
-| Syft zero package components | Coverage limitation | Source scan did not identify package components; bundled source assets are not equivalent to package inventory | Generate an APK-level SBOM at release gate and reconcile it with source inventory |
+| Initial Syft zero package components | Historical coverage limitation | The initial baseline source scan found no components; the post-PR #109 run now detects 38 source/workflow components | Generate an APK-level SBOM at release gate and reconcile it with source inventory |
 | OpenSSF Scorecard skipped on PR | Expected workflow scope | Scorecard job is intentionally main-branch-only; main run now succeeds and publishes SARIF | Keep main/scheduled scan and review each snapshot |
 | Scorecard Token-Permissions | Repository hardening item | Main run `45074825719` confirms 10/10; no job-level write permissions or dangerous workflow patterns detected | Retain least-privilege workflow permissions and recheck future changes |
-| Scorecard Pinned-Dependencies | Supply-chain hardening item | PR #94 merged; Scorecard confirms 36/36 GitHub-owned and 7/7 third-party GitHub Action dependencies pinned; Semgrep is pinned to `1.186.0`; npm and pip installer commands are not hash-pinned and remain a documented gap | Verify the Scorecard result; assess hash-locked Python/Go tool installation separately if still flagged |
+| Scorecard Pinned-Dependencies | Supply-chain hardening item | Latest run `45116991486` reports 39/39 GitHub-owned and 10/10 third-party GitHub Action dependencies pinned; Semgrep is pinned to `1.186.0`; npm and pip installer commands remain unpinned by hash (Scorecard 8/10) | Assess reproducible hash-locked npm and Python tool installation without weakening the workflows |
 | Scorecard Branch-Protection | Repository settings gap | Scorecard reports main branch protection is not enabled; connected GitHub integration cannot read/update the admin-only setting | Owner to configure and verify GitHub branch protection/ruleset |
 | Scorecard Fuzzing / Signed-Releases | Lifecycle maturity items | No fuzzing integration or signed release is currently detected; no public release has been created | Evaluate property-based tests; implement signed release attestations when release process is established |
 
@@ -170,7 +170,7 @@ A scanner alert is a lead, not an automatically confirmed vulnerability. Each fi
 - [Repository Code Scanning](https://github.com/ErTapanJatakia/MindQuest/security/code-scanning)
 - [Repository Actions](https://github.com/ErTapanJatakia/MindQuest/actions)
 
-**Next checkpoint (2026-11-23):** PR #104 merged. Main Security Assurance run `45074825719` passed all eight jobs; main Web Validation run `45074825740` passed all 38 steps. The refreshed Scorecard remains **6.1** (details above). A dedicated non-release Gradle dependency-inventory workflow is now proposed in PR review; it resolves build/plugin dependency metadata and generates SHA-256 verification candidates without invoking `assembleDebug` or the gated APK validation. Its generated metadata is evidence to review, not automatically trusted or committed. The latest manual review tranche includes the complete `scripts/` inventory, app runtime/data bundles, CSS/SVG assets, legal disclosures, QA/release docs, Android wrapper and CI workflows. No new confirmed exploitable vulnerability was established in this tranche. Remaining work: finish file-by-file review and source-to-build reconciliation; inspect Gradle dependency inventory and decide whether to commit verification metadata and locking; assess CSP/WebView hardening; owner confirms intentional publication of developer contact details and configures `main` branch protection; after all feature scope is confirmed complete, run the manually gated Android validation and reconcile the APK-level inventory. PRs #95–#97 (Kotlin, Gradle and Android Gradle Plugin major upgrades) remain held as one coordinated candidate until build validation is authorized and passes.
+**Historical checkpoint after PR #104 (superseded by the post-PR #109 update below):** PR #104 merged. Main Security Assurance run `45074825719` passed all eight jobs; main Web Validation run `45074825740` passed all 38 steps. The refreshed Scorecard remains **6.1** (details above). A dedicated non-release Gradle dependency-inventory workflow is now proposed in PR review; it resolves build/plugin dependency metadata and generates SHA-256 verification candidates without invoking `assembleDebug` or the gated APK validation. Its generated metadata is evidence to review, not automatically trusted or committed. The latest manual review tranche includes the complete `scripts/` inventory, app runtime/data bundles, CSS/SVG assets, legal disclosures, QA/release docs, Android wrapper and CI workflows. No new confirmed exploitable vulnerability was established in this tranche. Remaining work: finish file-by-file review and source-to-build reconciliation; inspect Gradle dependency inventory and decide whether to commit verification metadata and locking; assess CSP/WebView hardening; owner confirms intentional publication of developer contact details and configures `main` branch protection; after all feature scope is confirmed complete, run the manually gated Android validation and reconcile the APK-level inventory. PRs #95–#97 (Kotlin, Gradle and Android Gradle Plugin major upgrades) remain held as one coordinated candidate until build validation is authorized and passes.
 
 
 ## Post-PR #105 / #107 assurance update (2026-11-23)
@@ -234,3 +234,63 @@ Direct access to publisher-hosted SHA-256 sidecars for the key Google Maven and 
 The current Gradle User Manual explicitly warns that bootstrapping verification metadata trusts the artifacts currently served by configured repositories; if a malicious artifact is already present, bootstrapping can record its checksum or signature. It also instructs maintainers to review generated entries, independently check hashes against official sources where possible, and change `origin="Generated by Gradle"` only after review. Gradle further notes that dependency resolution performed only during task execution or custom resolution logic may not be discovered automatically. This directly supports keeping the current candidate uncommitted and treating the inventory task as partial evidence until configuration/task coverage is demonstrated.
 
 Reference: Gradle User Manual, [Securing Dependencies — Generating and Bootstrapping Verification Metadata](https://docs.gradle.org/current/userguide/securing_dependencies.html) and [Dependency Verification](https://docs.gradle.org/current/userguide/dependency_verification.html).
+
+
+## Post-PR #109 security assurance and evidence reconciliation — 2026-11-23
+
+### Merge and exact-head validation
+
+- PR [#109](https://github.com/ErTapanJatakia/MindQuest/pull/109), “Document Gradle dependency provenance review”, merged as `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb`.
+- Exact-head Web Validation [run 45115543410](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543410): **success, all 40 workflow steps passed**. This includes browser/gameplay, localization/persistence, accessibility, responsive, offline isolation, Android source-boundary and manifest checks.
+- Exact-head Security Assurance [run 45115543280](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543280): all six scanner jobs and CycloneDX SBOM job passed; OpenSSF Scorecard was skipped as designed for PR events.
+- Exact-head Dependency Review [run 45115543276](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543276): success.
+- Post-merge mainline Security Assurance [run 45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486): all eight jobs completed successfully. Post-merge mainline Web Validation [run 45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) was still running when this section was prepared; its final conclusion must be checked before this checkpoint is closed.
+
+### Post-merge scanner artifact inspection
+
+The retained SARIF and CycloneDX artifacts from run `45116991486` were downloaded and inspected, rather than relying only on green job conclusions.
+
+| Control | Artifact result | Triage |
+|---|---|---|
+| Trivy filesystem | SARIF contains 0 results | No Trivy findings in this scan; coverage remains dependent on detectable manifests/configuration |
+| Semgrep Community | 1 result: exported Android launcher activity | Expected platform requirement; sole exported component is the MAIN/LAUNCHER activity and no privileged JS bridge is exposed. Re-check the exact merged APK manifest at the gated release step |
+| DevSkim | 7 results: six DS137138 Android XML namespace URI warnings and one DS172411 static `setTimeout` callback note | Same previously reviewed false positives; namespace identifiers are not outbound URLs, and the callback is a static function rather than string evaluation |
+| MobSFscan | 1 error-level `android_task_hijacking2` source heuristic plus 6 informational notes | The error is the documented source-only StrandHogg heuristic, accepted only because targetSdk is 35 and the sole exported activity is the MAIN/LAUNCHER activity. The final merged APK target SDK and manifest are not yet verified. The six informational suggestions (SafetyNet/device attestation, TLS pinning, tapjacking, certificate transparency, screenshot blocking and root detection) are not automatically applicable to this offline app; assess only against a concrete threat model. No TLS pinning is warranted absent network communication. UI text-selection deterrence does not prevent OS screenshots or extraction |
+| OSV-Scanner | Job passed with no supported package sources/lockfiles detected | Coverage limitation, not a clean dependency bill of health |
+| CodeQL | JavaScript/TypeScript analysis job passed | Kotlin extraction is still not claimed; Kotlin is covered by Semgrep, DevSkim, MobSFscan and manual review |
+| CycloneDX/Syft | 38 components: 30 GitHub Actions usage entries, 7 file entries and 1 Gradle Wrapper JAR | Source/workflow inventory only; not an APK/runtime SBOM and not proof of complete Gradle resolution |
+| OpenSSF Scorecard | **6.2** on commit `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb` | See current score details below |
+
+### Latest Scorecard details
+
+Run `45116991486` reports Scorecard v5.7.0 and an overall score of **6.2**:
+
+- Token-Permissions: **10/10**; no job-level write permissions were found.
+- Pinned-Dependencies: **8/10**; 39/39 GitHub-owned and 10/10 third-party GitHub Action dependencies are pinned. npm and pip installer commands remain unpinned by hash (0/2 each); the Go installer is pinned (1/1).
+- Vulnerabilities: **10/10**, with zero existing vulnerabilities detected by this Scorecard check.
+- Branch-Protection: **0/10**; Scorecard reports protection is not enabled for `main`.
+- Code-Review: **0/10**; no approved changesets detected in the Scorecard sample.
+- Fuzzing: **0/10**; no fuzzer integration detected.
+- SAST: **8/10**; CodeQL is detected, but only 13 of 29 sampled commits were checked by a SAST tool.
+- Dependency-Update-Tool: **10/10**; Dependabot detected.
+- CI-Tests: **10/10**; 29 of 29 merged PRs in the sample were checked by CI.
+
+Scorecard is a repository-practice signal, not an application security certification or vulnerability-free guarantee. The repository is less than 90 days old, which affects the Maintained check; packaging and signed-release checks are not yet applicable to an unreleased project.
+
+### Updated findings and boundaries
+
+- No new confirmed exploitable application vulnerability was established by the PR #109 source review or the post-merge scanner artifacts.
+- The one MobSFscan error-level source heuristic remains conditional and is not dismissed as a general rule; final APK merged-manifest verification is still required.
+- The source SBOM has improved from the initial empty result, but it does not inventory Android runtime contents. The APK-level SBOM remains a release-gate task.
+- Gradle verification metadata remains untrusted and unenforced. The 413 generated hashes have not been independently authenticated against publisher-controlled checksums/signatures; configuration resolution coverage is not yet proven.
+- The exact post-merge Web Validation conclusion must be checked; do not close the mainline checkpoint until run `45116991488` finishes successfully.
+- The Android release-validation workflow has not been dispatched. No APK assembly, signing, release, production deployment or store submission occurred in this assurance cycle.
+
+### Owner-level actions still outstanding
+
+1. Configure and verify a GitHub branch protection rule or repository ruleset for `main`, including pull requests, required successful checks, prevention of force pushes/deletion and review requirements appropriate to a single-maintainer project. The connected GitHub integration cannot administer this setting.
+2. Confirm whether the developer email addresses, personal mobile number and named DPO contact published in the repository and bundled privacy policy are intentionally public. No contact details were changed.
+3. Complete the exact candidate APK build/inspection only after feature scope is confirmed complete; physical-device, TalkBack and switch-access acceptance remain project-owner tasks.
+4. Continue the full tracked-file source review and independently authenticate critical Gradle artifacts/configuration coverage before any dependency-verification metadata is committed or enforced.
+
+**Current disposition:** remote source/security assurance remains in progress. PR #109 is merged and its exact-head checks passed; post-merge scanner jobs passed. Do not claim APK-level validation, complete source review, WCAG conformance, penetration-test completion or store approval.

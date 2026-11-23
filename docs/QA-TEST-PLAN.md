@@ -1,6 +1,12 @@
 # MindQuest QA Test Plan
 
-Last updated: 2026-11-21
+Last updated: 2026-11-23
+
+## Current authoritative status — 2026-11-23
+
+The runtime baseline is five regions (IN, RU, US, ES, PE), five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. Spain and Peru are enabled; Spanish question locales es-ES and es-PE are available. The current mainline Web Validation run is [45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) and the Security Assurance run is [45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486); these post-PR #109 mainline runs are being recorded separately from PR-head checks. See the Security Assurance Dashboard for scanner evidence and coverage limitations.
+
+The historical PR #5 debug APK and the older three-region statements below are not the current Gate 2 candidate. Android package validation remains manually gated by feature-scope completion. No signing, production deployment or store submission is authorized. Physical-device and assistive-technology acceptance remain owner-performed.
 
 ## Purpose
 
@@ -17,21 +23,21 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Launch experience | Dialog semantics, inert/hidden application shell, keyboard focus containment, Escape dismissal and focus hand-off | Background is unavailable while launch dialog is open; focus returns to Home after dismissal |
 | Themes | All ten themes and foreground/muted text contrast against both app and panel surfaces | Text contrast is at least 4.5:1 for tested text/surface pairs |
 | Independent selectors | Five interface locales × five regions × five question locales | All 125 supported combinations remain independently selectable |
-| Round modes | 5-, 10- and 15-question rounds across India, Russia and the United States | Selected round length is honoured when the filtered pool is large enough |
-| Content filters | Every category × difficulty pairing in each of the three playable regions | Rendered question category and difficulty match the selected filters |
+| Round modes | 5-, 10- and 15-question rounds across all five regions | Selected round length is honoured when the filtered pool is large enough |
+| Content filters | Every category × difficulty pairing in each of the five playable regions | Rendered question category and difficulty match the selected filters |
 | Keyboard continuity | Answer selection, pressed-state semantics and progression | Exactly one answer exposes `aria-checked=true`; arrow keys move through the four-option radio group and select the focused answer; focus then moves to Next/See results and the next question heading |
 | Accessible control structure | Visible controls, image alternatives and DOM identifiers across Home, Settings, Quiz and Results | Every visible interactive control has an accessible name; images have alt attributes; IDs are unique; inactive views expose no tab-reachable controls |
 | Responsive layout | Twelve portrait/landscape viewport profiles across Home, Settings, Quiz and Results | No document-level horizontal overflow |
 | Persistence and score ledger | 125 locale/region/question-language combinations; settings and accessibility preferences; strict score-record schema, malformed shapes/ranges, valid-record recovery, legacy ten-question migration and migration-write failure | Saved values restore independently; invalid scores are ignored; a readable legacy score survives a failed migration write |
 | Offline boundary | Runtime request observation, restrictive Content Security Policy, static runtime API scan and local bundled assets only | No external network request is made by the application |
 | Runtime security boundary | CSP directives, no remote scripts/styles, no inline event handlers, no dynamic code evaluation, no network APIs in app runtime, staged content excluded | Security boundary regressions fail CI before merge |
-| Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each current region | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
+| Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each of the five current regions | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
 | View focus and inactive-view isolation | Home, Settings, Help, Privacy, Accessibility, Quiz and Results navigation, heading focus, completed-round transitions and replay | Exactly one view is active; inactive views expose no visible tab-reachable controls; destination context receives focus |
 | Android WebView/lifecycle source | Static checks for local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Source/configuration regressions fail CI; this is not Kotlin compilation, APK inspection or device validation |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
 
-## Latest validated debug build
+## Historical validated debug build — not the current Gate 2 candidate
 
 - Source commit: `4efab1a65c91adc6160e6b15ecda25c7495b129c` (PR #5 merged).
 - Full validation: [workflow #44338675579](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44338675579) completed successfully; both content/static/browser regression and Android debug APK build jobs passed.
@@ -39,12 +45,12 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Extracted APK: 909,184 bytes.
 - APK SHA-256: `65cce0987d06987a01b3e3fcac300566bd52b55df8a4341a78703201d9adcd54`.
 - Package inspection confirmed the bundled HTML entry point, gameplay JavaScript, original MindQuest SVG logo, Android manifest and launcher foreground resource are present.
-- This is a **debug APK**, not a production-signed release or store-ready candidate. The latest APK has not yet been physically device-tested.
+- This is a historical PR #5 **debug APK**, not the current Gate 2 candidate or a production-signed release. Do not use it for Gate 2 acceptance. Physical-device acceptance must use the exact APK produced by the separately gated workflow.
 
 ## Manual acceptance still required
 
 ### Android device
-- Install the latest debug APK and confirm clean installation, launch and exit.
+- After the gated Android validation workflow is authorized and produces the candidate, install that exact Gate 2 debug APK and confirm clean installation, launch and exit.
 - Check splash display and dismissal, including returning from background and relaunching.
 - Verify all ten themes and each accessibility preference.
 - Complete 5-, 10- and 15-question rounds, including replay and result review.
@@ -68,10 +74,10 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Do not claim WCAG 2.2 AA conformance or display a conformance logo without a valid evaluation.
 - Do not treat a debug APK as a release candidate.
 
-## Current limitations and accepted batches
+## Historical limitations and accepted batches — superseded
 
-- Spain and Peru are not playable question regions.
-- Spanish question translations are not available; the question-language selector remains limited to the three fully populated locales.
+- Superseded: Spain and Peru are enabled question regions.
+- Superseded: Spanish question locales es-ES and es-PE are available across all five regions.
 - PR #2 passed [workflow #44307367081](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44307367081) and was merged as `3bf79c806ac1aa63fff91cea80af4e9d574c92c2`.
 - PR #3 passed [workflow #44325807742](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44325807742) and was merged as `a573c2b7e26a78182a34e3d216910aa5c103dcde`.
 - PR #4 passed [workflow #44336160667](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44336160667) and was merged as `674abd3ba1174cc2bdecd006a8bfa7858c0dff39`.
