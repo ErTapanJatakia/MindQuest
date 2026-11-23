@@ -2,18 +2,18 @@
 
 ## Latest authoritative checkpoint — 2026-11-23
 
-Main is at `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb` after PR #109 merged. Exact-head PR checks passed: Web Validation run [45115543410](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543410) (40 steps), Security Assurance run [45115543280](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543280), and Dependency Review run [45115543276](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543276). Post-merge mainline Web Validation [45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) and Security Assurance [45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486) are the current evidence runs; confirm final conclusions before closing this checkpoint.
+Main is at `9354d84fc5516b67c6149f7f60a5317aa94075a6` after PR #110 merged. PR #110 exact-head Web Validation [45118421987](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45118421987) passed all 40 steps; Security Assurance [45118422014](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45118422014) and Dependency Review [45118421943](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45118421943) passed. PR #109 post-merge Web Validation [45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) passed all 41 steps and Security Assurance [45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486) passed all eight jobs. PR #110 post-merge Security Assurance [45119740787](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740787) passed all eight jobs; Web Validation [45119740772](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740772) is still running at this checkpoint.
 
 The product scope is five regions, five interface locales and five question locales: 250 stable IDs and 1,250 localized records. Routine browser/content/static/security CI is active. Android package validation remains manually gated by `feature_scope_complete=true`; no APK build, signing, production deployment or store submission is authorized in this assurance batch. Physical-device and assistive-technology acceptance remain owner-performed.
 
-Security work remains open for complete tracked-file review, independent Gradle artifact provenance/configuration coverage, WebView/CSP hardening assessment and owner-level branch-protection configuration. The Kotlin/AGP/Gradle major-version proposals remain a coordinated held set (PRs #95, #97 and #106). Historical progress tables and older three-region statements below are snapshots; use this checkpoint and the Security Assurance Dashboard for current state.
+Security work remains open for complete tracked-file review, independent Gradle artifact provenance/configuration coverage, WebView/CSP hardening assessment and owner-level branch-protection configuration. PR #111 is addressing the API 23–32 class-verification compatibility risk by isolating API 30/33 platform references and adding a static regression; Kotlin compilation and runtime acceptance remain deferred to the gated Android validation. The Kotlin/AGP/Gradle major-version proposals remain a coordinated held set (PRs #95, #97 and #106). Historical progress tables and older three-region statements below are snapshots; use this checkpoint and the Security Assurance Dashboard for current state.
 
 
 
 ---
 
 
-## Gate 2 latest verification — 2026-11-21
+## Historical Gate 2 verification snapshot — 2026-11-21
 
 PR [#67](https://github.com/ErTapanJatakia/MindQuest/pull/67) merged as `e044efa1bd7171e1c3bb601c87ae2fa9126abb43`; exact-head workflow [#44846742430](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44846742430) passed all 38 substantive validation steps. PR #65 exact-head workflow [#44843574405](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44843574405) also passed all 38 steps. A post-merge mainline run for PR #67's merge commit has not yet been observed. Gate 2 remains open for remaining remote review and gated debug package validation, followed by physical-device, assistive-technology, native lifecycle and offline acceptance. No APK was produced by these CI runs; no production signing or store submission is authorized.
 
