@@ -132,6 +132,7 @@ class MainActivity : Activity() {
 
 // API 30 introduced WindowInsets.Type. Keep all references in a separate class
 // that is reached only from an API 35+ guarded call site.
+@android.annotation.TargetApi(30)
 private object Api30WindowInsetsHandler {
     fun apply(view: View, insets: WindowInsets): WindowInsets {
         val safeInsets = insets.getInsets(
@@ -151,6 +152,7 @@ private object Api30WindowInsetsHandler {
 
 // API 33 introduced the predictive-back dispatcher/callback classes. Keep those
 // types out of MainActivity fields and method signatures to preserve API 23 loading.
+@android.annotation.TargetApi(33)
 private object Api33BackHandler {
     fun createCallback(onBack: () -> Unit): Any =
         OnBackInvokedCallback { onBack() }
