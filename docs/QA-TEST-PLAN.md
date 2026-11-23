@@ -45,12 +45,12 @@ The test suite must retain strict assertions. If an assertion fails, investigate
 - Extracted APK: 909,184 bytes.
 - APK SHA-256: `65cce0987d06987a01b3e3fcac300566bd52b55df8a4341a78703201d9adcd54`.
 - Package inspection confirmed the bundled HTML entry point, gameplay JavaScript, original MindQuest SVG logo, Android manifest and launcher foreground resource are present.
-- This is a **debug APK**, not a production-signed release or store-ready candidate. The latest APK has not yet been physically device-tested.
+- This is a historical PR #5 **debug APK**, not the current Gate 2 candidate or a production-signed release. Do not use it for Gate 2 acceptance. Physical-device acceptance must use the exact APK produced by the separately gated workflow.
 
 ## Manual acceptance still required
 
 ### Android device
-- Install the latest debug APK and confirm clean installation, launch and exit.
+- After the gated Android validation workflow is authorized and produces the candidate, install that exact Gate 2 debug APK and confirm clean installation, launch and exit.
 - Check splash display and dismissal, including returning from background and relaunching.
 - Verify all ten themes and each accessibility preference.
 - Complete 5-, 10- and 15-question rounds, including replay and result review.
