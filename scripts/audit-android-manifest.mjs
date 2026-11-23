@@ -14,7 +14,7 @@ if (!wrapperVersion) failures.push("Gradle Wrapper must use an explicit versione
 if (!distributionChecksum) failures.push("Gradle Wrapper must pin the official distribution SHA-256 checksum");
 if (!/^DEFAULT_JVM_OPTS=.*-Dfile\.encoding=UTF-8/mu.test(unixWrapper)) failures.push("Unix Gradle Wrapper must retain the official UTF-8 JVM default");
 if (!/^set DEFAULT_JVM_OPTS=[^\r\n]*-Dfile\.encoding=UTF-8[^\r\n]*\r?$/mu.test(windowsWrapper)) failures.push("Windows Gradle Wrapper must retain the official UTF-8 JVM default");
-if (wrapperVersion === "8.9" && distributionChecksum !== "d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab") failures.push("Gradle 8.9 distribution checksum does not match the official release checksum");
+if (wrapperVersion === "8.14.8" && distributionChecksum !== "94da89692fc3ca6d2d0ce6bb48548762ea0f1897ba444286f5c7f3759c7af651") failures.push("Gradle 8.14.8 distribution checksum does not match the official release checksum");
 if (!targetSdkMatch || Number(targetSdkMatch[1]) < 29) {
   failures.push("Android target SDK must remain at API 29 or higher to retain platform mitigation for legacy task-hijacking attacks");
 }
