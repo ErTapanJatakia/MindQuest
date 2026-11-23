@@ -1,11 +1,19 @@
 # MindQuest Security Assurance Dashboard
 
-**Programme status (2026-11-23):** Security scanner baseline operational on `main`; PR #110 merged as `9354d84fc5516b67c6149f7f60a5317aa94075a6` after PR #109. PR #110 exact-head Web Validation passed all 40 steps, Security Assurance passed all eight jobs and Dependency Review passed. PR #110 post-merge mainline Web Validation [45119740772](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740772) and Security Assurance [45119740787](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740787) are the current post-merge evidence runs. Security Assurance completed all eight jobs successfully; Web Validation remains in progress at this checkpoint. Full tracked-file source review remains in progress; APK-level verification remains separately feature-completion-gated.  
+**Programme status (2026-11-23):** Security scanner baseline operational on `main`; latest main commit is `de613efd328e18cdb005525e9074208a5eb36be4` (PR #111). PR #110 post-merge Web Validation [45119740772](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740772) and Security Assurance [45119740787](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740787) passed. PR #111 post-merge Web Validation [45121654625](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45121654625) passed all 41 steps; Security Assurance [45121654636](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45121654636) passed all eight jobs, including OpenSSF Scorecard. Full tracked-file source review and independent Gradle provenance/configuration coverage remain in progress; APK-level verification remains separately feature-completion-gated.  
 **Application:** MindQuest — offline-first Android app with a bundled HTML/CSS/JavaScript runtime and Kotlin WebView wrapper.  
 **Android application ID:** `com.mindquest.app`  
 **Scope:** Entire repository, application source, Android wrapper, dependencies, build configuration, CI/CD and distributable artefacts.
 
 > This dashboard records engineering evidence. A green workflow means that the configured checks completed; it is not proof that the application is vulnerability-free, a penetration test, a security certification or an independent audit.
+
+## Latest mainline checkpoint — PR #111 (2026-11-23)
+
+- PR [#111](https://github.com/ErTapanJatakia/MindQuest/pull/111), “Isolate newer Android APIs from the API 23 Activity class”, merged as `de613efd328e18cdb005525e9074208a5eb36be4`.
+- The remediation isolates API 30 `WindowInsets.Type` calls and API 33 predictive-back callback/dispatcher types in version-specific helper classes; `MainActivity` retains baseline API types in its fields and method signatures. The callback is held as `Any?` in the API 23-loadable Activity class.
+- Post-merge Web Validation [run 45121654625](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45121654625) passed all 41 steps, including the strengthened Android WebView/lifecycle source audit. Post-merge Security Assurance [run 45121654636](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45121654636) passed all eight jobs.
+- The Android source audit now explicitly checks API 30/33 class-reference isolation, callback registration/unregistration, API 35 inset handling, and the existing offline WebView boundary. This is static source/configuration evidence only; Kotlin compilation and API 23–32 runtime class-loading behavior remain unverified until the gated Android build and owner device/emulator acceptance.
+- PR #109 post-merge Web Validation [run 45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) also completed successfully: all 41 steps passed. The earlier “still running” notes in the historical PR #109 checkpoint below are superseded by this final result.
 
 ## Assurance gates
 
@@ -244,7 +252,7 @@ Reference: Gradle User Manual, [Securing Dependencies — Generating and Bootstr
 - Exact-head Web Validation [run 45115543410](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543410): **success, all 40 workflow steps passed**. This includes browser/gameplay, localization/persistence, accessibility, responsive, offline isolation, Android source-boundary and manifest checks.
 - Exact-head Security Assurance [run 45115543280](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543280): all six scanner jobs and CycloneDX SBOM job passed; OpenSSF Scorecard was skipped as designed for PR events.
 - Exact-head Dependency Review [run 45115543276](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543276): success.
-- Post-merge mainline Security Assurance [run 45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486): all eight jobs completed successfully. Post-merge mainline Web Validation [run 45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) was still running when this section was prepared; its final conclusion must be checked before this checkpoint is closed.
+- Post-merge mainline Security Assurance [run 45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486): all eight jobs completed successfully. Post-merge mainline Web Validation [run 45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) subsequently completed successfully: all 41 workflow steps passed.
 
 ### Post-merge scanner artifact inspection
 
@@ -283,7 +291,7 @@ Scorecard is a repository-practice signal, not an application security certifica
 - The one MobSFscan error-level source heuristic remains conditional and is not dismissed as a general rule; final APK merged-manifest verification is still required.
 - The source SBOM has improved from the initial empty result, but it does not inventory Android runtime contents. The APK-level SBOM remains a release-gate task.
 - Gradle verification metadata remains untrusted and unenforced. The 413 generated hashes have not been independently authenticated against publisher-controlled checksums/signatures; configuration resolution coverage is not yet proven.
-- The exact post-merge Web Validation conclusion must be checked; do not close the mainline checkpoint until run `45116991488` finishes successfully.
+- The exact post-merge Web Validation run `45116991488` subsequently completed successfully with all 41 workflow steps passed; see the latest mainline checkpoint above.
 - The Android release-validation workflow has not been dispatched. No APK assembly, signing, release, production deployment or store submission occurred in this assurance cycle.
 
 ### Owner-level actions still outstanding
