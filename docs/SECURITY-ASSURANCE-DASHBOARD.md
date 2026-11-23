@@ -171,3 +171,25 @@ A scanner alert is a lead, not an automatically confirmed vulnerability. Each fi
 - [Repository Actions](https://github.com/ErTapanJatakia/MindQuest/actions)
 
 **Next checkpoint (2026-11-23):** PR #104 merged. Main Security Assurance run `45074825719` passed all eight jobs; main Web Validation run `45074825740` passed all 38 steps. The refreshed Scorecard remains **6.1** (details above). A dedicated non-release Gradle dependency-inventory workflow is now proposed in PR review; it resolves build/plugin dependency metadata and generates SHA-256 verification candidates without invoking `assembleDebug` or the gated APK validation. Its generated metadata is evidence to review, not automatically trusted or committed. The latest manual review tranche includes the complete `scripts/` inventory, app runtime/data bundles, CSS/SVG assets, legal disclosures, QA/release docs, Android wrapper and CI workflows. No new confirmed exploitable vulnerability was established in this tranche. Remaining work: finish file-by-file review and source-to-build reconciliation; inspect Gradle dependency inventory and decide whether to commit verification metadata and locking; assess CSP/WebView hardening; owner confirms intentional publication of developer contact details and configures `main` branch protection; after all feature scope is confirmed complete, run the manually gated Android validation and reconcile the APK-level inventory. PRs #95–#97 (Kotlin, Gradle and Android Gradle Plugin major upgrades) remain held as one coordinated candidate until build validation is authorized and passes.
+
+
+## Post-PR #105 / #107 assurance update (2026-11-23)
+
+This section supersedes the earlier checkpoint above where it conflicts with the latest main-branch evidence.
+
+- **PR #105 — Gradle dependency inventory:** merged as commit `4beb3ad1317ee3648077c6ad5e9cfd7c6fa61540`. The non-release inventory workflow completed successfully (run `45076464518`). Its retained candidate artifact contained 235 components across 71 groups and 413 artifact entries, each with a SHA-256 checksum. Gradle generated these checksums during resolution; signature verification was disabled. They are candidate integrity metadata, not independent authenticity proof, and are not yet trusted/enforced. Review upstream provenance and configuration coverage before committing verification metadata.
+- **PR #105 post-merge validation:** Security Assurance run `45109663006` passed all eight jobs; Web Validation run `45109663007` passed all 38 steps.
+- **PR #107 — Syft action patch update:** merged as commit `e96df5dee0e314d95e19e6b1321ab894c73dd8c4`. Post-merge Security Assurance run `45112362021` completed successfully with all eight jobs passed: Syft SBOM, Semgrep, Trivy, CodeQL JavaScript/TypeScript, OpenSSF Scorecard, OSV-Scanner, MobSFscan and DevSkim. OSV's successful job completion does not remove the documented supported-lockfile coverage limitation; skipped SARIF upload reflects no findings artifact to upload, not proof of complete dependency coverage.
+- PRs #101 and #102 were closed as superseded by the consolidated documentation update in PR #104. PR #106 (Gradle 9.9.2) remains held; its Web Validation failure is the intentional Gradle 8.9 static compatibility guard, not a reason to weaken the audit.
+- **Current status:** source review remains in progress; APK-level validation remains gated until feature scope is declared complete. Physical-device and assistive-technology acceptance remains owner-performed. No release, signing or production deployment action was taken.
+
+### Dependency verification decision gate
+
+Do not commit the generated `android/gradle/verification-metadata.xml` candidate as trusted merely because it contains SHA-256 values. Before enforcement:
+
+1. Map the resolved metadata to direct plugins, direct dependencies, transitive artifacts and relevant Gradle configurations; identify configurations not actually resolved by the inventory task.
+2. Independently validate critical artifact coordinates and checksums/signatures against authoritative upstream publisher sources where available.
+3. Record provenance, exceptions and any artifacts for which independent verification is unavailable; do not fabricate trust or disable verification to make the build pass.
+4. In a separate PR, test committed metadata in read-only verification mode across appropriate non-release Gradle tasks. Keep candidate generation separate from normal CI and never auto-approve newly generated hashes.
+
+**Next checkpoint:** complete the independent Gradle provenance/configuration review; then prepare a separate dependency-verification PR only if evidence supports it. Continue the remaining tracked-file source review and update this dashboard with concrete coverage. Preserve the gated APK validation boundary and the coordinated Kotlin/AGP/Gradle upgrade hold.
