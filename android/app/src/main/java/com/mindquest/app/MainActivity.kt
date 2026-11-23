@@ -60,7 +60,7 @@ class MainActivity : Activity() {
         setContentView(gameView)
 
         // Android 15 enforces edge-to-edge for apps targeting API 35.
-        // Keep API 30 WindowInsets.Type references outside this API 23-loadable class.
+        // Keep API 30 inset APIs outside this API 23-loadable class.
         if (Build.VERSION.SDK_INT >= 35) {
             gameView.setOnApplyWindowInsetsListener { view, insets ->
                 Api30WindowInsetsHandler.apply(view, insets)
