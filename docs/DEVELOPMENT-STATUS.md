@@ -1,5 +1,22 @@
 # Development status
 
+## Latest authoritative status — 2026-11-23
+
+Main is at `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb`, merge commit for PR #109 (Gradle dependency provenance review). PR #109 is merged. Its exact-head checks passed: Web Validation [45115543410](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543410) completed all 40 workflow steps successfully; Security Assurance [45115543280](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543280) passed all six scanner jobs and CycloneDX SBOM (OpenSSF Scorecard was skipped on PR by design); Dependency Review [45115543276](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543276) passed.
+
+Post-merge mainline validation is running on the merge commit: Web Validation [45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) and Security Assurance [45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486). The eight Security Assurance jobs have completed successfully; the mainline Web Validation browser/regression job is still running at the time of this checkpoint. Do not describe the post-merge workflows as fully complete until GitHub reports final conclusions.
+
+Current product scope remains five regions, five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. Human factual/answer-key and native-speaker reviews are complete based on project-owner confirmation. Routine CI remains browser/content/static/security validation; the separate Android validation workflow remains manually gated by `feature_scope_complete=true`. No current Gate 2 APK has been built or inspected. No production signing, deployment or store submission is authorized.
+
+Security assurance remains in progress: full tracked-file source review is not yet complete; Gradle verification metadata is not trusted/enforced pending independent publisher provenance and configuration coverage; source SBOM and dependency inventory have known scope limitations; branch protection remains an owner-level repository setting. Physical-device and assistive-technology acceptance (including TalkBack/switch access) remain owner-performed.
+
+Open coordinated toolchain proposals: PR #95 (Kotlin 2.4.21), PR #97 (AGP 9.5.2) and PR #106 (Gradle 9.9.2) remain held. Do not merge independently or bypass the explicit Gradle 8.9 compatibility guard. PR #106's Web Validation failure is the expected guard, not an application regression.
+
+
+
+---
+
+
 ## Latest authoritative status — 2026-11-21
 
 PR [#68](https://github.com/ErTapanJatakia/MindQuest/pull/68) is merged to `main` as `a89a919b3726a4e198df167698c414d380f1f0ec`. Its exact-head workflow [#44848743446](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44848743446) passed all 38 substantive validation steps on head `3adefe2429eb04f30eb5738d469cb52e843d2814`. Post-merge mainline workflow [#44851298170](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44851298170) was triggered and remains pending as of this update. Gate 2 remains in progress; neither exact-head nor mainline browser/static validation constitutes APK assembly or physical Android/TalkBack/switch-access acceptance.
