@@ -130,7 +130,7 @@ class MainActivity : Activity() {
     }
 }
 
-// API 30 introduced WindowInsets.Type. Keep all references in a separate class
+// API 30 introduced typed window-inset APIs. Keep all references in a separate class
 // that is reached only from an API 35+ guarded call site.
 @android.annotation.TargetApi(30)
 private object Api30WindowInsetsHandler {
