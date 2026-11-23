@@ -48,6 +48,35 @@ requirePattern("activity", /unregisterOnBackInvokedCallback\(callback\)/u, "Pred
 requirePattern("activity", /override fun onBackPressed\(\)[\s\S]*?SDK_INT\s*<\s*Build\.VERSION_CODES\.TIRAMISU/u, "Legacy back handling must be retained below API 33");
 requirePattern("activity", /SDK_INT\s*>=\s*35[\s\S]*?WindowInsets\.Type\.systemBars\(\)[\s\S]*?WindowInsets\.Type\.displayCutout\(\)[\s\S]*?WindowInsets\.Type\.ime\(\)/u, "API 35+ safe-area handling must include system bars, cutouts and IME");
 
+
+const mainClassStart = source.activity.indexOf("class MainActivity");
+const api30HelperStart = source.activity.indexOf("private object Api30WindowInsetsHandler");
+const api33HelperStart = source.activity.indexOf("private object Api33BackHandler");
+if (mainClassStart < 0 || api30HelperStart < 0 || api33HelperStart < api30HelperStart) {
+  failures.push("API-specific compatibility helpers must remain separate from MainActivity");
+} else {
+  const mainActivityBody = source.activity.slice(mainClassStart, api30HelperStart);
+  const api30Helper = source.activity.slice(api30HelperStart, api33HelperStart);
+  const api33Helper = source.activity.slice(api33HelperStart);
+  if (/WindowInsets\\.Type|OnBackInvokedCallback|OnBackInvokedDispatcher/u.test(mainActivityBody)) {
+    failures.push("API 30/33 platform types must not appear in the API 23-loadable MainActivity body");
+  }
+  if (!/private var backCallback: Any\\? = null/u.test(mainActivityBody)) {
+    failures.push("MainActivity must store the API 33 callback through an Any/Object field");
+  }
+  if (!/Api30WindowInsetsHandler\\.apply\\(view, insets\\)/u.test(mainActivityBody) ||
+      !/WindowInsets\\.Type\\.systemBars\\(\\)[\\s\\S]*?WindowInsets\\.Type\\.displayCutout\\(\\)[\\s\\S]*?WindowInsets\\.Type\\.ime\\(\\)/u.test(api30Helper)) {
+    failures.push("API 30 WindowInsets.Type references must be isolated in Api30WindowInsetsHandler");
+  }
+  if (!/Api33BackHandler\\.createCallback/u.test(mainActivityBody) ||
+      !/OnBackInvokedCallback/u.test(api33Helper) ||
+      !/onBackInvokedDispatcher/u.test(api33Helper) ||
+      !/registerOnBackInvokedCallback/u.test(api33Helper) ||
+      !/unregisterOnBackInvokedCallback/u.test(api33Helper)) {
+    failures.push("API 33 predictive-back references must be isolated in Api33BackHandler");
+  }
+}
+
 // Build metadata and bundled asset path must match the documented Android support boundary.
 requirePattern("appGradle", /namespace\s*=\s*"com\.mindquest\.app"/u, "Android namespace must remain com.mindquest.app");
 requirePattern("appGradle", /applicationId\s*=\s*"com\.mindquest\.app"/u, "Android application ID must remain com.mindquest.app");
@@ -63,6 +92,6 @@ if (failures.length) {
   for (const failure of failures) console.error("FAIL: " + failure);
   process.exitCode = 1;
 } else {
-  console.log("Android WebView/lifecycle source audit passed: local-only document boundary, WebView hardening, no JavaScript bridge, API 23/24+ navigation guards, lifecycle cleanup, back-dispatch registration/unregistration, API 35 inset handling, pinned SDK/toolchain and canonical offline asset source.");
+  console.log("Android WebView/lifecycle source audit passed: local-only document boundary, WebView hardening, no JavaScript bridge, API 23/24+ navigation guards, lifecycle cleanup, API 30/33 platform-type isolation, predictive-back registration/unregistration, API 35 inset handling, pinned SDK/toolchain and canonical offline asset source.");
   console.log("Scope: static source/configuration regression only; no Kotlin compilation, Gradle task, APK assembly, emulator or physical-device validation was run.");
 }
