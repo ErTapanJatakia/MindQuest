@@ -1,6 +1,6 @@
 # MindQuest Security Assurance Dashboard
 
-**Programme status (2026-11-23):** Security scanner baseline operational on `main`; PR #109 merged as `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb`. PR-head Security Assurance, Dependency Review and Web Validation all passed (Web Validation: 40/40 steps). Post-merge mainline Security Assurance has completed all eight jobs successfully; post-merge Web Validation is still running at this checkpoint. Full tracked-file source review remains in progress; APK-level verification remains separately feature-completion-gated.  
+**Programme status (2026-11-23):** Security scanner baseline operational on `main`; PR #110 merged as `9354d84fc5516b67c6149f7f60a5317aa94075a6` after PR #109. PR #110 exact-head Web Validation passed all 40 steps, Security Assurance passed all eight jobs and Dependency Review passed. PR #110 post-merge mainline Web Validation [45119740772](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740772) and Security Assurance [45119740787](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740787) are the current post-merge evidence runs. Security Assurance completed all eight jobs successfully; Web Validation remains in progress at this checkpoint. Full tracked-file source review remains in progress; APK-level verification remains separately feature-completion-gated.  
 **Application:** MindQuest — offline-first Android app with a bundled HTML/CSS/JavaScript runtime and Kotlin WebView wrapper.  
 **Android application ID:** `com.mindquest.app`  
 **Scope:** Entire repository, application source, Android wrapper, dependencies, build configuration, CI/CD and distributable artefacts.
@@ -294,3 +294,31 @@ Scorecard is a repository-practice signal, not an application security certifica
 4. Continue the full tracked-file source review and independently authenticate critical Gradle artifacts/configuration coverage before any dependency-verification metadata is committed or enforced.
 
 **Current disposition:** remote source/security assurance remains in progress. PR #109 is merged and its exact-head checks passed; post-merge scanner jobs passed. Do not claim APK-level validation, complete source review, WCAG conformance, penetration-test completion or store approval.
+
+
+## API 23–32 class-verification compatibility remediation — 2026-11-23
+
+### Finding
+
+A deeper Android compatibility review found two newer platform API families referenced directly from the API 23-loadable `MainActivity` implementation:
+
+- `WindowInsets.Type` (API 30+) was used directly inside the Activity's API 35 inset callback.
+- `OnBackInvokedCallback` / `OnBackInvokedDispatcher` (API 33+) were referenced in an Activity field and registration/unregistration code.
+
+An `SDK_INT` guard is not sufficient evidence that newer platform classes are isolated from class verification on older OS versions. This is a platform compatibility/stability issue, not a confirmed security vulnerability. Android's API references document the introduction levels; AndroidX's own compatibility implementation uses version-specific helper classes to keep newer platform references out of baseline classes.
+
+### Source remediation in the current change set
+
+- Store the API 33 callback as `Any?` in `MainActivity`, not as `OnBackInvokedCallback`.
+- Move API 30 inset operations into `Api30WindowInsetsHandler`.
+- Move API 33 callback creation, registration and unregistration into `Api33BackHandler`; helper method signatures use baseline `Activity` / `Any` types.
+- Extend `scripts/audit-android-webview-lifecycle.mjs` to fail if API 30/33 platform types leak back into the `MainActivity` body, or if helper creation/registration/cleanup is removed.
+
+### Evidence and limits
+
+- The change is source-level and is being validated by the normal PR Web Validation, Security Assurance and Dependency Review workflows.
+- The static audit does not compile Kotlin and does not prove class loading on Android 6–12L. The gated Android build and physical API 23–32 device/emulator acceptance remain required before release.
+- No Gradle toolchain changes, runtime permissions, network access, or release-signing behavior were changed.
+
+References: [Android `WindowInsets.Type` API reference](https://developer.android.com/reference/android/view/WindowInsets.Type), [Android `OnBackInvokedCallback` API reference](https://developer.android.com/reference/android/window/OnBackInvokedCallback), [AndroidX compatibility implementation](https://android.googlesource.com/platform/frameworks/support/+/d3424bfed43c927df54e775c1450934368476c80).
+

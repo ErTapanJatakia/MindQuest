@@ -4,7 +4,7 @@ Last updated: 2026-11-23
 
 ## Current authoritative status — 2026-11-23
 
-The runtime baseline is five regions (IN, RU, US, ES, PE), five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. Spain and Peru are enabled; Spanish question locales es-ES and es-PE are available. The current mainline Web Validation run is [45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) and the Security Assurance run is [45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486); these post-PR #109 mainline runs are being recorded separately from PR-head checks. See the Security Assurance Dashboard for scanner evidence and coverage limitations.
+The runtime baseline is five regions (IN, RU, US, ES, PE), five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. Spain and Peru are enabled; Spanish question locales es-ES and es-PE are available. PR #109 post-merge Web Validation passed all 41 steps and Security Assurance passed all eight jobs. PR #110 exact-head Web Validation passed all 40 steps; its Security Assurance and Dependency Review also passed. The PR #110 post-merge mainline runs are [Web Validation 45119740772](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740772) and [Security Assurance 45119740787](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45119740787); Security Assurance has completed all eight jobs successfully, while Web Validation remains in progress. See the Security Assurance Dashboard for scanner evidence and coverage limitations.
 
 The historical PR #5 debug APK and the older three-region statements below are not the current Gate 2 candidate. Android package validation remains manually gated by feature-scope completion. No signing, production deployment or store submission is authorized. Physical-device and assistive-technology acceptance remain owner-performed.
 
@@ -33,7 +33,7 @@ The GitHub Actions browser suite covers the following automated acceptance areas
 | Runtime security boundary | CSP directives, no remote scripts/styles, no inline event handlers, no dynamic code evaluation, no network APIs in app runtime, staged content excluded | Security boundary regressions fail CI before merge |
 | Gameplay integrity | Exact difficulty quotas for 5/10/15 rounds, result focus/review completeness and 50-question cycle exhaustion in each of the five current regions | No duplicate stable question IDs within a round; all eligible questions are exhausted before a new cycle |
 | View focus and inactive-view isolation | Home, Settings, Help, Privacy, Accessibility, Quiz and Results navigation, heading focus, completed-round transitions and replay | Exactly one view is active; inactive views expose no visible tab-reachable controls; destination context receives focus |
-| Android WebView/lifecycle source | Static checks for local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling, API 35+ insets and pinned build metadata | Source/configuration regressions fail CI; this is not Kotlin compilation, APK inspection or device validation |
+| Android WebView/lifecycle source | Static checks for local-only navigation, restrictive WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 30/33 platform-type isolation, API 35+ insets and pinned build metadata | Source/configuration regressions fail CI; this is not Kotlin compilation, APK inspection or device validation |
 
 The test suite must retain strict assertions. If an assertion fails, investigate the product behavior; do not delete or loosen the assertion to obtain a green workflow.
 
@@ -149,7 +149,7 @@ This addendum supersedes earlier coverage counts and descriptions above.
 | Offline isolation | All 25 region × question-language pairs; startup, selector changes and gameplay are exercised while cross-origin requests are blocked and recorded | Does not prove Android radio isolation or absence of OS-originated traffic |
 | Compact accessibility reflow | 320 CSS px; Home, Settings, Quiz, Results and answer review with large text, high contrast and reduced motion enabled together; overflow and escaped visible controls are rejected | Browser viewport test only; physical devices and assistive technology remain manual |
 | Score-ledger resilience | Malformed shapes/fields/ranges, valid-record recovery, legacy migration and failed migration-write preservation | Does not prove Android OS backup/restore behavior |
-| Android WebView/lifecycle | Static local-only navigation, WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 33+ back handling and API 35+ insets | Does not compile Kotlin or execute Android framework callbacks |
+| Android WebView/lifecycle | Static local-only navigation, WebView settings, API 23/24+ callbacks, lifecycle cleanup, API 30/33 platform-type isolation, API 35+ insets | Does not compile Kotlin or execute Android framework callbacks |
 | Android build boundary | Static check that routine CI stays web/content-only and final Android validation is manual and gated by feature_scope_complete=true | Does not run Gradle or assemble an APK |
 
 ### Latest exact-head CI evidence

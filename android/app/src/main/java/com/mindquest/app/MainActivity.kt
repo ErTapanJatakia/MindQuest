@@ -4,15 +4,17 @@ import android.app.Activity
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.view.WindowInsets
 import android.window.OnBackInvokedCallback
 
 class MainActivity : Activity() {
     private lateinit var gameView: WebView
-    private var backCallback: OnBackInvokedCallback? = null
+    // Keep API 33 callback instances as Object/Any in this API 23-loadable class.
+    private var backCallback: Any? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Replace the launch-only theme before creating the game view.
@@ -58,40 +60,27 @@ class MainActivity : Activity() {
         setContentView(gameView)
 
         // Android 15 enforces edge-to-edge for apps targeting API 35.
-        // Keep the local game content clear of system bars and display cutouts.
+        // Keep API 30 inset APIs outside this API 23-loadable class.
         if (Build.VERSION.SDK_INT >= 35) {
             gameView.setOnApplyWindowInsetsListener { view, insets ->
-                val safeInsets = insets.getInsets(
-                    WindowInsets.Type.systemBars() or
-                        WindowInsets.Type.displayCutout() or
-                        WindowInsets.Type.ime()
-                )
-                view.setPadding(
-                    safeInsets.left,
-                    safeInsets.top,
-                    safeInsets.right,
-                    safeInsets.bottom
-                )
-                insets
+                Api30WindowInsetsHandler.apply(view, insets)
             }
             gameView.requestApplyInsets()
         }
 
         gameView.loadUrl("file:///android_asset/index.html")
 
-        // Android 13+ uses the platform predictive-back dispatcher.
+        // Android 13+ predictive-back types are isolated in an API-specific helper.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            backCallback = OnBackInvokedCallback {
+            val callback = Api33BackHandler.createCallback {
                 if (gameView.canGoBack()) {
                     gameView.goBack()
                 } else {
                     finish()
                 }
             }
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT,
-                backCallback!!
-            )
+            backCallback = callback
+            Api33BackHandler.register(this, callback)
         }
     }
 
@@ -125,7 +114,7 @@ class MainActivity : Activity() {
     override fun onDestroy() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             backCallback?.let { callback ->
-                onBackInvokedDispatcher.unregisterOnBackInvokedCallback(callback)
+                Api33BackHandler.unregister(this, callback)
             }
             backCallback = null
         }
@@ -138,5 +127,46 @@ class MainActivity : Activity() {
             }
         }
         super.onDestroy()
+    }
+}
+
+// API 30 introduced typed window-inset APIs. Keep all references in a separate class
+// that is reached only from an API 35+ guarded call site.
+@android.annotation.TargetApi(30)
+private object Api30WindowInsetsHandler {
+    fun apply(view: View, insets: WindowInsets): WindowInsets {
+        val safeInsets = insets.getInsets(
+            WindowInsets.Type.systemBars() or
+                WindowInsets.Type.displayCutout() or
+                WindowInsets.Type.ime()
+        )
+        view.setPadding(
+            safeInsets.left,
+            safeInsets.top,
+            safeInsets.right,
+            safeInsets.bottom
+        )
+        return insets
+    }
+}
+
+// API 33 introduced the predictive-back dispatcher/callback classes. Keep those
+// types out of MainActivity fields and method signatures to preserve API 23 loading.
+@android.annotation.TargetApi(33)
+private object Api33BackHandler {
+    fun createCallback(onBack: () -> Unit): Any =
+        OnBackInvokedCallback { onBack() }
+
+    fun register(activity: Activity, callback: Any) {
+        activity.onBackInvokedDispatcher.registerOnBackInvokedCallback(
+            android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT,
+            callback as OnBackInvokedCallback
+        )
+    }
+
+    fun unregister(activity: Activity, callback: Any) {
+        activity.onBackInvokedDispatcher.unregisterOnBackInvokedCallback(
+            callback as OnBackInvokedCallback
+        )
     }
 }

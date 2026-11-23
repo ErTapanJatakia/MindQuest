@@ -13,6 +13,7 @@ MindQuest is a self-contained Android application. The game UI is implemented in
 - The application is designed for offline use and does not require an account, backend, analytics SDK, advertising SDK, CDN, remote font, remote script, gameplay API or network connection.
 - The Android manifest currently declares no runtime permissions, disables backup and cleartext traffic, and exposes only the launcher activity.
 - WebView JavaScript and DOM storage are enabled for the bundled game. No JavaScript/native bridge is exposed.
+- API 30 `WindowInsets.Type` and API 33 predictive-back platform types are isolated in version-specific helper objects. `MainActivity` keeps these newer types out of its fields and method signatures so the API 23-loadable Activity class does not resolve unavailable platform classes on older OS versions. A static source audit enforces this boundary; native runtime acceptance remains pending.
 - WebView debugging, content access, file-origin cross-access, universal file-origin access, automatic JavaScript windows, multiple windows and mixed content are disabled.
 - Main-frame navigation is constrained to the bundled `file:///android_asset/index.html` entry point.
 - The current implementation still uses a `file://` asset origin with `allowFileAccess=true` to load APK assets. This is a documented hardening opportunity, not a confirmed vulnerability. Evaluate AndroidX WebViewAssetLoader only as a separately tested migration that preserves offline operation and API 23 compatibility.
