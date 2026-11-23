@@ -1,5 +1,20 @@
 # Gate 2 — Android release-candidate and manual validation
 
+## Latest Gate 2 / security assurance status — 2026-11-23
+
+Main is at `4df2a5a2b09f33c19c257b1d96b3e8cd61a333cb` after PR #109 merged. Exact-head Web Validation [45115543410](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543410) passed all 40 workflow steps; Security Assurance [45115543280](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543280) and Dependency Review [45115543276](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45115543276) passed. Post-merge Security Assurance [45116991486](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991486) passed all eight jobs. Post-merge Web Validation [45116991488](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45116991488) is still running at this checkpoint; its final conclusion must be checked before closeout.
+
+Current product scope is five regions, five interface locales and five question locales: 250 stable question IDs and 1,250 localized records. The approved Android application ID is `com.mindquest.app`; minSdk 23, compileSdk/targetSdk 35, Java/Kotlin 17, AGP 8.7.3, Kotlin plugin 2.0.21 and Gradle 8.9 remain the current source configuration.
+
+The Android release-validation workflow remains manually gated by `feature_scope_complete=true`. It has not been dispatched in this assurance batch; no current Gate 2 APK has been assembled or inspected. Do not infer Kotlin compilation, merged-manifest or APK-level security from browser/static CI. Physical-device, TalkBack/screen-reader and switch-access acceptance remain project-owner tasks. No production signing, release publication, deployment or store submission is authorized.
+
+Security assurance remains open for complete tracked-file source review, independent Gradle artifact provenance and configuration coverage, APK-level SBOM reconciliation, WebView/CSP hardening assessment, and owner-level branch-protection/contact-disclosure decisions. The generated Gradle verification metadata remains untrusted and unenforced. The current Security Assurance Dashboard records scanner evidence, Scorecard 6.2, source-SBOM scope and outstanding owner actions.
+
+Open toolchain upgrade proposals PR #95 (Kotlin 2.4.21), PR #97 (AGP 9.5.2) and PR #106 (Gradle 9.9.2) remain held as a coordinated set. Do not merge independently or weaken the explicit Gradle 8.9 compatibility guard.
+
+---
+
+
 ## Latest Gate 2 status — PR #68 merged (2026-11-21)
 
 - PR [#68](https://github.com/ErTapanJatakia/MindQuest/pull/68) merged to `main` as `a89a919b3726a4e198df167698c414d380f1f0ec` after exact-head workflow [#44848743446](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44848743446) passed all 38 substantive validation steps on head `3adefe2429eb04f30eb5738d469cb52e843d2814`.
@@ -10,7 +25,7 @@
 
 ---
 
-Last updated: 2026-11-21
+Last updated: 2026-11-23
 
 ## Current decision
 
@@ -86,7 +101,7 @@ The current Android shell source audit checks and passes for:
 - API 33+ predictive-back callback registration/unregistration.
 - API 35+ system-bar, display-cutout and IME inset handling.
 - Manifest backup disabled, cleartext disabled, no declared permissions or additional Android components.
-- Package ID `app.mindquest`, min SDK 23, target SDK 35, Java/Kotlin 17, pinned Android Gradle Plugin 8.7.3, Kotlin plugin 2.0.21 and Gradle 8.9 wrapper.
+- Package ID `com.mindquest.app`, min SDK 23, target SDK 35, Java/Kotlin 17, pinned Android Gradle Plugin 8.7.3, Kotlin plugin 2.0.21 and Gradle 8.9 wrapper.
 
 These are static source/configuration checks, not Kotlin compilation, runtime Android security testing or physical-device evidence.
 
