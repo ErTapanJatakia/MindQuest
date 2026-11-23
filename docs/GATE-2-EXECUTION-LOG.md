@@ -15,7 +15,7 @@ Open toolchain upgrade proposals PR #95 (Kotlin 2.4.21), PR #97 (AGP 9.5.2) and 
 ---
 
 
-## Latest Gate 2 status — PR #68 merged (2026-11-21)
+## Historical Gate 2 status — PR #68 merged (2026-11-21)
 
 - PR [#68](https://github.com/ErTapanJatakia/MindQuest/pull/68) merged to `main` as `a89a919b3726a4e198df167698c414d380f1f0ec` after exact-head workflow [#44848743446](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44848743446) passed all 38 substantive validation steps on head `3adefe2429eb04f30eb5738d469cb52e843d2814`.
 - Post-merge mainline workflow [#44851298170](https://github.com/ErTapanJatakia/MindQuest/actions/runs/44851298170) was triggered on the merge commit and is pending at the time of this update; do not report it as passed until its conclusion is observed.
