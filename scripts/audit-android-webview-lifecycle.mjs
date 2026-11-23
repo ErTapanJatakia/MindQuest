@@ -84,6 +84,8 @@ requirePattern("appGradle", /applicationId\s*=\s*"com\.mindquest\.app"/u, "Andro
 requirePattern("appGradle", /minSdk\s*=\s*23/u, "Minimum Android API must remain 23");
 requirePattern("appGradle", /targetSdk\s*=\s*35/u, "Target Android API must remain 35");
 requirePattern("appGradle", /assets\.srcDir\("\.\.\/\.\.\/app"\)/u, "APK assets must use the canonical repository app directory");
+requirePattern("appGradle", /compilerOptions\s*\{[\s\S]*?jvmTarget\s*=\s*org\.jetbrains\.kotlin\.gradle\.dsl\.JvmTarget\.JVM_17/u, "Kotlin JVM target must use the typed compilerOptions DSL and remain aligned to Java 17");
+forbidPattern("appGradle", /kotlinOptions\s*\{/u, "Deprecated Kotlin kotlinOptions DSL must not be reintroduced");
 requirePattern("rootGradle", /com\.android\.application"\) version "8\.11\.1"/u, "Android Gradle Plugin version must remain pinned");
 requirePattern("rootGradle", /org\.jetbrains\.kotlin\.android"\) version "2\.2\.21"/u, "Kotlin Android plugin version must remain pinned");
 requirePattern("gradleProperties", /android\.useAndroidX=true/u, "AndroidX Gradle setting must remain explicit");
