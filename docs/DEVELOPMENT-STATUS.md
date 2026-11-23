@@ -2,7 +2,7 @@
 
 ## Latest authoritative status — 2026-11-23
 
-Main is at `8310d670af4c9041144c1c3d81d4a5e42fab5ebe`, following the merge of PR #113. PR #111 isolated API 30/33 platform references into version-specific helpers to preserve the API 23-loadable Activity boundary; PR #112 reconciled current-state/security documentation; PR #113 restored official Gradle 8.9 wrapper JVM defaults. These changes are merged, but the Android Kotlin compilation and API 23–32 runtime behaviour remain unverified until the gated Android validation is authorized.
+The latest application/toolchain commit on `main` is `8310d670af4c9041144c1c3d81d4a5e42fab5ebe` (PR #113). PR #114 was a documentation-only reconciliation merged as `17b5a6073a2ad3ff1d76efe0b04a0fa21f3402f6`; its post-merge Security Assurance [45133096884](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45133096884) passed all eight jobs and Web Validation [45133096812](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45133096812) passed all 41 steps. PR #111 isolated API 30/33 platform references into version-specific helpers to preserve the API 23-loadable Activity boundary; PR #112 reconciled current-state/security documentation; PR #113 restored official Gradle 8.9 wrapper JVM defaults. These changes are merged, but the Android Kotlin compilation and API 23–32 runtime behaviour remain unverified until the gated Android validation is authorized.
 
 Latest post-merge mainline evidence:
 - Web Validation [45128635330](https://github.com/ErTapanJatakia/MindQuest/actions/runs/45128635330): all 41 steps passed.
