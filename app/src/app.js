@@ -335,7 +335,6 @@
     $("feedback").className = "feedback";
     $("question-title").textContent = "";
     $("progress-label").textContent = "";
-    $("progress-fill").style.width = "0%";
     $("question-progress").setAttribute("aria-valuenow", "0");
     $("answer-review-list").replaceChildren();
     $("answer-review-title").hidden = true;
@@ -511,7 +510,6 @@
     $("round-label").textContent = t("round");
     $("progress-label").textContent = (current + 1) + " / " + round.length;
     const progress = Math.round(((current + 1) / round.length) * 100);
-    $("progress-fill").style.width = progress + "%";
     $("question-progress").setAttribute("aria-valuenow", String(progress));
     $("question-progress").setAttribute("aria-label", t("progress"));
     $("category-label").textContent = categoryName(item.category).toUpperCase();
