@@ -35,7 +35,6 @@
 
   function applyTheme(name) {
     const selected = themes[name] ? name : "obsidian";
-    const palette = themes[selected];
     root.dataset.theme = selected;
     const select = document.getElementById("theme-select");
     if (select) select.value = selected;
