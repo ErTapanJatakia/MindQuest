@@ -20,6 +20,7 @@ const directives = new Map((cspTag?.[1] || "").split(";").map(value => {
 const required = {
   "default-src": ["'self'", "file:"],
   "script-src": ["'self'", "file:"],
+  "style-src": ["'self'", "file:"],
   "connect-src": ["'none'"],
   "object-src": ["'none'"],
   "base-uri": ["'self'"],
@@ -36,6 +37,8 @@ for (const name of ["script-src", "default-src", "connect-src", "object-src"]) {
 }
 check(!(directives.get("script-src") || []).includes("'unsafe-inline'"),
   "CSP script-src must not permit inline scripts.");
+check(!(directives.get("style-src") || []).includes("'unsafe-inline'"),
+  "CSP style-src must not permit inline styles.");
 
 const scriptTags = [...html.matchAll(/<script\b([^>]*)>/gi)].map(match => match[1]);
 check(scriptTags.length > 0, "The application must load its local runtime scripts.");
